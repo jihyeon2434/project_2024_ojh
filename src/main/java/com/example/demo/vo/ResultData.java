@@ -23,15 +23,9 @@ public class ResultData<DT> {
 		return rd;
 	}
 
-	public static <DT> ResultData<DT> newData(ResultData joinRd, DT member) {
-		return from(joinRd.getResultCode(), joinRd.getMsg(), member);
+	public static <DT> ResultData<DT> newData(ResultData rd, DT newData) {
+		return from(rd.getResultCode(), rd.getMsg(), newData);
 	}
-
-	//public static <DT> ResultData newData(ResultData LoginRd, DT member) {
-	//	return from(LoginRd.getResultCode(), LoginRd.getMsg(), member);
-	//}
-	
-	
 
 	public boolean isSuccess() {
 		return resultCode.startsWith("S-");
