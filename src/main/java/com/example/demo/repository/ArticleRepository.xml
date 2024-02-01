@@ -20,11 +20,11 @@
 	</update>
 	
 	<select id="getArticle" resultType="Article">
-		SELECT *, M.nickname
-		FROM article  AS A
+		SELECT A.*, M.nickname
+		FROM article AS A
 		INNER JOIN `member` AS M
-		ON 
-		WHERE id = #{id}
+		ON A.memberId = M.id
+		WHERE A.id = #{id}
 	</select>
 	
 	

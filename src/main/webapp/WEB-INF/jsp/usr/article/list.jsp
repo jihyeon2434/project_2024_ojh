@@ -13,6 +13,9 @@
 					<th>날짜</th>
 					<th>제목</th>
 					<th>작성자</th>
+					<th>수정</th>
+					<th>삭제</th>
+					
 				</tr>
 			</thead>
 			<tbody>
@@ -23,6 +26,8 @@
 						<td>${article.regDate.substring(0,10) }</td>
 						<td><a class="hover:underline" href="detail?id=${article.id }">${article.title }</a></td>
 						<td>${article.memberId }</td>
+						<td><a href="modify?id=${article.memberId } >수정</a></td>
+				<td><a href="doDelete?id=<%=article.memberId()%>">del</a></td>
 					</tr>
 				</c:forEach>
 			</tbody>
