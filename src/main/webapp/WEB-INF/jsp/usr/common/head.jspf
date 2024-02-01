@@ -4,45 +4,18 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>ARTICLE LIST</title>
-<link rel="stylesheet" href="/resouce/common.css" />
-<script src="/resouce/common.js" defer="defer"></script>
-
+<title>${pageTitle }</title>
+<link rel="stylesheet" href="/resource/common.css" />
+<script src="/resource/common.js" defer="defer"></script>
 </head>
 <body>
-	<h1>LIST</h1>
+	<header>
+		<a href="/">LOGO</a>
 
+		<ul>
+			<li><a href="/">HOME</a></li>
+			<li><a href="../article/list">LIST</a></li>
+		</ul>
+	</header>
+	<h1>${pageTitle }</h1>
 	<hr />
-
-	<table border="1">
-		<h2>게시물 상세페이지</h2>
-		<thead>
-			<tr>
-				<th>번호</th>
-				<th>날짜</th>
-				<th>제목</th>
-				<th>작성자</th>
-			</tr>
-		</thead>
-		<tbody>
-
-			<c:forEach var="article" items="${articles }">
-				<tr>
-					<td>${article.id }</td>
-					<td>${article.regDate.substring(0,10) }</td>
-					<td>
-						<a href="detail?id=${article.id }">${article.title }</a>
-					</td>
-					<td>${article.memberId }</td>
-				</tr>
-			</c:forEach>
-		</tbody>
-
-	</table>
-
-
-
-
-
-</body>
-</html>
