@@ -17,6 +17,7 @@ public class UsrMemberController {
 
 	@Autowired
 	private MemberService memberService;
+	
 
 	@RequestMapping("/usr/member/doLogout")
 	@ResponseBody
