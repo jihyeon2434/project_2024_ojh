@@ -21,21 +21,21 @@ public class UsrMemberController {
 
 	@RequestMapping("/usr/member/doLogout")
 	@ResponseBody
-	public ResultData doLogout(HttpSession httpSession) {
+	public String doLogout(HttpSession httpSession, String loginId) {
 
 		boolean isLogined = false;
-
+		Member member = memberService.getMemberByLoginId(loginId);
 		if (httpSession.getAttribute("loginedMemberId") != null) {
 			isLogined = true;
 		}
 
-		if (isLogined == false) {
-			return ResultData.from("F-A", "이미 로그아웃 상태입니다");
-		}
+	//	if (isLogined == false) {
+	//		return ResultData.from("F-A", "이미 로그아웃 상태입니다");
+	//	}
 
 		httpSession.removeAttribute("loginedMemberId");
 
-		return ResultData.from("S-1", Ut.f("로그아웃 되었습니다"));
+		return Ut.jsReplace("S-1", Ut.f("%s님 로그아웃되었습니다.",loginId),"/");
 	}
 
 	@RequestMapping("/usr/member/login")
