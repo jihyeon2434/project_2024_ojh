@@ -1,4 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
+
 <configuration>
 
 	<springProperty name="LOG_PATH"
@@ -20,6 +21,9 @@
 			<charset>UTF-8</charset>
 		</encoder>
 	</appender>
+
+
+	
 
 	<!--파일에 로그를 남깁니다. -->
 	<appender name="File"
