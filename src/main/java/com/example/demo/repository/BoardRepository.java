@@ -9,9 +9,11 @@ import com.example.demo.vo.Board;
 public interface BoardRepository {
 
 	@Select("""
-				SELECT *
-				FROM board
-				WHERE id = #{boardId}
+				SELECT * 
+				FROM article AS A
+				INNER JOIN board AS B
+				ON A.boardId = B.id
+				WHERE B.id = #{boardId}
 				AND delStatus = 0;
 			""")
 	public Board getBoardById(int boardId);
