@@ -111,5 +111,16 @@ public interface ArticleRepository {
 			</script>
 			""")
 	public List<Article> getForPrintArticles(int boardId, int limitFrom, int limitTake);
+	@Select("""
+			<script>
+			SELECT *
+			FROM article
+			WHERE 
+			keywordTitle LIKE '%keyword%'
+			keywordContent LIKE '%keyword%'
+			keywordwriter LIKE '%keyword%'
+			</script>
+			""")
+	public List<Article> getForKeywordArticles(int boardId, String keywordTitle,  String keywordContent, String keywordwriter);
 
 }

@@ -28,7 +28,9 @@
 					<tr class="hover">
 						<td>${article.id }</td>
 						<td>${article.regDate.substring(0,10) }</td>
-						<td><a href="detail?id=${article.id }">${article.title }</a></td>
+						<td>
+							<a href="detail?id=${article.id }">${article.title }</a>
+						</td>
 						<td>${article.extra__writer }</td>
 					</tr>
 				</c:forEach>
@@ -65,6 +67,21 @@
 			</c:forEach>
 		</div>
 	</div>
+
+	<form class="flex justify-center mt-10" action="../article/list" method="POST">
+		<fieldset>
+			<select name="kind">
+				<option value="keywordTitle">제목</option>
+				<option value="keywordContent">내용</option>
+				<option value="keywordwriter">작성자</option>
+			</select>
+
+			<input class="input input-bordered" name="keyword" type="text" placeholder="검색어를 입력해주세요">
+			<button class="btn btn-outline">검색</button>
+
+		</fieldset>
+	</form>
+
 </section>
 
 
