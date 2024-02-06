@@ -10,7 +10,7 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
 @Component
-public class NeedLoginInterceptor implements HandlerInterceptor {
+public class NeedLogoutInterceptor implements HandlerInterceptor {
 	@Autowired
 	private Rq rq;
 
@@ -18,10 +18,10 @@ public class NeedLoginInterceptor implements HandlerInterceptor {
 	public boolean preHandle(HttpServletRequest req, HttpServletResponse resp, Object handler) throws Exception {
 		Rq rq = (Rq) req.getAttribute("rq");
 
-		if (!rq.isLogined()) {
-			System.out.println("==============로그인 하고 써============");
+		if (rq.isLogined()) {
+			System.out.println("==============로그아웃 하고 써============");
 
-			rq.printHistoryBack("로그인 하고 써라");
+			rq.printHistoryBack("로그아웃 하고 써라");
 
 			return false;
 
