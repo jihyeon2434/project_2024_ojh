@@ -100,6 +100,7 @@ public interface ArticleRepository {
 			INNER JOIN `member` AS M
 			ON A.memberId = M.id
 			WHERE 1
+			
 			<if test="boardId != 0">
 				AND A.boardId = #{boardId}
 			</if>
