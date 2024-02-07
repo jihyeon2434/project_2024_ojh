@@ -68,12 +68,12 @@
 		</div>
 	</div>
 
-	<form class="flex justify-center mt-10" action="../article/list" method="POST">
+	<form class="flex justify-center mt-10" action="../article/doSearch" method="POST">
 		<fieldset>
-			<select name="kind">
-				<option value="keywordTitle">제목</option>
-				<option value="keywordContent">내용</option>
-				<option value="keywordwriter">작성자</option>
+			<select name="searchField">
+				<option value="title">제목</option>
+				<option value="content">내용</option>
+				<option value="writer">작성자</option>
 			</select>
 
 			<input class="input input-bordered" name="keyword" type="text" placeholder="검색어를 입력해주세요">
