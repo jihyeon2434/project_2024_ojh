@@ -86,7 +86,23 @@ public class UsrArticleController {
 		return "usr/article/detail";
 	}
 	
-	
+	@RequestMapping("/usr/article/doReactionPoint")
+	@ResponseBody
+	public ResultData doReactionPoint(int id) {
+
+		String GoodReactionPoint = articleService.increaseGoodReactionPoint(id);
+
+		if (increaseHitCountRd.isFail()) {
+			return increaseHitCountRd;
+		}
+
+		ResultData rd = ResultData.newData(increaseHitCountRd, "hitCount", articleService.getArticleHitCount(id));
+
+		rd.setData2("id", id);
+
+		return rd;
+
+	}
 
 	@RequestMapping("/usr/article/doIncreaseHitCountRd")
 	@ResponseBody

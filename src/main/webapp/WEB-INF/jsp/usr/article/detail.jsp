@@ -66,8 +66,19 @@
 					<td>${article.extra__sumReactionPoint }</td>
 				</tr>
 				<tr>
+					<th>추천</th>
+					<td>
+						<span onClick={()=> 👍 ${article.extra__goodReactionPoint } </span>
+						<span onClick={()=> 👎 ${article.badReactionPoint } </span>
+					</td>
+					
+				</tr>
+
+				<tr>
 					<th>조회수</th>
-					<td><span class="article-detail__hit-count">${article.hitCount }</span></td>
+					<td>
+						<span class="article-detail__hit-count">${article.hitCount }</span>
+					</td>
 				</tr>
 				<tr>
 					<th>제목</th>

@@ -22,6 +22,8 @@ public class Article {
 	private String extra__goodReactionPoint;
 	private String extra__badReactionPoint;
 
+	private String badReactionPoint;
+	
 	private boolean userCanModify;
 	private boolean userCanDelete;
 }

@@ -118,4 +118,9 @@ public class ArticleService {
 				searchKeyword);
 	}
 
+	public String increaseGoodReactionPoint(int id) {
+		articleRepository.increaseGoodReactionPoint(id);
+		return null;
+	}
+
 }

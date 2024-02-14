@@ -121,6 +121,13 @@ public interface ArticleRepository {
 			WHERE id = #{id}
 			""")
 	public int increaseHitCount(int id);
+	
+	@Update("""
+			UPDATE article
+			SET goodReactionPoint = goodReactionPoint + 1
+			WHERE id = #{id}
+			""")
+	public int increaseGoodReactionPoint(int id);
 
 	@Select("""
 			SELECT hitCount
