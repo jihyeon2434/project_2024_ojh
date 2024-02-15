@@ -65,14 +65,19 @@
 				</tr>
 				<tr>
 					<th>추천 ${usersReaction }</th>
-					<td><a
-							href="/usr/reactionPoint/doGoodReaction?relTypeCode=article&relId=${param.id }&replaceUri=${rq.currentUri}"
-							class="reaction btn btn-outline btn-success">좋아요</a> &nbsp;&nbsp; <a href="/usr/reactionPoint/doBadReaction"
-							class="reaction btn btn-outline btn-error">싫어요</a></td>
+					<td>
+						<a href="/usr/reactionPoint/doGoodReaction?relTypeCode=article&relId=${param.id }&replaceUri=${rq.currentUri}"
+							class="reaction btn btn-outline btn-success">좋아요</a>
+						&nbsp;&nbsp;
+						<a href="/usr/reactionPoint/doBadReaction?relTypeCode=article&relId=${param.id }&replaceUri=${rq.currentUri}"
+							class="reaction btn btn-outline btn-error">싫어요</a>
+					</td>
 				</tr>
 				<tr>
 					<th>조회수</th>
-					<td><span class="article-detail__hit-count">${article.hitCount }</span></td>
+					<td>
+						<span class="article-detail__hit-count">${article.hitCount }</span>
+					</td>
 				</tr>
 				<tr>
 					<th>제목</th>
