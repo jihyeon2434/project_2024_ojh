@@ -55,30 +55,19 @@
 				</tr>
 				<tr>
 					<th>좋아요</th>
-					<td>${article.extra__goodReactionPoint }</td>
+					<td>${article.goodReactionPoint }</td>
 				</tr>
 				<tr>
 					<th>싫어요</th>
-					<td>${article.extra__badReactionPoint }</td>
-				</tr>
-				<tr>
-					<th>추천 합</th>
-					<td>${article.extra__sumReactionPoint }</td>
+					<td>${article.badReactionPoint }</td>
 				</tr>
 				<tr>
 					<th>추천</th>
-					<td>
-						<span onClick={()=> 👍 ${article.extra__goodReactionPoint } </span>
-						<span onClick={()=> 👎 ${article.badReactionPoint } </span>
-					</td>
-					
+					<td><span class="btn btn-outline btn-success">좋아요</span>&nbsp;&nbsp;<span class="btn btn-outline btn-error">싫어요</span></td>
 				</tr>
-
 				<tr>
 					<th>조회수</th>
-					<td>
-						<span class="article-detail__hit-count">${article.hitCount }</span>
-					</td>
+					<td><span class="article-detail__hit-count">${article.hitCount }</span></td>
 				</tr>
 				<tr>
 					<th>제목</th>
