@@ -223,9 +223,34 @@
 				</tr>
 
 			</tbody>
+
+
+
+			<section class="mt-8 text-xl px-4">
+				<div class="mx-auto">
+					<form action="../reply/doWrite" method="POST">
+						<table class="write-box" border="1">
+							<tbody>
+								<tr>
+									<td>
+										<input class="input input-primary max-w-xs" autocomplete="off" type="text" placeholder="댓글을 입력해주세요"
+											name="content" />
+										<input class="btn btn-outline btn-info" type="submit" value="작성" />
+									</td>
+								</tr>
+							</tbody>
+						</table>
+					</form>
+					<div class="btns">
+						<button class="btn btn-outline" class="" type="button" onclick="history.back();">뒤로가기</button>
+					</div>
+				</div>
+			</section>
+
+
 		</table>
 		<div class="btns mt-5">
-			<button class="btn btn-outline" type="button" onclick="history.back();">뒤로가기</button>
+			
 			<c:if test="${article.userCanModify }">
 				<a class="btn btn-outline" href="../article/modify?id=${article.id }">수정</a>
 			</c:if>

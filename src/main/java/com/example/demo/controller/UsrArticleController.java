@@ -118,14 +118,15 @@ public class UsrArticleController {
 	}
 
 	@RequestMapping("/usr/article/write")
-	public String showJoin(HttpServletRequest req) {
+	public String showJoin(HttpServletRequest req, Model model, @RequestParam(defaultValue = "1") int boardId) {
+		model.addAttribute("boardId", boardId);
 
 		return "usr/article/write";
 	}
 
 	@RequestMapping("/usr/article/doWrite")
 	@ResponseBody
-	public String doWrite(HttpServletRequest req, String title, String body) {
+	public String doWrite(HttpServletRequest req, String title, String body, @RequestParam(defaultValue = "1") int boardId ) {
 
 		Rq rq = (Rq) req.getAttribute("rq");
 

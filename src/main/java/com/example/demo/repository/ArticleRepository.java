@@ -20,6 +20,10 @@ public interface ArticleRepository {
 			updateDate = NOW(),
 			memberId = #{memberId},
 			title = #{title}, `body` = #{body}
+			WHERE 1
+			<if test="boardId != 0">
+				AND boardId = #{boardId}
+			</if>
 			""")
 	public void writeArticle(int memberId, String title, String body);
 

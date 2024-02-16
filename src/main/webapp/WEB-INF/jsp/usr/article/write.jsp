@@ -9,21 +9,28 @@
 		<form action="../article/doWrite" method="POST">
 			<table class="write-box table-box-1" border="1">
 				<tbody>
+					<input type="hidden" name="boardId" value="${param.boardId }" />
 					<tr>
 						<th>제목</th>
-						<td><input class="input input-bordered input-primary w-full max-w-xs" autocomplete="off" type="text"
-							placeholder="제목을 입력해주세요" name="title" /></td>
+						<td>
+							<input class="input input-bordered input-primary w-full max-w-xs" autocomplete="off" type="text"
+								placeholder="제목을 입력해주세요" name="title" />
+						</td>
 					</tr>
 					<tr>
 						<th>내용</th>
-						<td><input class="input input-bordered input-primary w-full max-w-xs" autocomplete="off" type="text"
-							placeholder="내용을 입력해주세요" name="body" /></td>
+						<td>
+							<input class="input input-bordered input-primary w-full max-w-xs" autocomplete="off" type="text"
+								placeholder="내용을 입력해주세요" name="body" />
+						</td>
 					</tr>
 
 
 					<tr>
 						<th></th>
-						<td><input class="btn btn-outline btn-info" type="submit" value="작성" /></td>
+						<td>
+							<input class="btn btn-outline btn-info" type="submit" value="작성" />
+						</td>
 					</tr>
 				</tbody>
 			</table>
