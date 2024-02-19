@@ -266,7 +266,6 @@
 	</c:if>
 	<div class="mx-auto">
 		<h2>댓글 리스트(${repliesCount })</h2>
-		<div>${replies }</div>
 	</div>
 
 	<table class="table-box-1 table" border="1">
