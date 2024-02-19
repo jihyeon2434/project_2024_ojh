@@ -20,10 +20,6 @@ public interface ArticleRepository {
 			updateDate = NOW(),
 			memberId = #{memberId},
 			title = #{title}, `body` = #{body}
-			WHERE 1
-			<if test="boardId != 0">
-				AND boardId = #{boardId}
-			</if>
 			""")
 	public void writeArticle(int memberId, String title, String body);
 
@@ -130,11 +126,12 @@ public interface ArticleRepository {
 
 	@Select("""
 			<script>
-			SELECT A.*,
-			M.nickname AS extra__writer
+			SELECT A.*, M.nickname AS extra__writer, IFNULL(COUNT(R.id),0) AS extra__repliesCnt
 			FROM article AS A
 			INNER JOIN `member` AS M
 			ON A.memberId = M.id
+			LEFT JOIN `reply` AS R 
+			ON A.id = R.relId
 			WHERE 1
 			<if test="boardId != 0">
 				AND A.boardId = #{boardId}
