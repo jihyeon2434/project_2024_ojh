@@ -225,9 +225,7 @@ function doModifyReply(replyId) {
         type: 'POST', // GET에서 POST로 변경
         data: { id: replyId, body: text }, // 서버에 전송할 데이터
         success: function(data) {
-        	
         	$('#modify-form-'+replyId).hide();
-        	console.log(2434);
         	$('#reply-'+replyId).text(data);
         	$('#reply-'+replyId).show();
         	$('#save-btn-'+replyId).hide();
