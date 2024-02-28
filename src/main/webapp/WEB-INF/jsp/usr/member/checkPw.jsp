@@ -23,7 +23,7 @@
 					<tr>
 						<th></th>
 						<td>
-							<input class="btn btn-outline btn-info" type="submit" value="로그인" />
+							<input class="btn btn-outline btn-info" type="submit" value="확인" />
 						</td>
 					</tr>
 				</tbody>
