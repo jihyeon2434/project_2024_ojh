@@ -18,13 +18,13 @@
 		<button onclick="panTo()">지도 중심좌표 대전으로 이동시키기</button>
 	</p>
 
-	<script type="text/javascript" src="API KEY"></script>
+	<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=	c240a41577775c21b2956df03250539d"></script>
 	<script>
 		var lat;
 		var lon;
 		// 		주차장
 		async function getData2() {
-			const API_KEY = 'API KEY';
+			const API_KEY = '	c240a41577775c21b2956df03250539d';
 			const url = 'https://www.yuseong.go.kr/ys_parking/ysparkingList/ORP/getJSONData.do?_wadl&type=json';
 			const response = await
 			fetch(url);
@@ -56,16 +56,16 @@
 		};
 
 		var map = new kakao.maps.Map(mapContainer, mapOption); // 지도를 생성합니다
-
-		var markerPosition = new kakao.maps.LatLng(33.450701, 126.570667);
 		
+	
+		var markerPosition = new kakao.maps.LatLng(33.450701, 126.570667);
 		// 마커를 생성합니다
 		var marker = new kakao.maps.Marker({
 			position : markerPosition
-		});
+		});	
 		// 마커가 지도 위에 표시되도록 설정합니다
 		marker.setMap(map);
-
+		
 		function setCenter() {
 			// 이동할 위도 경도 위치를 생성합니다 
 			var moveLatLon = new kakao.maps.LatLng(33.452613, 126.570888);
