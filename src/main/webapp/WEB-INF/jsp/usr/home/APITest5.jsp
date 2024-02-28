@@ -7,8 +7,8 @@
 <script>
 	
 	async function getData3() {
-		const API_KEY = 'kZWNGpWj8Ik6lGY4vyOCXej0OGm7AsvLB9L697cwC%2FDtS9b18qZCKdLna5yW0RAnnDCP8eLHVBFiQAx3spiEzQ%3D%3D';
-		const url = 'http://apis.data.go.kr/6300000/storyDaejeonService/storyDaejeonList?serviceKey=kZWNGpWj8Ik6lGY4vyOCXej0OGm7AsvLB9L697cwC%2FDtS9b18qZCKdLna5yW0RAnnDCP8eLHVBFiQAx3spiEzQ%3D%3D';
+		const API_KEY = 'API KEY';
+		const url = 'http://apis.data.go.kr/6300000/storyDaejeonService/storyDaejeonList?serviceKey=';
 		const response = await fetch(url);
 		const data = await response.json();
 		console.log("data", data);

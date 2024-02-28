@@ -18,13 +18,13 @@
 		<button onclick="panTo()">지도 중심좌표 대전으로 이동시키기</button>
 	</p>
 
-	<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=	c240a41577775c21b2956df03250539d"></script>
+	<script type="text/javascript" src="API KEY"></script>
 	<script>
 		var lat;
 		var lon;
 		// 		주차장
 		async function getData2() {
-			const API_KEY = '	c240a41577775c21b2956df03250539d';
+			const API_KEY = 'API KEY';
 			const url = 'https://www.yuseong.go.kr/ys_parking/ysparkingList/ORP/getJSONData.do?_wadl&type=json';
 			const response = await
 			fetch(url);
