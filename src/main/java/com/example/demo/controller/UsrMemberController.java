@@ -178,8 +178,14 @@ public class UsrMemberController {
 			return Ut.jsHistoryBack("F-6", "이메일을 입력해주세요");
 		}
 
-		ResultData modifyRd = memberService.modify(rq.getLoginedMemberId(), loginPw, name, nickname, cellphoneNum,
-				email);
+		ResultData modifyRd;
+
+		if (Ut.isNullOrEmpty(loginPw)) {
+			modifyRd = memberService.modifyWithoutPw(rq.getLoginedMemberId(), name, nickname, cellphoneNum,
+					email);
+		} else {
+			modifyRd = memberService.modify(rq.getLoginedMemberId(), loginPw, name, nickname, cellphoneNum, email);
+		}
 
 		return Ut.jsReplace(modifyRd.getResultCode(), modifyRd.getMsg(), "../member/myPage");
 	}

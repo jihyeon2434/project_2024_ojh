@@ -18,19 +18,17 @@
 		<button onclick="panTo()">지도 중심좌표 대전으로 이동시키기</button>
 	</p>
 
-	<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=	c240a41577775c21b2956df03250539d"></script>
+	<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=be8f45543904c09799bb532a4c2490e6"></script>
 	<script>
 		var lat;
 		var lon;
-		// 		주차장
+// 		주차장
 		async function getData2() {
-			const API_KEY = '	c240a41577775c21b2956df03250539d';
+			const API_KEY = '발급받은 API 키';
 			const url = 'https://www.yuseong.go.kr/ys_parking/ysparkingList/ORP/getJSONData.do?_wadl&type=json';
-			const response = await
-			fetch(url);
-			const data = await
-			response.json();
-
+			const response = await fetch(url);
+			const data = await response.json();
+			
 			console.log("data", data);
 			console.log(data.response);
 			console.log(data.response.body);
@@ -40,14 +38,14 @@
 			console.log(data.response.body.items[0].item.addr);
 			console.log(data.response.body.items[0].item.latitude);
 			console.log(data.response.body.items[0].item.longitude);
-
+			
 			lat = data.response.body.items[0].item.latitude;
 			lon = data.response.body.items[0].item.longitude;
 		}
 
 		getData2();
 
-		// 		카카오지도
+// 		카카오지도
 		var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
 		mapOption = {
 			center : new kakao.maps.LatLng(33.450701, 126.570667), // 지도의 중심좌표
@@ -56,16 +54,7 @@
 		};
 
 		var map = new kakao.maps.Map(mapContainer, mapOption); // 지도를 생성합니다
-		
-	
-		var markerPosition = new kakao.maps.LatLng(33.450701, 126.570667);
-		// 마커를 생성합니다
-		var marker = new kakao.maps.Marker({
-			position : markerPosition
-		});	
-		// 마커가 지도 위에 표시되도록 설정합니다
-		marker.setMap(map);
-		
+
 		function setCenter() {
 			// 이동할 위도 경도 위치를 생성합니다 
 			var moveLatLon = new kakao.maps.LatLng(33.452613, 126.570888);
@@ -82,6 +71,17 @@
 			// 만약 이동할 거리가 지도 화면보다 크면 부드러운 효과 없이 이동합니다
 			map.panTo(moveLatLon);
 		}
+		
+		// 마커가 표시될 위치입니다 
+		var markerPosition  = new kakao.maps.LatLng(lat, lon); 
+
+		// 마커를 생성합니다
+		var marker = new kakao.maps.Marker({
+		    position: markerPosition
+		});
+
+		// 마커가 지도 위에 표시되도록 설정합니다
+		marker.setMap(map);
 	</script>
 </body>
 </html>

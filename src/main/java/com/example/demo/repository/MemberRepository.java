@@ -71,4 +71,27 @@ public interface MemberRepository {
 	public void modify(int loginedMemberId, String loginPw, String name, String nickname, String cellphoneNum,
 			String email);
 
+	@Update("""
+			<script>
+			UPDATE `member`
+			<set>
+				<if test="name != null">
+					name = #{name},
+				</if>
+				<if test="nickname != null">
+					nickname = #{nickname},
+				</if>
+				<if test="cellphoneNum != null">
+					cellphoneNum = #{cellphoneNum},
+				</if>
+				<if test="email != null">
+					email = #{email},
+				</if>
+				updateDate= NOW()
+			</set>
+			WHERE id = #{loginedMemberId}
+			</script>
+			""")
+	public void modifyWithoutPw(int loginedMemberId, String name, String nickname, String cellphoneNum, String email);
+
 }
