@@ -10,9 +10,6 @@
 <!-- 테일윈드 불러오기 -->
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css" />
 
-<!-- daisy ui 불러오기 -->
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/daisyui/4.6.1/full.css" />
-
 <!-- 폰트어썸 불러오기 -->
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css">
 
@@ -20,31 +17,67 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
 </head>
 <body>
-	<header>
-		<div class="h-20 flex mx-auto items-center text-3xl">
-		
-			<a href="/">LOGO</a>
-			<div class="flex-grow"></div>
-			<ul class="flex">
-				<li><a class="hover:underline" href="/">HOME</a></li>
-				<li><a class="hover:underline" href="../article/list?boardId=1&page=1">LIST</a>
-					<ul>
-						<li><a class="hover:underline" href="../article/list?boardId=1&page=1">NOTICE</a></li>
-						<li><a class="hover:underline" href="../article/list?boardId=2&page=1">FREE</a></li>
-						<li><a class="hover:underline" href="../article/list?boardId=3&page=1">QnA</a></li>
-					</ul></li>
-				<c:if test="${!rq.isLogined() }">
-					<li><a class="hover:underline" href="../member/login">LOGIN</a></li>
-					<li><a class="hover:underline" href="../member/join">JOIN</a></li>
-				</c:if>
-				<c:if test="${rq.isLogined() }">
-					<li><a class="hover:underline" href="../article/write">WRITE</a></li>
-					<li class="hover:underline"><a class="h-full px-3 flex items-center" href="/usr/member/myPage">MYPAGE</a></li>
-					<li><a onclick="if(confirm('로그아웃 할래?') == false) return false;" class="hover:underline"
-							href="../member/doLogout">LOGOUT</a></li>
-				</c:if>
-			</ul>
+	<header class="h-12 flex items-center justify-around bg-opacity-70"
+		style="background-color: #efe7e5; display: flex; align-items: center;">
+		<!-- 배경색 및 불투명도 조정 -->
+	
+			<!-- 검색바 -->
+			<div class="flex items-center ml-4">
+				<!-- 왼쪽 여백 추가 -->
+				<input type="text" placeholder="검색어를 입력하세요." tabindex="1" name="keyword" id="top_search"
+					onclick="gtag('Web','search_bar',{'event_category' : 'Web'})"
+					class="bg-opacity-70 bg-white border-black border rounded-md px-2 py-1 mr-4" style="background-color: #efe7e5;">
+				<i class="fas fa-search text-gray-400 mr-2"></i>
+				<!-- 돋보기 아이콘 추가 및 오른쪽 여백 추가 -->
+			</div>
+			<!-- 로고 -->
+			<a href="/" class="text-3xl font-bold font-serif flex-grow text-center ml-20">LOGO</a>
 		</div>
+
+
+
+		<!-- 메뉴 -->
+		<ul class="flex space-x-8 mr-8">
+			<!-- 각 항목 간격 조정 및 오른쪽 여백 추가 -->
+			<c:if test="${!rq.isLogined() }">
+				<li>
+					<a class="hover:underline font-serif" href="../member/login">LOGIN</a>
+				</li>
+				<li>
+					<a class="hover:underline font-serif" href="../member/join">JOIN</a>
+				</li>
+			</c:if>
+			<li>
+				<a class="hover:underline font-serif" href="/">COMMUNITY</a>
+			</li>
+			<li class="relative group">
+				<a class="hover:underline font-serif" href="../article/list?boardId=1&page=1">LIST</a>
+				<ul class="absolute hidden group-hover:block z-10">
+					<li>
+						<a class="font-serif hover:underline" href="../article/list?boardId=1&page=1">NOTICE</a>
+					</li>
+					<li>
+						<a class="font-serif hover:underline" href="../article/list?boardId=2&page=1">FREE</a>
+					</li>
+					<li>
+						<a class="font-serif hover:underline" href="../article/list?boardId=3&page=1">QnA</a>
+					</li>
+				</ul>
+			</li>
+			<c:if test="${rq.isLogined() }">
+				<li>
+					<a class="hover:underline font-serif" href="../article/write">WRITE</a>
+				</li>
+				<li class="hover:underline font-serif">
+					<a class="h-full px-3 flex items-center" href="/usr/member/myPage">MYPAGE</a>
+				</li>
+				<li>
+					<a onclick="if(confirm('로그아웃 할래?') == false) return false;" class="hover:underline font-serif"
+						href="../member/doLogout">LOGOUT</a>
+				</li>
+			</c:if>
+		</ul>
 	</header>
-	<h1 style="font-size: 2rem;">${pageTitle }</h1>
 	<hr />
+</body>
+</html>
