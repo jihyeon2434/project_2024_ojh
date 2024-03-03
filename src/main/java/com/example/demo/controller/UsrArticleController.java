@@ -83,6 +83,39 @@ public class UsrArticleController {
 
 		return "usr/article/list";
 	}
+	
+	
+	@RequestMapping("/usr/article/consultingList")
+	public String showConsultingList(HttpServletRequest req, Model model) {
+		Rq rq = (Rq) req.getAttribute("rq");
+		
+
+		return "usr/article/consultingList";
+	}
+	
+	@RequestMapping("/usr/article/consultingDetail")
+	public String showconsultingDetail(HttpServletRequest req, Model model) {
+		Rq rq = (Rq) req.getAttribute("rq");
+		
+
+		return "usr/article/consultingDetail";
+	}
+	
+	@RequestMapping("/usr/article/selfList")
+	public String showselfList(HttpServletRequest req, Model model) {
+		Rq rq = (Rq) req.getAttribute("rq");
+		
+
+		return "usr/article/selfList";
+	}
+	
+	@RequestMapping("/usr/article/selfDetail")
+	public String showselfDetail(HttpServletRequest req, Model model) {
+		Rq rq = (Rq) req.getAttribute("rq");
+		
+
+		return "usr/article/selfDetail";
+	}
 
 	@RequestMapping("/usr/article/detail")
 	public String showDetail(HttpServletRequest req, Model model, int id) {

@@ -63,9 +63,8 @@ header>div>ul>li {
 /* 	.modify-box>tbody>tr:nth-child(7)>td>input { */
 /* } */
 .table-box-1 th, .table-box-1 td {
-	border: 1px solid black;
-	padding: 5px;
-	text-align: center;
+	
+
 }
 
 /*네비게이션 2차메뉴 */

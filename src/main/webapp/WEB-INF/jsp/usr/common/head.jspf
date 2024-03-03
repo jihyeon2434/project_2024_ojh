@@ -31,7 +31,7 @@
 				<!-- 돋보기 아이콘 추가 및 오른쪽 여백 추가 -->
 			</div>
 			<!-- 로고 -->
-			<a href="/" class="text-3xl font-bold font-serif flex-grow text-center ml-20">LOGO</a>
+			<a href="/" class="text-3xl font-bold font-serif flex-grow justify-center text-center">LOGO</a>
 		</div>
 
 

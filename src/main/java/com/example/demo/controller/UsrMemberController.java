@@ -1,7 +1,11 @@
 package com.example.demo.controller;
 
+import java.time.LocalDate;
+import java.util.Calendar;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
@@ -134,6 +138,20 @@ public class UsrMemberController {
 	public String showMyPage() {
 
 		return "usr/member/myPage";
+	}
+	
+	@RequestMapping("/usr/member/myCalendar")
+	 public String showMyCalendar(Model model) {
+        LocalDate currentDate = LocalDate.now();
+        model.addAttribute("year", currentDate.getYear());
+        model.addAttribute("month", currentDate.getMonthValue() - 1); // 월은 0부터 시작하므로 1을 빼줍니다.
+		return "usr/member/myCalendar";
+	}
+	
+	@RequestMapping("/usr/member/myReservation")
+	 public String showMyReservation() {
+      
+		return "usr/member/myReservation";
 	}
 
 	@RequestMapping("/usr/member/checkPw")
