@@ -3,6 +3,7 @@
 <c:set var="pageTitle" value="MEMBER MODIFY"></c:set>
 <%@ include file="../common/head.jspf"%>
 
+
 <style>
 .left-menu {
 	width: 148px;
