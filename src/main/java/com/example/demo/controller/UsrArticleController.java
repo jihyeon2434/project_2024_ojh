@@ -116,6 +116,15 @@ public class UsrArticleController {
 
 		return "usr/article/selfDetail";
 	}
+	
+	@RequestMapping("/usr/article/search")
+	public String showSearch(HttpServletRequest req, Model model) {
+		Rq rq = (Rq) req.getAttribute("rq");
+		
+
+		return "usr/article/search";
+	}
+	
 
 	@RequestMapping("/usr/article/detail")
 	public String showDetail(HttpServletRequest req, Model model, int id) {

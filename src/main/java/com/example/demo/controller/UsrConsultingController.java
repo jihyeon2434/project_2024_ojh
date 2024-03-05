@@ -88,6 +88,23 @@ public class UsrConsultingController {
 		return "usr/consulting/feedbackWrite";
 	}
 	
+	@RequestMapping("/usr/consulting/chat")
+	public String showChat(HttpServletRequest req, Model model) {
+		Rq rq = (Rq) req.getAttribute("rq");
+		
+
+		return "usr/consulting/chat";
+	}
+	
+	
+	@RequestMapping("/usr/consulting/reservation")
+	public String showReservation(HttpServletRequest req, Model model) {
+		Rq rq = (Rq) req.getAttribute("rq");
+		
+
+		return "usr/consulting/reservation";
+	}
+	
 	
 
 	

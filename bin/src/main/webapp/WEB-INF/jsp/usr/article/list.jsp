@@ -39,7 +39,7 @@ font-size: medium;
 	left: 250px;
 	width: 1500px;
 	height: 800px;
-	top: 70px;
+	top: 15%;
 }
 
 .list-box table {
@@ -51,7 +51,7 @@ font-size: medium;
 }
 
 .search-box-1 {
-	 width: 1500px;
+	 width: 60%;
     
     display: flex;
     align-items: center; /* 세로 중앙 정렬 */
@@ -66,7 +66,7 @@ font-size: medium;
 
 
 .table-box-1 {
-	width: 1500px;
+	width: 60%;
 	text-align: center;
 }
 
@@ -153,12 +153,12 @@ button[type="submit"] {
 	</div>
 	<table class="table-box-1 table" border="1">
 		<colgroup>
-			<col style="width: 60%" />
+			<col style="width: 50%" />
 			<col style="width: 10%" />
 			<col style="width: 10%" />
 			<col style="width: 10%" />
-			<col style="width: 5%" />
-			<col style="width: 5%" />
+			<col style="width: 10%" />
+			<col style="width: 10%" />
 		</colgroup>
 		<thead>
 			<tr>
