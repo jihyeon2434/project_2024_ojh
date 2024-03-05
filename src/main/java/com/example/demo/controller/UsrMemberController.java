@@ -141,7 +141,8 @@ public class UsrMemberController {
 	}
 	
 	@RequestMapping("/usr/member/myCalendar")
-	 public String showMyCalendar(Model model) {
+	 public String showMyCalendar(HttpServletRequest req, Model model) {
+		Rq rq = (Rq) req.getAttribute("rq");
         LocalDate currentDate = LocalDate.now();
         model.addAttribute("year", currentDate.getYear());
         model.addAttribute("month", currentDate.getMonthValue() - 1); // 월은 0부터 시작하므로 1을 빼줍니다.

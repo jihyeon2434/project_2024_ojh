@@ -1,5 +1,6 @@
 package com.example.demo.controller;
 
+import java.time.LocalDate;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -105,6 +106,24 @@ public class UsrConsultingController {
 		return "usr/consulting/reservation";
 	}
 	
+	
+	@RequestMapping("/usr/consulting/reservation2")
+	public String showReservation2(HttpServletRequest req, Model model) {
+		Rq rq = (Rq) req.getAttribute("rq");
+		  LocalDate currentDate = LocalDate.now();
+	       model.addAttribute("year", currentDate.getYear());
+	       model.addAttribute("month", currentDate.getMonthValue() - 1); // 월은 0부터 시작하므로 1을 빼줍니다.
+
+		return "usr/consulting/reservation2";
+	}
+	
+	@RequestMapping("/usr/consulting/reservation3")
+	public String showReservation3(HttpServletRequest req, Model model) {
+		Rq rq = (Rq) req.getAttribute("rq");
+		
+
+		return "usr/consulting/reservation3";
+	}
 	
 
 	

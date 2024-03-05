@@ -1229,3 +1229,857 @@ java.lang.IllegalStateException: Optional int parameter 'id' is present but cann
 	at org.apache.tomcat.util.threads.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:659)
 	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:63)
 	at java.base/java.lang.Thread.run(Thread.java:840)
+2024-03-05 22:21:28 [ERROR] o.a.c.c.C.[.[localhost].[/].[jsp] - Servlet.service() for servlet [jsp] threw exception
+org.apache.jasper.JasperException: Unable to compile class for JSP: 
+
+An error occurred at line: [136] in the jsp file: [/WEB-INF/jsp/usr/consulting/reservation2.jsp]
+year cannot be resolved to a variable
+133:             <tr>
+134:               <th colspan="7">
+135:                 <button onclick="prevMonth()">Previous</button>
+136:                 <div class="present-MonthYear"><%= year %>. <%= (month < 10 ? '0' + month : month) %></div>
+137:                 <button onclick="nextMonth()">Next</button>
+138:               </th>
+139:             </tr>
+
+
+An error occurred at line: [136] in the jsp file: [/WEB-INF/jsp/usr/consulting/reservation2.jsp]
+month cannot be resolved to a variable
+133:             <tr>
+134:               <th colspan="7">
+135:                 <button onclick="prevMonth()">Previous</button>
+136:                 <div class="present-MonthYear"><%= year %>. <%= (month < 10 ? '0' + month : month) %></div>
+137:                 <button onclick="nextMonth()">Next</button>
+138:               </th>
+139:             </tr>
+
+
+An error occurred at line: [136] in the jsp file: [/WEB-INF/jsp/usr/consulting/reservation2.jsp]
+month cannot be resolved to a variable
+133:             <tr>
+134:               <th colspan="7">
+135:                 <button onclick="prevMonth()">Previous</button>
+136:                 <div class="present-MonthYear"><%= year %>. <%= (month < 10 ? '0' + month : month) %></div>
+137:                 <button onclick="nextMonth()">Next</button>
+138:               </th>
+139:             </tr>
+
+
+An error occurred at line: [136] in the jsp file: [/WEB-INF/jsp/usr/consulting/reservation2.jsp]
+month cannot be resolved to a variable
+133:             <tr>
+134:               <th colspan="7">
+135:                 <button onclick="prevMonth()">Previous</button>
+136:                 <div class="present-MonthYear"><%= year %>. <%= (month < 10 ? '0' + month : month) %></div>
+137:                 <button onclick="nextMonth()">Next</button>
+138:               </th>
+139:             </tr>
+
+
+An error occurred at line: [195] in the jsp file: [/WEB-INF/jsp/usr/consulting/reservation2.jsp]
+year cannot be resolved to a variable
+192: </div>
+193: 
+194: <script>
+195: var year = <%= year %>; // JSP에서 받아온 년도
+196: var month = <%= month %>; // JSP에서 받아온 월
+197: 
+198: function prevMonth() {
+
+
+An error occurred at line: [196] in the jsp file: [/WEB-INF/jsp/usr/consulting/reservation2.jsp]
+month cannot be resolved to a variable
+193: 
+194: <script>
+195: var year = <%= year %>; // JSP에서 받아온 년도
+196: var month = <%= month %>; // JSP에서 받아온 월
+197: 
+198: function prevMonth() {
+199:     month--;
+
+
+Stacktrace:
+	at org.apache.jasper.compiler.DefaultErrorHandler.javacError(DefaultErrorHandler.java:102)
+	at org.apache.jasper.compiler.ErrorDispatcher.javacError(ErrorDispatcher.java:214)
+	at org.apache.jasper.compiler.JDTCompiler.generateClass(JDTCompiler.java:513)
+	at org.apache.jasper.compiler.Compiler.compile(Compiler.java:402)
+	at org.apache.jasper.compiler.Compiler.compile(Compiler.java:372)
+	at org.apache.jasper.compiler.Compiler.compile(Compiler.java:356)
+	at org.apache.jasper.JspCompilationContext.compile(JspCompilationContext.java:603)
+	at org.apache.jasper.servlet.JspServletWrapper.service(JspServletWrapper.java:396)
+	at org.apache.jasper.servlet.JspServlet.serviceJspFile(JspServlet.java:380)
+	at org.apache.jasper.servlet.JspServlet.service(JspServlet.java:328)
+	at jakarta.servlet.http.HttpServlet.service(HttpServlet.java:658)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:205)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:149)
+	at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:51)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:174)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:149)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:110)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:174)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:149)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:110)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:174)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:149)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:110)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:174)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:149)
+	at org.apache.catalina.core.ApplicationDispatcher.invoke(ApplicationDispatcher.java:642)
+	at org.apache.catalina.core.ApplicationDispatcher.processRequest(ApplicationDispatcher.java:408)
+	at org.apache.catalina.core.ApplicationDispatcher.doForward(ApplicationDispatcher.java:340)
+	at org.apache.catalina.core.ApplicationDispatcher.forward(ApplicationDispatcher.java:277)
+	at org.springframework.web.servlet.view.InternalResourceView.renderMergedOutputModel(InternalResourceView.java:171)
+	at org.springframework.web.servlet.view.AbstractView.render(AbstractView.java:314)
+	at org.springframework.web.servlet.DispatcherServlet.render(DispatcherServlet.java:1415)
+	at org.springframework.web.servlet.DispatcherServlet.processDispatchResult(DispatcherServlet.java:1159)
+	at org.springframework.web.servlet.DispatcherServlet.doDispatch(DispatcherServlet.java:1098)
+	at org.springframework.web.servlet.DispatcherServlet.doService(DispatcherServlet.java:974)
+	at org.springframework.web.servlet.FrameworkServlet.processRequest(FrameworkServlet.java:1014)
+	at org.springframework.web.servlet.FrameworkServlet.doGet(FrameworkServlet.java:903)
+	at jakarta.servlet.http.HttpServlet.service(HttpServlet.java:564)
+	at org.springframework.web.servlet.FrameworkServlet.service(FrameworkServlet.java:885)
+	at jakarta.servlet.http.HttpServlet.service(HttpServlet.java:658)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:205)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:149)
+	at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:51)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:174)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:149)
+	at org.springframework.web.filter.RequestContextFilter.doFilterInternal(RequestContextFilter.java:100)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:174)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:149)
+	at org.springframework.web.filter.FormContentFilter.doFilterInternal(FormContentFilter.java:93)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:174)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:149)
+	at org.springframework.web.filter.CharacterEncodingFilter.doFilterInternal(CharacterEncodingFilter.java:201)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:174)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:149)
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:167)
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:90)
+	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:482)
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:115)
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:93)
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:74)
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:344)
+	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:391)
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:63)
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:896)
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1744)
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:52)
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1191)
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:659)
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:63)
+	at java.base/java.lang.Thread.run(Thread.java:840)
+2024-03-05 22:21:28 [ERROR] o.a.c.c.C.[.[.[.[dispatcherServlet] - Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception [Unable to compile class for JSP: 
+
+An error occurred at line: [136] in the jsp file: [/WEB-INF/jsp/usr/consulting/reservation2.jsp]
+year cannot be resolved to a variable
+133:             <tr>
+134:               <th colspan="7">
+135:                 <button onclick="prevMonth()">Previous</button>
+136:                 <div class="present-MonthYear"><%= year %>. <%= (month < 10 ? '0' + month : month) %></div>
+137:                 <button onclick="nextMonth()">Next</button>
+138:               </th>
+139:             </tr>
+
+
+An error occurred at line: [136] in the jsp file: [/WEB-INF/jsp/usr/consulting/reservation2.jsp]
+month cannot be resolved to a variable
+133:             <tr>
+134:               <th colspan="7">
+135:                 <button onclick="prevMonth()">Previous</button>
+136:                 <div class="present-MonthYear"><%= year %>. <%= (month < 10 ? '0' + month : month) %></div>
+137:                 <button onclick="nextMonth()">Next</button>
+138:               </th>
+139:             </tr>
+
+
+An error occurred at line: [136] in the jsp file: [/WEB-INF/jsp/usr/consulting/reservation2.jsp]
+month cannot be resolved to a variable
+133:             <tr>
+134:               <th colspan="7">
+135:                 <button onclick="prevMonth()">Previous</button>
+136:                 <div class="present-MonthYear"><%= year %>. <%= (month < 10 ? '0' + month : month) %></div>
+137:                 <button onclick="nextMonth()">Next</button>
+138:               </th>
+139:             </tr>
+
+
+An error occurred at line: [136] in the jsp file: [/WEB-INF/jsp/usr/consulting/reservation2.jsp]
+month cannot be resolved to a variable
+133:             <tr>
+134:               <th colspan="7">
+135:                 <button onclick="prevMonth()">Previous</button>
+136:                 <div class="present-MonthYear"><%= year %>. <%= (month < 10 ? '0' + month : month) %></div>
+137:                 <button onclick="nextMonth()">Next</button>
+138:               </th>
+139:             </tr>
+
+
+An error occurred at line: [195] in the jsp file: [/WEB-INF/jsp/usr/consulting/reservation2.jsp]
+year cannot be resolved to a variable
+192: </div>
+193: 
+194: <script>
+195: var year = <%= year %>; // JSP에서 받아온 년도
+196: var month = <%= month %>; // JSP에서 받아온 월
+197: 
+198: function prevMonth() {
+
+
+An error occurred at line: [196] in the jsp file: [/WEB-INF/jsp/usr/consulting/reservation2.jsp]
+month cannot be resolved to a variable
+193: 
+194: <script>
+195: var year = <%= year %>; // JSP에서 받아온 년도
+196: var month = <%= month %>; // JSP에서 받아온 월
+197: 
+198: function prevMonth() {
+199:     month--;
+
+
+Stacktrace:] with root cause
+org.apache.jasper.JasperException: Unable to compile class for JSP: 
+
+An error occurred at line: [136] in the jsp file: [/WEB-INF/jsp/usr/consulting/reservation2.jsp]
+year cannot be resolved to a variable
+133:             <tr>
+134:               <th colspan="7">
+135:                 <button onclick="prevMonth()">Previous</button>
+136:                 <div class="present-MonthYear"><%= year %>. <%= (month < 10 ? '0' + month : month) %></div>
+137:                 <button onclick="nextMonth()">Next</button>
+138:               </th>
+139:             </tr>
+
+
+An error occurred at line: [136] in the jsp file: [/WEB-INF/jsp/usr/consulting/reservation2.jsp]
+month cannot be resolved to a variable
+133:             <tr>
+134:               <th colspan="7">
+135:                 <button onclick="prevMonth()">Previous</button>
+136:                 <div class="present-MonthYear"><%= year %>. <%= (month < 10 ? '0' + month : month) %></div>
+137:                 <button onclick="nextMonth()">Next</button>
+138:               </th>
+139:             </tr>
+
+
+An error occurred at line: [136] in the jsp file: [/WEB-INF/jsp/usr/consulting/reservation2.jsp]
+month cannot be resolved to a variable
+133:             <tr>
+134:               <th colspan="7">
+135:                 <button onclick="prevMonth()">Previous</button>
+136:                 <div class="present-MonthYear"><%= year %>. <%= (month < 10 ? '0' + month : month) %></div>
+137:                 <button onclick="nextMonth()">Next</button>
+138:               </th>
+139:             </tr>
+
+
+An error occurred at line: [136] in the jsp file: [/WEB-INF/jsp/usr/consulting/reservation2.jsp]
+month cannot be resolved to a variable
+133:             <tr>
+134:               <th colspan="7">
+135:                 <button onclick="prevMonth()">Previous</button>
+136:                 <div class="present-MonthYear"><%= year %>. <%= (month < 10 ? '0' + month : month) %></div>
+137:                 <button onclick="nextMonth()">Next</button>
+138:               </th>
+139:             </tr>
+
+
+An error occurred at line: [195] in the jsp file: [/WEB-INF/jsp/usr/consulting/reservation2.jsp]
+year cannot be resolved to a variable
+192: </div>
+193: 
+194: <script>
+195: var year = <%= year %>; // JSP에서 받아온 년도
+196: var month = <%= month %>; // JSP에서 받아온 월
+197: 
+198: function prevMonth() {
+
+
+An error occurred at line: [196] in the jsp file: [/WEB-INF/jsp/usr/consulting/reservation2.jsp]
+month cannot be resolved to a variable
+193: 
+194: <script>
+195: var year = <%= year %>; // JSP에서 받아온 년도
+196: var month = <%= month %>; // JSP에서 받아온 월
+197: 
+198: function prevMonth() {
+199:     month--;
+
+
+Stacktrace:
+	at org.apache.jasper.compiler.DefaultErrorHandler.javacError(DefaultErrorHandler.java:102)
+	at org.apache.jasper.compiler.ErrorDispatcher.javacError(ErrorDispatcher.java:214)
+	at org.apache.jasper.compiler.JDTCompiler.generateClass(JDTCompiler.java:513)
+	at org.apache.jasper.compiler.Compiler.compile(Compiler.java:402)
+	at org.apache.jasper.compiler.Compiler.compile(Compiler.java:372)
+	at org.apache.jasper.compiler.Compiler.compile(Compiler.java:356)
+	at org.apache.jasper.JspCompilationContext.compile(JspCompilationContext.java:603)
+	at org.apache.jasper.servlet.JspServletWrapper.service(JspServletWrapper.java:396)
+	at org.apache.jasper.servlet.JspServlet.serviceJspFile(JspServlet.java:380)
+	at org.apache.jasper.servlet.JspServlet.service(JspServlet.java:328)
+	at jakarta.servlet.http.HttpServlet.service(HttpServlet.java:658)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:205)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:149)
+	at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:51)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:174)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:149)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:110)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:174)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:149)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:110)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:174)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:149)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:110)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:174)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:149)
+	at org.apache.catalina.core.ApplicationDispatcher.invoke(ApplicationDispatcher.java:642)
+	at org.apache.catalina.core.ApplicationDispatcher.processRequest(ApplicationDispatcher.java:408)
+	at org.apache.catalina.core.ApplicationDispatcher.doForward(ApplicationDispatcher.java:340)
+	at org.apache.catalina.core.ApplicationDispatcher.forward(ApplicationDispatcher.java:277)
+	at org.springframework.web.servlet.view.InternalResourceView.renderMergedOutputModel(InternalResourceView.java:171)
+	at org.springframework.web.servlet.view.AbstractView.render(AbstractView.java:314)
+	at org.springframework.web.servlet.DispatcherServlet.render(DispatcherServlet.java:1415)
+	at org.springframework.web.servlet.DispatcherServlet.processDispatchResult(DispatcherServlet.java:1159)
+	at org.springframework.web.servlet.DispatcherServlet.doDispatch(DispatcherServlet.java:1098)
+	at org.springframework.web.servlet.DispatcherServlet.doService(DispatcherServlet.java:974)
+	at org.springframework.web.servlet.FrameworkServlet.processRequest(FrameworkServlet.java:1014)
+	at org.springframework.web.servlet.FrameworkServlet.doGet(FrameworkServlet.java:903)
+	at jakarta.servlet.http.HttpServlet.service(HttpServlet.java:564)
+	at org.springframework.web.servlet.FrameworkServlet.service(FrameworkServlet.java:885)
+	at jakarta.servlet.http.HttpServlet.service(HttpServlet.java:658)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:205)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:149)
+	at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:51)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:174)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:149)
+	at org.springframework.web.filter.RequestContextFilter.doFilterInternal(RequestContextFilter.java:100)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:174)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:149)
+	at org.springframework.web.filter.FormContentFilter.doFilterInternal(FormContentFilter.java:93)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:174)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:149)
+	at org.springframework.web.filter.CharacterEncodingFilter.doFilterInternal(CharacterEncodingFilter.java:201)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:174)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:149)
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:167)
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:90)
+	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:482)
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:115)
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:93)
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:74)
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:344)
+	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:391)
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:63)
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:896)
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1744)
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:52)
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1191)
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:659)
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:63)
+	at java.base/java.lang.Thread.run(Thread.java:840)
+2024-03-05 22:23:18 [ERROR] o.a.c.c.C.[.[localhost].[/].[jsp] - Servlet.service() for servlet [jsp] threw exception
+org.apache.jasper.JasperException: Unable to compile class for JSP: 
+
+An error occurred at line: [136] in the jsp file: [/WEB-INF/jsp/usr/consulting/reservation2.jsp]
+year cannot be resolved to a variable
+133:             <tr>
+134:               <th colspan="7">
+135:                 <button onclick="prevMonth()">Previous</button>
+136:                 <div class="present-MonthYear"><%= year %>. <%= (month < 10 ? '0' + month : month) %></div>
+137:                 <button onclick="nextMonth()">Next</button>
+138:               </th>
+139:             </tr>
+
+
+An error occurred at line: [136] in the jsp file: [/WEB-INF/jsp/usr/consulting/reservation2.jsp]
+month cannot be resolved to a variable
+133:             <tr>
+134:               <th colspan="7">
+135:                 <button onclick="prevMonth()">Previous</button>
+136:                 <div class="present-MonthYear"><%= year %>. <%= (month < 10 ? '0' + month : month) %></div>
+137:                 <button onclick="nextMonth()">Next</button>
+138:               </th>
+139:             </tr>
+
+
+An error occurred at line: [136] in the jsp file: [/WEB-INF/jsp/usr/consulting/reservation2.jsp]
+month cannot be resolved to a variable
+133:             <tr>
+134:               <th colspan="7">
+135:                 <button onclick="prevMonth()">Previous</button>
+136:                 <div class="present-MonthYear"><%= year %>. <%= (month < 10 ? '0' + month : month) %></div>
+137:                 <button onclick="nextMonth()">Next</button>
+138:               </th>
+139:             </tr>
+
+
+An error occurred at line: [136] in the jsp file: [/WEB-INF/jsp/usr/consulting/reservation2.jsp]
+month cannot be resolved to a variable
+133:             <tr>
+134:               <th colspan="7">
+135:                 <button onclick="prevMonth()">Previous</button>
+136:                 <div class="present-MonthYear"><%= year %>. <%= (month < 10 ? '0' + month : month) %></div>
+137:                 <button onclick="nextMonth()">Next</button>
+138:               </th>
+139:             </tr>
+
+
+An error occurred at line: [195] in the jsp file: [/WEB-INF/jsp/usr/consulting/reservation2.jsp]
+year cannot be resolved to a variable
+192: </div>
+193: 
+194: <script>
+195: var year = <%= year %>; // JSP에서 받아온 년도
+196: var month = <%= month %>; // JSP에서 받아온 월
+197: 
+198: function prevMonth() {
+
+
+An error occurred at line: [196] in the jsp file: [/WEB-INF/jsp/usr/consulting/reservation2.jsp]
+month cannot be resolved to a variable
+193: 
+194: <script>
+195: var year = <%= year %>; // JSP에서 받아온 년도
+196: var month = <%= month %>; // JSP에서 받아온 월
+197: 
+198: function prevMonth() {
+199:     month--;
+
+
+Stacktrace:
+	at org.apache.jasper.compiler.DefaultErrorHandler.javacError(DefaultErrorHandler.java:102)
+	at org.apache.jasper.compiler.ErrorDispatcher.javacError(ErrorDispatcher.java:214)
+	at org.apache.jasper.compiler.JDTCompiler.generateClass(JDTCompiler.java:513)
+	at org.apache.jasper.compiler.Compiler.compile(Compiler.java:402)
+	at org.apache.jasper.compiler.Compiler.compile(Compiler.java:372)
+	at org.apache.jasper.compiler.Compiler.compile(Compiler.java:356)
+	at org.apache.jasper.JspCompilationContext.compile(JspCompilationContext.java:603)
+	at org.apache.jasper.servlet.JspServletWrapper.service(JspServletWrapper.java:396)
+	at org.apache.jasper.servlet.JspServlet.serviceJspFile(JspServlet.java:380)
+	at org.apache.jasper.servlet.JspServlet.service(JspServlet.java:328)
+	at jakarta.servlet.http.HttpServlet.service(HttpServlet.java:658)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:205)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:149)
+	at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:51)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:174)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:149)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:110)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:174)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:149)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:110)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:174)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:149)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:110)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:174)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:149)
+	at org.apache.catalina.core.ApplicationDispatcher.invoke(ApplicationDispatcher.java:642)
+	at org.apache.catalina.core.ApplicationDispatcher.processRequest(ApplicationDispatcher.java:408)
+	at org.apache.catalina.core.ApplicationDispatcher.doForward(ApplicationDispatcher.java:340)
+	at org.apache.catalina.core.ApplicationDispatcher.forward(ApplicationDispatcher.java:277)
+	at org.springframework.web.servlet.view.InternalResourceView.renderMergedOutputModel(InternalResourceView.java:171)
+	at org.springframework.web.servlet.view.AbstractView.render(AbstractView.java:314)
+	at org.springframework.web.servlet.DispatcherServlet.render(DispatcherServlet.java:1415)
+	at org.springframework.web.servlet.DispatcherServlet.processDispatchResult(DispatcherServlet.java:1159)
+	at org.springframework.web.servlet.DispatcherServlet.doDispatch(DispatcherServlet.java:1098)
+	at org.springframework.web.servlet.DispatcherServlet.doService(DispatcherServlet.java:974)
+	at org.springframework.web.servlet.FrameworkServlet.processRequest(FrameworkServlet.java:1014)
+	at org.springframework.web.servlet.FrameworkServlet.doGet(FrameworkServlet.java:903)
+	at jakarta.servlet.http.HttpServlet.service(HttpServlet.java:564)
+	at org.springframework.web.servlet.FrameworkServlet.service(FrameworkServlet.java:885)
+	at jakarta.servlet.http.HttpServlet.service(HttpServlet.java:658)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:205)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:149)
+	at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:51)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:174)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:149)
+	at org.springframework.web.filter.RequestContextFilter.doFilterInternal(RequestContextFilter.java:100)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:174)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:149)
+	at org.springframework.web.filter.FormContentFilter.doFilterInternal(FormContentFilter.java:93)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:174)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:149)
+	at org.springframework.web.filter.CharacterEncodingFilter.doFilterInternal(CharacterEncodingFilter.java:201)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:174)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:149)
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:167)
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:90)
+	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:482)
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:115)
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:93)
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:74)
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:344)
+	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:391)
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:63)
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:896)
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1744)
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:52)
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1191)
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:659)
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:63)
+	at java.base/java.lang.Thread.run(Thread.java:840)
+2024-03-05 22:23:18 [ERROR] o.a.c.c.C.[.[.[.[dispatcherServlet] - Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception [Unable to compile class for JSP: 
+
+An error occurred at line: [136] in the jsp file: [/WEB-INF/jsp/usr/consulting/reservation2.jsp]
+year cannot be resolved to a variable
+133:             <tr>
+134:               <th colspan="7">
+135:                 <button onclick="prevMonth()">Previous</button>
+136:                 <div class="present-MonthYear"><%= year %>. <%= (month < 10 ? '0' + month : month) %></div>
+137:                 <button onclick="nextMonth()">Next</button>
+138:               </th>
+139:             </tr>
+
+
+An error occurred at line: [136] in the jsp file: [/WEB-INF/jsp/usr/consulting/reservation2.jsp]
+month cannot be resolved to a variable
+133:             <tr>
+134:               <th colspan="7">
+135:                 <button onclick="prevMonth()">Previous</button>
+136:                 <div class="present-MonthYear"><%= year %>. <%= (month < 10 ? '0' + month : month) %></div>
+137:                 <button onclick="nextMonth()">Next</button>
+138:               </th>
+139:             </tr>
+
+
+An error occurred at line: [136] in the jsp file: [/WEB-INF/jsp/usr/consulting/reservation2.jsp]
+month cannot be resolved to a variable
+133:             <tr>
+134:               <th colspan="7">
+135:                 <button onclick="prevMonth()">Previous</button>
+136:                 <div class="present-MonthYear"><%= year %>. <%= (month < 10 ? '0' + month : month) %></div>
+137:                 <button onclick="nextMonth()">Next</button>
+138:               </th>
+139:             </tr>
+
+
+An error occurred at line: [136] in the jsp file: [/WEB-INF/jsp/usr/consulting/reservation2.jsp]
+month cannot be resolved to a variable
+133:             <tr>
+134:               <th colspan="7">
+135:                 <button onclick="prevMonth()">Previous</button>
+136:                 <div class="present-MonthYear"><%= year %>. <%= (month < 10 ? '0' + month : month) %></div>
+137:                 <button onclick="nextMonth()">Next</button>
+138:               </th>
+139:             </tr>
+
+
+An error occurred at line: [195] in the jsp file: [/WEB-INF/jsp/usr/consulting/reservation2.jsp]
+year cannot be resolved to a variable
+192: </div>
+193: 
+194: <script>
+195: var year = <%= year %>; // JSP에서 받아온 년도
+196: var month = <%= month %>; // JSP에서 받아온 월
+197: 
+198: function prevMonth() {
+
+
+An error occurred at line: [196] in the jsp file: [/WEB-INF/jsp/usr/consulting/reservation2.jsp]
+month cannot be resolved to a variable
+193: 
+194: <script>
+195: var year = <%= year %>; // JSP에서 받아온 년도
+196: var month = <%= month %>; // JSP에서 받아온 월
+197: 
+198: function prevMonth() {
+199:     month--;
+
+
+Stacktrace:] with root cause
+org.apache.jasper.JasperException: Unable to compile class for JSP: 
+
+An error occurred at line: [136] in the jsp file: [/WEB-INF/jsp/usr/consulting/reservation2.jsp]
+year cannot be resolved to a variable
+133:             <tr>
+134:               <th colspan="7">
+135:                 <button onclick="prevMonth()">Previous</button>
+136:                 <div class="present-MonthYear"><%= year %>. <%= (month < 10 ? '0' + month : month) %></div>
+137:                 <button onclick="nextMonth()">Next</button>
+138:               </th>
+139:             </tr>
+
+
+An error occurred at line: [136] in the jsp file: [/WEB-INF/jsp/usr/consulting/reservation2.jsp]
+month cannot be resolved to a variable
+133:             <tr>
+134:               <th colspan="7">
+135:                 <button onclick="prevMonth()">Previous</button>
+136:                 <div class="present-MonthYear"><%= year %>. <%= (month < 10 ? '0' + month : month) %></div>
+137:                 <button onclick="nextMonth()">Next</button>
+138:               </th>
+139:             </tr>
+
+
+An error occurred at line: [136] in the jsp file: [/WEB-INF/jsp/usr/consulting/reservation2.jsp]
+month cannot be resolved to a variable
+133:             <tr>
+134:               <th colspan="7">
+135:                 <button onclick="prevMonth()">Previous</button>
+136:                 <div class="present-MonthYear"><%= year %>. <%= (month < 10 ? '0' + month : month) %></div>
+137:                 <button onclick="nextMonth()">Next</button>
+138:               </th>
+139:             </tr>
+
+
+An error occurred at line: [136] in the jsp file: [/WEB-INF/jsp/usr/consulting/reservation2.jsp]
+month cannot be resolved to a variable
+133:             <tr>
+134:               <th colspan="7">
+135:                 <button onclick="prevMonth()">Previous</button>
+136:                 <div class="present-MonthYear"><%= year %>. <%= (month < 10 ? '0' + month : month) %></div>
+137:                 <button onclick="nextMonth()">Next</button>
+138:               </th>
+139:             </tr>
+
+
+An error occurred at line: [195] in the jsp file: [/WEB-INF/jsp/usr/consulting/reservation2.jsp]
+year cannot be resolved to a variable
+192: </div>
+193: 
+194: <script>
+195: var year = <%= year %>; // JSP에서 받아온 년도
+196: var month = <%= month %>; // JSP에서 받아온 월
+197: 
+198: function prevMonth() {
+
+
+An error occurred at line: [196] in the jsp file: [/WEB-INF/jsp/usr/consulting/reservation2.jsp]
+month cannot be resolved to a variable
+193: 
+194: <script>
+195: var year = <%= year %>; // JSP에서 받아온 년도
+196: var month = <%= month %>; // JSP에서 받아온 월
+197: 
+198: function prevMonth() {
+199:     month--;
+
+
+Stacktrace:
+	at org.apache.jasper.compiler.DefaultErrorHandler.javacError(DefaultErrorHandler.java:102)
+	at org.apache.jasper.compiler.ErrorDispatcher.javacError(ErrorDispatcher.java:214)
+	at org.apache.jasper.compiler.JDTCompiler.generateClass(JDTCompiler.java:513)
+	at org.apache.jasper.compiler.Compiler.compile(Compiler.java:402)
+	at org.apache.jasper.compiler.Compiler.compile(Compiler.java:372)
+	at org.apache.jasper.compiler.Compiler.compile(Compiler.java:356)
+	at org.apache.jasper.JspCompilationContext.compile(JspCompilationContext.java:603)
+	at org.apache.jasper.servlet.JspServletWrapper.service(JspServletWrapper.java:396)
+	at org.apache.jasper.servlet.JspServlet.serviceJspFile(JspServlet.java:380)
+	at org.apache.jasper.servlet.JspServlet.service(JspServlet.java:328)
+	at jakarta.servlet.http.HttpServlet.service(HttpServlet.java:658)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:205)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:149)
+	at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:51)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:174)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:149)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:110)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:174)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:149)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:110)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:174)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:149)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:110)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:174)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:149)
+	at org.apache.catalina.core.ApplicationDispatcher.invoke(ApplicationDispatcher.java:642)
+	at org.apache.catalina.core.ApplicationDispatcher.processRequest(ApplicationDispatcher.java:408)
+	at org.apache.catalina.core.ApplicationDispatcher.doForward(ApplicationDispatcher.java:340)
+	at org.apache.catalina.core.ApplicationDispatcher.forward(ApplicationDispatcher.java:277)
+	at org.springframework.web.servlet.view.InternalResourceView.renderMergedOutputModel(InternalResourceView.java:171)
+	at org.springframework.web.servlet.view.AbstractView.render(AbstractView.java:314)
+	at org.springframework.web.servlet.DispatcherServlet.render(DispatcherServlet.java:1415)
+	at org.springframework.web.servlet.DispatcherServlet.processDispatchResult(DispatcherServlet.java:1159)
+	at org.springframework.web.servlet.DispatcherServlet.doDispatch(DispatcherServlet.java:1098)
+	at org.springframework.web.servlet.DispatcherServlet.doService(DispatcherServlet.java:974)
+	at org.springframework.web.servlet.FrameworkServlet.processRequest(FrameworkServlet.java:1014)
+	at org.springframework.web.servlet.FrameworkServlet.doGet(FrameworkServlet.java:903)
+	at jakarta.servlet.http.HttpServlet.service(HttpServlet.java:564)
+	at org.springframework.web.servlet.FrameworkServlet.service(FrameworkServlet.java:885)
+	at jakarta.servlet.http.HttpServlet.service(HttpServlet.java:658)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:205)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:149)
+	at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:51)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:174)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:149)
+	at org.springframework.web.filter.RequestContextFilter.doFilterInternal(RequestContextFilter.java:100)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:174)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:149)
+	at org.springframework.web.filter.FormContentFilter.doFilterInternal(FormContentFilter.java:93)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:174)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:149)
+	at org.springframework.web.filter.CharacterEncodingFilter.doFilterInternal(CharacterEncodingFilter.java:201)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:174)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:149)
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:167)
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:90)
+	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:482)
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:115)
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:93)
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:74)
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:344)
+	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:391)
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:63)
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:896)
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1744)
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:52)
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1191)
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:659)
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:63)
+	at java.base/java.lang.Thread.run(Thread.java:840)
+2024-03-05 22:23:19 [ERROR] o.a.c.c.C.[.[localhost].[/].[jsp] - Servlet.service() for servlet [jsp] threw exception
+java.lang.ClassNotFoundException: org.apache.jsp.WEB_002dINF.jsp.usr.consulting.reservation2_jsp
+	at java.base/java.net.URLClassLoader.findClass(URLClassLoader.java:445)
+	at org.apache.jasper.servlet.JasperLoader.loadClass(JasperLoader.java:129)
+	at org.apache.jasper.servlet.JasperLoader.loadClass(JasperLoader.java:58)
+	at org.apache.catalina.core.DefaultInstanceManager.newInstance(DefaultInstanceManager.java:151)
+	at org.apache.jasper.servlet.JspServletWrapper.getServlet(JspServletWrapper.java:189)
+	at org.apache.jasper.servlet.JspServletWrapper.service(JspServletWrapper.java:410)
+	at org.apache.jasper.servlet.JspServlet.serviceJspFile(JspServlet.java:380)
+	at org.apache.jasper.servlet.JspServlet.service(JspServlet.java:328)
+	at jakarta.servlet.http.HttpServlet.service(HttpServlet.java:658)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:205)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:149)
+	at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:51)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:174)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:149)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:110)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:174)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:149)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:110)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:174)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:149)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:110)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:174)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:149)
+	at org.apache.catalina.core.ApplicationDispatcher.invoke(ApplicationDispatcher.java:642)
+	at org.apache.catalina.core.ApplicationDispatcher.processRequest(ApplicationDispatcher.java:408)
+	at org.apache.catalina.core.ApplicationDispatcher.doForward(ApplicationDispatcher.java:340)
+	at org.apache.catalina.core.ApplicationDispatcher.forward(ApplicationDispatcher.java:277)
+	at org.springframework.web.servlet.view.InternalResourceView.renderMergedOutputModel(InternalResourceView.java:171)
+	at org.springframework.web.servlet.view.AbstractView.render(AbstractView.java:314)
+	at org.springframework.web.servlet.DispatcherServlet.render(DispatcherServlet.java:1415)
+	at org.springframework.web.servlet.DispatcherServlet.processDispatchResult(DispatcherServlet.java:1159)
+	at org.springframework.web.servlet.DispatcherServlet.doDispatch(DispatcherServlet.java:1098)
+	at org.springframework.web.servlet.DispatcherServlet.doService(DispatcherServlet.java:974)
+	at org.springframework.web.servlet.FrameworkServlet.processRequest(FrameworkServlet.java:1014)
+	at org.springframework.web.servlet.FrameworkServlet.doGet(FrameworkServlet.java:903)
+	at jakarta.servlet.http.HttpServlet.service(HttpServlet.java:564)
+	at org.springframework.web.servlet.FrameworkServlet.service(FrameworkServlet.java:885)
+	at jakarta.servlet.http.HttpServlet.service(HttpServlet.java:658)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:205)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:149)
+	at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:51)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:174)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:149)
+	at org.springframework.web.filter.RequestContextFilter.doFilterInternal(RequestContextFilter.java:100)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:174)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:149)
+	at org.springframework.web.filter.FormContentFilter.doFilterInternal(FormContentFilter.java:93)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:174)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:149)
+	at org.springframework.web.filter.CharacterEncodingFilter.doFilterInternal(CharacterEncodingFilter.java:201)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:174)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:149)
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:167)
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:90)
+	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:482)
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:115)
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:93)
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:74)
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:344)
+	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:391)
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:63)
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:896)
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1744)
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:52)
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1191)
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:659)
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:63)
+	at java.base/java.lang.Thread.run(Thread.java:840)
+2024-03-05 22:23:19 [ERROR] o.a.c.c.C.[.[.[.[dispatcherServlet] - Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception [org.apache.jasper.JasperException: java.lang.ClassNotFoundException: org.apache.jsp.WEB_002dINF.jsp.usr.consulting.reservation2_jsp] with root cause
+java.lang.ClassNotFoundException: org.apache.jsp.WEB_002dINF.jsp.usr.consulting.reservation2_jsp
+	at java.base/java.net.URLClassLoader.findClass(URLClassLoader.java:445)
+	at org.apache.jasper.servlet.JasperLoader.loadClass(JasperLoader.java:129)
+	at org.apache.jasper.servlet.JasperLoader.loadClass(JasperLoader.java:58)
+	at org.apache.catalina.core.DefaultInstanceManager.newInstance(DefaultInstanceManager.java:151)
+	at org.apache.jasper.servlet.JspServletWrapper.getServlet(JspServletWrapper.java:189)
+	at org.apache.jasper.servlet.JspServletWrapper.service(JspServletWrapper.java:410)
+	at org.apache.jasper.servlet.JspServlet.serviceJspFile(JspServlet.java:380)
+	at org.apache.jasper.servlet.JspServlet.service(JspServlet.java:328)
+	at jakarta.servlet.http.HttpServlet.service(HttpServlet.java:658)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:205)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:149)
+	at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:51)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:174)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:149)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:110)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:174)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:149)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:110)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:174)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:149)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:110)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:174)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:149)
+	at org.apache.catalina.core.ApplicationDispatcher.invoke(ApplicationDispatcher.java:642)
+	at org.apache.catalina.core.ApplicationDispatcher.processRequest(ApplicationDispatcher.java:408)
+	at org.apache.catalina.core.ApplicationDispatcher.doForward(ApplicationDispatcher.java:340)
+	at org.apache.catalina.core.ApplicationDispatcher.forward(ApplicationDispatcher.java:277)
+	at org.springframework.web.servlet.view.InternalResourceView.renderMergedOutputModel(InternalResourceView.java:171)
+	at org.springframework.web.servlet.view.AbstractView.render(AbstractView.java:314)
+	at org.springframework.web.servlet.DispatcherServlet.render(DispatcherServlet.java:1415)
+	at org.springframework.web.servlet.DispatcherServlet.processDispatchResult(DispatcherServlet.java:1159)
+	at org.springframework.web.servlet.DispatcherServlet.doDispatch(DispatcherServlet.java:1098)
+	at org.springframework.web.servlet.DispatcherServlet.doService(DispatcherServlet.java:974)
+	at org.springframework.web.servlet.FrameworkServlet.processRequest(FrameworkServlet.java:1014)
+	at org.springframework.web.servlet.FrameworkServlet.doGet(FrameworkServlet.java:903)
+	at jakarta.servlet.http.HttpServlet.service(HttpServlet.java:564)
+	at org.springframework.web.servlet.FrameworkServlet.service(FrameworkServlet.java:885)
+	at jakarta.servlet.http.HttpServlet.service(HttpServlet.java:658)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:205)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:149)
+	at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:51)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:174)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:149)
+	at org.springframework.web.filter.RequestContextFilter.doFilterInternal(RequestContextFilter.java:100)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:174)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:149)
+	at org.springframework.web.filter.FormContentFilter.doFilterInternal(FormContentFilter.java:93)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:174)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:149)
+	at org.springframework.web.filter.CharacterEncodingFilter.doFilterInternal(CharacterEncodingFilter.java:201)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:174)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:149)
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:167)
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:90)
+	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:482)
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:115)
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:93)
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:74)
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:344)
+	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:391)
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:63)
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:896)
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1744)
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:52)
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1191)
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:659)
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:63)
+	at java.base/java.lang.Thread.run(Thread.java:840)
