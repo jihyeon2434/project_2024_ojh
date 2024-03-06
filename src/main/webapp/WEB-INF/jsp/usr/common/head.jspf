@@ -55,10 +55,10 @@
 				</li>
 			</c:if>
 			<li>
-				<a class="hover:underline font-serif" href="/">COMMUNITY</a>
+				<a class="hover:underline font-serif" href="../article/list?boardId=1&page=1">COMMUNITY</a>
 			</li>
 			<li class="relative group">
-				<a class="hover:underline font-serif" href="../article/list?boardId=1&page=1">LIST</a>
+				
 				<ul class="absolute hidden group-hover:block z-10">
 					<li>
 						<a class="font-serif hover:underline" href="../article/list?boardId=1&page=1">NOTICE</a>
