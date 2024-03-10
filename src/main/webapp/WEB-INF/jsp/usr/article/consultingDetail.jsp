@@ -5,62 +5,96 @@
 
 <style>
 
+.outer-box {
+  width: auto;
+  display: flex;
+  justify-content: center;
+  border: 3px solid red;
+}
+
+.small-outer-box {
+  width: 1000px;
+}
+
+.img-box {
+  border: 3px solid pink;
+  display: flex;
+  justify-content: center;
+}
+
 .img1 {
   width: 800px;
   height: 188px;
-  position: relative;
-  left: 310px;
-  top: 50px;
+
+  border: 3px solid pink;
+}
+
+.shop-info-box {
+  width: 1000px;
+  height: 80px;
+  border: 3px solid yellow;
+}
+
+.Group96 {
+  width: 320px;
+  height: 80px;
+  border: 2px solid;
+}
+
+.Group96 > div {
+  margin-top: 10px;
+}
+
+.name {
+  font-size: 20px;
+  font-weight: bold;
 }
 
 .Group98 {
-  width: 1327px;
+  width: 1000px;
   height: 97.16px;
-  position: relative;
-  top: 250px;
-  left: 230px;
+  border: 5px solid;
+}
+.line-box {
+  width: 1000px;
+  display: flex;
+  justify-content: center;
 }
 
 .Line5 {
-  width: 970px;
+  width: 800px;
   height: 0px;
-  left: 10px;
-  top: 130px;
-  position: absolute;
-  border: 3px rgba(239, 231, 229, 0.7) solid;
+  display: block;
+  border: 3px solid red;
+}
+
+.info-top-bar {
+  width: 1000px;
+  border: solid yellow;
+  display: flex;
+  justify-content: center;
 }
 
 .Group42 {
-  width: 933.41px;
+  width: 1000px;
   height: 67.81px;
-  left: 30px;
-  top: 60px;
-  position: absolute;
+  border: 3px solid blue;
+  display: flex;
+  justify-content: center;
 }
 
-.Group42 > div {
-  width: 174.41px;
+.group42-small-box {
+  width: 800px;
   height: 67.81px;
-  position: absolute;
   text-align: center;
   color: black;
-  font-size: 24px;
   font-family: "Inria Serif", serif;
   font-weight: 400;
-  word-wrap: break-word;
   font-size: medium;
-}
-
-.Group42 > div:nth-child(1) {
-  left: 0px;
-}
-
-.Group42 > div:nth-child(2) {
-  left: 379px;
-}
-
-.Group42 > div:nth-child(3) {
-  left: 759px;
+  border: 3px solid green;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
 }
 
 .Group102 {
@@ -70,34 +104,32 @@
   margin-top: 20px;
 }
 
-.Group101 {
-  width: 1037.8px;
-  height: 191.83px;
-  position: absolute;
-  top: 0;
-  left: 0;
+.Group41 {
+  display: inline-block;
+  border: 3px solid blue;
+}
+
+.Group97 {
+  display: inline-block;
+  border: 3px solid orange;
 }
 
 .Group99 {
-  width: 924.8px;
-  height: 71.83px;
-  position: absolute;
-  top: 0;
-  left: 0;
+  width: 1000px;
+  display: flex;
+  justify-content: center;
+  border: 3px solid red;
 }
 
-.Group99 > div {
-  width: 444.8px;
-  height: 71.83px;
-  position: absolute;
+.click-box {
+  position: flex;
+  justify-content: center;
 }
 
 .Rectangle35 {
   width: 200.8px;
   height: 71.83px;
-  left: 450px;
-  top: 50px;
-  position: absolute;
+
   background: rgba(239, 231, 229, 0.7);
   border-radius: 18px;
   text-align: center;
@@ -105,14 +137,12 @@
   display: flex;
   justify-content: center; /* 가로 중앙 정렬 */
   align-items: center; /* 세로 중앙 정렬 */
+  border: solid red;
 }
 
 .Rectangle36 {
   width: 200.8px;
   height: 71.83px;
-  left: 400px;
-  top: 40px;
-  position: absolute;
   background: rgba(239, 231, 229, 0.7);
   border-radius: 18px;
   text-align: center;
@@ -120,6 +150,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  border: solid pink;
 }
 
 .Rectangle36 img {
@@ -128,106 +159,77 @@
   margin-right: 11px;
 }
 
-.Group99 > div:nth-child(2) {
-  left: 19px;
-  top: 10.02px;
-  text-align: center;
-  color: black;
-  font-size: 22px;
-  font-family: "Inria Serif", serif;
-  font-weight: 400;
-  word-wrap: break-word;
+.text-box {
+  border: 3px solid;
 }
 
-.Group97 {
-  width: 444.8px;
-  height: 71.83px;
-  position: absolute;
-  top: 0;
-  right: 0;
+.Group101 {
+  border: 6px solid pink;
+  width: 1000px;
+  height: 80px;
 }
 
-.Group97 > div {
-  width: 444.8px;
-  height: 71.83px;
-  position: absolute;
+.Group102 {
+  border: 7px solid green;
+  height: 800px;
+  width: 1000px;
 }
-
-.Group97 > div:nth-child(2) {
-  left: 19px;
-  top: 10.02px;
-  text-align: center;
-  color: black;
-  font-size: 22px;
-  font-family: "Inria Serif", serif;
-  font-weight: 400;
-  word-wrap: break-word;
-}
-
-.Group96 {
-  width: 320px;
-  height: 120px;
-  position: absolute;
-  top: -40px;
-  left: 240px;
-}
-
-.Group96 > div {
-  position: relative;
-  color: black;
-  font-size: 21px;
-  font-family: "Inter", sans-serif;
-  font-weight: 400;
-  word-wrap: break-word;
-  top: 350px;
-  left: 100px;
-}
-
-.score {
-  width: 267px;
-  height: 77px;
-  top: 43px;
-}
-
 
 
 </style>
 
-<img class="img1" src="https://via.placeholder.com/1151x288" />
-<div class="Group96">
-  <div class="name">청담 뮤아이</div>
-  <div class="score">★4.96(420)</div>
+<div class="outer-box">
+  <div class="small-outer-box">
 
-</div>
-
-<div class="Group98">
-
-  <div class="Group42">
-    <div>정보</div>
-    <div>포트폴리오</div>
-    <div>후기</div>
-  </div>
-  <div class="Line5"></div>
-</div>
-<div class="Group102">
-  <div class="Group101">
-    <div class="Group99">
-      <div class="Group41">
-        <div class="Rectangle35">
-          <div>♡ 관심</div>
-        </div>
-
-      </div>
-      <div class="Group97">
-        <div class="Rectangle36">
-          <div><img src="//velog.velcdn.com/images/jihyeon2434/post/ca6de2e7-1690-4f95-a522-50fdee8b9637/image.png">온라인 컨설팅 신청</div>
-        </div>
+    <div class="img-box"><img class="img1" src="https://via.placeholder.com/1151x288" /></div>
+    <div class="shop-info-box">
+      <div class="Group96">
+        <div class="name">청담 뮤아이</div>
+        <div class="score">★4.96(420)</div>
 
       </div>
     </div>
 
+    <div class="info-top-bar">
+      <div class="infotop-small-box">
+        <div class="Group42">
+          <div class="group42-small-box">
+            <div>정보</div>
+            <div>포트폴리오</div>
+            <div>후기</div>
+          </div>
+
+        </div>
+        <div class="line-box">
+          <div class="Line5"></div>
+        </div>
+
+      </div>
+
+    </div>
+
+    <div class="Group102">
+      <div class="Group101">
+        <div class="Group99">
+          <div class="click-box">
+            <div class="Group41">
+              <div class="Rectangle35">
+                <div>♡ 관심</div>
+              </div>
+            </div>
+            <div class="Group97">
+              <div class="Rectangle36">
+                <div class="text-box"><img src="//velog.velcdn.com/images/jihyeon2434/post/ca6de2e7-1690-4f95-a522-50fdee8b9637/image.png">온라인 컨설팅 신청</div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+
   </div>
-
 </div>
-
 				<%@ include file="../common/foot.jspf"%>

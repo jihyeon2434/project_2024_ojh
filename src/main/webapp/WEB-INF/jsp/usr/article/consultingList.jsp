@@ -4,437 +4,504 @@
 <%@ include file="../common/head.jspf"%>
 
 <style>
+.outer-box {
+  display: flex;
+  margin-top: 30px;
+}
 
-/* "Group60" 클래스에 대한 CSS 스타일 */
-.Group60 {
-	width: 225.66px;
-	height: 41px;
-	position: absolute;
-	top: 100px;
-	left: 300px;
+.small-outer-box {
+  width: 170px;
+  height: 550px;
+  display: flex;
+  justify-content: center;
+  border: solid 1px;
+}
+
+.small-outer-box-2 {
+  width: 1000px;
+}
+
+.content-outer-box{
+  width: 1500px;
+  display: flex;
+  justify-content: center;
+}
+
+.search-box {
+  width: 200px;
+  border: 2px solid red;
+}
+
+.price-outer-box {
+  width: 150px;
+  display: flex;
+  justify-content: center;
+  border: 3px solid pink;
+  flex-direction: column;
+}
+
+.price_option_box > div{
+width: 10px;
+ height: 10px;
+}
+
+
+.price-box {
+  display: flex;
+  justify-content: center;
+}
+.price {
+  font: 13px Inria Serif, sans-serif;
+  border: 1px solid;
+  align-content: center;
+  display: block;
+  font-size: 20px;
+}
+.price_option_box {
+  width: auto;
+  border: 3px solid;
+  display: flex;
+  
+
+  justify-content: space-around;
+}
+
+.area-box {
+  display: flex;
+  justify-content: center;
+}
+.area {
+  margin-top: 23px;
+  font: 13px Inria Serif, sans-serif;
+  border: 3px solid;
+  align-content: center;
+  display: block;
+  font-size: 20px;
+}
+
+.area-outer-box {
+  width: 150px;
+  display: flex;
+  margin-top: 39px;
+  flex-direction: column;
+  align-items: center;
+  padding: 0 10px;
+  border: 3px solid red;
+}
+
+.line {
+  border-color: rgba(0, 0, 0, 1);
+  border-style: solid;
+  border-width: 1px;
+  background-color: #000;
+  align-self: stretch;
+  height: 1px;
+}
+
+.area-option-box-1,
+.area-option-box-2,
+.area-option-box-3,
+.area-option-box-4 {
+  white-space: initial;
+  border: 3px solid purple;
+  display: flex;
+  width: 150px;
+  margin-top: 10px;
+  display: flex;
+  justify-content: space-around;
+}
+
+.area-outer-option-box {
+  width: 150px;
+
+  border: 5px solid yellow;
+}
+
+.area-1,
+.area-2,
+.area-3,
+.area-4,
+.area-5,
+.area-6,
+.area-7,
+.area-8,
+.area-9,
+.area-10,
+.area-11 {
+  font-family: Inria Serif, sans-serif;
+  width: 20px;
+  height: 20px;
+}
+.situation-outer-box {
+  border: 7px solid red;
+  width: 150px;
+}
+
+.situation-box {
+  display: flex;
+  justify-content: center;
+}
+.situation {
+  margin-top: 23px;
+  font: 13px Inria Serif, sans-serif;
+  border: 1px solid;
+  align-content: center;
+  display: block;
+  font-size: 20px;
+}
+.situation-option-box {
+  border: 5px solid blue;
+  display: flex;
+  width: 150px;
+  margin-top: 10px;
+  display: flex;
+  justify-content: space-around;
+ 
+  flex-wrap: wrap; /* 여기서 중요한 부분입니다 */
+}
+
+.situation-option-box-1,
+.situation-option-box-2 {
+  width: 170px;
+  border: 3px solid yellow;
+  display: flex;
+  width: 150px;
+  margin-top: 10px;
+  display: flex;
+  justify-content: space-around;
+}
+
+
+.situation-1,
+.situation-2,
+.situation-3,
+.situation-4 {
+  font-family: Inria Serif, sans-serif;
+  width: 30px;
+  height: 30px;
+}
+
+
+
+
+
+
+.main-text {
+width: 1000px; 
+  height: 83px;
+  text-align: center;
+  color: black;
+  font-size: 22px; 
+  font-family: Inter; 
+  font-style: italic; 
+  font-weight: 700; 
+  word-wrap: break-word"
+}
+
+.select-option{
+  font-size: 22px; 
+   font-weight: 700; 
+}
+
+.head-box {
+	margin-top: 30px;
+	width: 1000px;
+	height: 100px;
 	text-align: center;
-	font-size: 15px;
+	display: flex;
+	align-items: center;
+}
+
+.title {
+	width: 1000px;
+	height: 41px;
+	text-align: center;
+	color: black;
+	font-size: 40px;
 	font-family: "Inria Serif", serif;
-	font-weight: 400;
+	font-weight: 400px;
 	word-wrap: break-word;
+}
+
+.outer-search-box {
+	width: 1000px;
+	height: 100px;
 	display: flex;
-	align-items: center; /* 세로 중앙 정렬 */
+	justify-content: center;
 }
 
-/* "Rectangle40" 클래스에 대한 CSS 스타일 */
-.Rectangle40, .Rectangle41 {
-	height: 41px;
-	width: 113.34px;
-	position: absolute;
-	background: rgba(239, 231, 229, 0.27);
-	display: flex;
-	justify-content: center; /* 가로 중앙 정렬 */
-	align-items: center; /* 세로 중앙 정렬 */
-}
-
-.Rectangle41 {
-	left: 112.42px;
-}
-
-/* "Line10" 클래스에 대한 CSS 스타일 */
-.Line10 {
-	width: 41px;
-	height: 0px;
-	position: absolute;
-	top: 0;
-	left: 113px;
-	transform: rotate(90deg);
-	transform-origin: 0 0;
-	border: 1px black solid;
-}
-
-/* "box-1" 클래스에 대한 CSS 스타일 */
-.box-1 {
+.search-box {
 	width: 900px;
-	height: 260px;
-	position: relative;
-	left: 290px;
-	top: 50px;
-	white-space: nowrap;
-	overflow: hidden;
-	border: 2px solid black;
-	padding: 10px;
+	height: 100px;
 }
 
-/* "Group163" 클래스에 대한 CSS 스타일 */
-.Group163 {
-	width: 1168px;
-	height: 261px;
-	position: relative;
-	display: inline-block;
-	overflow: hidden;
-}
-
-/* "Rectangle" 클래스에 대한 CSS 스타일 */
-.Rectangle {
-	width: 260px;
-	height: 260px;
-	background: #d9d9d9;
-	border-radius: 5px;
-	display: inline-block;
-	margin-right: 20px;
-}
-
-/* "Rectangle43" 클래스에 대한 CSS 스타일 */
-.Rectangle43 {
-	width: 223px;
-	height: 350px;
-	background: rgba(239, 231, 229, 0.28);
-	position: absolute;
-	top: 50px;
-}
-
-.scrollbar-price {
-	top: 15px;
-}
-
-.scrollbar-area {
-	top: 30px;
-}
-
-.scrollbar-situation {
-	top: 80px;
-}
-
-.price-option {
+.search-box .grow {
+	width: 90%;
 	text-align: center;
 }
 
-.area-option {
+.theme {
+	width: 1000px;
+	font-size: 25px;
+	font-weight: bold;
 	text-align: center;
-}
-
-/* "scrollbar-price", "scrollbar-area", "scrollbar-situation" 클래스에 대한 CSS 스타일 */
-.scrollbar-price, .scrollbar-area, .scrollbar-situation {
-	width: 222px;
-	height: 39px;
-	text-align: center;
-	color: black;
-	font-size: 13px;
-	font-weight: 400;
-	word-wrap: break-word;
-	position: relative;
-}
-
-/* "price-option", "area-option", "st-option" 클래스에 대한 CSS 스타일 */
-.price-option>div, .area-option>div, .st-option>div {
-	width: 40px;
-	height: 20px;
-	border-radius: 5px;
-	margin: 3px;
-	display: inline-block;
-	text-align: center;
-	color: black;
-	background: grey;
-	font-size: 10px;
-	position: relative;
-}
-
-.area-option>div {
-	display: inline-block;
-}
-
-.area-option>div>div {
-	display: inline-block;
-}
-
-/* "line1", "line2" 클래스에 대한 CSS 스타일 */
-.line1, .line2 {
-	width: 220px;
-	height: 0px;
-	position: relative;
-	border: 1px rgba(239, 231, 229, 0.7) solid;
 }
 
 .line1 {
-	top: 20px;
-}
-
-.line2 {
-	top: 25px;
-}
-
-.section-1>.Group60{
-position: absolute;
-top: 140px;
-left: 290px;
-}
-
-.section-2 {
+	width: 1000px;
+	height: 0px;
 	position: absolute;
-	top: 190px;
+	border: 1px black solid;
 }
 
-.section-2-wrapper {
-	position: relative;
+.content-box {
+	width: 1000px;
+	height: 300px;
 }
 
-.section-2>.Group60 {
-	position: absolute;
-	left: 290px;
-	top: 90px;
+.menu-box {
+	width: 1000px;
 }
 
-.section-2>.box-1>.Group163 {
-	position: absolute;
-	left: -8px;
+.img-box {
+	width: 1000px;
+	border: 1px solid black;
+	justify-content: space-between;
+	border-radius: 7px;
+	display: flex;
+	margin-top: 15px;
+	padding: 10px;
 }
 
-.section-2-wrapper>.section-2>.popular {
-	left: 180px; /* 원래 코드에서 제거 */
-	top: 47px; /* 원래 코드에서 제거 */
+.con-box, .self-box, .trend-box, .community-box {
+	margin-top: 20px;
 }
 
-.section-3 {
-	position: absolute;
-	top: 390px;
-}
 
-.section-3-wrapper {
-	position: relative;
-}
+.theme{
+  width: 350px;
+  display: flex;
 
-.section-3>.box-1>.Group163 {
-	position: absolute;
-	left: -8px;
 }
-
-.section-3>.box-1 {
-	position: absolute;
-	top: 340px;
-	left: 240px;
-}
-
-.popular {
-	width: 333px;
-	height: 48px;
-	color: black;
-	font-size: 22px;
-	font-family: Inter;
-	font-weight: 400;
-	word-wrap: break-word;
-	position: absolute;
-	left: 155px;
-	top: 260px;
-	font-weight: bold;
-}
-
-.section-3>.Group60 {
-	position: absolute;
-	left: 240px;
-	top: 300px;
-}
-
-.section-4 {
-	position: absolute;
-	top: 1030px;
-	left: -100px;
-}
-
-.section-4-wrapper {
-	position: relative;
-}
-
-.section-4>.Group60 {
-	position: absolute;
-	left: 290px;
-	top: 80px;
-}
-
-.section-4>.box-1>.Group163 {
-	position: absolute;
-	left: -8px;
-}
-
-.section-4>.box-1 {
-	position: absolute;
-	left: 290px;
-	top: 120px;
-}
-
-.section-4-wrapper>.section-4>.popular {
-	left: 270px; /* 원래 코드에서 제거 */
-	top: 35px; /* 원래 코드에서 제거 */
+.img-making, .personal{
+  display: inline-block;
+  border: 3px solid green;
+  
 }
 </style>
 
-<div class="section-1">
-	<div
-		style="width: 1196px; height: 83px; text-align: center; color: black; font-size: 22px; font-family: Inter; font-style: italic; font-weight: 700; word-wrap: break-word">${rq.loginedMember.nickname }님만을 위한 추천 컨설팅 업체
+<div class="outer-box">
+  <div class="small-outer-box">
+    <div class="search-box">
+      <div class="price-outer-box">
+        <div class="price-box">
+          <div class="price">가격</div>
+        </div>
+
+        <div class="price_option_box">
+          <div class="price-1 btn btn-outline">~7</div>
+          <div class="price-2 btn btn-outline">~10</div>
+          <div class="price-3 btn btn-outline">~20</div>
+          <div class="price-4 btn btn-outline">30~</div>
+        </div>
+      </div>
+
+      <div class="area-outer-box">
+        <div class="line"></div>
+        <div class="area-box">
+          <div class="area">지역</div>
+        </div>
+
+        <div class="area-outer-option-box">
+          <div class="area-option-box-1">
+            <div class="area-1 btn btn-outline">서울</div>
+            <div class="area-2 btn btn-outline">경기</div>
+            <div class="area-3 btn btn-outline">인천</div>
+          </div>
+          <div class="area-option-box-2">
+            <div class="area-4 btn btn-outline">세종</div>
+            <div class="area-5 btn btn-outline">대전</div>
+            <div class="area-6 btn btn-outline">충청</div>
+          </div>
+          <div class="area-option-box-3">
+            <div class="area-7 btn btn-outline">부산</div>
+            <div class="area-8 btn btn-outline">
+              광주
+              <br />
+              전라
+            </div>
+            <div class="area-9 btn btn-outline">
+              대구
+              <br />
+              경상
+            </div>
+          </div>
+          <div class="area-option-box-4">
+            <div class="area-10 btn btn-outline">강원</div>
+            <div class="area-11 btn btn-outline">제주</div>
+          </div>
+        </div>
+
+      </div>
+      <div class="situation-outer-box">
+        <div class="line"></div>
+        <div class="situation-box">
+          <div class="situation">상황</div>
+        </div>
+
+        <div class="situation-option-box">
+          <div class="situation-option-box-1">
+            <div class="situation-1 btn btn-outline">일상</div>
+            <div class="situation-2 btn btn-outline">비지니스</div>
+          </div>
+          <div class="situation-option-box-2">
+
+            <div class="situation-3 btn btn-outline">소개팅</div>
+            <div class="situation-4 btn btn-outline">면접</div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+  </div>
+  <div class="content-outer-box">
+
+    <div class="small-outer-box-2">
+
+      <div class="main-text"> ${rq.loginedMember.nickname }님만을 위한 추천 컨설팅 업체
+      </div>
+
+      <div class="con-box">
+        <div class="menu-box">
+          <div class="theme">
+
+            <div class="img-making">이미지메이킹</div>
+            <div class="personal">퍼스널컬러</div>
+          </div>
+
+          <div class="line1"></div>
+        </div>
+        <div class="img-box">
+          <div class="img">
+            <img class="banner" style="width: 290px; height: 263px" src="https://search.pstatic.net/common/?src=https%3A%2F%2Fldb-phinf.pstatic.net%2F20231028_158%2F16984822151220mGR2_PNG%2F%25C1%25A4%25C7%25FD%25B7%25C3%25B4%25D4-%25BA%25AF%25C8%25AF.png" />
+          </div>
+          <div class="img">
+            <img class="banner" style="width: 290px; height: 263px;" src="https://search.pstatic.net/common/?src=https%3A%2F%2Fldb-phinf.pstatic.net%2F20231028_158%2F16984822151220mGR2_PNG%2F%25C1%25A4%25C7%25FD%25B7%25C3%25B4%25D4-%25BA%25AF%25C8%25AF.png" />
+          </div>
+          <div class="img">
+            <img class="banner" style="width: 290px; height: 263px" src="https://search.pstatic.net/common/?src=https%3A%2F%2Fldb-phinf.pstatic.net%2F20231028_158%2F16984822151220mGR2_PNG%2F%25C1%25A4%25C7%25FD%25B7%25C3%25B4%25D4-%25BA%25AF%25C8%25AF.png" />
+          </div>
+        </div>
+
+      </div>
+
+      <div class="main-text"> ㅇㅇ들의 선택
+      </div>
+      <div class="select-option">
+        별점이 높은
+      </div>
+
+      <div class="self-box">
+        <div class="menu-box">
+          <div class="theme">
+
+            <div class="img-making">이미지메이킹</div>
+            <div class="personal">퍼스널컬러</div>
+          </div>
+
+          <div class="line1"></div>
+        </div>
+        <div class="img-box">
+          <div class="img">
+            <img class="banner" style="width: 290px; height: 263px" src="https://search.pstatic.net/common/?src=https%3A%2F%2Fldb-phinf.pstatic.net%2F20231028_158%2F16984822151220mGR2_PNG%2F%25C1%25A4%25C7%25FD%25B7%25C3%25B4%25D4-%25BA%25AF%25C8%25AF.png" />
+          </div>
+          <div class="img">
+            <img class="banner" style="width: 290px; height: 263px;" src="https://search.pstatic.net/common/?src=https%3A%2F%2Fldb-phinf.pstatic.net%2F20231028_158%2F16984822151220mGR2_PNG%2F%25C1%25A4%25C7%25FD%25B7%25C3%25B4%25D4-%25BA%25AF%25C8%25AF.png" />
+          </div>
+          <div class="img">
+            <img class="banner" style="width: 290px; height: 263px" src="https://search.pstatic.net/common/?src=https%3A%2F%2Fldb-phinf.pstatic.net%2F20231028_158%2F16984822151220mGR2_PNG%2F%25C1%25A4%25C7%25FD%25B7%25C3%25B4%25D4-%25BA%25AF%25C8%25AF.png" />
+          </div>
+        </div>
+
+      </div>
+      <div class="select-option">
+        현재 가장 저렴한
+      </div>
+      <div class="trend-box">
+        <div class="menu-box">
+          <div class="theme">
+
+            <div class="img-making">이미지메이킹</div>
+            <div class="personal">퍼스널컬러</div>
+          </div>
+
+          <div class="line1"></div>
+        </div>
+        <div class="img-box">
+          <div class="img">
+            <img class="banner" style="width: 290px; height: 263px" src="https://search.pstatic.net/common/?src=https%3A%2F%2Fldb-phinf.pstatic.net%2F20231028_158%2F16984822151220mGR2_PNG%2F%25C1%25A4%25C7%25FD%25B7%25C3%25B4%25D4-%25BA%25AF%25C8%25AF.png" />
+          </div>
+          <div class="img">
+            <img class="banner" style="width: 290px; height: 263px;" src="https://search.pstatic.net/common/?src=https%3A%2F%2Fldb-phinf.pstatic.net%2F20231028_158%2F16984822151220mGR2_PNG%2F%25C1%25A4%25C7%25FD%25B7%25C3%25B4%25D4-%25BA%25AF%25C8%25AF.png" />
+          </div>
+          <div class="img">
+            <img class="banner" style="width: 290px; height: 263px" src="https://search.pstatic.net/common/?src=https%3A%2F%2Fldb-phinf.pstatic.net%2F20231028_158%2F16984822151220mGR2_PNG%2F%25C1%25A4%25C7%25FD%25B7%25C3%25B4%25D4-%25BA%25AF%25C8%25AF.png" />
+          </div>
+        </div>
+
+      </div>
+
+      <div class="select-option">
+        ㅇㅇ가 보장하는 친절한 전문가
+      </div>
+      <div class="trend-box">
+        <div class="menu-box">
+          <div class="theme">
+
+            <div class="img-making">이미지메이킹</div>
+            <div class="personal">퍼스널컬러</div>
+          </div>
+
+          <div class="line1"></div>
+        </div>
+        <div class="img-box">
+          <div class="img">
+            <img class="banner" style="width: 290px; height: 263px" src="https://search.pstatic.net/common/?src=https%3A%2F%2Fldb-phinf.pstatic.net%2F20231028_158%2F16984822151220mGR2_PNG%2F%25C1%25A4%25C7%25FD%25B7%25C3%25B4%25D4-%25BA%25AF%25C8%25AF.png" />
+          </div>
+          <div class="img">
+            <img class="banner" style="width: 290px; height: 263px;" src="https://search.pstatic.net/common/?src=https%3A%2F%2Fldb-phinf.pstatic.net%2F20231028_158%2F16984822151220mGR2_PNG%2F%25C1%25A4%25C7%25FD%25B7%25C3%25B4%25D4-%25BA%25AF%25C8%25AF.png" />
+          </div>
+          <div class="img">
+            <img class="banner" style="width: 290px; height: 263px" src="https://search.pstatic.net/common/?src=https%3A%2F%2Fldb-phinf.pstatic.net%2F20231028_158%2F16984822151220mGR2_PNG%2F%25C1%25A4%25C7%25FD%25B7%25C3%25B4%25D4-%25BA%25AF%25C8%25AF.png" />
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
 </div>
-
-	<div class="Group60">
-		<div class="Rectangle40">
-			<div>이미지메이킹</div>
-		</div>
-		<div class="Rectangle41">
-			<div>퍼스널컬러</div>
-		</div>
-
-		<div class="Line10"></div>
-	</div>
-
-	<div class="box-1">
-		<div class="Group163">
-			<div class="Rectangle" id="rect1"></div>
-			<div class="Rectangle" id="rect2"></div>
-			<div class="Rectangle" id="rect3"></div>
-			<div class="Rectangle" id="rect4"></div>
-		</div>
-	</div>
-</div>
-
-<div class="Rectangle43">
-	<div class="all">
-		<div class="price">
-			<div class="scrollbar-price">가격</div>
-			<div class="price-option">
-				<div>~7</div>
-				<div>~10</div>
-				<div>~20</div>
-				<div>~30</div>
-			</div>
-		</div>
-		<div class="line1"></div>
-		<div class="area">
-			<div class="scrollbar-area">지역</div>
-			<div class="area-option">
-				<div class="option-1">
-					<div>서울</div>
-					<div>경기</div>
-					<div>인천</div>
-				</div>
-				<div class="option-2">
-					<div>세종</div>
-					<div>대전충청</div>
-					<div>부산</div>
-				</div>
-				<div class="option-3">
-					<div>광주전라</div>
-					<div>대구경상</div>
-					<div>강원</div>
-				</div>
-				<div class="option-4">
-					<div>제주</div>
-				</div>
-			</div>
-		</div>
-		<div class="line2"></div>
-		<div class="situation">
-			<div class="scrollbar-situation">상황</div>
-			<div class="st-option">
-				<div>일상</div>
-				<div>비지니스</div>
-				<div>소개팅</div>
-				<div>면접</div>
-
-				<div class="section-2-wrapper">
-					<div class="section-2">
-						<div
-							style="width: 1196px; height: 83px; text-align: center; color: black; font-size: 22px; font-family: Inter; font-style: italic; font-weight: 700; word-wrap: break-word">ㅇㅇ들의
-							선택</div>
-
-						<div class="popular">별점이 높은</div>
-						<div class="Group60">
-							<div class="Rectangle40">
-								<div>이미지메이킹</div>
-							</div>
-							<div class="Rectangle41">
-								<div>퍼스널컬러</div>
-							</div>
-
-							<div class="Line10"></div>
-						</div>
-
-						<div class="box-1">
-							<div class="Group163">
-								<div class="Rectangle" id="rect1"></div>
-								<div class="Rectangle" id="rect2"></div>
-								<div class="Rectangle" id="rect3"></div>
-								<div class="Rectangle" id="rect4"></div>
-							</div>
-						</div>
-					</div>
-				</div>
-
-				<div class="section-3-wrapper">
-					<div class="section-3">
-						<div class="popular">현재 가장 저렴한</div>
-
-						<div class="Group60">
-							<div class="Rectangle40">
-								<div>이미지메이킹</div>
-							</div>
-							<div class="Rectangle41">
-								<div>퍼스널컬러</div>
-							</div>
-
-							<div class="Line10"></div>
-						</div>
-
-						<div class="box-1">
-							<div class="Group163">
-								<div class="Rectangle" id="rect1"></div>
-								<div class="Rectangle" id="rect2"></div>
-								<div class="Rectangle" id="rect3"></div>
-								<div class="Rectangle" id="rect4"></div>
-							</div>
-						</div>
-
-					</div>
-				</div>
-
-				<div class="section-4-wrapper">
-					<div class="section-4">
-						<div class="popular">ㅇㅇ가 보장하는 친절한 전문가</div>
-
-						<div class="Group60">
-							<div class="Rectangle40">
-								<div>이미지메이킹</div>
-							</div>
-							<div class="Rectangle41">
-								<div>퍼스널컬러</div>
-							</div>
-
-							<div class="Line10"></div>
-						</div>
-
-						<div class="box-1">
-							<div class="Group163">
-								<div class="Rectangle" id="rect1"></div>
-								<div class="Rectangle" id="rect2"></div>
-								<div class="Rectangle" id="rect3"></div>
-								<div class="Rectangle" id="rect4"></div>
-							</div>
-						</div>
-
-					</div>
-				</div>
 
 				<script>
-let intervalId;
+				let intervalId;
 
-function startScroll() {
-  intervalId = setInterval(() => {
-    const group = document.querySelector(".box-1");
-    group.scrollLeft += 5; // 스크롤 속도를 조절합니다
-  }, 50); // 스크롤 간격을 조절합니다
-}
+				function startScroll() {
+				  intervalId = setInterval(() => {
+				    const group = document.querySelector(".box-1");
+				    group.scrollLeft += 5; // 스크롤 속도를 조절합니다
+				  }, 50); // 스크롤 간격을 조절합니다
+				}
 
-function stopScroll() {
-  clearInterval(intervalId);
-}
+				function stopScroll() {
+				  clearInterval(intervalId);
+				}
 
-function scrollHandler(event) {
-  event.preventDefault();
-  const group = document.querySelector(".box-1");
-  group.scrollLeft += event.deltaY;
-}
+				function scrollHandler(event) {
+				  event.preventDefault();
+				  const group = document.querySelector(".box-1");
+				  group.scrollLeft += event.deltaY;
+				}
 
 </script>
 
