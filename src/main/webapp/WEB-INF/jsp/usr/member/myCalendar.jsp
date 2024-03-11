@@ -4,109 +4,143 @@
 <%@ include file="../common/head.jspf"%>
 
 <style>
+.outer-box {
+  display: flex;
+  width: 1300px;
+  height: 1000px;
+}
+
+.left-menu-box {
+  width: 200px;
+  height: 300px;
+}
 .left-menu {
-    width: 148px;
-    height: 32px;
-    left: 20px;
-    top: 100px;
-    position: absolute;
-    color: black;
-    font-size: 10px;
-    font-family: Inria Serif;
-    font-weight: 700;
-    word-wrap: break-word;
+  width: 148px;
+  height: 32px;
+  left: 20px;
+  top: 100px;
+  position: absolute;
+  color: black;
+  font-size: 10px;
+  font-family: Inria Serif;
+  font-weight: 700;
+  word-wrap: break-word;
+}
+
+.left-menu > div {
+  font-size: 16px;
 }
 
 .left-line {
-    width: 700px;
-    height: 0px;
-    transform: rotate(90deg);
-    transform-origin: 0 0;
-    border: 1px #C6C6C6 solid;
-    margin-left: 170px;
+  width: 1000px;
+  height: 0px;
+  transform: rotate(90deg);
+  transform-origin: 0 0;
+  border: 1px #c6c6c6 solid;
+  margin-left: 170px;
 }
 
 .calendar-month {
-    position: relative; /* 상대 위치 지정 */
+  position: relative; /* 상대 위치 지정 */
+}
+.small-outer-box {
+  display: flex;
+  justify-content: center;
+}
+
+.right-box {
+  width: 1800px;
+  margin-top: 30px;
 }
 
 /* 달력위치 조정 */
 .calendar-box {
-    position: relative; /* 상대 위치 지정 */
-    left: 15%;
-    top: 12%;
+  width: 1000px;
+  margin-left: 30px;
 }
 
 /* 달력 스타일링 */
 .calendar {
-    font-family: Arial, sans-serif;
-    border-collapse: collapse;
-    width: 80%;
-    position: relative; /* 상대 위치 지정 */
-    margin-top: 20px; /* calendar-month와 겹치지 않도록 상단 여백 추가 */
+  font-family: Arial, sans-serif;
+  border-collapse: collapse;
+  width: 1000px;
 }
 
 .calendar th {
-    background-color: #f2f2f2;
+  background-color: #f2f2f2;
 }
 
-.calendar th, .calendar td {
-    border: 1px solid #dddddd;
-    text-align: center;
-    padding: 8px;
+.calendar th,
+.calendar td {
+  border: 1px solid #dddddd;
+  text-align: center;
+  padding: 8px;
 }
+
 </style>
 </head>
 <body>
-<div class="left-menu">
-    <div>
-        <button type="button" onclick="usr/member/myPage">회원정보</button>
-    </div>
-    <br>
-    <div>
-        <button type="button" onclick="usr/member/myCalendar">마이 캘린더</button>
-    </div>
-    <br>
-    <div>온라인 컨설팅 예약내역</div>
-</div>
+<div class="outer-box">
+  <div class="left-menu-box">
+    <div class="left-menu">
+      <div>
+        <a href="/usr/member/myPage">회원정보</a>
+      </div>
+      <br>
+      <div>
+        <a href="/usr/member/myCalendar">마이 캘린더</a>
+      </div>
 
-<div class="left-line"></div>
+      <br>
+      <div>
+        <a href="/usr/member/myReservation">온라인 컨설팅 <br>예약내역
+        </a>
+      </div>
+    </div>
+    <div class="left-line"></div>
+  </div>
 
-<div class="calendar-box">
-    <div class="calendar-month">
-        <h2 class="font-bold text-lg">${rq.loginedMember.nickname }'s Calendar</h2>
-        <!-- 현재 연도와 월을 표시합니다 -->
-        <% java.util.Calendar cal = java.util.Calendar.getInstance();
+  <div class="small-outer-box">
+    <div class="right-box">
+      <div class="calendar-box">
+        <div class="calendar-month">
+          <h2 class="font-bold text-lg">${rq.loginedMember.nickname }'s Calendar</h2>
+          <!-- 현재 연도와 월을 표시합니다 -->
+          <% java.util.Calendar cal = java.util.Calendar.getInstance();
            int year = cal.get(java.util.Calendar.YEAR);
            int month = cal.get(java.util.Calendar.MONTH) + 1; // 0부터 시작하므로 1을 더해줌 %>
-        <p class="font-bold ">현재 연도: <%= year %></p>
-        <p class="present-MonthDay"></p>
-    </div>
+          <p class="font-bold ">현재 연도: <%= year %></p>
+          <p class="present-MonthDay"></p>
+        </div>
 
-    <table class="calendar">
+        <table class="calendar">
 
-        <thead>
-        <tr>
-            <th colspan="7">
+          <thead>
+            <tr>
+              <th colspan="7">
                 <button onclick="prevMonth()">Previous</button>
                 <div class="present-MonthYear"><%= year %>. <%= (month < 10 ? '0' + month : month) %></div>
                 <button onclick="nextMonth()">Next</button>
-            </th>
-        </tr>
-        <tr>
-            <th>Sun</th>
-            <th>Mon</th>
-            <th>Tue</th>
-            <th>Wed</th>
-            <th>Thu</th>
-            <th>Fri</th>
-            <th>Sat</th>
-        </tr>
-        </thead>
-        <tbody id="calendar-body">
-        <!-- 달력 내용은 JavaScript로 채웁니다 -->
-        </tbody>
-    </table>
+              </th>
+            </tr>
+            <tr>
+              <th>Sun</th>
+              <th>Mon</th>
+              <th>Tue</th>
+              <th>Wed</th>
+              <th>Thu</th>
+              <th>Fri</th>
+              <th>Sat</th>
+            </tr>
+          </thead>
+          <tbody id="calendar-body">
+            <!-- 달력 내용은 JavaScript로 채웁니다 -->
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
 </div>
 
 <script>

@@ -10,8 +10,10 @@
 }
 
 .small-outer-box {
-  width: 170px;
-  height: 550px;
+padding-top: 20px;
+padding-bottom: 20px;
+  width: 250px;
+  height: 630px;
   display: flex;
   justify-content: center;
   border: solid 1px;
@@ -27,16 +29,12 @@
   justify-content: center;
 }
 
-.search-box {
-  width: 200px;
-  border: 2px solid red;
-}
+
 
 .price-outer-box {
-  width: 150px;
+  width: 250px;
   display: flex;
   justify-content: center;
-  border: 3px solid pink;
   flex-direction: column;
 }
 
@@ -52,17 +50,13 @@ width: 10px;
 }
 .price {
   font: 13px Inria Serif, sans-serif;
-  border: 1px solid;
   align-content: center;
   display: block;
   font-size: 20px;
 }
 .price_option_box {
   width: auto;
-  border: 3px solid;
   display: flex;
-  
-
   justify-content: space-around;
 }
 
@@ -73,20 +67,18 @@ width: 10px;
 .area {
   margin-top: 23px;
   font: 13px Inria Serif, sans-serif;
-  border: 3px solid;
   align-content: center;
   display: block;
   font-size: 20px;
 }
 
 .area-outer-box {
-  width: 150px;
+  width: 250px;
   display: flex;
   margin-top: 39px;
   flex-direction: column;
   align-items: center;
   padding: 0 10px;
-  border: 3px solid red;
 }
 
 .line {
@@ -103,18 +95,15 @@ width: 10px;
 .area-option-box-3,
 .area-option-box-4 {
   white-space: initial;
-  border: 3px solid purple;
   display: flex;
-  width: 150px;
+  width: 250px;
   margin-top: 10px;
   display: flex;
   justify-content: space-around;
 }
 
 .area-outer-option-box {
-  width: 150px;
-
-  border: 5px solid yellow;
+  width: 250px;
 }
 
 .area-1,
@@ -133,8 +122,7 @@ width: 10px;
   height: 20px;
 }
 .situation-outer-box {
-  border: 7px solid red;
-  width: 150px;
+  width: 250px;
 }
 
 .situation-box {
@@ -144,15 +132,13 @@ width: 10px;
 .situation {
   margin-top: 23px;
   font: 13px Inria Serif, sans-serif;
-  border: 1px solid;
   align-content: center;
   display: block;
   font-size: 20px;
 }
 .situation-option-box {
-  border: 5px solid blue;
   display: flex;
-  width: 150px;
+  width: 250px;
   margin-top: 10px;
   display: flex;
   justify-content: space-around;
@@ -162,10 +148,8 @@ width: 10px;
 
 .situation-option-box-1,
 .situation-option-box-2 {
-  width: 170px;
-  border: 3px solid yellow;
+  width: 250px;
   display: flex;
-  width: 150px;
   margin-top: 10px;
   display: flex;
   justify-content: space-around;
@@ -180,10 +164,6 @@ width: 10px;
   width: 30px;
   height: 30px;
 }
-
-
-
-
 
 
 .main-text {
@@ -285,9 +265,16 @@ width: 1000px;
 }
 .img-making, .personal{
   display: inline-block;
-  border: 3px solid green;
+  border: 1px solid;
+  font-size: 20px;
+  padding: 5px;
   
 }
+
+.list-box{
+margin-top: 50px;
+}
+
 </style>
 
 <div class="outer-box">
@@ -395,7 +382,7 @@ width: 1000px;
         </div>
 
       </div>
-
+<div class="list-box">
       <div class="main-text"> ㅇㅇ들의 선택
       </div>
       <div class="select-option">
@@ -477,6 +464,7 @@ width: 1000px;
           </div>
         </div>
 
+      </div>
       </div>
     </div>
   </div>
