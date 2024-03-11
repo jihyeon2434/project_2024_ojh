@@ -4,62 +4,80 @@
 <%@ include file="../common/head.jspf"%>
 
 <style>
-.centered {
+.big-outer-box {
 	display: flex;
 	justify-content: center;
 	align-items: center;
 	height: 100vh; /* 화면 세로 중앙 정렬 */
 }
 
-.outer-container {
+.outer-box {
+	display: flex;
+	width: auto;
+	height: auto;
+	justify-content: center;
+}
+
+.small-outer-box {
 	width: 755px;
-	height: 403px;
-	position: relative;
+	height: 500px;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
 	box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
 	border-radius: 8px;
-	overflow: hidden;
-	background: rgba(239, 231, 229, 0.50);
+	background: rgba(239, 231, 229, 0.25); /* 투명도를 25%로 설정 */
 }
 
 .logo {
-	font-size: 70px;
-	font-family: Inria Serif;
-	border: word-wrap: break-word;
+	width: 755px;
+	height: 50px;
+	text-align: center;
 }
 
-.outer-box {
+.outer-container {
+	width: 100%;
+	height: auto;
+	display: flex;
+	justify-content: center;
+}
+
+.small-outer-container {
 	width: 450px;
 	height: 300px;
-	position: absolute;
-	top: 50%;
-	left: 50%;
-	transform: translate(-50%, -50%);
-	background: rgba(239, 231, 229, 0.89);
+	background: rgba(239, 231, 229, 0.25);
 	border-radius: 9px;
-	border: 1px rgba(0, 0, 0, 0.20) solid grey;
+	display: flex;
+	justify-content: center;
+	align-items: center; /* 이 부분을 추가해줍니다 */
+
 }
 
 .login-container {
 	text-align: center;
+	display: flex;
+	justify-content: center;
+	align-items: center;
 	border-radius: 10px;
-	padding-top: 20px; /* 로고와 로그인 폼 사이의 간격 조절 */
-	position: absolute;
+	height: 300px;
 }
 
 .login-box {
 	border: none;
-	margin-left: 1rem;
-	margin-right: 3rem;
-	margin-top: 2.5rem;
 }
 
 .login-footer {
 	text-align: center;
+	margin-top: 20px width: 300px;
+	height: 30px;
+	font-size: 0.7em; /* 글씨 크기를 작게 조정 */
 	margin-top: 20px;
 }
 
-.login-footer a {
-	font-size: 0.5em; /* 글씨 크기를 작게 조정 */
+.search-id, .search-pw, .do-join {
+	display: inline-block;
+	margin-right: 30px;
 }
 
 .input {
@@ -68,50 +86,69 @@
 }
 </style>
 
+<section class="big-outer-box text-xl">
+	<div class="outer-box">
+		<div class="small-outer-box">
+			<div class="logo" style="font-size: 30px">LOGO</div>
+			<div class="outer-container">
+				<div class="small-outer-container">
+					<div class="login-container">
+						<form action="../member/doLogin" method="POST" class="mx-auto max-w-xs">
+							<input type="hidden" name="afterLoginUri" value="${param.afterLoginUri}" />
+
+							<div class="login-box">
+								<table class="table-box-1" style="width: 100%;">
+
+									<th style="text-align: center;">
+										<label class="input input-bordered flex items-center gap-2" style= "background: rgba(239, 231, 229, 0.25);">
+											<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" fill="currentColor" class="w-4 h-4 opacity-70">
+												<path fill-rule="evenodd"
+													d="M14 6a4 4 0 0 1-4.899 3.899l-1.955 1.955a.5.5 0 0 1-.353.146H5v1.5a.5.5 0 0 1-.5.5h-2a.5.5 0 0 1-.5-.5v-2.293a.5.5 0 0 1 .146-.353l3.955-3.955A4 4 0 1 1 14 6Zm-4-2a.75.75 0 0 0 0 1.5.5.5 0 0 1 .5.5.75.75 0 0 0 1.5 0 2 2 0 0 0-2-2Z"
+													clip-rule="evenodd" /></svg>
+											<input type="text" class="grow" placeholder="Username" name="loginId" style= "background: rgba(239, 231, 229, 0.25);"/>
+										</label>
+
+									</th>
+
+									</tr>
+									<tr>
+										
+<label class="input input-bordered flex items-center gap-2" style= "background: rgba(239, 231, 229, 0.25);">
+											<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" fill="currentColor" class="w-4 h-4 opacity-70">
+												<path
+													d="M8 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6ZM12.735 14c.618 0 1.093-.561.872-1.139a6.002 6.002 0 0 0-11.215 0c-.22.578.254 1.139.872 1.139h9.47Z" /></svg>
+											<input type="password" class="grow"  value="password" name="loginPw" autocomplete="off" style= "background: rgba(239, 231, 229, 0.25);"/>
+										</label>
+										
 
 
-<section class="text-xl px-5 centered">
-	<div class="outer-container" style="height: 450px;">
-		<div class="logo"
-			style="position: absolute; top: 5%; left: 50%; transform: translateX(-50%); font-size: 30px; font-family: 'Inria Serif', serif;">LOGO</div>
-		<!-- 높이 조정 -->
-		<div class="outer-box">
-			<div class="login-container">
-				<form action="../member/doLogin" method="POST" class="mx-auto max-w-xs">
-					<input type="hidden" name="afterLoginUri" value="${param.afterLoginUri}" />
-					<div class="login-box">
-						<table class="table-box-1 mx-20" style="width: 100%;">
-							<tbody>
-								<tr>
-									<th style="text-align: center;"><img
-										src="//velog.velcdn.com/images/jihyeon2434/post/3b37dbd1-67e6-4309-895c-65560a0c95cf/image.png"
-										style="display: block; margin: 0 auto;"></th>
-									<td><input class="input input-bordered input-primary w-full text-xs" autocomplete="off" type="text"
-										placeholder="아이디를 입력해주세요" name="loginId"
-										style="color: #000 !important; background-color: rgba(239, 231, 229, 0.89) !important; width: 100%;" /></td>
-								</tr>
-								<tr>
-									<th style="text-align: center;"><img
-										src="//velog.velcdn.com/images/jihyeon2434/post/2c552296-491b-44f2-a266-b27497cfec7b/image.png"
-										style="display: block; margin: 0 auto;"></th>
-									<td><input class="input input-bordered input-primary w-full text-xs" autocomplete="off" type="password"
-										placeholder="비밀번호를 입력해주세요" name="loginPw"
-										style="color: #000 !important; background-color: rgba(239, 231, 229, 0.89) !important; width: 100%;" /></td>
-								</tr>
-								<tr>
-									<!-- 로그인 버튼을 폼 안에 위치 -->
-									<td colspan="2" class="text-center mt-4" style="height: 90px;"><input
-										class="btn btn-outline btn-info w-full rounded-lg" type="submit" value="로그인" /></td>
-								</tr>
-							</tbody>
-						</table>
+									</tr>
+									<tr>
+										<!-- 로그인 버튼을 폼 안에 위치 -->
+										<td colspan="2" class="text-center mt-4" style="height: 90px;">
+											<input class="btn btn-outline" type="submit" value="로그인" />
+										</td>
+									</tr>
+									</tbody>
+								</table>
+							</div>
+						</form>
 					</div>
-				</form>
+				</div>
+			</div>
+
+			<div class="login-footer">
+				<div class="search-id">
+					<a class="searchid" href="#" style="margin-right: 30px;">아이디 찾기</a>
+				</div>
+				<div class="search-pw">
+					<a class="searchpw" href="#" style="margin-right: 30px;">비밀번호 찾기</a>
+				</div>
+				<div class="do-join">
+					<a class="dojoin" href="#">회원가입</a>
+				</div>
 			</div>
 		</div>
-		<div class="login-footer" style="position: absolute; bottom: 100px; left: 50%; transform: translateX(-50%);">
-			<a class="searchid" href="#" style="margin-right: 30px;">아이디 찾기</a> <a class="searchpw" href="#"
-				style="margin-right: 30px;">비밀번호 찾기</a> <a class="dojoin" href="#">회원가입</a>
-		</div>
+
 	</div>
 </section>

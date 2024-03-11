@@ -13,7 +13,7 @@ public class WebCrawler2 {
 
     public void crawl() {
         // 크롬 드라이버 경로 설정 (크롬 드라이버 설치 필요)
-        System.setProperty("webdriver.chrome.driver", "C:\\\\work\\\\sts-4.21.0.RELEASE-workspace\\\\chromedriver-win64/chromedriver.exe");
+        System.setProperty("webdriver.chrome.driver", "C:\\work\\sts-4.21.0.RELEASE-workspace\\chromedriver-win64\\chromedriver-win64/chromedriver.exe");
 
         // 크롬 옵션 설정
         ChromeOptions options = new ChromeOptions();

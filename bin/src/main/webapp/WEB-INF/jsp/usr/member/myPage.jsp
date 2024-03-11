@@ -125,7 +125,7 @@ top: 75px;
 	align-items: center; /* 추가된 부분 */
 }
 
-.btn{
+.btn-outer-box{
 font-size: small;
 }
 
@@ -196,12 +196,12 @@ font-size: small;
 
 	</div>
 
-	<div class="btn">
+	<div class="btn-outer-box">
 		<div class="modify-btn">
 			<a href="../member/checkPw" class="btn btn-active btn-ghost">회원정보 수정</a>
 		</div>
 		<div class="modifyBack-btn">
-			<button class="btn-text-link btn btn-active btn-ghost" type="button" onclick="history.back();">취소</button>
+			<button class="btn-active btn-ghost" type="button" onclick="history.back();">취소</button>
 		</div>
 	</div>
 
