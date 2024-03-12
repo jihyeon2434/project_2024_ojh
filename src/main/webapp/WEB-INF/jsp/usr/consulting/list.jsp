@@ -462,6 +462,12 @@ margin-top: 50px;
           <div class="img">
             <img class="banner" style="width: 290px; height: 263px" src="https://search.pstatic.net/common/?src=https%3A%2F%2Fldb-phinf.pstatic.net%2F20231028_158%2F16984822151220mGR2_PNG%2F%25C1%25A4%25C7%25FD%25B7%25C3%25B4%25D4-%25BA%25AF%25C8%25AF.png" />
           </div>
+          <div class="img">
+            <img class="banner" style="width: 290px; height: 263px" src="https://search.pstatic.net/common/?src=https%3A%2F%2Fldb-phinf.pstatic.net%2F20231028_158%2F16984822151220mGR2_PNG%2F%25C1%25A4%25C7%25FD%25B7%25C3%25B4%25D4-%25BA%25AF%25C8%25AF.png" />
+          </div>
+          <div class="img">
+            <img class="banner" style="width: 290px; height: 263px" src="https://search.pstatic.net/common/?src=https%3A%2F%2Fldb-phinf.pstatic.net%2F20231028_158%2F16984822151220mGR2_PNG%2F%25C1%25A4%25C7%25FD%25B7%25C3%25B4%25D4-%25BA%25AF%25C8%25AF.png" />
+          </div>
         </div>
 
       </div>

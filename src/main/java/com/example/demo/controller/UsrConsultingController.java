@@ -57,6 +57,14 @@ public class UsrConsultingController {
 		return "usr/consulting/list";
 	}
 	
+	@RequestMapping("/usr/consulting/list2")
+	public String showConsultingList2(HttpServletRequest req, Model model) {
+		Rq rq = (Rq) req.getAttribute("rq");
+		
+
+		return "usr/consulting/list2";
+	}
+	
 	@RequestMapping("/usr/consulting/detail")
 	public String showconsultingDetail(HttpServletRequest req, Model model) {
 		Rq rq = (Rq) req.getAttribute("rq");

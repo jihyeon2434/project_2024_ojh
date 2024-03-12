@@ -5,6 +5,16 @@
 
 
 <style>
+.outer-box {
+	display: flex;
+	width: 1300px;
+}
+
+.left-menu-box {
+	width: 200px;
+	height: 300px;
+}
+
 .left-menu {
 	width: 148px;
 	height: 32px;
@@ -16,6 +26,16 @@
 	font-family: Inria Serif;
 	font-weight: 700;
 	word-wrap: break-word;
+}
+
+.left-menu>div {
+	font-size: 16px;
+}
+
+.right-box {
+	width: 1800px;
+	display: flex;
+	justify-content: center;
 }
 
 .word {
@@ -31,9 +51,14 @@
 	left: 13px;
 }
 
-.all-Content{
-position: absolute;
-top: 75px;
+.content-outer-box {
+	width: 900px;
+	height: 500px;
+}
+
+.all-Content {
+	position: absolute;
+	top: 75px;
 }
 
 .Rectangle {
@@ -42,7 +67,6 @@ top: 75px;
 	background: rgba(239, 231, 229, 0.33);
 	border-radius: 33px;
 	position: relative;
-	left: 230px;
 }
 
 .line {
@@ -82,7 +106,7 @@ top: 75px;
 	transform: rotate(90deg);
 	transform-origin: 0 0;
 	border: 1px #C6C6C6 solid;
-	margin-left: 170px;
+	margin-left: 200px;
 }
 
 .Rectangle-line {
@@ -96,114 +120,131 @@ top: 75px;
 	top: 50x; /* 수정된 부분 */
 }
 
-.modify-btn {
-	width: 130px;
-	height: 45px;
-	background: #232020;
-	border-radius: 5px;
-	margin-left: 500px;
-	margin-top: 50px;
-	float: left;
+.conBtn-outer-box {
+	display: flex;
+	justify-content: center;
+	flex-direction: column;
+}
+
+.btn-outer-box {
+	font-size: small;
+	width: 900px;
+	height: 100px;
+	display: flex;
+	justify-content: center;
+	margin-top: 30px;
+}
+
+.btn-small-box {
+	width: 200px;
 	text-align: center;
-	display: flex; /* 추가된 부분 */
-	justify-content: center; /* 추가된 부분 */
-	align-items: center; /* 추가된 부분 */
-	color: white;
 }
 
-.modifyBack-btn {
-	width: 130px;
-	height: 45px;
-	background: #929294;
-	border-radius: 5px;
-	margin-left: 10px;
-	margin-top: 50px;
-	float: left;
-	text-align: center;
-	display: flex; /* 추가된 부분 */
-	justify-content: center; /* 추가된 부분 */
-	align-items: center; /* 추가된 부분 */
+.modify-btn, .modifyBack-btn {
+	display: inline-block;
 }
-
-.btn-outer-box{
-font-size: small;
-}
-
 </style>
 
 
 
 <section class="mt-8 text-xl px-4 ">
-	 <div class="left-menu">
-        <div><a href="usr/member/myCalendar">회원정보</a></div>
-        <br>
-        <div><a href="usr/member/myCalendar">마이 캘린더</a></div>
-        <br> 
-        <div>온라인 컨설팅 예약내역</div>
-    </div>
+	<div class="outer-box">
 
-	<div class="left-line"></div>
+		<div class="left-menu-box">
+			<div class="left-menu">
+				<div>
+					<a href="/usr/member/myPage">회원정보</a>
+				</div>
+				<br>
+				<div>
+					<a href="/usr/member/myCalendar">마이 캘린더</a>
+				</div>
 
-	<div class="Rectangle">
-		<div class="word">기본정보</div>
-
-
-		<div class="all-Content">
-			<div class="Rectangle-line"></div>
-
-
-			<div class="line"></div>
-			<div class="content-line">
-				<div class="id">아이디 *</div>
-				<div class="content">${rq.loginedMember.loginId }</div>
+				<br>
+				<div>
+					<a href="/usr/member/myReservation">온라인 컨설팅 <br>예약내역
+					</a>
+				</div>
 			</div>
+			<div class="left-line"></div>
+		</div>
 
 
-			<div class="line"></div>
-			<div class="content-line">
-				<div class="id">이름</div>
-				<div class="content">${rq.loginedMember.name }</div>
-			</div>
-
-			<div class="line"></div>
-			<div class="content-line">
-				<div class="id">닉네임</div>
-				<div class="content">${rq.loginedMember.nickname }</div>
-			</div>
-
-			<div class="line"></div>
-			<div class="content-line">
-				<div class="id">전화번호</div>
-				<div class="content">${rq.loginedMember.cellphoneNum }</div>
-			</div>
-
-			<div class="line"></div>
-			<div class="content-line">
-				<div class="id">이메일 *</div>
-				<div class="content">${rq.loginedMember.email }</div>
-			</div>
+		<div class="right-box">
+			<div class="conBtn-outer-box">
+				<div class="content-outer-box">
+					<div class="Rectangle">
+						<div class="word">기본정보</div>
 
 
+						<div class="all-Content">
+							<div class="Rectangle-line"></div>
 
-			<div class="line"></div>
-			<div class="content-line">
-				<div class="id">가입날짜</div>
-				<div class="content">${rq.loginedMember.regDate }</div>
-				<div class="line"></div>
+
+							<div class="line"></div>
+							<div class="content-line">
+								<div class="id">아이디 *</div>
+								<div class="content">${rq.loginedMember.loginId }</div>
+							</div>
+
+
+							<div class="line"></div>
+							<div class="content-line">
+								<div class="id">이름</div>
+								<div class="content">${rq.loginedMember.name }</div>
+							</div>
+
+							<div class="line"></div>
+							<div class="content-line">
+								<div class="id">닉네임</div>
+								<div class="content">${rq.loginedMember.nickname }</div>
+							</div>
+
+							<div class="line"></div>
+							<div class="content-line">
+								<div class="id">전화번호</div>
+								<div class="content">${rq.loginedMember.cellphoneNum }</div>
+							</div>
+
+							<div class="line"></div>
+							<div class="content-line">
+								<div class="id">이메일 *</div>
+								<div class="content">${rq.loginedMember.email }</div>
+							</div>
+
+
+
+							<div class="line"></div>
+							<div class="content-line">
+								<div class="id">가입날짜</div>
+								<div class="content">${rq.loginedMember.regDate }</div>
+								<div class="line"></div>
+							</div>
+						</div>
+
+
+					</div>
+				</div>
+
+
+				<div class="btn-outer-box">
+					<div class="btn-small-box">
+						<div class="modify-btn">
+							<a href="../member/checkPw" class="btn btn-active btn-ghost">회원정보 수정</a>
+						</div>
+						<div class="modifyBack-btn">
+							<button class="btn btn-active btn-ghost" type="button" onclick="history.back();">취소</button>
+						</div>
+					</div>
+
+				</div>
 			</div>
 		</div>
+
 
 
 	</div>
 
-	<div class="btn-outer-box">
-		<div class="modify-btn">
-			<a href="../member/checkPw" class="btn btn-active btn-ghost">회원정보 수정</a>
-		</div>
-		<div class="modifyBack-btn">
-			<button class="btn-active btn-ghost" type="button" onclick="history.back();">취소</button>
-		</div>
-	</div>
 
 </section>
 

@@ -78,6 +78,7 @@ public class WebCrawler9 {
             driver.switchTo().frame(driver.findElement(By.id("entryIframe")));
 
             String address = driver.findElement(By.className("LDgIH")).getText();
+            
             String phoneNumber;
             try {
                 phoneNumber = driver.findElement(By.className("xlx7Q")).getText();
