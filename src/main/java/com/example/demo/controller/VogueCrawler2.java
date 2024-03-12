@@ -24,7 +24,7 @@ public class VogueCrawler2 {
             driver.get("https://www.vogue.co.kr/");
 
             // 패션 섹션 데이터 크롤링
-            WebElement fashionArticle = driver.findElement(By.cssSelector("li#p_462386[slot='main_fashion_category']"));
+            WebElement fashionArticle = driver.findElement(By.cssSelector("[slot='main_fashion_category']"));
             crawlArticle(fashionArticle, "Fashion");
 
             // 뷰티 섹션 데이터 크롤링
@@ -58,8 +58,13 @@ public class VogueCrawler2 {
             String imageUrl = imageElement.getAttribute("src");
 
             // 기사 날짜 가져오기
-            WebElement dateElement = article.findElement(By.cssSelector("p.date"));
-            String date = dateElement.getText();
+            String date = "";
+            try {
+                WebElement dateElement = article.findElement(By.cssSelector("p.date"));
+                date = dateElement.getText();
+            } catch (Exception e) {
+                System.out.println("Failed to crawl date for " + sectionName + " Article: " + e.getMessage());
+            }
 
             // 출력
             System.out.println(sectionName + " Article:");
