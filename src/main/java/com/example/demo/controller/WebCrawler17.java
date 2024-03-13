@@ -8,12 +8,17 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.interactions.Actions;
-
+import org.springframework.stereotype.Component;
+import com.example.demo.vo.conShop;
+import java.sql.Timestamp;
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
-import com.example.demo.vo.conShop;
-
+@Component
 public class WebCrawler17 {
 
     private WebDriver driver;
@@ -22,7 +27,7 @@ public class WebCrawler17 {
     public static String WEB_DRIVER_ID = "webdriver.chrome.driver";
     public static String WEB_DRIVER_PATH = "C:/work/chromedriver.exe";
 
-    public void crawlMap(String location) {
+    public List<conShop> crawlMap(String location) {
         System.setProperty(WEB_DRIVER_ID, WEB_DRIVER_PATH);
 
         ChromeOptions options = new ChromeOptions();
@@ -102,7 +107,7 @@ public class WebCrawler17 {
                     String temp = day + " " + time + "; ";
                     businessHoursBuilder.append(temp);
                 }
-                businessHours = businessHoursBuilder.toString();
+                businessHours = convertToTimestamp(businessHoursBuilder.toString());
             } catch (Exception ex) {
                 businessHours = null;
             }
@@ -154,10 +159,38 @@ public class WebCrawler17 {
         }
 
         driver.quit();
+
+        return shopInfoList;
+    }
+
+    // 문자열로 된 시간을 TIMESTAMP 형식으로 변환하는 메서드
+    private String convertToTimestamp(String businessHours) throws ParseException {
+        // 예시로 SimpleDateFormat을 사용하여 문자열을 파싱합니다.
+        // 실제 형식에 맞게 수정해야 합니다.
+        DateFormat dateFormat = new SimpleDateFormat("E HH:mm");
+        SimpleDateFormat outputFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        StringBuilder convertedHours = new StringBuilder();
+        String[] parts = businessHours.split(";");
+
+        for (String part : parts) {
+            String[] dayAndTime = part.trim().split(" ");
+            Date date = dateFormat.parse(dayAndTime[0] + " " + dayAndTime[1]);
+            Timestamp timestamp = new Timestamp(date.getTime());
+            convertedHours.append(outputFormat.format(timestamp)).append("; ");
+        }
+
+        return convertedHours.toString();
     }
 
     public static void main(String[] args) {
         WebCrawler17 crawler = new WebCrawler17();
         crawler.crawlMap("");
+    }
+
+    public List<conShop> crawlConsultingShops() {
+        List<conShop> shopInfoList = crawlMap(""); // crawlMap 메서드 호출하여 shopInfoList 얻음
+
+        // 크롤링한 상담 가게 리스트 반환
+        return shopInfoList;
     }
 }

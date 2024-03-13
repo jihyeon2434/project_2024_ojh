@@ -507,4 +507,8 @@ CREATE TABLE service_Conshop
      PRIMARY KEY (id)
 );
 
+
+SELECT *
+FROM service_Conshop;
+
 DESC service_Conshop;
