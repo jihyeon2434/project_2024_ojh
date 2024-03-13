@@ -83,11 +83,19 @@ public class VogueCrawler4 {
             String link = linkElement.getAttribute("href");
             newArticle.setLink(link);
 
-            // 기사 이미지 URL 가져오기
+         // 이미지 URL 가져오기
             WebElement imageElement = article.findElement(By.cssSelector("div.thum img"));
             String imageUrl = imageElement.getAttribute("src");
-            newArticle.setImageUrl(imageUrl);
 
+            // 이미지 URL이 data URL인 경우만 처리
+            if (imageUrl.startsWith("data:image")) {
+                // data URL이 아닌 실제 이미지의 URL로 변경
+                String dataUrl = imageUrl;
+                imageUrl = extractImageUrlFromDataUrl(dataUrl);
+            }
+
+            // 기사 객체에 이미지 URL 설정
+            newArticle.setImageUrl(imageUrl);
             // 기사 날짜 가져오기
             String date = "";
             try {
@@ -114,5 +122,16 @@ public class VogueCrawler4 {
         }
 
         return newArticle;
+    }
+    
+    
+ // data URL에서 실제 이미지 URL을 추출하는 메서드
+    private String extractImageUrlFromDataUrl(String dataUrl) {
+        // "data:image/png;base64,"와 같은 형식에서 실제 이미지의 base64 데이터 추출
+        int commaIndex = dataUrl.indexOf(",");
+        if (commaIndex != -1) {
+            return dataUrl.substring(commaIndex + 1);
+        }
+        return dataUrl;
     }
 }

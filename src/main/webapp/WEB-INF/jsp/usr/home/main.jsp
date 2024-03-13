@@ -159,6 +159,7 @@
 		</div>
 		<div>${articles[0]. title }</div>
 		<div>${articles[1]. title }</div>
+			<div>${articles[1]. title }</div>
 
 		<div class="news-outer-box">
 			<div class="news">
@@ -170,7 +171,7 @@
 						
 						
 							<img src="https://img.vogue.co.kr/vogue/2024/03/style_65eece960b9b0-960x1440.jpg" alt="" data-eio="l">
-							<img src="${articles[0].imageUrl }" alt="" width="150px" height="180px">
+							<img src=" ${articles[0].imageUrl }" alt="" data-eio="l" width="150px" height="180px">
 							<img src="https://img.vogue.co.kr/vogue/2024/02/style_65dd82f42ef76-960x1440.jpg?x=1600&amp;y=2400" alt=""
 								width="150px" height="180px">
 							<img src="https://img.vogue.co.kr/vogue/2024/02/style_65dd82f42ef76-960x1440.jpg?x=1600&amp;y=2400" alt=""
