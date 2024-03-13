@@ -83,37 +83,21 @@ public class VogueCrawler4 {
             String link = linkElement.getAttribute("href");
             newArticle.setLink(link);
 
-         // 이미지 URL 가져오기
+            // 이미지 URL 가져오기
             WebElement imageElement = article.findElement(By.cssSelector("div.thum img"));
-            String imageUrl = imageElement.getAttribute("src");
-
-            // 이미지 URL이 data URL인 경우만 처리
-            if (imageUrl.startsWith("data:image")) {
-                // data URL이 아닌 실제 이미지의 URL로 변경
-                String dataUrl = imageUrl;
-                imageUrl = extractImageUrlFromDataUrl(dataUrl);
-            }
+            String imageUrl = imageElement.getAttribute("data-src"); // data-src 속성을 가져옴
 
             // 기사 객체에 이미지 URL 설정
             newArticle.setImageUrl(imageUrl);
+            
             // 기사 날짜 가져오기
             String date = "";
             try {
                 // 패션 섹션의 경우
-                WebElement dateElement = article.findElement(By.cssSelector("p.date"));
+                WebElement dateElement = article.findElement(By.cssSelector("p span:nth-child(2)")); // 날짜가 있는 요소 선택
                 date = dateElement.getText();
             } catch (NoSuchElementException e) {
-                try {
-                    // 뷰티 및 Today's Stories 섹션의 경우
-                    WebElement postContent = article.findElement(By.cssSelector(".post_content"));
-                    List<WebElement> spanElements = postContent.findElements(By.cssSelector("span"));
-                    if (spanElements.size() >= 2) {
-                        // 두 번째 span 요소에서 날짜 추출
-                        date = spanElements.get(1).getText();
-                    }
-                } catch (NoSuchElementException ex) {
-                    System.out.println("No date found for " + sectionName + " Article");
-                }
+                System.out.println("No date found for " + sectionName + " Article");
             }
             newArticle.setDate(date);
 
@@ -122,16 +106,5 @@ public class VogueCrawler4 {
         }
 
         return newArticle;
-    }
-    
-    
- // data URL에서 실제 이미지 URL을 추출하는 메서드
-    private String extractImageUrlFromDataUrl(String dataUrl) {
-        // "data:image/png;base64,"와 같은 형식에서 실제 이미지의 base64 데이터 추출
-        int commaIndex = dataUrl.indexOf(",");
-        if (commaIndex != -1) {
-            return dataUrl.substring(commaIndex + 1);
-        }
-        return dataUrl;
     }
 }
