@@ -36,7 +36,7 @@ public class VogueCrawler4 {
 
             // 패션 섹션 데이터 크롤링
             try {
-                WebElement fashionArticle = driver.findElement(By.cssSelector("[slot='main_fashion_category']"));
+                WebElement fashionArticle = driver.findElement(By.cssSelector("[slot='main_fashion_highlight']"));
                 articles.add(crawlArticle(fashionArticle, "Fashion"));
             } catch (NoSuchElementException e) {
                 System.out.println("No fashion articles found: " + e.getMessage());

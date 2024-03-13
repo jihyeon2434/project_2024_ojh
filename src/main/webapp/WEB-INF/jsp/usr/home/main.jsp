@@ -117,6 +117,10 @@
   width: 900px;
 }
 
+.title-box{
+  height: 70px;
+}
+
 .title{
   text-align: center; /* 텍스트 가운데 정렬 */
   flex-grow: 1; /* 남은 공간을 차지하도록 설정 */
@@ -216,8 +220,10 @@
                   <div class="img-outer-box">
                   <img src="${articles[0].imageUrl }" alt="" width="270px" height="300px">   
                   </div>
-                  <div class="title">
-                    ${articles[0].title }
+                   <div class="title-box">
+                    <div class="title">
+                      ${articles[0].title }
+                    </div>
                   </div>
                   <div class="date">
                     ${articles[0].date }
@@ -229,8 +235,10 @@
                   <div class="img-outer-box">
                   <img src="${articles[1].imageUrl }" alt="" width="270px" height="300px">   
                   </div>
-                  <div class="title">
-                    ${articles[1].title }
+                   <div class="title-box">
+                    <div class="title">
+                      ${articles[1].title }
+                    </div>
                   </div>
                   <div class="date">
                     ${articles[1].date }
@@ -242,8 +250,10 @@
                   <div class="img-outer-box">
                   <img src="${articles[2].imageUrl }" alt="" width="270px" height="300px">   
                   </div>
-                  <div class="title">
-                    ${articles[2].title }
+                  <div class="title-box">
+                    <div class="title">
+                      ${articles[2].title }
+                    </div>
                   </div>
                   <div class="date">
                     ${articles[2].date }
