@@ -1,6 +1,7 @@
 package com.example.demo.controller;
 
-import com.example.demo.vo.vogueArticle;
+import java.util.ArrayList;
+import java.util.List;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.NoSuchElementException;
@@ -8,13 +9,17 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
+import org.springframework.stereotype.Component;
 
-import java.util.ArrayList;
-import java.util.List;
+import com.example.demo.vo.vogueArticle;
 
+@Component
 public class VogueCrawler4 {
 
-    public static void main(String[] args) {
+    public List<vogueArticle> crawlArticles() {
+        WebDriver driver = null;
+        List<vogueArticle> articles = new ArrayList<>();
+
         // ChromeDriver 경로 설정
         System.setProperty("webdriver.chrome.driver", "C:/work/chromedriver.exe");
 
@@ -22,60 +27,47 @@ public class VogueCrawler4 {
         ChromeOptions options = new ChromeOptions();
         options.addArguments("--headless"); // 헤드리스 모드 활성화
 
-        // WebDriver 인스턴스 생성
-        WebDriver driver = new ChromeDriver(options);
-
         try {
+            // WebDriver 인스턴스 생성
+            driver = new ChromeDriver(options);
+
             // 웹 페이지로 이동
             driver.get("https://www.vogue.co.kr/");
 
-            // 기사 리스트 가져오기
-            List<vogueArticle> articles = crawlArticles(driver);
-
-            // 기사 리스트 출력 (테스트)
-            for (vogueArticle article : articles) {
-                System.out.println(article);
+            // 패션 섹션 데이터 크롤링
+            try {
+                WebElement fashionArticle = driver.findElement(By.cssSelector("[slot='main_fashion_category']"));
+                articles.add(crawlArticle(fashionArticle, "Fashion"));
+            } catch (NoSuchElementException e) {
+                System.out.println("No fashion articles found: " + e.getMessage());
             }
 
-        } catch (Exception e) {
-            e.printStackTrace();
+            // 뷰티 섹션 데이터 크롤링
+            try {
+                WebElement beautyArticle = driver.findElement(By.cssSelector("div.ma_highlight[slot='main_beauty_highlight']"));
+                articles.add(crawlArticle(beautyArticle, "Beauty"));
+            } catch (NoSuchElementException e) {
+                System.out.println("No beauty articles found: " + e.getMessage());
+            }
+
+            // Today's stories 섹션 데이터 크롤링
+            try {
+                WebElement todayArticle = driver.findElement(By.cssSelector("div.ly_post_sticky.today_slot_1[slot='main_today_highlight']"));
+                articles.add(crawlArticle(todayArticle, "Today's Stories"));
+            } catch (NoSuchElementException e) {
+                System.out.println("No today's stories articles found: " + e.getMessage());
+            }
         } finally {
             // WebDriver 종료
-            driver.quit();
-        }
-    }
-
-    public static List<vogueArticle> crawlArticles(WebDriver driver) {
-        List<vogueArticle> articles = new ArrayList<>();
-
-        // 패션 섹션 데이터 크롤링
-        try {
-            WebElement fashionArticle = driver.findElement(By.cssSelector("[slot='main_fashion_category']"));
-            articles.add(crawlArticle(fashionArticle, "Fashion"));
-        } catch (NoSuchElementException e) {
-            System.out.println("No fashion articles found: " + e.getMessage());
-        }
-
-        // 뷰티 섹션 데이터 크롤링
-        try {
-            WebElement beautyArticle = driver.findElement(By.cssSelector("div.ma_highlight[slot='main_beauty_highlight']"));
-            articles.add(crawlArticle(beautyArticle, "Beauty"));
-        } catch (NoSuchElementException e) {
-            System.out.println("No beauty articles found: " + e.getMessage());
-        }
-
-        // Today's stories 섹션 데이터 크롤링
-        try {
-            WebElement todayArticle = driver.findElement(By.cssSelector("div.ly_post_sticky.today_slot_1[slot='main_today_highlight']"));
-            articles.add(crawlArticle(todayArticle, "Today's Stories"));
-        } catch (NoSuchElementException e) {
-            System.out.println("No today's stories articles found: " + e.getMessage());
+            if (driver != null) {
+                driver.quit();
+            }
         }
 
         return articles;
     }
 
-    public static vogueArticle crawlArticle(WebElement article, String sectionName) {
+    private vogueArticle crawlArticle(WebElement article, String sectionName) {
         vogueArticle newArticle = new vogueArticle();
 
         try {
@@ -83,6 +75,8 @@ public class VogueCrawler4 {
             WebElement titleElement = article.findElement(By.cssSelector("h3"));
             String title = titleElement.getText();
             newArticle.setTitle(title);
+            
+            System.out.println(title);
 
             // 기사 링크 가져오기
             WebElement linkElement = article.findElement(By.tagName("a"));
