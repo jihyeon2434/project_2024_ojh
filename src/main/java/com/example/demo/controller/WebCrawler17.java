@@ -1,5 +1,8 @@
 package com.example.demo.controller;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.Keys;
@@ -9,14 +12,8 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.interactions.Actions;
 import org.springframework.stereotype.Component;
+
 import com.example.demo.vo.conShop;
-import java.sql.Timestamp;
-import java.text.DateFormat;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
 
 @Component
 public class WebCrawler17 {
@@ -107,7 +104,7 @@ public class WebCrawler17 {
                     String temp = day + " " + time + "; ";
                     businessHoursBuilder.append(temp);
                 }
-                businessHours = convertToTimestamp(businessHoursBuilder.toString());
+                businessHours = businessHoursBuilder.toString();
             } catch (Exception ex) {
                 businessHours = null;
             }
@@ -152,7 +149,34 @@ public class WebCrawler17 {
             shopInfo.setUpdateDate(null); // 이 부분은 웹 크롤링으로는 얻을 수 없는 정보인지 확인해야 합니다.
             shopInfo.setDelDate(null); // 이 부분은 웹 크롤링으로는 얻을 수 없는 정보인지 확인해야 합니다.
             shopInfo.setDelStatus(0); // 이 부분은 웹 크롤링으로는 얻을 수 없는 정보인지 확인해야 합니다.
+            if (imageUrls.size() >= 1) {
+                shopInfo.setPhotoUrl1(imageUrls.get(0));
+            }
+            if (imageUrls.size() >= 2) {
+                shopInfo.setPhotoUrl2(imageUrls.get(1));
+            }
+            if (imageUrls.size() >= 3) {
+                shopInfo.setPhotoUrl3(imageUrls.get(2));
+            }
+            if (imageUrls.size() >= 4) {
+                shopInfo.setPhotoUrl4(imageUrls.get(3));
+            }
+            if (imageUrls.size() >= 5) {
+                shopInfo.setPhotoUrl5(imageUrls.get(4));
+            }
             shopInfoList.add(shopInfo);
+
+            // Print shop information to console
+            System.out.println("Shop Name: " + shopInfo.getShopName());
+            System.out.println("Address: " + shopInfo.getRoadNameNum());
+            System.out.println("Phone Number: " + shopInfo.getPhoneNum());
+            System.out.println("Operating Hours: " + shopInfo.getOperateTime());
+            System.out.println("Photo URL 1: " + shopInfo.getPhotoUrl1());
+            System.out.println("Photo URL 2: " + shopInfo.getPhotoUrl2());
+            System.out.println("Photo URL 3: " + shopInfo.getPhotoUrl3());
+            System.out.println("Photo URL 4: " + shopInfo.getPhotoUrl4());
+            System.out.println("Photo URL 5: " + shopInfo.getPhotoUrl5());
+            // 나머지 필요한 정보들도 출력할 수 있도록 추가하시면 됩니다.
 
             driver.switchTo().parentFrame();
             driver.switchTo().frame("searchIframe");
@@ -163,28 +187,10 @@ public class WebCrawler17 {
         return shopInfoList;
     }
 
-    // 문자열로 된 시간을 TIMESTAMP 형식으로 변환하는 메서드
-    private String convertToTimestamp(String businessHours) throws ParseException {
-        // 예시로 SimpleDateFormat을 사용하여 문자열을 파싱합니다.
-        // 실제 형식에 맞게 수정해야 합니다.
-        DateFormat dateFormat = new SimpleDateFormat("E HH:mm");
-        SimpleDateFormat outputFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-        StringBuilder convertedHours = new StringBuilder();
-        String[] parts = businessHours.split(";");
-
-        for (String part : parts) {
-            String[] dayAndTime = part.trim().split(" ");
-            Date date = dateFormat.parse(dayAndTime[0] + " " + dayAndTime[1]);
-            Timestamp timestamp = new Timestamp(date.getTime());
-            convertedHours.append(outputFormat.format(timestamp)).append("; ");
-        }
-
-        return convertedHours.toString();
-    }
-
     public static void main(String[] args) {
         WebCrawler17 crawler = new WebCrawler17();
-        crawler.crawlMap("");
+        List<conShop> shopInfoList = crawler.crawlMap("");
+        
     }
 
     public List<conShop> crawlConsultingShops() {

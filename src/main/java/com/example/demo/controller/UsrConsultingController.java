@@ -53,6 +53,18 @@ public class UsrConsultingController {
 	// 액션 메서드
 
 	
+	@RequestMapping("/usr/consulting/crawl")
+    public String crawlConsultingShops(@RequestParam String location) {
+		
+		List<conShop> shopInfoList = consultShopService.crawlConsultingShops(location);
+        for (conShop shopInfo : shopInfoList) {
+            consultShopService.registerShop(shopInfo);
+        }
+		return "usr/consulting/crawl";
+	}
+
+	
+	
 	@RequestMapping("/usr/consulting/list")
 	public String showConsultingList(HttpServletRequest req, Model model) {
 		Rq rq = (Rq) req.getAttribute("rq");
