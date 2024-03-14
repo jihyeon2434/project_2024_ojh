@@ -25,6 +25,7 @@ public class Rq {
 	private Member loginedMember;
 
 	private HttpSession session;
+	private boolean init = false;
 
 	private HttpServletRequest req;
 	private HttpServletResponse resp;
@@ -102,6 +103,14 @@ public class Rq {
 		System.out.println(currentUri);
 
 		return currentUri;
+	}
+
+	public boolean isInit() {
+		return init;
+	}
+
+	public void setInit(boolean init) {
+		this.init = init;
 	}
 
 }
