@@ -54,7 +54,7 @@ public class UsrConsultingController {
 
 	
 	@RequestMapping("/usr/consulting/crawl")
-	public String crawlConsultingShops(@RequestParam(required = false, defaultValue = "서울") String location) {
+	public String crawlConsultingShops(@RequestParam(required = false, defaultValue = "") String location) {
 	    List<conShop> shopInfoList = consultShopService.crawlConsultingShops(location);
 	    return "usr/home/main";
 	}
@@ -62,12 +62,23 @@ public class UsrConsultingController {
 	
 	
 	@RequestMapping("/usr/consulting/list")
-	public String showConsultingList(HttpServletRequest req, Model model) {
-		Rq rq = (Rq) req.getAttribute("rq");
+    public String showConsultingList(HttpServletRequest req, Model model) {
+        Rq rq = (Rq) req.getAttribute("rq");
 
-		return "usr/consulting/list";
-	}
+        // 상담 가게 정보 가져오기
+        List<conShop> shopInfoList = consultShopService.getShopsList();
+        
+        // 이미지 URI 출력
+        for (conShop shop : shopInfoList) {
+            System.out.println("Image URI: " + shop.getPhotoUrl1());
+        }
 
+
+        // JSP에 상담 가게 정보 전달
+        model.addAttribute("shopInfoList", shopInfoList);
+
+        return "usr/consulting/list";
+    }
 	@RequestMapping("/usr/consulting/list2")
 	public String showConsultingList2(HttpServletRequest req, Model model) {
 		Rq rq = (Rq) req.getAttribute("rq");

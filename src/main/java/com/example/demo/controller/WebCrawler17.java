@@ -41,7 +41,7 @@ public class WebCrawler17 {
         }
 
         WebElement inputSearch = driver.findElement(By.className("input_search"));
-        String inputKey = " 이미지컨설팅";
+        String inputKey = "부산이미지컨설팅";
         inputSearch.sendKeys(location + inputKey);
         inputSearch.sendKeys(Keys.ENTER);
 
@@ -190,11 +190,11 @@ public class WebCrawler17 {
         return shopInfoList;
     }
 
-    public static void main(String[] args) {
-        WebCrawler17 crawler = new WebCrawler17();
-        List<conShop> shopInfoList = crawler.crawlMap("");
-        
-    }
+//    public static void main(String[] args) {
+//        WebCrawler17 crawler = new WebCrawler17();
+//        List<conShop> shopInfoList = crawler.crawlMap("");
+//        
+//    }
 
     public List<conShop> crawlConsultingShops() {
         List<conShop> shopInfoList = crawlMap(""); // crawlMap 메서드 호출하여 shopInfoList 얻음

@@ -27,4 +27,8 @@ public class ConsultShopService {
         }
         return shopInfoList; // 크롤링한 가게 정보를 리턴
     }
+
+	public List<conShop> getShopsList() {
+		return consultShopRepository.getShopsList();
+	}
 }
