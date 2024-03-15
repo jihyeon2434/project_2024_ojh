@@ -54,13 +54,9 @@ public class UsrConsultingController {
 
 	
 	@RequestMapping("/usr/consulting/crawl")
-    public String crawlConsultingShops(@RequestParam String location) {
-		
-		List<conShop> shopInfoList = consultShopService.crawlConsultingShops(location);
-        for (conShop shopInfo : shopInfoList) {
-            consultShopService.registerShop(shopInfo);
-        }
-		return "usr/consulting/crawl";
+	public String crawlConsultingShops(@RequestParam(required = false, defaultValue = "서울") String location) {
+	    List<conShop> shopInfoList = consultShopService.crawlConsultingShops(location);
+	    return "usr/home/main";
 	}
 
 	

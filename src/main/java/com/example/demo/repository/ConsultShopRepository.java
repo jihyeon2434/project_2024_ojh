@@ -25,10 +25,10 @@ public interface ConsultShopRepository {
 			         phoneNum = #{phoneNum},
 			         con_availableTime = #{conAvailableTime},
 			         operateTime = #{operateTime},
-			         price = #{price},
+			         menu = #{menu},
 			         themeId = #{themeId},
-			         regDate = #{regDate},
-			         updateDate = #{updateDate},
+			         regDate = NOW(),
+			         updateDate = NOW(),
 			         delDate = #{delDate},
 			         delStatus = #{delStatus}
 			""")

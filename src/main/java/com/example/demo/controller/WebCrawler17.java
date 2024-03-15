@@ -108,6 +108,9 @@ public class WebCrawler17 {
             } catch (Exception ex) {
                 businessHours = null;
             }
+            
+            
+            
             String menuInfo;
             try {
                 List<WebElement> menuEles = driver.findElements(By.className("y0EHb"));
@@ -143,7 +146,7 @@ public class WebCrawler17 {
             shopInfo.setConAvailableTime(null); // 이 부분은 웹 크롤링으로는 얻을 수 없는 정보인지 확인해야 합니다.
             shopInfo.setConAvailableDate(null); // 이 부분은 웹 크롤링으로는 얻을 수 없는 정보인지 확인해야 합니다.
             shopInfo.setOperateTime(businessHours);
-            shopInfo.setPrice(0); // 이 부분은 웹 크롤링으로는 얻을 수 없는 정보인지 확인해야 합니다.
+            shopInfo.setMenu(menuInfo); // 이 부분은 웹 크롤링으로는 얻을 수 없는 정보인지 확인해야 합니다.
             shopInfo.setThemeId(0); // 이 부분은 웹 크롤링으로는 얻을 수 없는 정보인지 확인해야 합니다.
             shopInfo.setRegDate(null); // 이 부분은 웹 크롤링으로는 얻을 수 없는 정보인지 확인해야 합니다.
             shopInfo.setUpdateDate(null); // 이 부분은 웹 크롤링으로는 얻을 수 없는 정보인지 확인해야 합니다.

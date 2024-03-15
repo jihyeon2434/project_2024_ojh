@@ -22,7 +22,7 @@ public class conShop {
     private String conAvailableTime;
     private String conAvailableDate;
     private String operateTime;
-    private int price;
+    private String menu;
     private int themeId;
     private String regDate;
     private String updateDate;
