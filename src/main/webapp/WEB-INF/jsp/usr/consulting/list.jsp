@@ -37,10 +37,7 @@
 	flex-direction: column;
 }
 
-.price_option_box>div {
-	width: 10px;
-	height: 10px;
-}
+
 
 .price-box {
 	display: flex;
@@ -303,6 +300,12 @@
 	display: flex;
 	justify-content: center;
 }
+
+
+.btn {
+width: 70px;
+}
+
 </style>
 <div class="outer-box">
 	<div class="small-outer-box">
@@ -313,11 +316,16 @@
 				</div>
 
 				<div class="price_option_box">
-					<div class="price-1 btn btn-outline">~7</div>
+				<div class="situation-option-box-1">
+				<div class="price-1 btn btn-outline">~7</div>
 					<div class="price-2 btn btn-outline">~10</div>
+				</div>
+					<div class="situation-option-box-2">
 					<div class="price-3 btn btn-outline">~20</div>
 					<div class="price-4 btn btn-outline">30~</div>
-				</div>
+				
+					</div>
+					</div>
 			</div>
 
 			<div class="area-outer-box">
