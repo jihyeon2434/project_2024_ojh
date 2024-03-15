@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
 <c:set var="pageTitle" value="#{board.code } CONSULTING LIST"></c:set>
 <%@ include file="../common/head.jspf"%>
 
@@ -213,10 +214,10 @@
 }
 
 .line1 {
-	width: 1000px;
-	height: 0px;
-	position: absolute;
-	border: 1px black solid;
+    width: 1000px;
+    height: 0px;
+    position: absolute;
+    border: 0.5px black solid; /* 0.5px로 변경 */
 }
 
 .content-box {
@@ -226,8 +227,7 @@
 
 .menu-box {
 	width: 1000px;
-	border: 3px solid red;
-	background-color: grey;
+	background-color: #EFE7E5;
 }
 
 .img-outer-box {
@@ -262,8 +262,8 @@
 .img-making, .personal, .recommend-1, .recommend-2, .recommend-3 {
 	width: 350px;
 	display: inline-block;
-	border: 1px solid;
-	font-size: 20px;
+	border: 0.5px solid #EFE7E5;
+	font-size: 15px;
 	padding: 5px;
 }
 
@@ -271,37 +271,35 @@
 	margin-top: 50px;
 }
 
-.img-box-1, .img-box-2, .img-box-3 {
-	border: 3px solid green;
-	width: 1000px;
-	border: 1px solid black;
-	justify-content: space-between;
-	border-radius: 7px;
-	display: flex;
+.img-box-1 {
+	border: 0.5px solid #EFE7E5;
+	width: 300px; /* 각 항목의 너비 정의 */
 	margin-top: 15px;
 	padding: 10px;
+	box-sizing: border-box; /* 너비에 패딩과 테두리를 포함 */
 }
 
 .small-img-outer-box {
 	width: 980px;
-	border: 3px solid red; \
 	overflow-x: auto; /* x 축으로 넘칠 경우 스크롤 생성 */
 	white-space: nowrap; /* 요소들을 한 줄에 나열 */
 }
 
 .img-big-outer-box {
-	border: 3px solid blue;
 	width: 975px;
+	height: 1000px;
+	display: flex; /* 플렉스 박스 사용 */
+	flex-wrap: wrap; /* 줄 바꿈 허용 */
+	justify-content: space-between; /* 주 축을 따라 아이템을 고르게 분산 */
 }
 
 .small-img-outer-box>.img-big-outer-box>.img-box-1 {
-	border: 3px solid green;
-	width: auto; /* 요소의 크기를 자동으로 조절 */
-	flex-shrink: 0; /* 요소가 자동으로 축소되지 않도록 설정 */
+	border: 0.5px solid #EFE7E5;
+	width: 300px; /* 요소의 크기를 자동으로 조절 */
+	display: inline-block;
 }
 
 .pagination-container {
-	border: 3px solid blue;
 	display: flex;
 	justify-content: center;
 }
@@ -385,7 +383,7 @@
 
 		<div class="small-outer-box-2">
 
-			<div class="main-text">${rq.loginedMember.nickname }님만을위한추천 컨설팅 업체</div>
+			<div class="main-text">${rq.loginedMember.nickname }님만을위한추천컨설팅업체</div>
 
 			<div class="con-box">
 				<div class="menu-box">
@@ -398,30 +396,35 @@
 					<div class="line1"></div>
 				</div>
 				<div class="img-outer-box">
-					<div class="sm-img-outer-box">
-						<div class="img">
-							<img class="banner" style="width: 290px; height: 263px" src="${shopInfoList[0].photoUrl1}" />
+					<div class="img-box-1">
+						<div class="sm-img-outer-box">
+							<div class="img">
+								<img class="banner" style="width: 290px; height: 263px" src="${shopInfoList[0].photoUrl1}" />
 
+							</div>
+							<div>가게</div>
+							<div>영업식간</div>
 						</div>
-						<div>가게</div>
-						<div>영업식간</div>
 					</div>
+					<div class="img-box-1">
+						<div class="sm-img-outer-box">
+							<div class="img">
+								<img class="banner" style="width: 290px; height: 263px" src="${shopInfoList[0].photoUrl1}" />
 
-					<div class="sm-img-outer-box">
-						<div class="img">
-							<img class="banner" style="width: 290px; height: 263px" src="${shopInfoList[0].photoUrl1}" />
-
+							</div>
+							<div>가게</div>
+							<div>영업식간</div>
 						</div>
-						<div>가게</div>
-						<div>영업식간</div>
 					</div>
-					<div class="sm-img-outer-box">
-						<div class="img">
-							<img class="banner" style="width: 290px; height: 263px" src="${shopInfoList[0].photoUrl1}" />
+					<div class="img-box-1">
+						<div class="sm-img-outer-box">
+							<div class="img">
+								<img class="banner" style="width: 290px; height: 263px" src="${shopInfoList[0].photoUrl1}" />
 
+							</div>
+							<div>가게</div>
+							<div>영업식간</div>
 						</div>
-						<div>가게</div>
-						<div>영업식간</div>
 					</div>
 				</div>
 
@@ -450,139 +453,61 @@
 
 						<div class="line1"></div>
 					</div>
+					<!-- 추천 업체 목록 -->
 					<div class="img-outer-box-2">
 						<div class="small-img-outer-box">
-
 							<div class="img-big-outer-box">
-								<c:forEach items="${shopInfoList}" var="shop">
+								<%-- 페이지네이션을 위한 변수 설정 --%>
+								<c:set var="pageSize" value="9" />
+								<c:set var="totalShops" value="${fn:length(shopInfoList)}" />
+								<c:set var="pagesCount" value="${totalShops / pageSize + (totalShops % pageSize > 0 ? 1 : 0)}" />
+								<c:set var="page" value="${param.page != null ? param.page : 1}" />
+								<c:set var="startIndex" value="${(page - 1) * pageSize}" />
+								<c:set var="endIndex" value="${startIndex + pageSize - 1}" />
+
+								<%-- 페이지에 표시될 가게 정보를 추출하여 표시 --%>
+								<c:forEach var="i" begin="${startIndex}" end="${endIndex}">
+									<c:set var="shop" value="${shopInfoList[i]}" />
 									<div class="img-box-1">
 										<div class="sm-img-outer-box">
 											<div class="img">
 												<img class="banner" style="width: 290px; height: 263px" src="${shop.photoUrl1}" />
-
 											</div>
 											<div class="store">${shop.shopName}</div>
 											<div class="time">${shop.roadNameNum}</div>
-										</div>
-										<div class="sm-img-outer-box">
-											<div class="img">
-												<img class="banner" style="width: 290px; height: 263px" src="${shop.photoUrl1}" />
-
-											</div>
-											<div class="store">${shop.shopName}</div>
-											<div class="time">${shop.roadNameNum}</div>
-										</div>
-										<div class="sm-img-outer-box">
-											<div class="img">
-												<img class="banner" style="width: 290px; height: 263px" src="${shop.photoUrl1}" />
-
-											</div>
-											<div class="store">${shop.shopName}</div>
-											<div class="time">${shop.roadNameNum}</div>
-										</div>
-									</div>
-									<div class="img-box-2">
-										<div class="sm-img-outer-box">
-											<div class="img">
-												<img class="banner" style="width: 290px; height: 263px" src="${shop.photoUrl1}" />
-
-											</div>
-											<div class="store">${shop.shopName}</div>
-											<div class="time">${shop.roadNameNum}</div>
-										</div>
-										<div class="sm-img-outer-box">
-											<div class="img">
-												<img class="banner" style="width: 290px; height: 263px" src="${shop.photoUrl1}" />
-
-											</div>
-											<div class="store">${shop.shopName}</div>
-											<div class="time">${shop.roadNameNum}</div>
-										</div>
-										<div class="sm-img-outer-box">
-											<div class="img">
-												<img class="banner" style="width: 290px; height: 263px" src="${shop.photoUrl1}" />
-
-											</div>
-											<div class="store">${shop.shopName}</div>
-											<div class="time">${shop.operateTime}</div>
-										</div>
-									</div>
-									<div class="img-box-3">
-										<div class="sm-img-outer-box">
-											<div class="img">
-												<img class="banner" style="width: 290px; height: 263px" src="${shop.photoUrl1}" />
-
-											</div>
-											<div class="store">${shop.shopName}</div>
-											<div class="time">${shop.operateTime}</div>
-										</div>
-										<div class="sm-img-outer-box">
-											<div class="img">
-												<img class="banner" style="width: 290px; height: 263px" src="${shop.photoUrl1}" />
-
-											</div>
-											<div class="store">${shop.shopName}</div>
-											<div class="time">${shop.operateTime}</div>
-										</div>
-										<div class="sm-img-outer-box">
-											<div class="img">
-												<img class="banner" style="width: 290px; height: 263px" src="${shop.photoUrl1}" />
-
-											</div>
-											<div class="store">${shop.shopName}</div>
-											<div class="time">${shop.operateTime}</div>
 										</div>
 									</div>
 								</c:forEach>
 							</div>
 
-
-
-
-
-
-							<!-- 페이지네이션 컨테이너 -->
+							<%-- 페이지네이션 버튼 생성 --%>
 							<div class="pagination-container">
-								<!-- 	동적 페이징 -->
 								<div class="pagination flex justify-center mt-3">
-									<c:set var="paginationLen" value="3" />
-									<c:set var="startPage" value="${page -  paginationLen  >= 1 ? page - paginationLen : 1}" />
-									<c:set var="endPage" value="${page +  paginationLen  <= pagesCount ? page + paginationLen : pagesCount}" />
-
-									<c:set var="baseUri" value="?boardId=${boardId }" />
-									<c:set var="baseUri" value="${baseUri }&searchKeywordTypeCode=${searchKeywordTypeCode}" />
-									<c:set var="baseUri" value="${baseUri }&searchKeyword=${searchKeyword}" />
-
-									<c:if test="${startPage > 1 }">
-										<a class="btn btn-sm" href="${baseUri }&page=1">1</a>
-										<button class="btn btn-sm btn-disabled">...</button>
+									<%-- 이전 페이지 버튼 --%>
+									<c:if test="${page > 1}">
+										<a class="btn btn-sm"
+											href="?boardId=${boardId}&searchKeywordTypeCode=${searchKeywordTypeCode}&searchKeyword=${searchKeyword}&page=${page - 1}">&lt;</a>
 									</c:if>
 
-									<c:forEach begin="${startPage }" end="${endPage }" var="i">
-										<a class="btn btn-sm ${param.page == i ? 'btn-active' : '' }" href="${baseUri }&page=${i }">${i }</a>
+									<%-- 페이지 버튼 --%>
+									<c:forEach var="i" begin="1" end="${pagesCount}">
+										<a class="btn btn-sm ${page == i ? 'btn-active' : ''}"
+											href="?boardId=${boardId}&searchKeywordTypeCode=${searchKeywordTypeCode}&searchKeyword=${searchKeyword}&page=${i}">${i}</a>
 									</c:forEach>
 
-									<c:if test="${endPage < pagesCount }">
-										<button class="btn btn-sm btn-disabled">...</button>
-										<a class="btn btn-sm" href="${baseUri }&page=${pagesCount }">${pagesCount }</a>
+									<%-- 다음 페이지 버튼 --%>
+									<c:if test="${page < pagesCount}">
+										<a class="btn btn-sm"
+											href="?boardId=${boardId}&searchKeywordTypeCode=${searchKeywordTypeCode}&searchKeyword=${searchKeyword}&page=${page + 1}">&gt;</a>
 									</c:if>
-
 								</div>
 							</div>
-
-
-
-
-
-
 						</div>
-
-
 					</div>
 
 
-
 				</div>
+
 
 			</div>
 		</div>
