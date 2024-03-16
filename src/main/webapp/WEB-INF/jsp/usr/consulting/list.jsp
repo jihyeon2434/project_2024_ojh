@@ -12,12 +12,14 @@
 
 .small-outer-box {
 	padding-top: 20px;
+	margin-left: 20px;
 	padding-bottom: 20px;
-	width: 250px;
-	height: 630px;
+	width: 235px;
+	height: 585px;
 	display: flex;
 	justify-content: center;
 	border: solid 1px;
+	border-radius: 5px;
 }
 
 .small-outer-box-2 {
@@ -37,22 +39,18 @@
 	flex-direction: column;
 }
 
-
-
 .price-box {
 	display: flex;
 	justify-content: center;
 }
 
 .price {
-	font: 13px Inria Serif, sans-serif;
+	font: 15px Inria Serif, sans-serif;
 	align-content: center;
 	display: block;
-	font-size: 20px;
 }
 
 .price_option_box {
-	width: auto;
 	display: flex;
 	justify-content: space-around;
 }
@@ -67,13 +65,12 @@
 	font: 13px Inria Serif, sans-serif;
 	align-content: center;
 	display: block;
-	font-size: 20px;
+	font-size: 15px;
 }
 
 .area-outer-box {
 	width: 250px;
 	display: flex;
-	margin-top: 39px;
 	flex-direction: column;
 	align-items: center;
 	padding: 0 10px;
@@ -81,16 +78,14 @@
 
 .line {
 	border-color: rgba(0, 0, 0, 1);
+	border: 0.5px black solid; /* 0.5px로 변경 */
 	border-style: solid;
-	border-width: 1px;
-	background-color: #000;
-	align-self: stretch;
-	height: 1px;
+	width: 220px;
+	margin-left: 15px;
 }
 
 .area-option-box-1, .area-option-box-2, .area-option-box-3,
 	.area-option-box-4 {
-	white-space: initial;
 	display: flex;
 	width: 250px;
 	margin-top: 10px;
@@ -123,10 +118,10 @@
 	font: 13px Inria Serif, sans-serif;
 	align-content: center;
 	display: block;
-	font-size: 20px;
+	font-size: 15px;
 }
 
-.situation-option-box {
+.situation-option-box, .price-option-box {
 	display: flex;
 	width: 250px;
 	margin-top: 10px;
@@ -135,7 +130,8 @@
 	flex-wrap: wrap; /* 여기서 중요한 부분입니다 */
 }
 
-.situation-option-box-1, .situation-option-box-2 {
+.situation-option-box-1, .situation-option-box-2, .price-option-box-1,
+	.price-option-box-2 {
 	width: 250px;
 	display: flex;
 	margin-top: 10px;
@@ -196,6 +192,8 @@
 .search-box {
 	width: 900px;
 	height: 100px;
+	display: : flex;
+	justify-content: center;
 }
 
 .search-box .grow {
@@ -211,10 +209,10 @@
 }
 
 .line1 {
-    width: 1000px;
-    height: 0px;
-    position: absolute;
-    border: 0.5px black solid; /* 0.5px로 변경 */
+	width: 1000px;
+	height: 0px;
+	position: absolute;
+	border: 0.5px black solid; /* 0.5px로 변경 */
 }
 
 .content-box {
@@ -301,89 +299,122 @@
 	justify-content: center;
 }
 
-
 .btn {
-width: 70px;
+	width: 55px;
+	font-size: 10px;
 }
 
+.price-big-outer-box{
+height: 150px;
+
+}
+
+.area-big-outer-box{
+height: 250px;
+
+}
+
+.situation-big-outer-box{
+height: 150px;
+
+}
+
+
+.ok-outer-box{
+width: 235x;
+display: flex;
+justify-content: center;
+margin-top: 20px;
+}
 </style>
 <div class="outer-box">
 	<div class="small-outer-box">
 		<div class="search-box">
-			<div class="price-outer-box">
+		<div class=price-big-outer-box>
+		<div class="price-outer-box">
 				<div class="price-box">
 					<div class="price">가격</div>
 				</div>
 
-				<div class="price_option_box">
-				<div class="situation-option-box-1">
-				<div class="price-1 btn btn-outline">~7</div>
-					<div class="price-2 btn btn-outline">~10</div>
+				<div class="price-option-box">
+					<div class="price-option-box-1">
+						<div class="price-1 btn btn-outline btn-sm">~7</div>
+						<div class="price-2 btn btn-outline btn-sm">~10</div>
+					</div>
+					<div class="price-option-box-2">
+						<div class="price-3 btn btn-outline btn-sm">~20</div>
+						<div class="price-4 btn btn-outline btn-sm">30~</div>
+					</div>
 				</div>
-					<div class="situation-option-box-2">
-					<div class="price-3 btn btn-outline">~20</div>
-					<div class="price-4 btn btn-outline">30~</div>
-				
-					</div>
-					</div>
 			</div>
-
+		</div>
+			
+			<div class="line"></div>
+			<div class="area-big-outer-box">
 			<div class="area-outer-box">
-				<div class="line"></div>
+
 				<div class="area-box">
 					<div class="area">지역</div>
 				</div>
 
 				<div class="area-outer-option-box">
 					<div class="area-option-box-1">
-						<div class="area-1 btn btn-outline">서울</div>
-						<div class="area-2 btn btn-outline">경기</div>
-						<div class="area-3 btn btn-outline">인천</div>
+						<div class="area-1 btn btn-outline btn-sm">서울</div>
+						<div class="area-2 btn btn-outline btn-sm">경기</div>
+						<div class="area-3 btn btn-outline btn-sm">인천</div>
 					</div>
 					<div class="area-option-box-2">
-						<div class="area-4 btn btn-outline">세종</div>
-						<div class="area-5 btn btn-outline">대전</div>
-						<div class="area-6 btn btn-outline">충청</div>
+						<div class="area-4 btn btn-outline btn-sm">세종</div>
+						<div class="area-5 btn btn-outline btn-sm">대전</div>
+						<div class="area-6 btn btn-outline btn-sm">충청</div>
 					</div>
 					<div class="area-option-box-3">
-						<div class="area-7 btn btn-outline">부산</div>
-						<div class="area-8 btn btn-outline">
-							광주
-							<br />
-							전라
+						<div class="area-7 btn btn-outline btn-sm">부산</div>
+						<div class="area-8 btn btn-outline btn-sm">
+							광주 <br /> 전라
 						</div>
-						<div class="area-9 btn btn-outline">
-							대구
-							<br />
-							경상
+						<div class="area-9 btn btn-outline btn-sm">
+							대구 <br /> 경상
 						</div>
 					</div>
 					<div class="area-option-box-4">
-						<div class="area-10 btn btn-outline">강원</div>
-						<div class="area-11 btn btn-outline">제주</div>
+						<div class="area-10 btn btn-outline btn-sm">강원</div>
+						<div class="area-11 btn btn-outline btn-sm">제주</div>
 					</div>
 				</div>
 
 			</div>
+			</div>
+			
+			<div class="line"></div>
+			<div class="situation-big-outer-box">
 			<div class="situation-outer-box">
-				<div class="line"></div>
+				
 				<div class="situation-box">
 					<div class="situation">상황</div>
 				</div>
 
 				<div class="situation-option-box">
 					<div class="situation-option-box-1">
-						<div class="situation-1 btn btn-outline">일상</div>
-						<div class="situation-2 btn btn-outline">비지니스</div>
+						<div class="situation-1 btn btn-outline btn-sm">일상</div>
+						<div class="situation-2 btn btn-outline btn-sm">비지니스</div>
 					</div>
 					<div class="situation-option-box-2">
 
-						<div class="situation-3 btn btn-outline">소개팅</div>
-						<div class="situation-4 btn btn-outline">면접</div>
+						<div class="situation-3 btn btn-outline btn-sm">소개팅</div>
+						<div class="situation-4 btn btn-outline btn-sm">면접</div>
 					</div>
 
 				</div>
 			</div>
+		
+			</div>
+			<div class=ok-outer-box>
+			<div class="ok-btn btn btn-active btn-neutral">
+			확인
+			</div>
+			</div>
+			
 		</div>
 
 	</div>
