@@ -15,7 +15,7 @@
 	margin-left: 20px;
 	padding-bottom: 20px;
 	width: 235px;
-	height: 585px;
+	height: 590px;
 	display: flex;
 	justify-content: center;
 	border: solid 1px;
@@ -508,6 +508,7 @@ margin-top: 20px;
 								<c:forEach var="i" begin="${startIndex}" end="${endIndex}">
 									<c:set var="shop" value="${shopInfoList[i]}" />
 									<div class="img-box-1">
+									<a href="detail?id=${shop.id }">
 										<div class="sm-img-outer-box">
 											<div class="img">
 												<img class="banner" style="width: 290px; height: 263px" src="${shop.photoUrl1}" />
@@ -515,6 +516,7 @@ margin-top: 20px;
 											<div class="store">${shop.shopName}</div>
 											<div class="time">${shop.roadNameNum}</div>
 										</div>
+										</a>
 									</div>
 								</c:forEach>
 							</div>

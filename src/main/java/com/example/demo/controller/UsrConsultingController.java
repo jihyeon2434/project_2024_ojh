@@ -53,11 +53,13 @@ public class UsrConsultingController {
 	// 액션 메서드
 
 	
-	@RequestMapping("/usr/consulting/crawl")
-	public String crawlConsultingShops(@RequestParam(required = false, defaultValue = "") String location) {
-	    List<conShop> shopInfoList = consultShopService.crawlConsultingShops(location);
-	    return "usr/home/main";
-	}
+	 @RequestMapping("/usr/consulting/crawl")
+	    public String crawlConsultingShops(
+	            @RequestParam(required = false, defaultValue = "") String inputKey) {
+	        List<conShop> shopInfoList = consultShopService.crawlConsultingShops(inputKey);
+	        return "usr/home/main";
+	    }
+
 
 	
 	

@@ -19,9 +19,9 @@ public class ConsultShopService {
         consultShopRepository.insertShop(shopInfo);
     }
 
-    public List<conShop> crawlConsultingShops(String location) {
+    public List<conShop> crawlConsultingShops(String inputKey) {
         WebCrawler17 crawler = new WebCrawler17();
-        List<conShop> shopInfoList = crawler.crawlMap(location);
+        List<conShop> shopInfoList = crawler.crawlMap();
         for (conShop shopInfo : shopInfoList) {
             registerShop(shopInfo); // 크롤링한 가게 정보를 저장
         }
