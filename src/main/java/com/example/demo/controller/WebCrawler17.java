@@ -70,9 +70,23 @@ public class WebCrawler17 {
 
 		List<conShop> shopInfoList = new ArrayList<>();
 
-		for (WebElement e : elements) {
-			e.click();
-			String key = e.getText();
+		 for (WebElement element : elements) {
+	            // Get additional information before clicking on the element
+	            String additionalInfo = null;
+	            try {
+	                // Find the parent element containing the additional information
+	                WebElement parentElement = element.findElement(By.xpath(".."));
+	                // Find the child element with class "Pb4bU" using CSS selector
+	                WebElement infoElement = parentElement.findElement(By.cssSelector("span.Pb4bU"));
+	                // Get the text of the element
+	                additionalInfo = infoElement.getText();
+	            } catch (Exception ex) {
+	                ex.printStackTrace(); // 에러가 발생한 경우 콘솔에 출력하여 디버깅할 수 있습니다.
+	            }
+
+	            element.click();
+	            String key = element.getText();
+
 
 			try {
 				Thread.sleep(2000);
@@ -122,12 +136,18 @@ public class WebCrawler17 {
 			} catch (Exception ex) {
 				menuInfo = null;
 			}
+			
+
+
+
+
+
 
 			// Get image URLs
 			List<String> imageUrls = new ArrayList<>();
 			try {
 				List<WebElement> imageElements = driver.findElements(By.xpath("//div[@class='K0PDV _div']"));
-				for (WebElement element : imageElements) {
+				for (WebElement imgElement : imageElements) {
 					String styleAttribute = element.getAttribute("style");
 					String url = styleAttribute.split("url\\(")[1].split("\\)")[0].replaceAll("'", "").replaceAll("\"",
 							"");
@@ -140,7 +160,7 @@ public class WebCrawler17 {
 			// Create conShop object and add it to the list
 			conShop shopInfo = new conShop();
 			shopInfo.setShopName(key);
-			shopInfo.setRoadNameNum(address);
+			shopInfo.setRoadName(address);
 			shopInfo.setPhoneNum(phoneNumber);
 			shopInfo.setConAvailableTime(null); // 이 부분은 웹 크롤링으로는 얻을 수 없는 정보인지 확인해야 합니다.
 			shopInfo.setConAvailableDate(null); // 이 부분은 웹 크롤링으로는 얻을 수 없는 정보인지 확인해야 합니다.
@@ -150,6 +170,8 @@ public class WebCrawler17 {
 			shopInfo.setRegDate(null); // 이 부분은 웹 크롤링으로는 얻을 수 없는 정보인지 확인해야 합니다.
 			shopInfo.setUpdateDate(null); // 이 부분은 웹 크롤링으로는 얻을 수 없는 정보인지 확인해야 합니다.
 			shopInfo.setDelDate(null); // 이 부분은 웹 크롤링으로는 얻을 수 없는 정보인지 확인해야 합니다.
+			shopInfo.setAdditionalInfo(additionalInfo); // 이 부분은 웹 크롤링으로는 얻을 수 없는 정보인지 확인해야 합니다.
+			
 			// 카테고리 번호 설정
 			int categoryId = getCategoryNumber(inputKey);
 			shopInfo.setCategoryId(categoryId);
@@ -173,7 +195,7 @@ public class WebCrawler17 {
 
 			// Print shop information to console
 			System.out.println("Shop Name: " + shopInfo.getShopName());
-			System.out.println("Address: " + shopInfo.getRoadNameNum());
+			System.out.println("Address: " + shopInfo.getRoadName());
 			System.out.println("Phone Number: " + shopInfo.getPhoneNum());
 			System.out.println("Operating Hours: " + shopInfo.getOperateTime());
 			System.out.println("Photo URL 1: " + shopInfo.getPhotoUrl1());

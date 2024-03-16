@@ -31,4 +31,9 @@ public class ConsultShopService {
 	public List<conShop> getShopsList() {
 		return consultShopRepository.getShopsList();
 	}
+
+	public conShop getShopById(int id) {
+		return consultShopRepository.getShopById(id);
+		
+	}
 }

@@ -326,6 +326,11 @@ display: flex;
 justify-content: center;
 margin-top: 20px;
 }
+
+.time{
+font-size: 10px;
+}
+
 </style>
 <div class="outer-box">
 	<div class="small-outer-box">
@@ -514,7 +519,7 @@ margin-top: 20px;
 												<img class="banner" style="width: 290px; height: 263px" src="${shop.photoUrl1}" />
 											</div>
 											<div class="store">${shop.shopName}</div>
-											<div class="time">${shop.roadNameNum}</div>
+											<div class="time">${shop.roadName}</div>
 										</div>
 										</a>
 									</div>
@@ -526,19 +531,19 @@ margin-top: 20px;
 								<div class="pagination flex justify-center mt-3">
 									<%-- 이전 페이지 버튼 --%>
 									<c:if test="${page > 1}">
-										<a class="btn btn-sm"
+										<a class="btn btn-xs"
 											href="?boardId=${boardId}&searchKeywordTypeCode=${searchKeywordTypeCode}&searchKeyword=${searchKeyword}&page=${page - 1}">&lt;</a>
 									</c:if>
 
 									<%-- 페이지 버튼 --%>
 									<c:forEach var="i" begin="1" end="${pagesCount}">
-										<a class="btn btn-sm ${page == i ? 'btn-active' : ''}"
+										<a class="btn btn-xs ${page == i ? 'btn-active' : ''}"
 											href="?boardId=${boardId}&searchKeywordTypeCode=${searchKeywordTypeCode}&searchKeyword=${searchKeyword}&page=${i}">${i}</a>
 									</c:forEach>
 
 									<%-- 다음 페이지 버튼 --%>
 									<c:if test="${page < pagesCount}">
-										<a class="btn btn-sm"
+										<a class="btn btn-xs"
 											href="?boardId=${boardId}&searchKeywordTypeCode=${searchKeywordTypeCode}&searchKeyword=${searchKeyword}&page=${page + 1}">&gt;</a>
 									</c:if>
 								</div>

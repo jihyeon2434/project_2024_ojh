@@ -11,7 +11,7 @@ public class conShop {
     private int id;
     private int categoryId;
     private String shopName;
-    private String roadNameNum;
+    private String roadName;
     private String review;
     private String photoUrl1;
     private String photoUrl2;
@@ -28,4 +28,5 @@ public class conShop {
     private String updateDate;
     private String delDate;
     private int delStatus;
+	private String additionalInfo;
 }

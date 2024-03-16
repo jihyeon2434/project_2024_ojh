@@ -6,6 +6,7 @@ import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Select;
 
+import com.example.demo.vo.Article;
 import com.example.demo.vo.conShop;
 
 @Mapper
@@ -15,7 +16,7 @@ public interface ConsultShopRepository {
 			INSERT INTO service_Conshop SET
 			         categoryId = #{categoryId},
 			         shopName = #{shopName},
-			         roadName_num = #{roadNameNum},
+			         roadName = #{roadName},
 			         review = #{review},
 			         photoUrl1 = #{photoUrl1},
 			         photoUrl2 = #{photoUrl2},
@@ -30,12 +31,24 @@ public interface ConsultShopRepository {
 			         regDate = NOW(),
 			         updateDate = NOW(),
 			         delDate = #{delDate},
+			         additionalInfo = #{additionalInfo},
 			         delStatus = #{delStatus}
 			""")
 	public void insertShop(conShop shopInfo);
 
 	@Select("SELECT * FROM service_Conshop")
 	public List<conShop> getShopsList();
+	
+	
+	
+	@Select("""
+			<script>
+				SELECT *
+				FROM service_Conshop AS S
+				WHERE S.id = #{id}
+			</script>
+				""")
+	public conShop getShopById(int id);
 
 	@Select("""
 			SELECT * FROM service_Conshop WHERE shopName = #{shopName}

@@ -89,9 +89,11 @@ public class UsrConsultingController {
 	}
 
 	@RequestMapping("/usr/consulting/detail")
-	public String showconsultingDetail(HttpServletRequest req, Model model) {
+	public String showconsultingDetail(HttpServletRequest req, Model model, int id) {
 		Rq rq = (Rq) req.getAttribute("rq");
-
+		conShop shop = consultShopService.getShopById(id);
+		
+		model.addAttribute("shop", shop);
 		return "usr/consulting/detail";
 	}
 

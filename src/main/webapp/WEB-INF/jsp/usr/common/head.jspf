@@ -16,7 +16,11 @@
 <!-- 제이쿼리 불러오기 -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
 
-
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link
+	href="https://fonts.googleapis.com/css2?family=Inria+Serif:ital,wght@0,300;0,400;0,700;1,300;1,400;1,700&family=Noto+Sans+KR:wght@100;200;300&display=swap"
+	rel="stylesheet">
 
 <!-- daisy ui 불러오기 -->
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/daisyui/4.6.1/full.css" />
@@ -31,8 +35,7 @@
 		<!-- 검색바 -->
 		<div class="flex items-center ml-4">
 			<!-- 왼쪽 여백 추가 -->
-			<input type="text" placeholder="검색어를 입력하세요." tabindex="1" name="keyword" id="top_search"
-				onclick="../article/search"
+			<input type="text" placeholder="검색어를 입력하세요." tabindex="1" name="keyword" id="top_search" onclick="../article/search"
 				class="bg-opacity-70 bg-white border-black border rounded-md px-2 py-1 mr-4" style="background-color: #efe7e5;">
 			<i class="fas fa-search text-gray-400 mr-2"></i>
 			<!-- 돋보기 아이콘 추가 및 오른쪽 여백 추가 -->
@@ -47,41 +50,24 @@
 		<ul class="flex space-x-8 mr-8">
 			<!-- 각 항목 간격 조정 및 오른쪽 여백 추가 -->
 			<c:if test="${!rq.isLogined() }">
-				<li>
-					<a class="hover:underline font-serif" href="../member/login">LOGIN</a>
-				</li>
-				<li>
-					<a class="hover:underline font-serif" href="../member/join">JOIN</a>
-				</li>
+				<li><a class="hover:underline font-serif" href="../member/login">LOGIN</a></li>
+				<li><a class="hover:underline font-serif" href="../member/join">JOIN</a></li>
 			</c:if>
-			<li>
-				<a class="hover:underline font-serif" href="../article/list?boardId=1&page=1">COMMUNITY</a>
-			</li>
+			<li><a class="hover:underline font-serif" href="../article/list?boardId=1&page=1">COMMUNITY</a></li>
 			<li class="relative group">
-				
+
 				<ul class="absolute hidden group-hover:block z-10">
-					<li>
-						<a class="font-serif hover:underline" href="../article/list?boardId=1&page=1">NOTICE</a>
-					</li>
-					<li>
-						<a class="font-serif hover:underline" href="../article/list?boardId=2&page=1">FREE</a>
-					</li>
-					<li>
-						<a class="font-serif hover:underline" href="../article/list?boardId=3&page=1">QnA</a>
-					</li>
+					<li><a class="font-serif hover:underline" href="../article/list?boardId=1&page=1">NOTICE</a></li>
+					<li><a class="font-serif hover:underline" href="../article/list?boardId=2&page=1">FREE</a></li>
+					<li><a class="font-serif hover:underline" href="../article/list?boardId=3&page=1">QnA</a></li>
 				</ul>
 			</li>
 			<c:if test="${rq.isLogined() }">
-				<li>
-					<a class="hover:underline font-serif" href="../article/write">WRITE</a>
+				<li><a class="hover:underline font-serif" href="../article/write">WRITE</a></li>
+				<li class="hover:underline font-serif"><a class="h-full px-3 flex items-center" href="/usr/member/myPage">MYPAGE</a>
 				</li>
-				<li class="hover:underline font-serif">
-					<a class="h-full px-3 flex items-center" href="/usr/member/myPage">MYPAGE</a>
-				</li>
-				<li>
-					<a onclick="if(confirm('로그아웃 할래?') == false) return false;" class="hover:underline font-serif"
-						href="../member/doLogout">LOGOUT</a>
-				</li>
+				<li><a onclick="if(confirm('로그아웃 할래?') == false) return false;" class="hover:underline font-serif"
+					href="../member/doLogout">LOGOUT</a></li>
 			</c:if>
 		</ul>
 	</header>
