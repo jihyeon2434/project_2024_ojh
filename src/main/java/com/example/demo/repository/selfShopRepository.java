@@ -48,14 +48,14 @@ public interface selfShopRepository {
 	@Select("""
 			<script>
 				SELECT *
-				FROM service_Conshop AS S
+				FROM service_selfshop AS S
 				WHERE S.id = #{id}
 			</script>
 				""")
 	public selfShop getShopById(int id);
 
 	@Select("""
-			SELECT * FROM service_Conshop WHERE shopName = #{shopName}
+			SELECT * FROM service_selfshop WHERE shopName = #{shopName}
 			""")
 	public selfShop getShopByName(String shopName);
 

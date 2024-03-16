@@ -187,7 +187,7 @@
 
       <div class="self-box">
 
-        <a href="../consulting/list">
+        <a href="../self/list">
           <!-- 첫 번째 이미지 -->
           <img src="//chahong.com/web/product/big/202312/b53d9968c9e75b28da2c2052b3219019.jpg" width="380px" height="350px" alt="차홍" class="BigImage">
           <!-- 회색 네모 박스 -->

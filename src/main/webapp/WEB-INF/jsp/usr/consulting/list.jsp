@@ -222,9 +222,8 @@
 
 .menu-box {
 	width: 1000px;
-	background-color: #EFE7E5;
+	background-color: rgba(239, 231, 229, 0.3); /* 불투명도 조정 */
 }
-
 .img-outer-box {
 	width: 1000px;
 	border: 1px solid black;
