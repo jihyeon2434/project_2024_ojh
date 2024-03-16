@@ -81,12 +81,7 @@ public class UsrConsultingController {
 
         return "usr/consulting/list";
     }
-	@RequestMapping("/usr/consulting/list2")
-	public String showConsultingList2(HttpServletRequest req, Model model) {
-		Rq rq = (Rq) req.getAttribute("rq");
-
-		return "usr/consulting/list2";
-	}
+	
 
 	@RequestMapping("/usr/consulting/detail")
 	public String showconsultingDetail(HttpServletRequest req, Model model, int id) {
@@ -97,19 +92,6 @@ public class UsrConsultingController {
 		return "usr/consulting/detail";
 	}
 
-	@RequestMapping("/usr/self/list")
-	public String showselfList(HttpServletRequest req, Model model) {
-		Rq rq = (Rq) req.getAttribute("rq");
-
-		return "usr/self/list";
-	}
-
-	@RequestMapping("/usr/self/detail")
-	public String showselfDetail(HttpServletRequest req, Model model) {
-		Rq rq = (Rq) req.getAttribute("rq");
-
-		return "usr/self/detail";
-	}
 
 	@RequestMapping("/usr/consulting/feedbackWrite")
 	public String showfeedbackWrite(HttpServletRequest req, Model model) {
