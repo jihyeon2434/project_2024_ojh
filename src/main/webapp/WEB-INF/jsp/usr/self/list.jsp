@@ -150,12 +150,12 @@
 	height: 83px;
 	text-align: center;
 	color: black;
-	font-size: 22px;
-	font-family: Inter;
-	font-style: italic;
-	font-weight: 700;
+	font-size: 20px;
+	font-style: Inria-serif;
+	font-weight: 600;
 	word-wrap: break-word"
 }
+
 
 .select-option {
 	font-size: 22px;
@@ -428,7 +428,7 @@ font-size: 10px;
 
 		<div class="small-outer-box-2">
 
-			<div class="main-text">${rq.loginedMember.nickname }님만을위한추천컨설팅업체</div>
+			<div class="main-text">${rq.loginedMember.nickname }님만을 위한 추천 컨설팅업체</div>
 
 			<div class="con-box">
 				<div class="menu-box">

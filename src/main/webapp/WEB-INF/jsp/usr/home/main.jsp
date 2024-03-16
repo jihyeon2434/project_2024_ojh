@@ -154,6 +154,13 @@
     width: 270px;
     height: 300px;
 }
+
+ .consulting-box img,
+  .self-box img {
+    width: 380px;
+    height: 350px; /* Maintain aspect ratio */
+  }
+  
 </style>
 <div class="big-outer-box">
   <!-- 컨설팅/셀프 메인이미지 -->
@@ -162,13 +169,13 @@
       <div class="consulting-box">
       <a href="../consulting/list">
           <!-- 첫 번째 이미지 -->
-          <img src="//chahong.com/web/product/big/202312/b53d9968c9e75b28da2c2052b3219019.jpg" width="380px" height="350px" alt="차홍" class="BigImage">
+          <img src="//velog.velcdn.com/images/jihyeon2434/post/932a6dd8-db76-44d4-8dae-71539f5e955f/image.jpg" width="380px" height="350px" >
           <!-- 회색 네모 박스 -->
           <div class="grey-box">
             <div class="theme-big-box">
               <div class="theme-small-box-1">
-                <div class="text-white text-left text-2xl font-bold">ONLINE</div>
-                <div class="text-white text-left text-2xl font-bold">CONSULTING</div>
+                <div class="text-white text-left text-2xl font-bold font-serif">ONLINE</div>
+                <div class="text-white text-left text-2xl font-bold font-serif">CONSULTING</div>
               </div>
               <!-- 텍스트 -->
               <div class="theme-small-box-2">
@@ -189,12 +196,12 @@
 
         <a href="../self/list">
           <!-- 첫 번째 이미지 -->
-          <img src="//chahong.com/web/product/big/202312/b53d9968c9e75b28da2c2052b3219019.jpg" width="380px" height="350px" alt="차홍" class="BigImage">
+          <img src="//chahong.com/web/product/big/202312/b53d9968c9e75b28da2c2052b3219019.jpg" width="380px" height="350px"  >
           <!-- 회색 네모 박스 -->
           <div class="grey-box">
             <div class="theme-big-box">
               <div class="theme-small-box-1">
-                <div class="text-white text-left text-2xl font-bold">SELF</div>
+                <div class="text-white text-left text-2xl font-bold font-serif">SELF</div>
               </div>
               <!-- 텍스트 -->
               <div class="theme-small-box-2">
@@ -217,7 +224,7 @@
         <!-- 보그 최신뉴스 -->
         <div class="vogue-outer-box">
           <div>
-            <div class="news-head-box ">LATEST IN TRENDS</div>
+            <div class="news-head-box font-serif">LATEST IN TRENDS</div>
             <div class=" news-img-box">
 
               <div class="small-img-box">
