@@ -56,7 +56,7 @@
     display: inline-block;
 }
 
-.btn {
+.btn-1 {
     position: absolute;
     bottom: -100px;
     left: 250px;
@@ -128,14 +128,14 @@
 				<div class="content-line">
 					<div class="id">비밀번호 :</div>
 					<div class="content">
-						<input class="input input-bordered input-primary w-full max-w-xs" autocomplete="off" type="text"
+						<input class="input input-bordered  w-full max-w-xs" autocomplete="off" type="text"
 							placeholder="비밀번호를 입력해주세요" name="loginPw" />
 					</div>
 				</div>
 				<br> <br>
 				<div class="line"></div>
 				<!-- 확인 버튼 추가 -->
-				<div class="btn">
+				<div class="btn-1">
 					<div class="ok-btn">
 						<button class="btn-outline btn-info" type="submit">확인</button>
 					</div>

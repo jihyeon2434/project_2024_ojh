@@ -230,7 +230,7 @@
 				<div class="btn-outer-box">
 					<div class="btn-small-box">
 						<div class="modify-btn">
-							<a href="../member/checkPw" class="btn btn-active btn-ghost">회원정보 수정</a>
+							<a href="../member/checkPw" class="btn btn-outline">회원정보 수정</a>
 						</div>
 						<div class="modifyBack-btn">
 							<button class="btn btn-active btn-ghost" type="button" onclick="history.back();">취소</button>
