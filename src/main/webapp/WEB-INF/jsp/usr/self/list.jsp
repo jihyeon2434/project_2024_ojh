@@ -428,14 +428,14 @@ font-size: 10px;
 
 		<div class="small-outer-box-2">
 
-			<div class="main-text">${rq.loginedMember.nickname }님만을 위한 추천 컨설팅업체</div>
+			<div class="main-text">${rq.loginedMember.nickname }님만을 위한 추천 샵</div>
 
 			<div class="con-box">
 				<div class="menu-box">
 					<div class="theme">
 
-						<div class="img-making">이미지메이킹</div>
-						<div class="personal">퍼스널컬러</div>
+						<div class="img-making">헤어</div>
+						<div class="personal">메이크업</div>
 					</div>
 
 					<div class="line1"></div>
@@ -482,7 +482,6 @@ font-size: 10px;
 
 						<div class="recommend-1">별점이 높은</div>
 						<div class="recommend-2">가장 저렴한</div>
-						<div class="recommend-3">전문가가 친절한</div>
 					</div>
 
 					<div class="line1"></div>
@@ -492,8 +491,8 @@ font-size: 10px;
 					<div class="menu-box">
 						<div class="theme">
 
-							<div class="img-making">이미지메이킹</div>
-							<div class="personal">퍼스널컬러</div>
+							<div class="img-making">헤어</div>
+							<div class="personal">메이크업</div>
 						</div>
 
 						<div class="line1"></div>

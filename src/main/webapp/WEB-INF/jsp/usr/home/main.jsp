@@ -210,7 +210,7 @@
 
             </div>
             <div class="theme-text-box">
-              <div class="text-white text-left text-sm mt-2">고객 니즈 맞춤 헤어, 옷 , 메이크업</div>
+              <div class="text-white text-left text-sm mt-2">고객 니즈 맞춤 헤어, 메이크업</div>
               <div class="text-white text-left text-sm">정보 제공 서비스</div>
             </div>
           </div>
