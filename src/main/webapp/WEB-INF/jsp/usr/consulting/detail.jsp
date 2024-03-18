@@ -256,9 +256,11 @@
           </div>
         </div>
         <div class="Group97">
+          <a href="../consulting/reservation2">
           <div class="Rectangle35">
             <div class="text-box"><img src="//velog.velcdn.com/images/jihyeon2434/post/ca6de2e7-1690-4f95-a522-50fdee8b9637/image.png">온라인 컨설팅 신청</div>
           </div>
+          </a>
         </div>
       </div>
 

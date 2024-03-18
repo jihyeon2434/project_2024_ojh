@@ -76,21 +76,21 @@ th {
 							<tr>
 								<th>아이디</th>
 								<td>
-									<input type="text" placeholder="Type here" autocomplete="off"
+									<input type="text" placeholder="" autocomplete="off"
 										class="input input-bordered input-sm w-full max-w-xs" name="loginId" />
 								</td>
 							</tr>
 							<tr>
 								<th>비밀번호</th>
 								<td>
-									<input type="text" placeholder="Type here" autocomplete="off"
+									<input type="text" placeholder="" autocomplete="off"
 										class="input input-bordered input-sm w-full max-w-xs" name="loginPw" />
 								</td>
 							</tr>
 							<tr>
 								<th>비밀번호 확인</th>
 								<td>
-									<input type="text" placeholder="비밀번호를 다시 입력해주세요" autocomplete="off"
+									<input type="text" placeholder="" autocomplete="off"
 										class="input input-bordered input-sm w-full max-w-xs" name="loginPwCheck" />
 
 								</td>
@@ -98,7 +98,7 @@ th {
 							<tr>
 								<th>이름</th>
 								<td>
-									<input type="text" placeholder="이름을 입력해주세요" autocomplete="off"
+									<input type="text" placeholder="" autocomplete="off"
 										class="input input-bordered input-sm w-full max-w-xs" name="name" />
 								</td>
 							</tr>
@@ -106,7 +106,7 @@ th {
 								<th>닉네임</th>
 								<td>
 
-									<input type="text" placeholder="닉네임을 입력해주세요" autocomplete="off"
+									<input type="text" placeholder="" autocomplete="off"
 										class="input input-bordered input-sm w-full max-w-xs" name="nickname" />
 
 
@@ -116,7 +116,7 @@ th {
 								<th class="text-xs">전화번호</th>
 								<td>
 
-									<input type="text" placeholder="전화번호를 입력해주세요" autocomplete="off"
+									<input type="text" placeholder="" autocomplete="off"
 										class="input input-bordered input-sm w-full max-w-xs" name="cellphoneNum" />
 								</td>
 							</tr>
@@ -124,7 +124,7 @@ th {
 								<th class="text-xs">이메일</th>
 								<td>
 
-									<input type="text" placeholder="이메일을 입력해주세요" autocomplete="off"
+									<input type="text" placeholder="" autocomplete="off"
 										class="input input-bordered input-sm w-full max-w-xs" name="email" />
 								</td>
 							</tr>

@@ -1,4 +1,7 @@
 /* 폰트 */
+
+
+
 @font-face {
 	font-family: 'LotteMartDream';
 	font-style: normal;
@@ -32,13 +35,21 @@
 		format('woff');
 }
 
+
+
 .lottemartdream * {
 	font-family: 'LotteMartDream', sans-serif;
 }
 
-html>body {
-	font-family: 'LotteMartDream', sans-serif;
+/* styles.css */
+body {
+    font-family: 'Noto Sans KR', sans-serif; /* 모든 페이지의 본문에 'Noto Sans KR' 글꼴을 적용합니다. */
 }
+
+h1, h2, h3, h4, h5, h6 {
+    font-family: 'Inria Serif', serif; /* 모든 페이지의 제목에 'Inria Serif' 글꼴을 적용합니다. */
+}
+
 
 /* 라이브러리 */
 
@@ -47,7 +58,9 @@ header>div>ul>li {
 	margin-right: 30px;
 }
 
-
+body {
+  font-family: "Inria Serif", serif;
+}
 
 /* .login-box>tbody>tr>td>input { */
 /* 	padding-left: 10px; */

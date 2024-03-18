@@ -74,7 +74,7 @@ public class UsrSelfController {
 		selfShop shop = selfShopService.getShopById(id);
 		
 		model.addAttribute("shop", shop);
-		return "usr/consulting/detail";
+		return "usr/self/detail";
 	}
 
 	

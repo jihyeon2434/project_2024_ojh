@@ -208,7 +208,9 @@
 			</div>
 		</div>
 		<div class="consulting-reservation">
+		  <a href="../consulting/reservation3">
 			<div class="reservation-button">예약하기</div>
+			</a>
 		</div>
 	</div>
 </div>

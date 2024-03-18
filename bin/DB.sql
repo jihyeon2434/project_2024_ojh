@@ -341,7 +341,14 @@ SELECT * FROM reactionPoint;
 
 SELECT * FROM `reply`;
 
+DESC `reply`;
 
+
+DESC reactionPoint;
+
+DESC article;
+
+DESC `member`;
 
 SELECT goodReactionPoint
 FROM article 
@@ -473,3 +480,71 @@ SUM(IF(RP.point > 0,RP.point,0)) AS goodReactionPoint,
 SUM(IF(RP.point < 0,RP.point * -1,0)) AS badReactionPoint
 FROM reactionPoint AS RP
 GROUP BY RP.relTypeCode,RP.relId
+
+
+
+###############################################
+
+-- 테이블 생성 SQL - service_Conshop
+CREATE TABLE service_Conshop
+(
+    `id`                 INT             NOT NULL    AUTO_INCREMENT COMMENT '업체고유번호', 
+    `categoryId`         INT             NOT NULL    COMMENT '카테고리 번호(이미지메이킹 / 퍼스널컬러)', 
+    `shopName`           VARCHAR(50)     NOT NULL    COMMENT '업체명', 
+    `roadName`       VARCHAR(300)    NOT NULL    COMMENT '위치(도로명주소)',
+    `additionalInfo`       VARCHAR(300)  NULL    COMMENT '도로명주소',  
+    `review`             VARCHAR(300)    NULL        COMMENT '리뷰', 
+    `photoUrl1`          VARCHAR(500)    NULL        COMMENT '사진 URL 1', 
+    `photoUrl2`          VARCHAR(500)    NULL        COMMENT '사진 URL 2', 
+    `photoUrl3`          VARCHAR(500)    NULL        COMMENT '사진 URL 3', 
+    `photoUrl4`          VARCHAR(500)   NULL        COMMENT '사진 URL 4', 
+    `photoUrl5`          VARCHAR(500)   NULL        COMMENT '사진 URL 5', 
+    `phoneNum`           VARCHAR(50)     NOT NULL    COMMENT '전화번호', 
+    `con_availableTime`  VARCHAR(50)     NULL        COMMENT '컨설팅 가능 시간', 
+    `con_availableDate`  VARCHAR(50)     NULL        COMMENT '컨설팅 가능 날짜', 
+    `operateTime`        VARCHAR(300)     NULL        COMMENT '영업시간', 
+    `menu`               VARCHAR(300)            NULL        COMMENT '가격', 
+    `themeId`            INT             NULL        COMMENT '테마번호', 
+    `regDate`            VARCHAR(50)     NULL        COMMENT '등록날짜', 
+    `updateDate`         VARCHAR(50)     NULL        COMMENT '수정날짜', 
+    `delDate`            DATETIME        NULL        COMMENT '삭제날짜',
+     
+    `delStatus`          TINYINT         NULL        COMMENT '삭제여부', 
+     PRIMARY KEY (id)
+);
+
+
+SELECT *
+FROM service_Conshop;
+
+DESC service_Conshop;
+
+
+
+-- 테이블 생성 SQL - service_Conshop
+CREATE TABLE service_selfshop
+(
+    `id`                 INT             NOT NULL    AUTO_INCREMENT COMMENT '업체고유번호', 
+    `categoryId`         INT             NOT NULL    COMMENT '카테고리 번호(이미지메이킹 / 퍼스널컬러)', 
+    `shopName`           VARCHAR(50)     NOT NULL    COMMENT '업체명', 
+    `roadName`       VARCHAR(300)    NOT NULL    COMMENT '위치(도로명주소)',
+    `review`             VARCHAR(300)    NULL        COMMENT '리뷰', 
+    `photoUrl1`          VARCHAR(500)    NULL        COMMENT '사진 URL 1', 
+    `photoUrl2`          VARCHAR(500)    NULL        COMMENT '사진 URL 2', 
+    `photoUrl3`          VARCHAR(500)    NULL        COMMENT '사진 URL 3', 
+    `photoUrl4`          VARCHAR(500)   NULL        COMMENT '사진 URL 4', 
+    `photoUrl5`          VARCHAR(500)   NULL        COMMENT '사진 URL 5', 
+    `phoneNum`           VARCHAR(50)     NOT NULL    COMMENT '전화번호', 
+    `operateTime`        VARCHAR(300)     NULL        COMMENT '영업시간', 
+    `menu`               VARCHAR(300)            NULL        COMMENT '가격', 
+    `themeId`            INT             NULL        COMMENT '테마번호', 
+    `regDate`            VARCHAR(50)     NULL        COMMENT '등록날짜', 
+    `updateDate`         VARCHAR(50)     NULL        COMMENT '수정날짜', 
+    `delDate`            DATETIME        NULL        COMMENT '삭제날짜',
+    `delStatus`          TINYINT         NULL        COMMENT '삭제여부', 
+     PRIMARY KEY (id)
+);
+
+
+SELECT *
+FROM service_selfshop;

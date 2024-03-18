@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-<c:set var="pageTitle" value="#{board.code } CONSULTING LIST"></c:set>
+<c:set var="pageTitle" value="#{board.code } SELF LIST"></c:set>
 <%@ include file="../common/head.jspf"%>
 
 <style>
@@ -82,12 +82,16 @@
   height: 67.81px;
   text-align: center;
   color: black;
-  font-family: "Inria Serif", serif;
+  font-family: 'Pretendard-Regular';
   font-weight: 400;
   font-size: medium;
   display: flex;
   justify-content: space-around;
   align-items: center;
+}
+
+.Group42 .group42-small-box > div {
+  font-family: 'Pretendard-Regular';
 }
 
 .Group102 {
@@ -249,18 +253,12 @@
 
     <div class="Group101">
 
-      <div class="click-box">
-        <div class="Group41">
-          <div class="Rectangle35">
-            <div>♡ 관심</div>
-          </div>
-        </div>
-        <div class="Group97">
-          <div class="Rectangle35">
-            <div class="text-box"><img src="//velog.velcdn.com/images/jihyeon2434/post/ca6de2e7-1690-4f95-a522-50fdee8b9637/image.png">온라인 컨설팅 신청</div>
-          </div>
-        </div>
-      </div>
+    <div class="click-box">
+  <div class="Rectangle35">
+    <div>♡ 관심</div>
+  </div>
+</div>
+
 
       <div class="Group102">
 

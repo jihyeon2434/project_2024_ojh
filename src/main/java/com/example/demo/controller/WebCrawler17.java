@@ -146,15 +146,14 @@ public class WebCrawler17 {
 			// Get image URLs
 			List<String> imageUrls = new ArrayList<>();
 			try {
-				List<WebElement> imageElements = driver.findElements(By.xpath("//div[@class='K0PDV _div']"));
-				for (WebElement imgElement : imageElements) {
-					String styleAttribute = element.getAttribute("style");
-					String url = styleAttribute.split("url\\(")[1].split("\\)")[0].replaceAll("'", "").replaceAll("\"",
-							"");
-					imageUrls.add(url);
-				}
+			    List<WebElement> imageElements = driver.findElements(By.xpath("//div[@class='K0PDV _div']"));
+			    for (WebElement imgElement : imageElements) {
+			        String styleAttribute = imgElement.getAttribute("style");
+			        String url = styleAttribute.split("url\\(")[1].split("\\)")[0].replaceAll("'", "").replaceAll("\"", "");
+			        imageUrls.add(url);
+			    }
 			} catch (Exception ex) {
-				ex.printStackTrace();
+			    ex.printStackTrace();
 			}
 
 			// Create conShop object and add it to the list
