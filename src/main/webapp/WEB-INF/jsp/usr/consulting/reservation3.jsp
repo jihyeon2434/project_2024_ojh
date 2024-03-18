@@ -97,8 +97,8 @@
   font-size: large;
 }
 
-
 </style>
+
 <div class="outer-box">
   <div class="small-outer-box">
     <div class="title-box">
@@ -107,25 +107,23 @@
     </div>
     <div class="content-box">
       <div class="Group129">
+        <!-- 날짜 및 시간 정보 -->
         <div class="Rectangle62">
-          <div>2.26(월) 10:00</div>
-          <div class="time">일정 1:1 30 분 컨설팅</div>
+          <div>${param.date}</div> <!-- 날짜 정보 -->
+          <div class="time">${param.time}</div> <!-- 시간 정보 -->
         </div>
+        <!-- 결제 정보 -->
         <div class="price-box">
           <div class="price-title">결제 금액</div>
-          <div class="price">30,000원</div>
+          <div class="price">${param.consultingPrice}원</div> <!-- 가격 정보 -->
         </div>
-
       </div>
     </div>
 
     <div class="consulting-reservation">
       <div class="reservation-button">예약하기</div>
     </div>
-
   </div>
 </div>
-
-
 
 <%@ include file="../common/foot.jspf"%>

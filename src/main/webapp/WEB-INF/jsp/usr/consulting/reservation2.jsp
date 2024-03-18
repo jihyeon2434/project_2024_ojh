@@ -3,6 +3,13 @@
 <c:set var="pageTitle" value="#{board.code } ARTICLE LIST"></c:set>
 <%@ include file="../common/head.jspf"%>
 
+<!-- 여기에 선택한 날짜, 시간, 가격을 받아오는 로직을 작성합니다. -->
+<%
+    String selectedDate = request.getParameter("selectedDate");
+    String selectedTime = request.getParameter("selectedTime");
+    String selectedPrice = request.getParameter("selectedPrice");
+%>
+
 <style>
 .outer-box {
 	display: flex;
