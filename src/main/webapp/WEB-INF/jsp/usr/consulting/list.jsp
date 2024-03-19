@@ -337,7 +337,7 @@ font-size: 10px;
 		<div class=price-big-outer-box>
 		<div class="price-outer-box">
 				<div class="price-box">
-					<div class="price">가격</div>
+					<div class="price">가격(만원)</div>
 				</div>
 
 				<div class="price-option-box">

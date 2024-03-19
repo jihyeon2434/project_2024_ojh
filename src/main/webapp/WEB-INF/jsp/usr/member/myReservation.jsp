@@ -224,7 +224,7 @@ font-size: 13px;
   left: -30px;
 }
 
-.btn {
+.btn-1 {
   position: relative;
 }
 
@@ -337,7 +337,7 @@ font-size: 13px;
 </div>
 </div>
 
-<div class="btn">
+<div class="btn-1">
   <div class="modify-btn">수정</div>
   <div class="modifyBack-btn">취소</div>
 
