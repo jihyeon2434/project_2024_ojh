@@ -156,7 +156,6 @@
 	word-wrap: break-word"
 }
 
-
 .select-option {
 	font-size: 22px;
 	font-weight: 700;
@@ -225,7 +224,6 @@
 	background-color: rgba(239, 231, 229, 0.3); /* 불투명도 조정 */
 }
 
-
 .img-outer-box {
 	width: 1000px;
 	border: 1px solid black;
@@ -260,6 +258,7 @@
 	display: inline-block;
 	border: 0.5px solid #EFE7E5;
 	font-size: 15px;
+	font-weight: 5px;
 	padding: 5px;
 }
 
@@ -270,6 +269,7 @@
 .img-box-1 {
 	border: 0.5px solid #EFE7E5;
 	width: 300px; /* 각 항목의 너비 정의 */
+	height: 330px;
 	margin-top: 15px;
 	padding: 10px;
 	box-sizing: border-box; /* 너비에 패딩과 테두리를 포함 */
@@ -305,122 +305,119 @@
 	font-size: 10px;
 }
 
-.price-big-outer-box{
-height: 150px;
-
+.price-big-outer-box {
+	height: 150px;
 }
 
-.area-big-outer-box{
-height: 250px;
-
+.area-big-outer-box {
+	height: 250px;
 }
 
-.situation-big-outer-box{
-height: 150px;
-
+.situation-big-outer-box {
+	height: 150px;
 }
 
-
-.ok-outer-box{
-width: 235x;
-display: flex;
-justify-content: center;
-margin-top: 20px;
+.ok-outer-box {
+	width: 235x;
+	display: flex;
+	justify-content: center;
+	margin-top: 20px;
 }
 
-.time{
-font-size: 10px;
+.time {
+	font-size: 10px;
 }
-
 </style>
 <div class="outer-box">
 	<div class="small-outer-box">
 		<div class="search-box">
-		<div class=price-big-outer-box>
-		<div class="price-outer-box">
-				<div class="price-box">
-					<div class="price">가격(만원)</div>
-				</div>
-
-				<div class="price-option-box">
-					<div class="price-option-box-1">
-						<div class="price-1 btn btn-outline btn-sm">~7</div>
-						<div class="price-2 btn btn-outline btn-sm">~10</div>
+			<div class=price-big-outer-box>
+				<div class="price-outer-box">
+					<div class="price-box">
+						<div class="price">가격(만원)</div>
 					</div>
-					<div class="price-option-box-2">
-						<div class="price-3 btn btn-outline btn-sm">~20</div>
-						<div class="price-4 btn btn-outline btn-sm">30~</div>
+
+					<div class="price-option-box">
+						<div class="price-option-box-1">
+							<div class="price-1 btn btn-outline btn-sm">~7</div>
+							<div class="price-2 btn btn-outline btn-sm">~10</div>
+						</div>
+						<div class="price-option-box-2">
+							<div class="price-3 btn btn-outline btn-sm">~20</div>
+							<div class="price-4 btn btn-outline btn-sm">30~</div>
+						</div>
 					</div>
 				</div>
 			</div>
-		</div>
-			
+
 			<div class="line"></div>
 			<div class="area-big-outer-box">
-			<div class="area-outer-box">
+				<div class="area-outer-box">
 
-				<div class="area-box">
-					<div class="area">지역</div>
-				</div>
+					<div class="area-box">
+						<div class="area">지역</div>
+					</div>
 
-				<div class="area-outer-option-box">
-					<div class="area-option-box-1">
-						<div class="area-1 btn btn-outline btn-sm">서울</div>
-						<div class="area-2 btn btn-outline btn-sm">경기</div>
-						<div class="area-3 btn btn-outline btn-sm">인천</div>
-					</div>
-					<div class="area-option-box-2">
-						<div class="area-4 btn btn-outline btn-sm">세종</div>
-						<div class="area-5 btn btn-outline btn-sm">대전</div>
-						<div class="area-6 btn btn-outline btn-sm">충청</div>
-					</div>
-					<div class="area-option-box-3">
-						<div class="area-7 btn btn-outline btn-sm">부산</div>
-						<div class="area-8 btn btn-outline btn-sm">
-							광주 <br /> 전라
+					<div class="area-outer-option-box">
+						<div class="area-option-box-1">
+							<div class="area-1 btn btn-outline btn-sm">서울</div>
+							<div class="area-2 btn btn-outline btn-sm">경기</div>
+							<div class="area-3 btn btn-outline btn-sm">인천</div>
 						</div>
-						<div class="area-9 btn btn-outline btn-sm">
-							대구 <br /> 경상
+						<div class="area-option-box-2">
+							<div class="area-4 btn btn-outline btn-sm">세종</div>
+							<div class="area-5 btn btn-outline btn-sm">대전</div>
+							<div class="area-6 btn btn-outline btn-sm">충청</div>
+						</div>
+						<div class="area-option-box-3">
+							<div class="area-7 btn btn-outline btn-sm">부산</div>
+							<div class="area-8 btn btn-outline btn-sm">
+								광주
+								<br />
+								전라
+							</div>
+							<div class="area-9 btn btn-outline btn-sm">
+								대구
+								<br />
+								경상
+							</div>
+						</div>
+						<div class="area-option-box-4">
+							<div class="area-10 btn btn-outline btn-sm">강원</div>
+							<div class="area-11 btn btn-outline btn-sm">제주</div>
 						</div>
 					</div>
-					<div class="area-option-box-4">
-						<div class="area-10 btn btn-outline btn-sm">강원</div>
-						<div class="area-11 btn btn-outline btn-sm">제주</div>
-					</div>
-				</div>
 
+				</div>
 			</div>
-			</div>
-			
+
 			<div class="line"></div>
 			<div class="situation-big-outer-box">
-			<div class="situation-outer-box">
-				
-				<div class="situation-box">
-					<div class="situation">상황</div>
-				</div>
+				<div class="situation-outer-box">
 
-				<div class="situation-option-box">
-					<div class="situation-option-box-1">
-						<div class="situation-1 btn btn-outline btn-sm">일상</div>
-						<div class="situation-2 btn btn-outline btn-sm">비지니스</div>
-					</div>
-					<div class="situation-option-box-2">
-
-						<div class="situation-3 btn btn-outline btn-sm">소개팅</div>
-						<div class="situation-4 btn btn-outline btn-sm">면접</div>
+					<div class="situation-box">
+						<div class="situation">상황</div>
 					</div>
 
+					<div class="situation-option-box">
+						<div class="situation-option-box-1">
+							<div class="situation-1 btn btn-outline btn-sm">일상</div>
+							<div class="situation-2 btn btn-outline btn-sm">비지니스</div>
+						</div>
+						<div class="situation-option-box-2">
+
+							<div class="situation-3 btn btn-outline btn-sm">소개팅</div>
+							<div class="situation-4 btn btn-outline btn-sm">면접</div>
+						</div>
+
+					</div>
 				</div>
-			</div>
-		
+
 			</div>
 			<div class=ok-outer-box>
-			<div class="ok-btn btn btn-active btn-neutral">
-			확인
+				<div class="ok-btn btn btn-active btn-neutral">확인</div>
 			</div>
-			</div>
-			
+
 		</div>
 
 	</div>
@@ -428,14 +425,14 @@ font-size: 10px;
 
 		<div class="small-outer-box-2">
 
-			<div class="main-text">${rq.loginedMember.nickname }님만을 위한 추천 샵</div>
+			<div class="main-text">${rq.loginedMember.nickname }님만을위한추천 컨설팅 업체</div>
 
 			<div class="con-box">
 				<div class="menu-box">
 					<div class="theme">
 
-						<div class="img-making">헤어</div>
-						<div class="personal">메이크업</div>
+						<div class="img-making">이미지메이킹</div>
+						<div class="personal">퍼스널컬러</div>
 					</div>
 
 					<div class="line1"></div>
@@ -482,6 +479,7 @@ font-size: 10px;
 
 						<div class="recommend-1">별점이 높은</div>
 						<div class="recommend-2">가장 저렴한</div>
+						<div class="recommend-3">전문가가 친절한</div>
 					</div>
 
 					<div class="line1"></div>
@@ -491,8 +489,8 @@ font-size: 10px;
 					<div class="menu-box">
 						<div class="theme">
 
-							<div class="img-making">헤어</div>
-							<div class="personal">메이크업</div>
+							<div class="img-making">이미지메이킹</div>
+							<div class="personal">퍼스널컬러</div>
 						</div>
 
 						<div class="line1"></div>
@@ -511,18 +509,21 @@ font-size: 10px;
 
 								<%-- 페이지에 표시될 가게 정보를 추출하여 표시 --%>
 								<c:forEach var="i" begin="${startIndex}" end="${endIndex}">
-									<c:set var="shop" value="${shopInfoList[i]}" />
-									<div class="img-box-1">
-									<a href="detail?id=${shop.id }">
-										<div class="sm-img-outer-box">
-											<div class="img">
-												<img class="banner" style="width: 290px; height: 263px" src="${shop.photoUrl1}" />
-											</div>
-											<div class="store">${shop.shopName}</div>
-											<div class="time">${shop.roadName}</div>
+									<c:if test="${i < fn:length(shopInfoList)}">
+										<!-- shopInfoList의 길이를 확인하여 유효한 인덱스인지 검사합니다 -->
+										<c:set var="shop" value="${shopInfoList[i]}" />
+										<div class="img-box-1">
+											<a href="detail?id=${shop.id }">
+												<div class="sm-img-outer-box">
+													<div class="img">
+														<img class="banner" style="width: 290px; height: 263px" src="${shop.photoUrl1}" />
+													</div>
+													<div class="store">${shop.shopName}</div>
+													<div class="time">${shop.roadName}</div>
+												</div>
+											</a>
 										</div>
-										</a>
-									</div>
+									</c:if>
 								</c:forEach>
 							</div>
 
@@ -544,8 +545,11 @@ font-size: 10px;
 									<%-- 다음 페이지 버튼 --%>
 									<c:if test="${page < pagesCount}">
 										<a class="btn btn-xs"
-											href="?boardId=${boardId}&searchKeywordTypeCode=${searchKeywordTypeCode}&searchKeyword=${searchKeyword}&page=${page + 1}">&gt;</a>
+											href="?boardId=${boardId}&searchKeywordTypeCode=${searchKeywordTypeCode}&searchKeyword=${searchKeyword}&page=${page+1}">&gt;</a>
 									</c:if>
+									
+									
+
 								</div>
 							</div>
 						</div>
@@ -561,5 +565,17 @@ font-size: 10px;
 
 </div>
 
+<script>
+  // 페이지 변수 설정
+  var totalShops = ${fn:length(shopInfoList)};
+  var pageSize = 9;
+  var pagesCount = Math.ceil(totalShops / pageSize);
+  var currentPage = ${param.page != null ? param.page : 1};
+
+  // 마지막 페이지인 경우 다음 페이지 버튼을 숨김
+  if (currentPage === pagesCount) {
+    document.querySelector('.pagination-container .pagination').lastElementChild.style.display = 'none';
+  }
+</script>
 
 <%@ include file="../common/foot.jspf"%>
