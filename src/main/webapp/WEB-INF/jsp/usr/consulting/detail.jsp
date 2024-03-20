@@ -82,7 +82,7 @@
   height: 67.81px;
   text-align: center;
   color: black;
-  font-family: "Inria Serif", serif;
+font-family: 'Pretendard-Regular';
   font-weight: 400;
   font-size: medium;
   display: flex;
@@ -162,7 +162,7 @@
 .info-content-box {
   width: 800px;
   height: 720px;
-  border: 1px solid;
+  border: 1px solid #EFE7E5;
   padding-left: 20px;
 }
 
