@@ -88,6 +88,8 @@
 	display: flex;
 	justify-content: space-around;
 	align-items: center;
+	border: 3px solid blue;
+	position: relative;
 }
 
 .Group102 {
@@ -144,42 +146,45 @@
 	width: 1000px;
 	display: flex;
 	justify-content: center;
+	border: 3px solid red;
 }
 
 .info-content-outer-box {
 	width: 1000px;
-	height: 67.81px;
+	height: 800px;
 	display: flex;
 	justify-content: center;
-	    flex-direction: column;
+	flex-direction: column;
+	border: 7px solid pink;
 }
 
 .info-content-box {
-    width: 800px;
-    height: 720px;
-    border: 1px solid #EFE7E5;
-    padding-left: 20px;
+	width: 1000px;
+	height: 800px;
+	border: 3px solid green;
+	padding-left: 20px;
 }
 
 .info-content-portfolio {
-    width: 800px;
-    height: 720px;
-    border: 1px solid #EFE7E5;
-    padding-left: 20px;
+	width: 1000px;
+	height: 720px;
+	border: 3px solid green;
+	padding-left: 20px;
 }
 
 .info-content-review {
-    width: 800px;
-    height: 720px;
-    border: 1px solid #EFE7E5;
-    padding-left: 20px;
+	width: 800px;
+	height: 720px;
+	border: 1px solid #EFE7E5;
+	padding-left: 20px;
+	border: 3px solid green;
 }
-
 
 .info-box {
 	height: 60px;
-	display: flex; /* 자식 요소를 플렉스 항목으로 만듭니다. */
+	display: block; /* 자식 요소를 플렉스 항목으로 만듭니다. */
 	align-items: center; /* 수직 가운데 정렬 */
+	border: 3px solid orange;
 }
 
 .info-img {
@@ -240,14 +245,17 @@
 	font-weight: bold;
 	cursor: pointer;
 }
+
+.info-content-portfolio {
+	
+}
 </style>
 
 <div class="outer-box">
 	<div class="small-outer-box">
 
 		<div class="img-box">
-			<img class="img1" src="${shop.photoUrl2}" />
-			<img class="img1" src="${shop.photoUrl3}" />
+			<img class="img1" src="${shop.photoUrl2}" /> <img class="img1" src="${shop.photoUrl3}" />
 		</div>
 		<div class="shop-info-box">
 			<div class="Group96">
@@ -272,7 +280,7 @@
 					<div class="infotop-small-box">
 						<div class="Group42">
 							<div class="group42-small-box">
-								<button class="info">정보</button>
+								<button class="information">정보</button>
 								<button class="portfolio">포트폴리오</button>
 								<button class="review">후기</button>
 							</div>
@@ -309,33 +317,33 @@
 									<!-- 이 부분이 추가된 부분입니다 -->
 								</div>
 							</div>
-							
-						
-						</div>
+
+
+
 
 							<!-- 포트폴리오 -->
-              <div class="info-content-portfolio" style="display: none;">
-                <!-- 포트폴리오 내용을 표시할 공간 -->
-                <div class="info-box">
-                  <div class="info-img">
-                    <img src="//velog.velcdn.com/images/jihyeon2434/post/be21fa1d-ca66-4249-b330-499a19a0d24b/image.png" alt="">
-                  </div>
-                  <div class="info">안녕..</div>
-                </div>
-              </div>
-
-						<!-- 후기 내용 -->
-						<div class="info-content-review">
-							<!-- 후기 내용을 표시할 공간 -->
-							<div class="info-box">
-								<div class="info-img">
-									<img src="//velog.velcdn.com/images/jihyeon2434/post/7b298eae-ecbc-4b82-9a7e-e47ed79e5d72/image.png" alt="">
+							<div class="info-content-portfolio" style="display: none;">
+								<!-- 포트폴리오 내용을 표시할 공간 -->
+								<div class="info-box">
+									<div class="info-img">
+										<img src="//velog.velcdn.com/images/jihyeon2434/post/be21fa1d-ca66-4249-b330-499a19a0d24b/image.png" alt="">
+									</div>
+									<div class="info">안녕..</div>
 								</div>
-								<div class="info" id="operateTime"></div>
 							</div>
+
+							<!-- 후기 내용 -->
+							<div class="info-content-review">
+								<!-- 후기 내용을 표시할 공간 -->
+								<div class="info-box">
+									<div class="info-img">
+										<img src="//velog.velcdn.com/images/jihyeon2434/post/7b298eae-ecbc-4b82-9a7e-e47ed79e5d72/image.png" alt="">
+									</div>
+									<div class="info" id="operateTime">gg</div>
+								</div>
+							</div>
+
 						</div>
-
-
 
 
 					</div>
@@ -450,39 +458,72 @@
 </script>
 
 <script>
-//정보 버튼 클릭 시 해당 내용 표시
-// 정보 버튼 클릭 시 해당 내용 표시
-document.querySelector('.info').addEventListener('click', function() {
-    // 모든 내용 숨기기
-    document.querySelectorAll('.info-content-box, .info-content-portfolio, .info-content-review').forEach(function(box) {
-        box.style.display = 'none';
-    });
-    // 정보 내용 표시
-    document.querySelector('.info-content-box').style.display = 'flex';
-});
+	//정보 버튼 클릭 시 해당 내용 표시
+	// 정보 버튼 클릭 시 해당 내용 표시
+	document
+			.querySelector('.information')
+			.addEventListener(
+					'click',
+					function() {
+						// 모든 내용 숨기기
+						document
+								.querySelectorAll(
+										'.info-content-box, .info-content-portfolio, .info-content-review')
+								.forEach(function(box) {
+									box.style.display = 'none';
+								});
+						// 정보 내용 표시
+						document.querySelector('.info-content-box').style.display = 'flex';
+					});
 
-// 포트폴리오 버튼 클릭 시 해당 내용 표시
-document.querySelector('.portfolio').addEventListener('click', function() {
-    // 모든 내용 숨기기
-    document.querySelectorAll('.info-content-box, .info-content-portfolio, .info-content-review').forEach(function(box) {
-        box.style.display = 'none';
-    });
-    // 포트폴리오 내용 표시
-    document.querySelector('.info-content-portfolio').style.display = 'flex';
-});
+	// 포트폴리오 버튼 클릭 시 해당 내용 표시
+	document
+			.querySelector('.portfolio')
+			.addEventListener(
+					'click',
+					function() {
+						// 모든 내용 숨기기
+						document
+								.querySelectorAll(
+										'.info-content-box, .info-content-portfolio, .info-content-review')
+								.forEach(function(box) {
+									box.style.display = 'none';
+								});
+						// 포트폴리오 내용 표시
+						document.querySelector('.info-content-portfolio').style.display = 'flex';
+					});
 
-// 후기 버튼 클릭 시 해당 내용 표시
-document.querySelector('.review').addEventListener('click', function() {
-    // 모든 내용 숨기기
-    document.querySelectorAll('.info-content-box, .info-content-portfolio, .info-content-review').forEach(function(box) {
-        box.style.display = 'none';
-    });
-    // 후기 내용 표시
-    document.querySelector('.info-content-review').style.display = 'flex';
-});
+	// 후기 버튼 클릭 시 해당 내용 표시
+	document
+			.querySelector('.review')
+			.addEventListener(
+					'click',
+					function() {
+						// 모든 내용 숨기기
+						document
+								.querySelectorAll(
+										'.info-content-box, .info-content-portfolio, .info-content-review')
+								.forEach(function(box) {
+									box.style.display = 'none';
+								});
+						// 후기 내용 표시
+						document.querySelector('.info-content-review').style.display = 'flex';
+					});
+</script>
 
-
-
-
+<script>
+	// 페이지 로드 시 포트폴리오와 리뷰를 제외한 정보만 표시
+	document
+			.addEventListener(
+					'DOMContentLoaded',
+					function() {
+						document
+								.querySelectorAll(
+										'.info-content-box, .info-content-portfolio, .info-content-review')
+								.forEach(function(box) {
+									box.style.display = 'none';
+								});
+						document.querySelector('.info-content-box').style.display = 'flex'; // 정보 내용 표시
+					});
 </script>
 <%@ include file="../common/foot.jspf"%>
