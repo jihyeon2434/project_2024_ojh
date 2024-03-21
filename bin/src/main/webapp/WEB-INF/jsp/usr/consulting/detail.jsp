@@ -82,7 +82,7 @@
   height: 67.81px;
   text-align: center;
   color: black;
-  font-family: "Inria Serif", serif;
+font-family: 'Pretendard-Regular';
   font-weight: 400;
   font-size: medium;
   display: flex;
@@ -162,7 +162,7 @@
 .info-content-box {
   width: 800px;
   height: 720px;
-  border: 1px solid;
+  border: 1px solid #EFE7E5;
   padding-left: 20px;
 }
 
@@ -256,9 +256,11 @@
           </div>
         </div>
         <div class="Group97">
+          <a href="../consulting/reservation2">
           <div class="Rectangle35">
             <div class="text-box"><img src="//velog.velcdn.com/images/jihyeon2434/post/ca6de2e7-1690-4f95-a522-50fdee8b9637/image.png">온라인 컨설팅 신청</div>
           </div>
+          </a>
         </div>
       </div>
 

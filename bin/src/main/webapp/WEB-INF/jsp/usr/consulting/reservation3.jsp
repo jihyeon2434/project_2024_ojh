@@ -119,9 +119,11 @@
       </div>
     </div>
 
-    <div class="consulting-reservation">
-      <div class="reservation-button">예약하기</div>
-    </div>
+  <div class="consulting-reservation">
+			<a href="../member/myReservation">
+				<div class="reservation-button">예약하기</div>
+			</a>
+		</div>
 
   </div>
 </div>
