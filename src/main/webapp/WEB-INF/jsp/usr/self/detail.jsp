@@ -20,6 +20,15 @@
 
 
 <style>
+<
+style> /* CSS 스타일은 여기에 작성합니다 */ .hidden {
+	display: none;
+}
+</style>
+</head>
+
+
+<style>
 .outer-box {
 	margin-top: 50px;
 	width: auto;
@@ -259,7 +268,34 @@
 	font-weight: bold;
 	cursor: pointer;
 }
+
+.img-box-1 {
+	border: 0.5px solid #EFE7E5;
+	width: 900px; /* 각 항목의 너비 정의 */
+	height: 530px;
+	margin-top: 15px;
+	padding: 10px;
+	box-sizing: border-box; /* 너비에 패딩과 테두리를 포함 */
+	border: 3px solid green;
+	display: flex;
+}
+
+.sm-img-outer-box {
+	border: 3px solid red;
+	width: 300px;
+	height: 300px;
+	display: flex; /* 요소들을 가로로 배열하기 위해 flex 사용 */
+	flex-wrap: wrap; /* 요소들이 한 줄에 넘칠 때 줄 바꿈 */
+	justify-content: space-between; /* 요소들을 간격을 벌리면서 가로로 정렬 */
+}
+
+.img {
+	width: 290px; /* 각 이미지 요소의 너비 */
+	height: 263px; /* 각 이미지 요소의 높이 */
+	margin-bottom: 10px; /* 이미지 요소들 간의 아래 여백 */
+}
 </style>
+
 
 <div class="outer-box">
 	<div class="small-outer-box">
@@ -327,7 +363,7 @@
 										</div>
 										<div class="info">${shop.phoneNum}</div>
 									</div>
-									
+
 									<div class="info-box">
 										<div class="info-img">
 											<img src="//velog.velcdn.com/images/jihyeon2434/post/4be9d909-b32d-4d8c-8ae0-9dd6177115a1/image.png" alt="">
@@ -340,18 +376,66 @@
 										</c:if>
 									</div>
 
-
 								</div>
 							</div>
 
-							<!-- 포트폴리오 섹션 -->
 							<div class="info-content-portfolio hidden">
 								<!-- 포트폴리오 내용을 표시할 공간 -->
-								<div class="info-box">
-									<div class="info-img">
-										<img src="//velog.velcdn.com/images/jihyeon2434/post/be21fa1d-ca66-4249-b330-499a19a0d24b/image.png" alt="">
+								<div class="img-box-1">
+									<!-- 첫 번째 줄 -->
+									<div>
+										<div class="sm-img-outer-box">
+											<div class="img">
+												<img class="banner" style="width: 290px; height: 263px" src="${shop.photoUrl1}" />
+											</div>
+										</div>
+										<div class="sm-img-outer-box">
+											<div class="img">
+												<img class="banner" style="width: 290px; height: 263px" src="${shop.photoUrl2}" />
+											</div>
+										</div>
+										<div class="sm-img-outer-box">
+											<div class="img">
+												<img class="banner" style="width: 290px; height: 263px" src="${shop.photoUrl3}" />
+											</div>
+										</div>
 									</div>
-									<div class="info">안녕..</div>
+									<!-- 두 번째 줄 -->
+									<div>
+										<div class="sm-img-outer-box">
+											<div class="img">
+												<img class="banner" style="width: 290px; height: 263px" src="${shop.photoUrl4}" />
+											</div>
+										</div>
+										<div class="sm-img-outer-box">
+											<div class="img">
+												<img class="banner" style="width: 290px; height: 263px" src="${shop.photoUrl5}" />
+											</div>
+										</div>
+										<div class="sm-img-outer-box">
+											<div class="img">
+												<img class="banner" style="width: 290px; height: 263px" src="${shop.photoUrl5}" />
+											</div>
+										</div>
+									</div>
+									<!-- 세 번째 줄 -->
+									<div>
+										<div class="sm-img-outer-box">
+											<div class="img">
+												<img class="banner" style="width: 290px; height: 263px" src="${shop.photoUrl5}" />
+											</div>
+										</div>
+										<div class="sm-img-outer-box">
+											<div class="img">
+												<img class="banner" style="width: 290px; height: 263px" src="${shop.photoUrl5}" />
+											</div>
+										</div>
+										<div class="sm-img-outer-box">
+											<div class="img">
+												<img class="banner" style="width: 290px; height: 263px" src="${shop.photoUrl5}" />
+											</div>
+										</div>
+									</div>
 								</div>
 							</div>
 
@@ -373,6 +457,10 @@
 	</div>
 </div>
 
+</body>
+
+</html>
+<%@ include file="../common/foot.jspf"%>
 
 
 
