@@ -6,16 +6,16 @@
 
 <html lang="ko">
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Shop Information</title>
-    <style>
-        /* CSS 스타일은 여기에 작성합니다 */
-        .hidden {
-            display: none;
-        }
-    </style>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Shop Information</title>
+<style>
+/* CSS 스타일은 여기에 작성합니다 */
+.hidden {
+	display: none;
+}
+</style>
 </head>
 
 
@@ -259,111 +259,118 @@
 	font-weight: bold;
 	cursor: pointer;
 }
-
-
 </style>
 
 <div class="outer-box">
-    <div class="small-outer-box">
+	<div class="small-outer-box">
 
-        <!-- 이미지 박스 -->
-        <div class="img-box">
-            <img class="img1" src="${shop.photoUrl2}" />
-            <img class="img1" src="${shop.photoUrl3}" />
-        </div>
+		<!-- 이미지 박스 -->
+		<div class="img-box">
+			<img class="img1" src="${shop.photoUrl2}" /> <img class="img1" src="${shop.photoUrl3}" />
+		</div>
 
-        <!-- 가게 정보 -->
-        <div class="shop-info-box">
-            <div class="Group96">
-                <div class="name">${shop.shopName}</div>
-                <div class="score">★4.96(420)</div>
-            </div>
-        </div>
+		<!-- 가게 정보 -->
+		<div class="shop-info-box">
+			<div class="Group96">
+				<div class="name">${shop.shopName}</div>
+				<div class="score">★4.96(420)</div>
+			</div>
+		</div>
 
-        <!-- 관심 버튼 -->
-        <div class="Group101">
-            <div class="click-box">
-                <div class="Rectangle35">
-                    <div>♡ 관심</div>
-                </div>
-            </div>
+		<!-- 관심 버튼 -->
+		<div class="Group101">
+			<div class="click-box">
+				<div class="Rectangle35">
+					<div>♡ 관심</div>
+				</div>
+			</div>
 
-            <!-- 정보, 포트폴리오, 후기 버튼 그룹 -->
-            <div class="Group102">
-                <div class="info-top-bar">
-                    <div class="infotop-small-box">
-                        <div class="Group42">
-                            <div class="group42-small-box">
-                                <button class="information">정보</button>
-                                <button class="portfolio">포트폴리오</button>
-                                <button class="review">후기</button>
-                            </div>
-                        </div>
-                        <div class="line-box">
-                            <div class="Line5"></div>
-                        </div>
-                        <div class="info-content-outer-box">
-                            <!-- 정보 섹션 -->
-                            <div class="info-content-box">
-                                <div>
-                                    <div class="info-box">
-                                        <div class="info-img">
-                                            <img src="//velog.velcdn.com/images/jihyeon2434/post/be21fa1d-ca66-4249-b330-499a19a0d24b/image.png" alt="">
-                                        </div>
-                                        <div class="info">${shop.roadName}</div>
-                                    </div>
-                                    <div class="info-box">
-                                        <div class="info-img">
-                                            <img src="//velog.velcdn.com/images/jihyeon2434/post/7b298eae-ecbc-4b82-9a7e-e47ed79e5d72/image.png" alt="">
-                                        </div>
-                                        <div>${shop.operateTime}</div>
-                                        <div class="info" id="operateTime">${shop.operateTime ? shop.operateTime : '운영시간: 정보없음'}</div>
-                                    </div>
-                                    <div class="info-box">
-                                        <div class="info-img">
-                                            <img src="//velog.velcdn.com/images/jihyeon2434/post/1dbfa1f4-abf8-43e3-bc51-17cf5d175fad/image.png" alt="">
-                                        </div>
-                                        <div class="info">${shop.phoneNum}</div>
-                                    </div>
-                                    <div class="info-box" id="optionDiv">
-                                        <div class="info-img">
-                                            <img src="//velog.velcdn.com/images/jihyeon2434/post/4be9d909-b32d-4d8c-8ae0-9dd6177115a1/image.png" alt="">
-                                        </div>
-                                        <div class="option">
-                                            <!-- 여기에 메뉴 항목이 표시됩니다 -->
-                                        </div>
-                                        <!-- 이 부분이 추가된 부분입니다 -->
-                                    </div>
-                                </div>
-                            </div>
+			<!-- 정보, 포트폴리오, 후기 버튼 그룹 -->
+			<div class="Group102">
+				<div class="info-top-bar">
+					<div class="infotop-small-box">
+						<div class="Group42">
+							<div class="group42-small-box">
+								<button class="information">정보</button>
+								<button class="portfolio">포트폴리오</button>
+								<button class="review">후기</button>
+							</div>
+						</div>
+						<div class="line-box">
+							<div class="Line5"></div>
+						</div>
+						<div class="info-content-outer-box">
+							<!-- 정보 섹션 -->
+							<div class="info-content-box">
+								<div>
+									<div class="info-box">
+										<div class="info-img">
+											<img src="//velog.velcdn.com/images/jihyeon2434/post/be21fa1d-ca66-4249-b330-499a19a0d24b/image.png" alt="">
+										</div>
+										<div class="info">${shop.roadName}</div>
+									</div>
+									<div class="info-box">
+										<div class="info-img">
+											<img src="//velog.velcdn.com/images/jihyeon2434/post/7b298eae-ecbc-4b82-9a7e-e47ed79e5d72/image.png" alt="">
+										</div>
+										<c:if test="${not empty shop.operateTime}">
+											<div class="info">${shop.operateTime}</div>
+										</c:if>
+										<c:if test="${empty shop.operateTime}">
+											<div class="info">운영시간: 정보없음</div>
+										</c:if>
+									</div>
 
-                            <!-- 포트폴리오 섹션 -->
-                            <div class="info-content-portfolio hidden">
-                                <!-- 포트폴리오 내용을 표시할 공간 -->
-                                <div class="info-box">
-                                    <div class="info-img">
-                                        <img src="//velog.velcdn.com/images/jihyeon2434/post/be21fa1d-ca66-4249-b330-499a19a0d24b/image.png" alt="">
-                                    </div>
-                                    <div class="info">안녕..</div>
-                                </div>
-                            </div>
+									<div class="info-box">
+										<div class="info-img">
+											<img src="//velog.velcdn.com/images/jihyeon2434/post/1dbfa1f4-abf8-43e3-bc51-17cf5d175fad/image.png" alt="">
+										</div>
+										<div class="info">${shop.phoneNum}</div>
+									</div>
+									
+									<div class="info-box">
+										<div class="info-img">
+											<img src="//velog.velcdn.com/images/jihyeon2434/post/4be9d909-b32d-4d8c-8ae0-9dd6177115a1/image.png" alt="">
+										</div>
+										<c:if test="${not empty shop.menu}">
+											<div class="info">${shop.menu}</div>
+										</c:if>
+										<c:if test="${empty shop.menu}">
+											<div class="info">정보없음</div>
+										</c:if>
+									</div>
 
-                            <!-- 후기 섹션 -->
-                            <div class="info-content-review hidden">
-                                <!-- 후기 내용을 표시할 공간 -->
-                                <div class="info-box">
-                                    <div class="info-img">
-                                        <img src="//velog.velcdn.com/images/jihyeon2434/post/7b298eae-ecbc-4b82-9a7e-e47ed79e5d72/image.png" alt="">
-                                    </div>
-                                    <div class="info" id="operateTime">gg</div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
+
+								</div>
+							</div>
+
+							<!-- 포트폴리오 섹션 -->
+							<div class="info-content-portfolio hidden">
+								<!-- 포트폴리오 내용을 표시할 공간 -->
+								<div class="info-box">
+									<div class="info-img">
+										<img src="//velog.velcdn.com/images/jihyeon2434/post/be21fa1d-ca66-4249-b330-499a19a0d24b/image.png" alt="">
+									</div>
+									<div class="info">안녕..</div>
+								</div>
+							</div>
+
+							<!-- 후기 섹션 -->
+							<div class="info-content-review hidden">
+								<!-- 후기 내용을 표시할 공간 -->
+								<div class="info-box">
+									<div class="info-img">
+										<img src="//velog.velcdn.com/images/jihyeon2434/post/7b298eae-ecbc-4b82-9a7e-e47ed79e5d72/image.png" alt="">
+									</div>
+									<div class="info" id="operateTime">gg</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
 </div>
 
 
@@ -371,26 +378,30 @@
 
 <%-- 여기에 JavaScript 코드를 작성합니다 --%>
 <script>
-    // 정보, 포트폴리오, 후기 버튼 클릭 시 해당 섹션을 표시하도록 설정
-    document.querySelector('.information').addEventListener('click', function() {
-        showSection('.info-content-box');
-    });
+	// 정보, 포트폴리오, 후기 버튼 클릭 시 해당 섹션을 표시하도록 설정
+	document.querySelector('.information').addEventListener('click',
+			function() {
+				showSection('.info-content-box');
+			});
 
-    document.querySelector('.portfolio').addEventListener('click', function() {
-        showSection('.info-content-portfolio');
-    });
+	document.querySelector('.portfolio').addEventListener('click', function() {
+		showSection('.info-content-portfolio');
+	});
 
-    document.querySelector('.review').addEventListener('click', function() {
-        showSection('.info-content-review');
-    });
+	document.querySelector('.review').addEventListener('click', function() {
+		showSection('.info-content-review');
+	});
 
-    // 섹션을 표시하도록 하는 함수
-    function showSection(sectionClass) {
-        document.querySelectorAll('.info-content-box, .info-content-portfolio, .info-content-review').forEach(function(box) {
-            box.classList.add('hidden');
-        });
-        document.querySelector(sectionClass).classList.remove('hidden');
-    }
+	// 섹션을 표시하도록 하는 함수
+	function showSection(sectionClass) {
+		document
+				.querySelectorAll(
+						'.info-content-box, .info-content-portfolio, .info-content-review')
+				.forEach(function(box) {
+					box.classList.add('hidden');
+				});
+		document.querySelector(sectionClass).classList.remove('hidden');
+	}
 </script>
 </body>
 </html>
