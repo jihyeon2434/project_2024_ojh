@@ -3,8 +3,8 @@
 <c:set var="pageTitle" value="#{board.code } SELF LIST"></c:set>
 <%@ include file="../common/head.jspf"%>
 
-
 <html lang="ko">
+
 <head>
 <meta charset="UTF-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -18,7 +18,6 @@
 </style>
 </head>
 
-
 <style>
 <
 style> /* CSS 스타일은 여기에 작성합니다 */ .hidden {
@@ -26,7 +25,6 @@ style> /* CSS 스타일은 여기에 작성합니다 */ .hidden {
 }
 </style>
 </head>
-
 
 <style>
 .outer-box {
@@ -151,8 +149,10 @@ style> /* CSS 스타일은 여기에 작성합니다 */ .hidden {
 	text-align: center;
 	font-size: small;
 	display: flex;
-	justify-content: center; /* 가로 중앙 정렬 */
-	align-items: center; /* 세로 중앙 정렬 */
+	justify-content: center;
+	/* 가로 중앙 정렬 */
+	align-items: center;
+	/* 세로 중앙 정렬 */
 }
 
 .Rectangle35 img {
@@ -201,14 +201,17 @@ style> /* CSS 스타일은 여기에 작성합니다 */ .hidden {
 	width: 1000px;
 	height: 800px;
 	border: 1px solid #EFE7E5;
-	padding-left: 20px;
+	padding-left: 10px;
+	padding-right: 10px;
 	border: 3px solid green;
 }
 
 .info-box {
 	height: 60px;
-	display: flex; /* 수정: 세로 정렬을 위해 flex로 변경 */
-	align-items: center; /* 수직 가운데 정렬 */
+	display: flex;
+	/* 수정: 세로 정렬을 위해 flex로 변경 */
+	align-items: center;
+	/* 수직 가운데 정렬 */
 	border: 3px solid orange;
 }
 
@@ -216,7 +219,8 @@ style> /* CSS 스타일은 여기에 작성합니다 */ .hidden {
 	width: 30px;
 	height: 28px;
 	text-align: center;
-	margin-right: 10px; /* 추가: 이미지와 텍스트 간격 조정 */
+	margin-right: 10px;
+	/* 추가: 이미지와 텍스트 간격 조정 */
 }
 
 .info {
@@ -230,9 +234,11 @@ style> /* CSS 스타일은 여기에 작성합니다 */ .hidden {
 .option {
 	width: 770px;
 	height: 400px;
-	display: inline-block; /* 한 줄에 위치하도록 설정 */
+	display: inline-block;
+	/* 한 줄에 위치하도록 설정 */
 	font-size: 17px;
-	margin-top: 0; /* 수정: 상단 마진 제거 */
+	margin-top: 0;
+	/* 수정: 상단 마진 제거 */
 }
 
 .img-box .img1 {
@@ -248,10 +254,13 @@ style> /* CSS 스타일은 여기에 작성합니다 */ .hidden {
 	position: fixed;
 	top: 50%;
 	left: 50%;
-	transform: translate(-50%, -50%); /* 정중앙으로 이동 */
+	transform: translate(-50%, -50%);
+	/* 정중앙으로 이동 */
 	background-color: rgba(0, 0, 0, 0.8);
-	z-index: 9999; /* 다른 요소 위에 위치하도록 설정 */
-	display: none; /* 초기에는 숨김 */
+	z-index: 9999;
+	/* 다른 요소 위에 위치하도록 설정 */
+	display: none;
+	/* 초기에는 숨김 */
 }
 
 .modal-content {
@@ -271,11 +280,13 @@ style> /* CSS 스타일은 여기에 작성합니다 */ .hidden {
 
 .img-box-1 {
 	border: 0.5px solid #EFE7E5;
-	width: 900px; /* 각 항목의 너비 정의 */
+	width: 900px;
+	/* 각 항목의 너비 정의 */
 	height: 530px;
 	margin-top: 15px;
 	padding: 10px;
-	box-sizing: border-box; /* 너비에 패딩과 테두리를 포함 */
+	box-sizing: border-box;
+	/* 너비에 패딩과 테두리를 포함 */
 	border: 3px solid green;
 	display: flex;
 }
@@ -284,18 +295,76 @@ style> /* CSS 스타일은 여기에 작성합니다 */ .hidden {
 	border: 3px solid red;
 	width: 300px;
 	height: 300px;
-	display: flex; /* 요소들을 가로로 배열하기 위해 flex 사용 */
-	flex-wrap: wrap; /* 요소들이 한 줄에 넘칠 때 줄 바꿈 */
-	justify-content: space-between; /* 요소들을 간격을 벌리면서 가로로 정렬 */
+	display: flex;
+	/* 요소들을 가로로 배열하기 위해 flex 사용 */
+	flex-wrap: wrap;
+	/* 요소들이 한 줄에 넘칠 때 줄 바꿈 */
+	justify-content: space-between;
+	/* 요소들을 간격을 벌리면서 가로로 정렬 */
 }
 
 .img {
-	width: 290px; /* 각 이미지 요소의 너비 */
-	height: 263px; /* 각 이미지 요소의 높이 */
-	margin-bottom: 10px; /* 이미지 요소들 간의 아래 여백 */
+	width: 290px;
+	/* 각 이미지 요소의 너비 */
+	height: 263px;
+	/* 각 이미지 요소의 높이 */
+	margin-bottom: 10px;
+	/* 이미지 요소들 간의 아래 여백 */
+}
+
+.write-box {
+	border: 3px solid purple;
+	display: flex;
+	justify-content: flex-end;
+}
+
+.write {
+	border-radius: 5px;
+	width: 100px;
+	align-items: center;
+	margin-right: 100px;
+	margin-top: 15px;
+	margin-bottom: 15px;
+	padding: 5px;
+	text-align: center;
+	/* Quirks Mode 를 위한 가운데 정렬 */
+	background-color: #efefef;
+}
+
+.review-head-title {
+	font-size: 20px;
+	font-weight: 600;
+	padding-bottom: 20px;
+	padding-top: 20px;
+}
+
+.review-title {
+	font-weight: 600;
+	font-size: 18px;
+}
+
+.review-body {
+	width: 700px;
+	height: 100px;
+	border: 3px solid;
+}
+
+.review-outer-box {
+	border: 3px solid;
+	width: 900px;
+}
+
+.review-line {
+	border: 1px solid;
+	width: 970px;
+}
+
+.member-date-box > div {
+	width: 100px;
+	border: 1px solid red;
+	display: inline-block;
 }
 </style>
-
 
 <div class="outer-box">
 	<div class="small-outer-box">
@@ -442,11 +511,61 @@ style> /* CSS 스타일은 여기에 작성합니다 */ .hidden {
 							<!-- 후기 섹션 -->
 							<div class="info-content-review hidden">
 								<!-- 후기 내용을 표시할 공간 -->
-								<div class="info-box">
-									<div class="info-img">
-										<img src="//velog.velcdn.com/images/jihyeon2434/post/7b298eae-ecbc-4b82-9a7e-e47ed79e5d72/image.png" alt="">
-									</div>
-									<div class="info" id="operateTime">gg</div>
+								<div class="write-box">
+									<div class="write">글쓰기</div>
+								</div>
+								<div class="review-head-title">고객 리뷰</div>
+
+								<div class="review-outer-box">
+
+
+
+									<c:forEach var="review" items="${reviews }">
+										<div class="review-small-box">
+											<div class="review-title">
+												<a href="detail?id=${review.shopId }">${review.title }</a>
+											</div>
+											<div class="review-star">${review.starPoint }</div>
+
+											<div class="review-body">${review.body }</div>
+											<div class="member-date-box">
+												<div>${review.memberId }</div>
+												<div>${review.regDate.substring(0,10) }</div>
+											</div>
+
+											<div class="review-line"></div>
+										</div>
+
+
+
+									</c:forEach>
+
+								</div>
+
+								<!-- 	동적 페이징 -->
+								<div class="pagination flex justify-center mt-3">
+									<c:set var="paginationLen" value="3" />
+									<c:set var="startPage" value="${page -  paginationLen  >= 1 ? page - paginationLen : 1}" />
+									<c:set var="endPage" value="${page +  paginationLen  <= pagesCount ? page + paginationLen : pagesCount}" />
+
+									<c:set var="baseUri" value="?boardId=${boardId }" />
+									<c:set var="baseUri" value="${baseUri }&searchKeywordTypeCode=${searchKeywordTypeCode}" />
+									<c:set var="baseUri" value="${baseUri }&searchKeyword=${searchKeyword}" />
+
+									<c:if test="${startPage > 1 }">
+										<a class="btn btn-sm" href="${baseUri }&page=1">1</a>
+										<button class="btn btn-sm btn-disabled">...</button>
+									</c:if>
+
+									<c:forEach begin="${startPage }" end="${endPage }" var="i">
+										<a class="btn btn-sm ${param.page == i ? 'btn-active' : '' }" href="${baseUri }&page=${i }">${i }</a>
+									</c:forEach>
+
+									<c:if test="${endPage < pagesCount }">
+										<button class="btn btn-sm btn-disabled">...</button>
+										<a class="btn btn-sm" href="${baseUri }&page=${pagesCount }">${pagesCount }</a>
+									</c:if>
+
 								</div>
 							</div>
 						</div>
@@ -456,13 +575,12 @@ style> /* CSS 스타일은 여기에 작성합니다 */ .hidden {
 		</div>
 	</div>
 </div>
+</div>
 
 </body>
 
 </html>
 <%@ include file="../common/foot.jspf"%>
-
-
 
 <%-- 여기에 JavaScript 코드를 작성합니다 --%>
 <script>
@@ -471,15 +589,12 @@ style> /* CSS 스타일은 여기에 작성합니다 */ .hidden {
 			function() {
 				showSection('.info-content-box');
 			});
-
 	document.querySelector('.portfolio').addEventListener('click', function() {
 		showSection('.info-content-portfolio');
 	});
-
 	document.querySelector('.review').addEventListener('click', function() {
 		showSection('.info-content-review');
 	});
-
 	// 섹션을 표시하도록 하는 함수
 	function showSection(sectionClass) {
 		document
@@ -492,5 +607,6 @@ style> /* CSS 스타일은 여기에 작성합니다 */ .hidden {
 	}
 </script>
 </body>
+
 </html>
 <%@ include file="../common/foot.jspf"%>

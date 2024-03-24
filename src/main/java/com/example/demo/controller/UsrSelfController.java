@@ -9,10 +9,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.example.demo.service.BoardService;
-import com.example.demo.service.ConsultShopService;
 import com.example.demo.service.ReactionPointService;
 import com.example.demo.service.ReplyService;
+import com.example.demo.service.ReviewService;
 import com.example.demo.service.selfShopService;
+import com.example.demo.vo.Review;
 import com.example.demo.vo.Rq;
 import com.example.demo.vo.selfShop;
 
@@ -31,6 +32,9 @@ public class UsrSelfController {
 	@Autowired
 	private ReplyService replyService;
 
+	@Autowired
+	private ReviewService reviewService;
+	
 	@Autowired
 	private ReactionPointService reactionPointService;
 
@@ -69,13 +73,18 @@ public class UsrSelfController {
     }
 	
 	@RequestMapping("/usr/self/detail")
-	public String showconsultingDetail(HttpServletRequest req, Model model, int id) {
-		Rq rq = (Rq) req.getAttribute("rq");
-		selfShop shop = selfShopService.getShopById(id);
-		
-		model.addAttribute("shop", shop);
-		return "usr/self/detail";
+	public String showconsultingDetail(HttpServletRequest req, Model model, 
+	                                   @RequestParam(required = false, defaultValue = "2") int themeId, 
+	                                   int id, 
+	                                   @RequestParam(required = false, defaultValue = "3") int categoryId) {
+	    Rq rq = (Rq) req.getAttribute("rq");
+	    selfShop shop = selfShopService.getShopById(id);
+	    List<Review> reviews = reviewService.getReviewsByIdandThemeandCategory(themeId, categoryId, id);
+	    model.addAttribute("reviews", reviews);
+	    model.addAttribute("shop", shop);
+	    return "usr/self/detail";
 	}
+
 
 	
 	
