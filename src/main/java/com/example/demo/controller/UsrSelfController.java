@@ -7,12 +7,16 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.example.demo.service.BoardService;
 import com.example.demo.service.ReactionPointService;
 import com.example.demo.service.ReplyService;
 import com.example.demo.service.ReviewService;
 import com.example.demo.service.selfShopService;
+import com.example.demo.util.Ut;
+import com.example.demo.vo.Article;
+import com.example.demo.vo.ResultData;
 import com.example.demo.vo.Review;
 import com.example.demo.vo.Rq;
 import com.example.demo.vo.selfShop;
@@ -85,15 +89,40 @@ public class UsrSelfController {
 	    return "usr/self/detail";
 	}
 
+	@RequestMapping("/usr/self/reviewWrite")
+	public String showJoin(HttpServletRequest req) {
 
-	
-	
-	@RequestMapping("/usr/self/feedbackWrite")
-	public String showfeedbackWrite(HttpServletRequest req, Model model) {
-		Rq rq = (Rq) req.getAttribute("rq");
-
-		return "usr/self/feedbackWrite";
+		return "usr/self/reviewWrite";
 	}
+
+	@RequestMapping("/usr/self/doReviewWrite")
+	@ResponseBody
+	public String doWrite(HttpServletRequest req, String title, String body,  @RequestParam(required = false, defaultValue = "2") int themeId, 
+            int id, @RequestParam(required = false, defaultValue = "3") int categoryId) {
+	    Rq rq = (Rq) req.getAttribute("rq");
+
+	    if (Ut.isNullOrEmpty(title)) {
+	        return Ut.jsHistoryBack("F-1", "제목을 입력해주세요");
+	    }
+	    if (Ut.isNullOrEmpty(body)) {
+	        return Ut.jsHistoryBack("F-2", "내용을 입력해주세요");
+	    }
+
+	    ResultData<Integer> writeReviewRd = reviewService.writeReview(rq.getLoginedMemberId(), title, body, themeId, categoryId, id);
+
+
+	    int newReviewId = writeReviewRd.getData1();
+
+	    // 여기서 다시 리뷰를 가져오는 것은 필요 없을 수 있음
+	    // Review review = reviewService.getReview(themeId, categoryId, newReviewId);
+
+	    return Ut.jsReplace(writeReviewRd.getResultCode(), writeReviewRd.getMsg(), "../self/detail?id=" + newReviewId);
+	}
+
+
+	
+	
+	
 
 	
 }

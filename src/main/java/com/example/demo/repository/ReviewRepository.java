@@ -26,7 +26,33 @@ public interface ReviewRepository {
 	public List<Review> getReviewByIdandThemeandCategory(int themeId, int categoryId, int id);
 
 	
+	@Select("SELECT LAST_INSERT_ID()")
+	public int getLastInsertId();
+
+	@Select("""
+			SELECT *
+			FROM service_review
+			WHERE shopId = #{id}
+			AND themeId = #{themeId}
+			AND categoryId = #{categoryId}
+			""")
+	public Review getReview(int themeId, int categoryId, int id);
 
 	
 
+	@Insert("""
+			INSERT INTO
+			service_review SET
+			regDate = NOW(),
+			updateDate = NOW(),
+			memberId = #{memberId},
+			AND themeId = #{themeId}
+			AND categoryId = #{categoryId}
+			AND shopId = #{id}
+			title = #{title}, `body` = #{body}
+			""")
+	public void writeReview(int memberId, String title, String body, int themeId, int categoryId, int id);
+
 }
+
+

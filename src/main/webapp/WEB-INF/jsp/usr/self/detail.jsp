@@ -281,14 +281,15 @@ style> /* CSS 스타일은 여기에 작성합니다 */ .hidden {
 .img-box-1 {
 	border: 0.5px solid #EFE7E5;
 	width: 900px;
-	/* 각 항목의 너비 정의 */
-	height: 530px;
+	height: 500px; /* 높이를 자동으로 설정하여 내용에 맞게 조정 */
 	margin-top: 15px;
 	padding: 10px;
 	box-sizing: border-box;
-	/* 너비에 패딩과 테두리를 포함 */
 	border: 3px solid green;
-	display: flex;
+	display: flex; /* 요소들을 가로로 배열하기 위해 flex 사용 */
+	justify-content: flex-start; /* 요소들을 간격을 벌리면서 가로로 정렬 */
+	flex-wrap: wrap;
+	flex-direction: row;
 }
 
 .sm-img-outer-box {
@@ -359,9 +360,13 @@ style> /* CSS 스타일은 여기에 작성합니다 */ .hidden {
 	width: 970px;
 }
 
-.member-date-box > div {
+.member-date-box>div {
 	width: 100px;
 	border: 1px solid red;
+	display: inline-block;
+}
+
+.star-box>div {
 	display: inline-block;
 }
 </style>
@@ -452,7 +457,7 @@ style> /* CSS 스타일은 여기에 작성합니다 */ .hidden {
 								<!-- 포트폴리오 내용을 표시할 공간 -->
 								<div class="img-box-1">
 									<!-- 첫 번째 줄 -->
-									<div>
+									<div class="img-1-box">
 										<div class="sm-img-outer-box">
 											<div class="img">
 												<img class="banner" style="width: 290px; height: 263px" src="${shop.photoUrl1}" />
@@ -470,7 +475,8 @@ style> /* CSS 스타일은 여기에 작성합니다 */ .hidden {
 										</div>
 									</div>
 									<!-- 두 번째 줄 -->
-									<div>
+									<div class="img-2-box">
+										<!-- 두 번째 줄에 대한 스타일 추가 -->
 										<div class="sm-img-outer-box">
 											<div class="img">
 												<img class="banner" style="width: 290px; height: 263px" src="${shop.photoUrl4}" />
@@ -481,38 +487,18 @@ style> /* CSS 스타일은 여기에 작성합니다 */ .hidden {
 												<img class="banner" style="width: 290px; height: 263px" src="${shop.photoUrl5}" />
 											</div>
 										</div>
-										<div class="sm-img-outer-box">
-											<div class="img">
-												<img class="banner" style="width: 290px; height: 263px" src="${shop.photoUrl5}" />
-											</div>
-										</div>
-									</div>
-									<!-- 세 번째 줄 -->
-									<div>
-										<div class="sm-img-outer-box">
-											<div class="img">
-												<img class="banner" style="width: 290px; height: 263px" src="${shop.photoUrl5}" />
-											</div>
-										</div>
-										<div class="sm-img-outer-box">
-											<div class="img">
-												<img class="banner" style="width: 290px; height: 263px" src="${shop.photoUrl5}" />
-											</div>
-										</div>
-										<div class="sm-img-outer-box">
-											<div class="img">
-												<img class="banner" style="width: 290px; height: 263px" src="${shop.photoUrl5}" />
-											</div>
-										</div>
 									</div>
 								</div>
+
 							</div>
 
 							<!-- 후기 섹션 -->
 							<div class="info-content-review hidden">
 								<!-- 후기 내용을 표시할 공간 -->
 								<div class="write-box">
-									<div class="write">글쓰기</div>
+									<a href="../self/reviewWrite">
+										<div class="write">글쓰기</div>
+									</a>
 								</div>
 								<div class="review-head-title">고객 리뷰</div>
 
@@ -525,7 +511,11 @@ style> /* CSS 스타일은 여기에 작성합니다 */ .hidden {
 											<div class="review-title">
 												<a href="detail?id=${review.shopId }">${review.title }</a>
 											</div>
-											<div class="review-star">${review.starPoint }</div>
+											<div class="star-box">
+												<div class="review-star">${review.starPoint }</div>
+												<div>${review.starPoint }</div>
+											</div>
+
 
 											<div class="review-body">${review.body }</div>
 											<div class="member-date-box">
@@ -606,6 +596,37 @@ style> /* CSS 스타일은 여기에 작성합니다 */ .hidden {
 		document.querySelector(sectionClass).classList.remove('hidden');
 	}
 </script>
+
+<script>
+	//별점을 그리는 함수
+	function drawStars(starPoint) {
+		// 별점을 표시할 요소 선택
+		const starContainer = document.createElement('div');
+		starContainer.classList.add('stars');
+
+		// 별점이 1부터 5까지의 범위 내에서만 그림
+		const numberOfStars = Math.min(Math.max(starPoint, 0), 5);
+
+		// 별점에 따라 별을 추가
+		for (let i = 0; i < numberOfStars; i++) {
+			const star = document.createElement('span');
+			star.classList.add('star');
+			star.textContent = '★'; // 별 모양의 문자 사용
+			starContainer.appendChild(star);
+		}
+
+		return starContainer;
+	}
+
+	//리뷰의 별점을 가져와서 별점을 표시하는 함수 호출
+	document.querySelectorAll('.review-star').forEach(function(starElement) {
+		const starPoint = parseInt(starElement.textContent.trim()); // 리뷰의 별점 가져오기 (공백 제거)
+		const starContainer = drawStars(starPoint); // 별점과 숫자를 함께 표시
+		starElement.innerHTML = ''; // 기존 텍스트 제거
+		starElement.appendChild(starContainer); // 별점을 표시할 요소에 추가
+	});
+</script>
+
 </body>
 
 </html>
