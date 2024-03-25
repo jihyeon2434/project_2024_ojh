@@ -151,6 +151,7 @@
 <div class="outer-box">
 	<div class="small-outer-box">
 		<form action="../self/doReviewWrite" method="POST">
+		<input type="hidden" value="${id }" />
 			<div class="Group1">
 				<div class="satisfaction-text">별점으로 만족도를 표현해주세요!</div>
 				<div class="line"></div>
