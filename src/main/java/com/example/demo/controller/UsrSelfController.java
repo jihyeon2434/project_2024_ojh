@@ -90,8 +90,8 @@ public class UsrSelfController {
 	}
 
 	@RequestMapping("/usr/self/reviewWrite")
-	public String showJoin(HttpServletRequest req) {
-
+	public String showJoin(HttpServletRequest req, Model model, int id) {
+		 model.addAttribute("id", id);
 		return "usr/self/reviewWrite";
 	}
 
