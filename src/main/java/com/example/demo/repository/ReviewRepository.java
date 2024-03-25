@@ -14,8 +14,6 @@ import com.example.demo.vo.Review;
 @Mapper
 public interface ReviewRepository {
 
-
-
 	@Select("""
 			SELECT *
 			FROM service_review
@@ -25,7 +23,6 @@ public interface ReviewRepository {
 			""")
 	public List<Review> getReviewByIdandThemeandCategory(int themeId, int categoryId, int id);
 
-	
 	@Select("SELECT LAST_INSERT_ID()")
 	public int getLastInsertId();
 
@@ -38,21 +35,19 @@ public interface ReviewRepository {
 			""")
 	public Review getReview(int themeId, int categoryId, int id);
 
-	
-
 	@Insert("""
-			INSERT INTO
-			service_review SET
-			regDate = NOW(),
-			updateDate = NOW(),
-			memberId = #{memberId},
-			AND themeId = #{themeId}
-			AND categoryId = #{categoryId}
-			AND shopId = #{id}
-			title = #{title}, `body` = #{body}
+			    INSERT INTO service_review
+			    SET
+			        regDate = NOW(),
+			        updateDate = NOW(),
+			        memberId = #{memberId},
+			        themeId = #{themeId},
+			        categoryId = #{categoryId},
+			        shopId = #{id},
+			        starPoint = #{rating},
+			        title = #{title},
+			        `body` = #{body}
 			""")
-	public void writeReview(int memberId, String title, String body, int themeId, int categoryId, int id);
+	public void writeReview(int memberId, String title, String body, int themeId, int categoryId, int id, int rating);
 
 }
-
-

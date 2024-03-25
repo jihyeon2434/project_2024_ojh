@@ -151,12 +151,14 @@
 <div class="outer-box">
 	<div class="small-outer-box">
 		<form action="../self/doReviewWrite" method="POST">
-		<input type="hidden" value="${id }" />
+			<input type="hidden" name="id" value="${shop.id}" /> <input type="hidden" name="themeId" value="${shop.themeId}" />
+			<input type="hidden" name="categoryId" value="${shop.categoryId}" />
+
 			<div class="Group1">
 				<div class="satisfaction-text">별점으로 만족도를 표현해주세요!</div>
 				<div class="line"></div>
-
 			</div>
+
 			<div class="star-box">
 				<div class="star-rating">
 					<input type="radio" id="star5" name="rating" value="5" /><label for="star5"></label> <input type="radio"
@@ -165,23 +167,51 @@
 						for="star2"></label> <input type="radio" id="star1" name="rating" value="1" /><label for="star1"></label>
 				</div>
 			</div>
+
 			<div class="feed-text-1">
 				<div class="feedback-text">어떤 점이 좋았나요?</div>
 			</div>
+
 			<div class="feedback-title-box">
-				<input type="text" class="title-box" placeholder="제목을 입력해주세요." />
+				<input type="text" class="title-box" name="title" placeholder="제목을 입력해주세요." />
 			</div>
-			<input type="text" class="text-box" placeholder="소중한 후기를 작성해주세요." />
+
+			<div>
+				<textarea class="text-box" name="body" placeholder="소중한 후기를 작성해주세요."></textarea>
+			</div>
+
 			<div class="feedback-write-btn">
 				<div class="submit-button">
 					<input class="" type="submit" value="등록" />
-					
 				</div>
 				<div class="cancel-button">취소</div>
 			</div>
 		</form>
+
 	</div>
 </div>
 
+
+<script>
+	// 별점을 선택하면 해당 별점에 대응하는 값을 숫자로 변환하여 저장
+	document
+			.querySelectorAll('.star-rating input[type="radio"]')
+			.forEach(
+					function(radio) {
+						radio
+								.addEventListener(
+										'change',
+										function() {
+											// 선택된 별점 값 가져오기
+											const rating = parseInt(this.value);
+											// 별점 값 출력 (테스트용)
+											console.log('Selected rating:',
+													rating);
+											// 선택된 별점 값을 폼 데이터에 추가 (이름은 'rating')
+											document
+													.querySelector('input[name="rating"]').value = rating;
+										});
+					});
+</script>
 
 <%@ include file="../common/foot.jspf"%>

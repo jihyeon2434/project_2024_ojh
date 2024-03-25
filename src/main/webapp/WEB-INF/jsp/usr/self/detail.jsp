@@ -496,7 +496,7 @@ style> /* CSS 스타일은 여기에 작성합니다 */ .hidden {
 							<div class="info-content-review hidden">
 								<!-- 후기 내용을 표시할 공간 -->
 								<div class="write-box">
-									<a href="../self/reviewWrite?id=${review.shopId }">
+									<a href="../self/reviewWrite?themeId=${shop.themeId }&categoryId=${shop.categoryId }&id=${shop.id }">
 									
 										<div class="write">글쓰기</div>
 									</a>
