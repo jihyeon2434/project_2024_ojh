@@ -55,6 +55,12 @@ public class UsrSelfController {
 		List<selfShop> shopInfoList = selfShopService.crawlSelfShops(inputKey);
 		return "usr/home/main";
 	}
+	
+	@RequestMapping("/usr/self/crawl2")
+	public String crawlSelfShops2(@RequestParam(required = false, defaultValue = "") String inputKey) {
+		List<selfShop> shopInfoList = selfShopService.crawlSelfShops2(inputKey);
+		return "usr/home/main";
+	}
 
 	@RequestMapping("/usr/self/list")
 	public String showselfList(HttpServletRequest req, Model model) {

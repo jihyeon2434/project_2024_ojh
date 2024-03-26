@@ -56,13 +56,25 @@ public class UsrConsultingController {
 
 	
 	 @RequestMapping("/usr/consulting/crawl")
-	    public String crawlConsultingShops(
+	    public String crawlConsultingShops1(
 	            @RequestParam(required = false, defaultValue = "") String inputKey) {
 	        List<conShop> shopInfoList = consultShopService.crawlConsultingShops(inputKey);
 	        return "usr/home/main";
 	    }
 
-
+	 @RequestMapping("/usr/consulting/crawl2")
+	    public String crawlConsultingShops2(
+	            @RequestParam(required = false, defaultValue = "") String inputKey) {
+	        List<conShop> shopInfoList = consultShopService.crawlConsultingShops2(inputKey);
+	        return "usr/home/main";
+	    }
+	 
+	 @RequestMapping("/usr/consulting/crawl3")
+	    public String crawlConsultingShops3(
+	            @RequestParam(required = false, defaultValue = "") String inputKey) {
+	        List<conShop> shopInfoList = consultShopService.crawlConsultingShops3(inputKey);
+	        return "usr/home/main";
+	    }
 	
 	
 	@RequestMapping("/usr/consulting/list")
@@ -99,12 +111,7 @@ public class UsrConsultingController {
 	}
 	
 
-	@RequestMapping("/usr/consulting/feedbackWrite")
-	public String showfeedbackWrite(HttpServletRequest req, Model model) {
-		Rq rq = (Rq) req.getAttribute("rq");
-
-		return "usr/consulting/feedbackWrite";
-	}
+	
 
 	@RequestMapping("/usr/consulting/chat")
 	public String showChat(HttpServletRequest req, Model model) {

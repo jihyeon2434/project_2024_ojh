@@ -1,17 +1,19 @@
 package com.example.demo.service;
 
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
 import com.example.demo.controller.WebCrawler17;
+import com.example.demo.controller.WebCrawler19;
+import com.example.demo.controller.WebCrawler21;
 import com.example.demo.repository.ConsultShopRepository;
 import com.example.demo.repository.ReviewRepository;
 import com.example.demo.util.Ut;
 import com.example.demo.vo.ResultData;
 import com.example.demo.vo.Review;
 import com.example.demo.vo.conShop;
-
-import java.util.List;
-
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
 
 @Service
 public class ConsultShopService {
@@ -38,6 +40,26 @@ public class ConsultShopService {
         return shopInfoList; // 크롤링한 가게 정보를 리턴
     }
 
+    
+    public List<conShop> crawlConsultingShops2(String inputKey) {
+        WebCrawler19 crawler = new WebCrawler19();
+        List<conShop> shopInfoList = crawler.crawlMap();
+        for (conShop shopInfo : shopInfoList) {
+            registerShop(shopInfo); // 크롤링한 가게 정보를 저장
+        }
+        return shopInfoList; // 크롤링한 가게 정보를 리턴
+    }
+    
+
+    public List<conShop> crawlConsultingShops3(String inputKey) {
+        WebCrawler21 crawler = new WebCrawler21();
+        List<conShop> shopInfoList = crawler.crawlMap();
+        for (conShop shopInfo : shopInfoList) {
+            registerShop(shopInfo); // 크롤링한 가게 정보를 저장
+        }
+        return shopInfoList; // 크롤링한 가게 정보를 리턴
+    }
+    
 	public List<conShop> getShopsList() {
 		return consultShopRepository.getShopsList();
 	}
