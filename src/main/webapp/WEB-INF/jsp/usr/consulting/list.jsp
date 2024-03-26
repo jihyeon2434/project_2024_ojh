@@ -578,46 +578,57 @@
   }
 </script>
 
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
 <script>
 $(document).ready(function() {
-    // AJAX를 통해 데이터를 받아오고 HTML을 생성하는 함수
-    function loadRecommendData(categoryId) {
-        $.ajax({
-            url: '/your-endpoint-url', // 실제 데이터를 가져오는 엔드포인트 URL로 변경해야 합니다.
-            method: 'GET',
-            data: { categoryId: categoryId }, // 요청할 데이터 (카테고리 ID)
-            dataType: 'json',
-            success: function(response) {
-                // 받아온 데이터를 기반으로 HTML 생성
-                var html = '';
-                response.forEach(function(item) {
-                    html += '<div class="img-outer-box-2">';
-                    // 여기서 각 데이터의 필드를 가져와서 HTML에 추가하는 코드를 작성해야 합니다.
-                    html += '<div>' + item.someField + '</div>'; // 예시로 필드 이름이 someField라고 가정
-                    html += '</div>';
-                });
-                // 생성된 HTML을 해당 부분에 추가
-                $('.img-outer-box-2').html(html);
-            },
-            error: function(xhr, status, error) {
-                console.error('AJAX 오류 발생:', error);
-            }
-        });
+    // "가장 저렴한" 버튼 클릭 시
+    $(".recommend-2").click(function() {
+      getData(2); // 가장 저렴한 카테고리의 데이터를 가져오도록 설정
+    });
+
+    // AJAX를 통해 데이터를 가져오는 함수
+    function getData(categoryId) {
+      $.ajax({
+        url: "/usr/consulting/list", // 데이터를 가져올 URL
+        method: "GET",
+        dataType: "json",
+        data: {
+          categoryId: categoryId // 서버로 전송할 데이터 (categoryId)
+        },
+        success: function(response) {
+          // 성공적으로 데이터를 받아왔을 때 처리할 내용
+          // 여기서는 받아온 데이터를 이용하여 화면에 표시하는 작업을 할 수 있습니다.
+          console.log(response); // 받아온 데이터를 콘솔에 출력 (테스트용)
+
+          // 받아온 데이터를 화면에 표시
+          // 예를 들어, 받아온 데이터를 반복문으로 순회하면서 각 항목을 화면에 추가할 수 있습니다.
+          for (var i = 0; i < response.length; i++) {
+            var item = response[i];
+            // 화면에 추가하는 작업 예시
+            var html = '<div class="img-box-1">';
+            html += '<a href="detail?id=' + item.id + '">';
+            html += '<div class="sm-img-outer-box">';
+            html += '<div class="img">';
+            html += '<img class="banner" style="width: 290px; height: 263px" src="' + item.photoUrl1 + '" />';
+            html += '</div>';
+            html += '<div class="store">' + item.shopName + '</div>';
+            html += '<div class="time">' + item.roadName + '</div>';
+            html += '</div>';
+            html += '</a>';
+            html += '</div>';
+
+            $(".img-big-outer-box").append(html);
+          }
+        },
+        error: function(xhr, status, error) {
+          // 데이터를 가져오는 중 오류가 발생했을 때 처리할 내용
+          console.error(error); // 오류 메시지를 콘솔에 출력
+        }
+      });
     }
-
-    // recommend-2를 클릭할 때 실행되는 이벤트 핸들러
-    $('.recommend-2').on('click', function() {
-        var categoryId = 1; // categoryId가 1인 데이터만 가져옴 (가장 저렴한)
-        loadRecommendData(categoryId);
-    });
-
-    // img-making을 클릭할 때 실행되는 이벤트 핸들러
-    $('.img-making').on('click', function() {
-        var categoryId = 1; // categoryId가 1인 데이터만 가져옴 (가장 저렴한)
-        loadRecommendData(categoryId);
-    });
 });
+
 </script>
 
 
