@@ -548,3 +548,61 @@ CREATE TABLE service_selfshop
 
 SELECT *
 FROM service_selfshop;
+
+
+-- service_review Table Create SQL
+-- 테이블 생성 SQL - service_review
+CREATE TABLE service_review
+(
+    `id`                        INT            NOT NULL    AUTO_INCREMENT COMMENT '리뷰 고유번호', 
+    `regDate`                   VARCHAR(50)    NULL        COMMENT '등록날짜',
+    `updateDate`                VARCHAR(50)    NULL        COMMENT '수정날짜',
+    `memberId`                  VARCHAR(50)    NULL        COMMENT '회원번호', 
+    `themeId`                   INT            NULL        COMMENT '업체테마 번호', 
+    `categoryId`                INT            NULL        COMMENT '카테고리 번호(이미지메이킹 / 퍼스널컬러 / 헤어 / 메이크업)', 
+    shopId                      INT            NULL        COMMENT '가게 고유번호',
+    `starPoint`                 INT            NULL        COMMENT '별점',
+    `title`                     TEXT           NULL        COMMENT '리뷰 제목', 
+    `body`                      TEXT           NULL        COMMENT '리뷰 내용', 
+    `review_goodReactionPoint`  INT            NULL        COMMENT '좋아요', 
+     PRIMARY KEY (id)
+);
+
+SELECT *
+FROM service_review;
+
+INSERT INTO service_review
+SET regDate = NOW(),
+updateDate = NOW(),
+memberId = 2,
+themeId = 2,
+categoryId = 3,
+shopId = 1,
+starPoint = 3.0,
+`title` = '리뷰3',
+`body` = '내용3',
+ `review_goodReactionPoint` = 1;
+ 
+ INSERT INTO service_review
+SET regDate = NOW(),
+updateDate = NOW(),
+memberId = 2,
+themeId = 2,
+categoryId = 3,
+shopId = 1,
+starPoint = 5.0,
+`title` = '리뷰5',
+`body` = '내용5',
+ `review_goodReactionPoint` = 1;
+ 
+ INSERT INTO service_review
+SET regDate = NOW(),
+updateDate = NOW(),
+memberId = 2,
+themeId = 2,
+categoryId = 3,
+shopId = 2,
+starPoint = 5.0,
+`title` = '리뷰입니다',
+`body` = '너무 좋아요 ~~',
+ `review_goodReactionPoint` = 1;

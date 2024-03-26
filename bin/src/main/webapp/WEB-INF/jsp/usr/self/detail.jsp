@@ -3,6 +3,29 @@
 <c:set var="pageTitle" value="#{board.code } SELF LIST"></c:set>
 <%@ include file="../common/head.jspf"%>
 
+<html lang="ko">
+
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Shop Information</title>
+<style>
+/* CSS 스타일은 여기에 작성합니다 */
+.hidden {
+	display: none;
+}
+</style>
+</head>
+
+<style>
+<
+style> /* CSS 스타일은 여기에 작성합니다 */ .hidden {
+	display: none;
+}
+</style>
+</head>
+
 <style>
 .outer-box {
 	margin-top: 50px;
@@ -126,8 +149,10 @@
 	text-align: center;
 	font-size: small;
 	display: flex;
-	justify-content: center; /* 가로 중앙 정렬 */
-	align-items: center; /* 세로 중앙 정렬 */
+	justify-content: center;
+	/* 가로 중앙 정렬 */
+	align-items: center;
+	/* 세로 중앙 정렬 */
 }
 
 .Rectangle35 img {
@@ -167,23 +192,26 @@
 
 .info-content-portfolio {
 	width: 1000px;
-	height: 720px;
-	border: 3px solid green;
+	height: 800px;
+	border: 5px solid yellow;
 	padding-left: 20px;
 }
 
 .info-content-review {
-	width: 800px;
-	height: 720px;
+	width: 1000px;
+	height: 800px;
 	border: 1px solid #EFE7E5;
-	padding-left: 20px;
+	padding-left: 10px;
+	padding-right: 10px;
 	border: 3px solid green;
 }
 
 .info-box {
 	height: 60px;
-	display: block; /* 자식 요소를 플렉스 항목으로 만듭니다. */
-	align-items: center; /* 수직 가운데 정렬 */
+	display: flex;
+	/* 수정: 세로 정렬을 위해 flex로 변경 */
+	align-items: center;
+	/* 수직 가운데 정렬 */
 	border: 3px solid orange;
 }
 
@@ -191,14 +219,14 @@
 	width: 30px;
 	height: 28px;
 	text-align: center;
-	display: inline-block; /* 한 줄에 위치하도록 설정 */
+	margin-right: 10px;
+	/* 추가: 이미지와 텍스트 간격 조정 */
 }
 
 .info {
 	width: 770px;
 	height: 30px;
 	font-size: 17px;
-	display: inline-block; /* 한 줄에 위치하도록 설정 */
 	margin-left: 10px;
 	font-weight: 10px;
 }
@@ -206,10 +234,11 @@
 .option {
 	width: 770px;
 	height: 400px;
-	display: inline-block; /* 한 줄에 위치하도록 설정 */
-	margin-top: 370px;
-	margin-left: 10px;
+	display: inline-block;
+	/* 한 줄에 위치하도록 설정 */
 	font-size: 17px;
+	margin-top: 0;
+	/* 수정: 상단 마진 제거 */
 }
 
 .img-box .img1 {
@@ -225,10 +254,13 @@
 	position: fixed;
 	top: 50%;
 	left: 50%;
-	transform: translate(-50%, -50%); /* 정중앙으로 이동 */
+	transform: translate(-50%, -50%);
+	/* 정중앙으로 이동 */
 	background-color: rgba(0, 0, 0, 0.8);
-	z-index: 9999; /* 다른 요소 위에 위치하도록 설정 */
-	display: none; /* 초기에는 숨김 */
+	z-index: 9999;
+	/* 다른 요소 위에 위치하도록 설정 */
+	display: none;
+	/* 초기에는 숨김 */
 }
 
 .modal-content {
@@ -246,36 +278,125 @@
 	cursor: pointer;
 }
 
-.info-content-portfolio {
-	
+.img-box-1 {
+	border: 0.5px solid #EFE7E5;
+	width: 900px;
+	height: 500px; /* 높이를 자동으로 설정하여 내용에 맞게 조정 */
+	margin-top: 15px;
+	padding: 10px;
+	box-sizing: border-box;
+	border: 3px solid green;
+	display: flex; /* 요소들을 가로로 배열하기 위해 flex 사용 */
+	justify-content: flex-start; /* 요소들을 간격을 벌리면서 가로로 정렬 */
+	flex-wrap: wrap;
+	flex-direction: row;
+}
+
+.sm-img-outer-box {
+	border: 3px solid red;
+	width: 300px;
+	height: 300px;
+	display: flex;
+	/* 요소들을 가로로 배열하기 위해 flex 사용 */
+	flex-wrap: wrap;
+	/* 요소들이 한 줄에 넘칠 때 줄 바꿈 */
+	justify-content: space-between;
+	/* 요소들을 간격을 벌리면서 가로로 정렬 */
+}
+
+.img {
+	width: 290px;
+	/* 각 이미지 요소의 너비 */
+	height: 263px;
+	/* 각 이미지 요소의 높이 */
+	margin-bottom: 10px;
+	/* 이미지 요소들 간의 아래 여백 */
+}
+
+.write-box {
+	border: 3px solid purple;
+	display: flex;
+	justify-content: flex-end;
+}
+
+.write {
+	border-radius: 5px;
+	width: 100px;
+	align-items: center;
+	margin-right: 100px;
+	margin-top: 15px;
+	margin-bottom: 15px;
+	padding: 5px;
+	text-align: center;
+	/* Quirks Mode 를 위한 가운데 정렬 */
+	background-color: #efefef;
+}
+
+.review-head-title {
+	font-size: 20px;
+	font-weight: 600;
+	padding-bottom: 20px;
+	padding-top: 20px;
+}
+
+.review-title {
+	font-weight: 600;
+	font-size: 18px;
+}
+
+.review-body {
+	width: 700px;
+	height: 100px;
+	border: 3px solid;
+}
+
+.review-outer-box {
+	border: 3px solid;
+	width: 900px;
+}
+
+.review-line {
+	border: 1px solid;
+	width: 970px;
+}
+
+.member-date-box>div {
+	width: 100px;
+	border: 1px solid red;
+	display: inline-block;
+}
+
+.star-box>div {
+	display: inline-block;
 }
 </style>
 
 <div class="outer-box">
 	<div class="small-outer-box">
 
+		<!-- 이미지 박스 -->
 		<div class="img-box">
 			<img class="img1" src="${shop.photoUrl2}" /> <img class="img1" src="${shop.photoUrl3}" />
 		</div>
+
+		<!-- 가게 정보 -->
 		<div class="shop-info-box">
 			<div class="Group96">
 				<div class="name">${shop.shopName}</div>
 				<div class="score">★4.96(420)</div>
-
 			</div>
 		</div>
 
+		<!-- 관심 버튼 -->
 		<div class="Group101">
-
 			<div class="click-box">
 				<div class="Rectangle35">
 					<div>♡ 관심</div>
 				</div>
 			</div>
 
-
+			<!-- 정보, 포트폴리오, 후기 버튼 그룹 -->
 			<div class="Group102">
-
 				<div class="info-top-bar">
 					<div class="infotop-small-box">
 						<div class="Group42">
@@ -284,246 +405,230 @@
 								<button class="portfolio">포트폴리오</button>
 								<button class="review">후기</button>
 							</div>
-
 						</div>
 						<div class="line-box">
 							<div class="Line5"></div>
 						</div>
 						<div class="info-content-outer-box">
+							<!-- 정보 섹션 -->
 							<div class="info-content-box">
-								<div class="info-box">
-									<div class="info-img">
-										<img src="//velog.velcdn.com/images/jihyeon2434/post/be21fa1d-ca66-4249-b330-499a19a0d24b/image.png" alt="">
+								<div>
+									<div class="info-box">
+										<div class="info-img">
+											<img src="//velog.velcdn.com/images/jihyeon2434/post/be21fa1d-ca66-4249-b330-499a19a0d24b/image.png" alt="">
+										</div>
+										<div class="info">${shop.roadName}</div>
 									</div>
-									<div class="info">${shop.roadName}</div>
-								</div>
-								<div class="info-box">
-									<div class="info-img">
-										<img src="//velog.velcdn.com/images/jihyeon2434/post/7b298eae-ecbc-4b82-9a7e-e47ed79e5d72/image.png" alt="">
+									<div class="info-box">
+										<div class="info-img">
+											<img src="//velog.velcdn.com/images/jihyeon2434/post/7b298eae-ecbc-4b82-9a7e-e47ed79e5d72/image.png" alt="">
+										</div>
+										<c:if test="${not empty shop.operateTime}">
+											<div class="info">${shop.operateTime}</div>
+										</c:if>
+										<c:if test="${empty shop.operateTime}">
+											<div class="info">운영시간: 정보없음</div>
+										</c:if>
 									</div>
-									<div class="info" id="operateTime"></div>
-								</div>
-								<div class="info-box">
-									<div class="info-img">
-										<img src="//velog.velcdn.com/images/jihyeon2434/post/1dbfa1f4-abf8-43e3-bc51-17cf5d175fad/image.png" alt="">
+
+									<div class="info-box">
+										<div class="info-img">
+											<img src="//velog.velcdn.com/images/jihyeon2434/post/1dbfa1f4-abf8-43e3-bc51-17cf5d175fad/image.png" alt="">
+										</div>
+										<div class="info">${shop.phoneNum}</div>
 									</div>
-									<div class="info">${shop.phoneNum}</div>
-								</div>
-								<div class="info-box">
-									<div class="info-img">
-										<img src="//velog.velcdn.com/images/jihyeon2434/post/4be9d909-b32d-4d8c-8ae0-9dd6177115a1/image.png" alt="">
+
+									<div class="info-box">
+										<div class="info-img">
+											<img src="//velog.velcdn.com/images/jihyeon2434/post/4be9d909-b32d-4d8c-8ae0-9dd6177115a1/image.png" alt="">
+										</div>
+										<c:if test="${not empty shop.menu}">
+											<div class="info">${shop.menu}</div>
+										</c:if>
+										<c:if test="${empty shop.menu}">
+											<div class="info">정보없음</div>
+										</c:if>
 									</div>
-									<div class="option" id="menuItems"></div>
-									<!-- 이 부분이 추가된 부분입니다 -->
+
 								</div>
 							</div>
 
-
-
-
-							<!-- 포트폴리오 -->
-							<div class="info-content-portfolio" style="display: none;">
+							<div class="info-content-portfolio hidden">
 								<!-- 포트폴리오 내용을 표시할 공간 -->
-								<div class="info-box">
-									<div class="info-img">
-										<img src="//velog.velcdn.com/images/jihyeon2434/post/be21fa1d-ca66-4249-b330-499a19a0d24b/image.png" alt="">
+								<div class="img-box-1">
+									<!-- 첫 번째 줄 -->
+									<div class="img-1-box">
+										<div class="sm-img-outer-box">
+											<div class="img">
+												<img class="banner" style="width: 290px; height: 263px" src="${shop.photoUrl1}" />
+											</div>
+										</div>
+										<div class="sm-img-outer-box">
+											<div class="img">
+												<img class="banner" style="width: 290px; height: 263px" src="${shop.photoUrl2}" />
+											</div>
+										</div>
+										<div class="sm-img-outer-box">
+											<div class="img">
+												<img class="banner" style="width: 290px; height: 263px" src="${shop.photoUrl3}" />
+											</div>
+										</div>
 									</div>
-									<div class="info">안녕..</div>
+									<!-- 두 번째 줄 -->
+									<div class="img-2-box">
+										<!-- 두 번째 줄에 대한 스타일 추가 -->
+										<div class="sm-img-outer-box">
+											<div class="img">
+												<img class="banner" style="width: 290px; height: 263px" src="${shop.photoUrl4}" />
+											</div>
+										</div>
+										<div class="sm-img-outer-box">
+											<div class="img">
+												<img class="banner" style="width: 290px; height: 263px" src="${shop.photoUrl5}" />
+											</div>
+										</div>
+									</div>
 								</div>
+
 							</div>
 
-							<!-- 후기 내용 -->
-							<div class="info-content-review">
+							<!-- 후기 섹션 -->
+							<div class="info-content-review hidden">
 								<!-- 후기 내용을 표시할 공간 -->
-								<div class="info-box">
-									<div class="info-img">
-										<img src="//velog.velcdn.com/images/jihyeon2434/post/7b298eae-ecbc-4b82-9a7e-e47ed79e5d72/image.png" alt="">
-									</div>
-									<div class="info" id="operateTime">gg</div>
+								<div class="write-box">
+									<a href="../self/reviewWrite?themeId=${shop.themeId }&categoryId=${shop.categoryId }&id=${shop.id }">
+									
+										<div class="write">글쓰기</div>
+									</a>
+								</div>
+								<div class="review-head-title">고객 리뷰</div>
+
+								<div class="review-outer-box">
+
+
+
+									<c:forEach var="review" items="${reviews }">
+										<div class="review-small-box">
+											<div class="review-title">
+												<a href="detail?id=${review.shopId }">${review.title }</a>
+											</div>
+											<div class="star-box">
+												<div class="review-star">${review.starPoint }</div>
+												<div>${review.starPoint }</div>
+											</div>
+
+
+											<div class="review-body">${review.body }</div>
+											<div class="member-date-box">
+												<div>${review.memberId }</div>
+												<div>${review.regDate.substring(0,10) }</div>
+											</div>
+
+											<div class="review-line"></div>
+										</div>
+
+
+
+									</c:forEach>
+
+								</div>
+
+								<!-- 	동적 페이징 -->
+								<div class="pagination flex justify-center mt-3">
+									<c:set var="paginationLen" value="3" />
+									<c:set var="startPage" value="${page -  paginationLen  >= 1 ? page - paginationLen : 1}" />
+									<c:set var="endPage" value="${page +  paginationLen  <= pagesCount ? page + paginationLen : pagesCount}" />
+
+									<c:set var="baseUri" value="?boardId=${boardId }" />
+									<c:set var="baseUri" value="${baseUri }&searchKeywordTypeCode=${searchKeywordTypeCode}" />
+									<c:set var="baseUri" value="${baseUri }&searchKeyword=${searchKeyword}" />
+
+									<c:if test="${startPage > 1 }">
+										<a class="btn btn-sm" href="${baseUri }&page=1">1</a>
+										<button class="btn btn-sm btn-disabled">...</button>
+									</c:if>
+
+									<c:forEach begin="${startPage }" end="${endPage }" var="i">
+										<a class="btn btn-sm ${param.page == i ? 'btn-active' : '' }" href="${baseUri }&page=${i }">${i }</a>
+									</c:forEach>
+
+									<c:if test="${endPage < pagesCount }">
+										<button class="btn btn-sm btn-disabled">...</button>
+										<a class="btn btn-sm" href="${baseUri }&page=${pagesCount }">${pagesCount }</a>
+									</c:if>
+
 								</div>
 							</div>
-
 						</div>
-
-
 					</div>
-
 				</div>
-
 			</div>
-
 		</div>
-
 	</div>
 </div>
-
-
-<script>
-	var shopMenu = "${shop.menu}";
-	var optionDiv = document.getElementById('menuItems');
-
-	if (shopMenu) { // 만약 ${shop.menu}이 존재한다면
-		var menuItems = shopMenu.split(';');
-		menuItems.forEach(function(item) {
-			optionDiv.innerHTML += item.trim() + "<br>";
-		});
-	} else { // ${shop.menu}이 null이라면
-		optionDiv.innerHTML = "정보없음";
-	}
-</script>
-
-<script>
-	var shopOperateTime = "${shop.operateTime}";
-	var operateTimeDiv = document.getElementById('operateTime');
-
-	if (shopOperateTime) { // 만약 ${shop.operateTime}이 존재한다면
-		operateTimeDiv.innerHTML = shopOperateTime;
-	} else { // ${shop.operateTime}이 null이라면
-		operateTimeDiv.innerHTML = "운영시간: 정보없음";
-	}
-</script>
-<!-- 모달에 닫기 버튼 추가 -->
-<div id="modal" class="modal">
-	<span class="close">&times;</span>
-	<div class="modal-content"></div>
 </div>
 
-<script>
-	//JavaScript 코드 수정
-	document
-			.addEventListener(
-					'DOMContentLoaded',
-					function() {
-						var images = document.querySelectorAll('.img1');
-						images
-								.forEach(function(image) {
-									image
-											.addEventListener(
-													'click',
-													function() {
-														// 클릭한 이미지의 src 가져오기
-														var src = this
-																.getAttribute('src');
-														// 이미지를 표시할 모달 요소 생성
-														var modal = document
-																.createElement('div');
-														modal.classList
-																.add('modal');
-														modal.innerHTML = '<span class="close">&times;</span><img src="' + src + '" class="modal-content">';
-														// 모달을 body에 추가
-														document.body
-																.appendChild(modal);
-														// 모달 창의 스타일을 조정하여 더 크게 표시
-														modal.style.maxWidth = '90vw';
-														modal.style.maxHeight = '90vh';
-														modal.style.overflow = 'auto';
-														modal.style.display = 'flex';
-														modal.style.justifyContent = 'center';
-														modal.style.alignItems = 'center';
-														modal.style.backgroundColor = 'rgba(0, 0, 0, 0.8)';
-														modal.style.position = 'fixed';
-														modal.style.top = '0';
-														modal.style.left = '0';
-														modal.style.width = '100%';
-														modal.style.height = '100%';
-														// 이미지 크기를 10배로 설정
-														var modalImage = modal
-																.querySelector('.modal-content');
-														modalImage.style.width = '1000%'; // 현재 크기보다 10배 더 크게 설정
-														// 닫기 버튼 클릭 시 모달 제거
-														var closeBtn = modal
-																.querySelector('.close');
-														closeBtn
-																.addEventListener(
-																		'click',
-																		function() {
-																			modal
-																					.remove();
-																		});
-													});
+</body>
 
-									// 마우스를 올렸을 때 확대되는 기능 제거
-									// image.addEventListener('mouseover', function() {
-									//   // 이미지 위에 마우스를 올렸을 때 확대되도록 함
-									//   this.style.transform = 'scale(1.1)';
-									//   this.style.transition = 'transform 0.2s ease';
-									// });
-									// image.addEventListener('mouseout', function() {
-									//   // 이미지에서 마우스가 벗어났을 때 확대 효과 제거
-									//   this.style.transform = 'scale(1)';
-									//   this.style.transition = 'transform 0.2s ease';
-									// });
-								});
-					});
+</html>
+<%@ include file="../common/foot.jspf"%>
+
+<%-- 여기에 JavaScript 코드를 작성합니다 --%>
+<script>
+	// 정보, 포트폴리오, 후기 버튼 클릭 시 해당 섹션을 표시하도록 설정
+	document.querySelector('.information').addEventListener('click',
+			function() {
+				showSection('.info-content-box');
+			});
+	document.querySelector('.portfolio').addEventListener('click', function() {
+		showSection('.info-content-portfolio');
+	});
+	document.querySelector('.review').addEventListener('click', function() {
+		showSection('.info-content-review');
+	});
+	// 섹션을 표시하도록 하는 함수
+	function showSection(sectionClass) {
+		document
+				.querySelectorAll(
+						'.info-content-box, .info-content-portfolio, .info-content-review')
+				.forEach(function(box) {
+					box.classList.add('hidden');
+				});
+		document.querySelector(sectionClass).classList.remove('hidden');
+	}
 </script>
 
 <script>
-	//정보 버튼 클릭 시 해당 내용 표시
-	// 정보 버튼 클릭 시 해당 내용 표시
-	document
-			.querySelector('.information')
-			.addEventListener(
-					'click',
-					function() {
-						// 모든 내용 숨기기
-						document
-								.querySelectorAll(
-										'.info-content-box, .info-content-portfolio, .info-content-review')
-								.forEach(function(box) {
-									box.style.display = 'none';
-								});
-						// 정보 내용 표시
-						document.querySelector('.info-content-box').style.display = 'flex';
-					});
+	//별점을 그리는 함수
+	function drawStars(starPoint) {
+		// 별점을 표시할 요소 선택
+		const starContainer = document.createElement('div');
+		starContainer.classList.add('stars');
 
-	// 포트폴리오 버튼 클릭 시 해당 내용 표시
-	document
-			.querySelector('.portfolio')
-			.addEventListener(
-					'click',
-					function() {
-						// 모든 내용 숨기기
-						document
-								.querySelectorAll(
-										'.info-content-box, .info-content-portfolio, .info-content-review')
-								.forEach(function(box) {
-									box.style.display = 'none';
-								});
-						// 포트폴리오 내용 표시
-						document.querySelector('.info-content-portfolio').style.display = 'flex';
-					});
+		// 별점이 1부터 5까지의 범위 내에서만 그림
+		const numberOfStars = Math.min(Math.max(starPoint, 0), 5);
 
-	// 후기 버튼 클릭 시 해당 내용 표시
-	document
-			.querySelector('.review')
-			.addEventListener(
-					'click',
-					function() {
-						// 모든 내용 숨기기
-						document
-								.querySelectorAll(
-										'.info-content-box, .info-content-portfolio, .info-content-review')
-								.forEach(function(box) {
-									box.style.display = 'none';
-								});
-						// 후기 내용 표시
-						document.querySelector('.info-content-review').style.display = 'flex';
-					});
+		// 별점에 따라 별을 추가
+		for (let i = 0; i < numberOfStars; i++) {
+			const star = document.createElement('span');
+			star.classList.add('star');
+			star.textContent = '★'; // 별 모양의 문자 사용
+			starContainer.appendChild(star);
+		}
+
+		return starContainer;
+	}
+
+	//리뷰의 별점을 가져와서 별점을 표시하는 함수 호출
+	document.querySelectorAll('.review-star').forEach(function(starElement) {
+		const starPoint = parseInt(starElement.textContent.trim()); // 리뷰의 별점 가져오기 (공백 제거)
+		const starContainer = drawStars(starPoint); // 별점과 숫자를 함께 표시
+		starElement.innerHTML = ''; // 기존 텍스트 제거
+		starElement.appendChild(starContainer); // 별점을 표시할 요소에 추가
+	});
 </script>
 
-<script>
-	// 페이지 로드 시 포트폴리오와 리뷰를 제외한 정보만 표시
-	document
-			.addEventListener(
-					'DOMContentLoaded',
-					function() {
-						document
-								.querySelectorAll(
-										'.info-content-box, .info-content-portfolio, .info-content-review')
-								.forEach(function(box) {
-									box.style.display = 'none';
-								});
-						document.querySelector('.info-content-box').style.display = 'flex'; // 정보 내용 표시
-					});
-</script>
+</body>
+
+</html>
 <%@ include file="../common/foot.jspf"%>

@@ -20,8 +20,10 @@ import com.example.demo.vo.Article;
 import com.example.demo.vo.Board;
 import com.example.demo.vo.Reply;
 import com.example.demo.vo.ResultData;
+import com.example.demo.vo.Review;
 import com.example.demo.vo.Rq;
 import com.example.demo.vo.conShop;
+import com.example.demo.vo.selfShop;
 
 import jakarta.servlet.http.HttpServletRequest;
 
@@ -83,15 +85,19 @@ public class UsrConsultingController {
     }
 	
 
+	
 	@RequestMapping("/usr/consulting/detail")
-	public String showconsultingDetail(HttpServletRequest req, Model model, int id) {
+	public String showconsultingDetail(HttpServletRequest req, Model model,
+			@RequestParam(required = false, defaultValue = "1") int themeId, int id,
+			@RequestParam(required = false, defaultValue = "1") int categoryId) {
 		Rq rq = (Rq) req.getAttribute("rq");
 		conShop shop = consultShopService.getShopById(id);
-		
+		List<Review> reviews = consultShopService.getReviewsByIdandThemeandCategory(themeId, categoryId, id);
+		model.addAttribute("reviews", reviews);
 		model.addAttribute("shop", shop);
 		return "usr/consulting/detail";
 	}
-
+	
 
 	@RequestMapping("/usr/consulting/feedbackWrite")
 	public String showfeedbackWrite(HttpServletRequest req, Model model) {
@@ -131,4 +137,42 @@ public class UsrConsultingController {
 		return "usr/consulting/reservation3";
 	}
 
+	
+	@RequestMapping("/usr/consulting/reviewWrite")
+	public String showReviewWrite(HttpServletRequest req, Model model,
+			@RequestParam(required = false, defaultValue = "1") int themeId,
+			@RequestParam(required = false, defaultValue = "1") int categoryId, int id) {
+		conShop shop = consultShopService.getShopById(id);
+		model.addAttribute("id", id);
+		model.addAttribute("categoryId", categoryId);
+		model.addAttribute("themeId", themeId);
+		model.addAttribute("shop", shop);
+		return "usr/consulting/reviewWrite";
+	}
+
+	@RequestMapping("/usr/consulting/doReviewWrite")
+	@ResponseBody
+	public String doReviewWrite(HttpServletRequest req, 
+	        @RequestParam("title") String title, 
+	        @RequestParam("body") String body, 
+	        @RequestParam("themeId") int themeId, 
+	        @RequestParam("id") int id, 
+	        @RequestParam("categoryId") int categoryId,
+	        @RequestParam("rating") int rating) {
+	    Rq rq = (Rq) req.getAttribute("rq");
+
+	    if (Ut.isNullOrEmpty(title)) {
+	        return Ut.jsHistoryBack("F-1", "제목을 입력해주세요");
+	    }
+	    if (Ut.isNullOrEmpty(body)) {
+	        return Ut.jsHistoryBack("F-2", "내용을 입력해주세요");
+	    }
+
+	    ResultData<Integer> writeReviewRd = consultShopService.writeReview(rq.getLoginedMemberId(), title, body, themeId,
+	            categoryId, id, rating);
+
+	    int newReviewId = writeReviewRd.getData1();
+
+	    return Ut.jsReplace(writeReviewRd.getResultCode(), writeReviewRd.getMsg(), "../consulting/detail?id=" + id);
+	}
 }

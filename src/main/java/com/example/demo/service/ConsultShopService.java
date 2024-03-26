@@ -2,6 +2,10 @@ package com.example.demo.service;
 
 import com.example.demo.controller.WebCrawler17;
 import com.example.demo.repository.ConsultShopRepository;
+import com.example.demo.repository.ReviewRepository;
+import com.example.demo.util.Ut;
+import com.example.demo.vo.ResultData;
+import com.example.demo.vo.Review;
 import com.example.demo.vo.conShop;
 
 import java.util.List;
@@ -14,6 +18,12 @@ public class ConsultShopService {
 
     @Autowired
     private ConsultShopRepository consultShopRepository;
+    
+	@Autowired
+	private ReviewRepository reviewRepository;
+
+	
+
 
     public void registerShop(conShop shopInfo) {
         consultShopRepository.insertShop(shopInfo);
@@ -35,5 +45,17 @@ public class ConsultShopService {
 	public conShop getShopById(int id) {
 		return consultShopRepository.getShopById(id);
 		
+	}
+	  public ResultData<Integer> writeReview(int loginedMemberId, String title, String body, int themeId, int categoryId, int shopId, int rating) {
+	        reviewRepository.writeReview(loginedMemberId, title, body, themeId, categoryId, shopId, rating);
+
+	        int newReviewId = reviewRepository.getLastInsertId(); // 리뷰를 삽입한 후에 id를 가져오는 것은 여기서 필요하지 않음
+
+	        return ResultData.from("S-1", Ut.f("%d번 글이 생성되었습니다", newReviewId), "id", newReviewId);
+	    }
+
+	
+	public List<Review> getReviewsByIdandThemeandCategory(int themeId, int categoryId, int id) {
+	    return reviewRepository.getReviewByIdandThemeandCategory(themeId, categoryId, id);
 	}
 }
