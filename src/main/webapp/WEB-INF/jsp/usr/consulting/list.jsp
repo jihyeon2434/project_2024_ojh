@@ -425,7 +425,7 @@
 
 		<div class="small-outer-box-2">
 
-			<div class="main-text">${rq.loginedMember.nickname }님만을위한추천 컨설팅 업체</div>
+			<div class="main-text">${rq.loginedMember.nickname }님만을위한추천컨설팅 업체</div>
 
 			<div class="con-box">
 				<div class="menu-box">
@@ -477,9 +477,9 @@
 				<div class="menu-box">
 					<div class="theme">
 
-						<div class="recommend-1">별점이 높은</div>
-						<div class="recommend-2">가장 저렴한</div>
-						<div class="recommend-3">전문가가 친절한</div>
+						<button class="theme-button recommend-1">별점이 높은</button>
+						<button class="theme-button recommend-2">가장 저렴한</button>
+						<button class="theme-button recommend-3">전문가가 친절한</button>
 					</div>
 
 					<div class="line1"></div>
@@ -489,8 +489,8 @@
 					<div class="menu-box">
 						<div class="theme">
 
-							<div class="img-making">이미지메이킹</div>
-							<div class="personal">퍼스널컬러</div>
+							<button class="theme-button img-making">이미지메이킹</button>
+							<button class="theme-button personal">퍼스널컬러</button>
 						</div>
 
 						<div class="line1"></div>
@@ -547,8 +547,8 @@
 										<a class="btn btn-xs"
 											href="?boardId=${boardId}&searchKeywordTypeCode=${searchKeywordTypeCode}&searchKeyword=${searchKeyword}&page=${page+1}">&gt;</a>
 									</c:if>
-									
-									
+
+
 
 								</div>
 							</div>
@@ -577,5 +577,48 @@
     document.querySelector('.pagination-container .pagination').lastElementChild.style.display = 'none';
   }
 </script>
+
+
+<script>
+$(document).ready(function() {
+    // AJAX를 통해 데이터를 받아오고 HTML을 생성하는 함수
+    function loadRecommendData(categoryId) {
+        $.ajax({
+            url: '/your-endpoint-url', // 실제 데이터를 가져오는 엔드포인트 URL로 변경해야 합니다.
+            method: 'GET',
+            data: { categoryId: categoryId }, // 요청할 데이터 (카테고리 ID)
+            dataType: 'json',
+            success: function(response) {
+                // 받아온 데이터를 기반으로 HTML 생성
+                var html = '';
+                response.forEach(function(item) {
+                    html += '<div class="img-outer-box-2">';
+                    // 여기서 각 데이터의 필드를 가져와서 HTML에 추가하는 코드를 작성해야 합니다.
+                    html += '<div>' + item.someField + '</div>'; // 예시로 필드 이름이 someField라고 가정
+                    html += '</div>';
+                });
+                // 생성된 HTML을 해당 부분에 추가
+                $('.img-outer-box-2').html(html);
+            },
+            error: function(xhr, status, error) {
+                console.error('AJAX 오류 발생:', error);
+            }
+        });
+    }
+
+    // recommend-2를 클릭할 때 실행되는 이벤트 핸들러
+    $('.recommend-2').on('click', function() {
+        var categoryId = 1; // categoryId가 1인 데이터만 가져옴 (가장 저렴한)
+        loadRecommendData(categoryId);
+    });
+
+    // img-making을 클릭할 때 실행되는 이벤트 핸들러
+    $('.img-making').on('click', function() {
+        var categoryId = 1; // categoryId가 1인 데이터만 가져옴 (가장 저렴한)
+        loadRecommendData(categoryId);
+    });
+});
+</script>
+
 
 <%@ include file="../common/foot.jspf"%>
