@@ -37,9 +37,21 @@ public interface ConsultShopRepository {
 
 	@Select("SELECT * FROM service_Conshop")
 	public List<conShop> getShopsList();
-	
-	
-	
+
+	@Select("""
+			    <script>
+			    SELECT * FROM service_Conshop
+			    WHERE 1=1
+			    <if test="categoryId == 1">
+			    AND categoryId = 1
+			    </if>
+			    <if test="categoryId == 2">
+			    AND categoryId = 2
+			    </if>
+			    </script>
+			""")
+	List<conShop> getByOptionShopsList(int categoryId);
+
 	@Select("""
 			<script>
 				SELECT *

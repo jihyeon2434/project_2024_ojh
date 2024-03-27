@@ -425,7 +425,7 @@
 
 		<div class="small-outer-box-2">
 
-			<div class="main-text">${rq.loginedMember.nickname }님만을위한추천 컨설팅 업체</div>
+			<div class="main-text">${rq.loginedMember.nickname }님만을위한추천컨설팅 업체</div>
 
 			<div class="con-box">
 				<div class="menu-box">
@@ -477,9 +477,9 @@
 				<div class="menu-box">
 					<div class="theme">
 
-						<div class="recommend-1">별점이 높은</div>
-						<div class="recommend-2">가장 저렴한</div>
-						<div class="recommend-3">전문가가 친절한</div>
+						<button class="theme-button recommend-1">별점이 높은</button>
+						<button class="theme-button recommend-2">가장 저렴한</button>
+						<button class="theme-button recommend-3">전문가가 친절한</button>
 					</div>
 
 					<div class="line1"></div>
@@ -489,8 +489,8 @@
 					<div class="menu-box">
 						<div class="theme">
 
-							<div class="img-making">이미지메이킹</div>
-							<div class="personal">퍼스널컬러</div>
+							<button class="theme-button img-making">이미지메이킹</button>
+							<button class="theme-button personal">퍼스널컬러</button>
 						</div>
 
 						<div class="line1"></div>
@@ -547,8 +547,8 @@
 										<a class="btn btn-xs"
 											href="?boardId=${boardId}&searchKeywordTypeCode=${searchKeywordTypeCode}&searchKeyword=${searchKeyword}&page=${page+1}">&gt;</a>
 									</c:if>
-									
-									
+
+
 
 								</div>
 							</div>
@@ -577,5 +577,59 @@
     document.querySelector('.pagination-container .pagination').lastElementChild.style.display = 'none';
   }
 </script>
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+<script>
+$(document).ready(function() {
+    // "가장 저렴한" 버튼 클릭 시
+    $(".recommend-2").click(function() {
+      getData(2); // 가장 저렴한 카테고리의 데이터를 가져오도록 설정
+    });
+
+    // AJAX를 통해 데이터를 가져오는 함수
+    function getData(categoryId) {
+      $.ajax({
+        url: "/usr/consulting/list", // 데이터를 가져올 URL
+        method: "GET",
+        dataType: "json",
+        data: {
+          categoryId: categoryId // 서버로 전송할 데이터 (categoryId)
+        },
+        success: function(response) {
+          // 성공적으로 데이터를 받아왔을 때 처리할 내용
+          // 여기서는 받아온 데이터를 이용하여 화면에 표시하는 작업을 할 수 있습니다.
+          console.log(response); // 받아온 데이터를 콘솔에 출력 (테스트용)
+
+          // 받아온 데이터를 화면에 표시
+          // 예를 들어, 받아온 데이터를 반복문으로 순회하면서 각 항목을 화면에 추가할 수 있습니다.
+          for (var i = 0; i < response.length; i++) {
+            var item = response[i];
+            // 화면에 추가하는 작업 예시
+            var html = '<div class="img-box-1">';
+            html += '<a href="detail?id=' + item.id + '">';
+            html += '<div class="sm-img-outer-box">';
+            html += '<div class="img">';
+            html += '<img class="banner" style="width: 290px; height: 263px" src="' + item.photoUrl1 + '" />';
+            html += '</div>';
+            html += '<div class="store">' + item.shopName + '</div>';
+            html += '<div class="time">' + item.roadName + '</div>';
+            html += '</div>';
+            html += '</a>';
+            html += '</div>';
+
+            $(".img-big-outer-box").append(html);
+          }
+        },
+        error: function(xhr, status, error) {
+          // 데이터를 가져오는 중 오류가 발생했을 때 처리할 내용
+          console.error(error); // 오류 메시지를 콘솔에 출력
+        }
+      });
+    }
+});
+
+</script>
+
 
 <%@ include file="../common/foot.jspf"%>

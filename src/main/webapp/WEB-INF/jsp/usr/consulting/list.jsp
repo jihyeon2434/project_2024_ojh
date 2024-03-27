@@ -425,7 +425,7 @@
 
 		<div class="small-outer-box-2">
 
-			<div class="main-text">${rq.loginedMember.nickname }님만을위한추천컨설팅 업체</div>
+			<div class="main-text">${rq.loginedMember.nickname }님만을위한추천컨설팅업체</div>
 
 			<div class="con-box">
 				<div class="menu-box">
@@ -582,54 +582,36 @@
 
 <script>
 $(document).ready(function() {
-    // "가장 저렴한" 버튼 클릭 시
-    $(".recommend-2").click(function() {
-      getData(2); // 가장 저렴한 카테고리의 데이터를 가져오도록 설정
+    // "이미지메이킹" 버튼 클릭 시
+    $(".img-making").click(function() {
+        // shopInfoList를 활용하여 이미지를 그립니다.
+        drawImages();
     });
 
-    // AJAX를 통해 데이터를 가져오는 함수
-    function getData(categoryId) {
-      $.ajax({
-        url: "/usr/consulting/list", // 데이터를 가져올 URL
-        method: "GET",
-        dataType: "json",
-        data: {
-          categoryId: categoryId // 서버로 전송할 데이터 (categoryId)
-        },
-        success: function(response) {
-          // 성공적으로 데이터를 받아왔을 때 처리할 내용
-          // 여기서는 받아온 데이터를 이용하여 화면에 표시하는 작업을 할 수 있습니다.
-          console.log(response); // 받아온 데이터를 콘솔에 출력 (테스트용)
-
-          // 받아온 데이터를 화면에 표시
-          // 예를 들어, 받아온 데이터를 반복문으로 순회하면서 각 항목을 화면에 추가할 수 있습니다.
-          for (var i = 0; i < response.length; i++) {
-            var item = response[i];
-            // 화면에 추가하는 작업 예시
+    // 이미지를 그리는 함수
+    function drawImages() {
+        // 이미지를 그리기 위해 shopInfoList를 사용합니다.
+        $(".img-big-outer-box").empty(); // 이미지 박스를 초기화합니다.
+        <%-- shopInfoList를 반복하여 이미지를 그립니다. --%>
+        <c:forEach var="shop" items="${shopInfoList}">
             var html = '<div class="img-box-1">';
-            html += '<a href="detail?id=' + item.id + '">';
+            html += '<a href="detail?id=${shop.id }">';
             html += '<div class="sm-img-outer-box">';
             html += '<div class="img">';
-            html += '<img class="banner" style="width: 290px; height: 263px" src="' + item.photoUrl1 + '" />';
+            html += '<img class="banner" style="width: 290px; height: 263px" src="${shop.photoUrl1}" />';
             html += '</div>';
-            html += '<div class="store">' + item.shopName + '</div>';
-            html += '<div class="time">' + item.roadName + '</div>';
+            html += '<div class="store">${shop.shopName}</div>';
+            html += '<div class="time">${shop.roadName}</div>';
             html += '</div>';
             html += '</a>';
             html += '</div>';
 
             $(".img-big-outer-box").append(html);
-          }
-        },
-        error: function(xhr, status, error) {
-          // 데이터를 가져오는 중 오류가 발생했을 때 처리할 내용
-          console.error(error); // 오류 메시지를 콘솔에 출력
-        }
-      });
+        </c:forEach>
     }
 });
-
 </script>
+
 
 
 <%@ include file="../common/foot.jspf"%>

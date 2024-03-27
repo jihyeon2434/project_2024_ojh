@@ -96,6 +96,22 @@ public class UsrConsultingController {
         return "usr/consulting/list";
     }
 	
+	@RequestMapping("/usr/consulting/showList")
+    public String showConsultingOptionList(HttpServletRequest req, Model model, int categoryId) {
+        
+		System.err.println(categoryId);
+		Rq rq = (Rq) req.getAttribute("rq");
+
+       
+        // 상담 가게 정보 가져오기
+        List<conShop> shopInfoList = consultShopService.getByOptionShopsList(categoryId);
+        
+       
+        // JSP에 상담 가게 정보 전달
+        model.addAttribute("shopInfoList", shopInfoList);
+
+        return "usr/consulting/list";
+    }
 
 	
 	@RequestMapping("/usr/consulting/detail")

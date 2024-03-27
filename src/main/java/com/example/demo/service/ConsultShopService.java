@@ -63,6 +63,10 @@ public class ConsultShopService {
 	public List<conShop> getShopsList() {
 		return consultShopRepository.getShopsList();
 	}
+	
+	public List<conShop> getByOptionShopsList(int categoryId) {
+		return consultShopRepository.getByOptionShopsList(categoryId);
+	}
 
 	public conShop getShopById(int id) {
 		return consultShopRepository.getShopById(id);
