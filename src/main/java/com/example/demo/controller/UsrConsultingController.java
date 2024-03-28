@@ -4,8 +4,10 @@ import java.time.LocalDate;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -90,20 +92,20 @@ public class UsrConsultingController {
 		return "usr/consulting/list";
 	}
 
-	@RequestMapping("/usr/consulting/showList")
-	public String showConsultingOptionList(HttpServletRequest req, Model model, int categoryId) {
+	@GetMapping("/usr/consulting/showList")
+    public ResponseEntity<?> showConsultingOptionList(@RequestParam int categoryId) {
 		System.out.println("categoryId: " + categoryId); // categoryId 값 확인을 위한 로그 추가
 		System.err.println(categoryId);
 
-		Rq rq = (Rq) req.getAttribute("rq");
+	// 	Rq rq = (Rq) req.getAttribute("rq");
 
 		// 상담 가게 정보 가져오기
 		List<conShop> shopInfoList = consultShopService.getByOptionShopsList(categoryId);
 
 		// JSP에 상담 가게 정보 전달
-		model.addAttribute("shopInfoList", shopInfoList);
+		// model.addAttribute("shopInfoList", shopInfoList);
 
-		return "usr/consulting/list";
+		 return ResponseEntity.ok().body(shopInfoList);
 	}
 
 	@RequestMapping("/usr/consulting/detail")

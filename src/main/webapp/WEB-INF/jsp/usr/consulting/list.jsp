@@ -372,14 +372,10 @@
 						<div class="area-option-box-3">
 							<div class="area-7 btn btn-outline btn-sm">부산</div>
 							<div class="area-8 btn btn-outline btn-sm">
-								광주
-								<br />
-								전라
+								광주 <br /> 전라
 							</div>
 							<div class="area-9 btn btn-outline btn-sm">
-								대구
-								<br />
-								경상
+								대구 <br /> 경상
 							</div>
 						</div>
 						<div class="area-option-box-4">
@@ -594,11 +590,8 @@ $(document).ready(function() {
             data: { categoryId: categoryId },
             success: function(response) {
             	 // 응답 데이터를 JavaScript 객체로 파싱
-              var data = JSON.parse(response);
-            	// 요청이 성공했을 때의 처리
-                console.log(response); // 응답을 콘솔에 출력하여 확인
-                // 받아온 데이터를 이용하여 이미지를 그리는 함수 호출
-                drawImages(response.shopInfoList);
+          var data = JSON.parse(response);
+drawImages(data); // 데이터를 이미지로 그리는 함수 호출
             },
             error: function(xhr, status, error) {
                 // 요청이 실패했을 때의 처리
