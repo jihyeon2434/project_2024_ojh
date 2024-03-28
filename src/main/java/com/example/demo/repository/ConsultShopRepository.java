@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;
 
 import com.example.demo.vo.conShop;
@@ -38,19 +39,16 @@ public interface ConsultShopRepository {
 	@Select("SELECT * FROM service_Conshop")
 	public List<conShop> getShopsList();
 
-	@Select("""
-			    <script>
-			    SELECT * FROM service_Conshop
-			    WHERE 1=1
-			    <if test="categoryId == 1">
-			    AND categoryId = 1
-			    </if>
-			    <if test="categoryId == 2">
-			    AND categoryId = 2
-			    </if>
-			    </script>
-			""")
-	List<conShop> getByOptionShopsList(int categoryId);
+	 @Select("""
+		        <script>
+		        SELECT * FROM service_Conshop
+		        WHERE 1=1
+		        <if test="categoryId != null">
+		        AND categoryId = #{categoryId}
+		        </if>
+		        </script>
+		    """)
+		    List<conShop> getByOptionShopsList(@Param("categoryId") int categoryId);
 
 	@Select("""
 			<script>

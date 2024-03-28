@@ -582,34 +582,55 @@
 
 <script>
 $(document).ready(function() {
-    // "이미지메이킹" 버튼 클릭 시
-    $(".img-making").click(function() {
-        // shopInfoList를 활용하여 이미지를 그립니다.
-        drawImages();
+    // 이미지메이킹 또는 퍼스널컬러 버튼 클릭 시
+    $(".theme-button").click(function() {
+        // 버튼의 텍스트 값을 카테고리 ID로 사용합니다.
+        var categoryId = $(this).text().trim() === "이미지메이킹" ? 1 : 2;
+
+        // AJAX를 통해 서버로부터 상담 가게 정보를 요청합니다.
+        $.ajax({
+            type: "GET",
+            url: "/usr/consulting/showList",
+            data: { categoryId: categoryId },
+            success: function(response) {
+            	 // 응답 데이터를 JavaScript 객체로 파싱
+              var data = JSON.parse(response);
+            	// 요청이 성공했을 때의 처리
+                console.log(response); // 응답을 콘솔에 출력하여 확인
+                // 받아온 데이터를 이용하여 이미지를 그리는 함수 호출
+                drawImages(response.shopInfoList);
+            },
+            error: function(xhr, status, error) {
+                // 요청이 실패했을 때의 처리
+                console.error("Error:", error);
+            }
+        });
     });
 
-    // 이미지를 그리는 함수
-    function drawImages() {
-        // 이미지를 그리기 위해 shopInfoList를 사용합니다.
+ // 이미지를 그리는 함수
+    function drawImages(shopInfoList) {
+        console.log("Received shopInfoList:", shopInfoList); // shopInfoList를 콘솔에 출력하여 확인
+
         $(".img-big-outer-box").empty(); // 이미지 박스를 초기화합니다.
-        <%-- shopInfoList를 반복하여 이미지를 그립니다. --%>
-        <c:forEach var="shop" items="${shopInfoList}">
+        // shopInfoList를 반복하여 이미지를 그립니다.
+        $.each(shopInfoList, function(index, shop) {
             var html = '<div class="img-box-1">';
-            html += '<a href="detail?id=${shop.id }">';
+            html += '<a href="detail?id=' + shop.id + '">';
             html += '<div class="sm-img-outer-box">';
             html += '<div class="img">';
-            html += '<img class="banner" style="width: 290px; height: 263px" src="${shop.photoUrl1}" />';
+            html += '<img class="banner" style="width: 290px; height: 263px" src="' + shop.photoUrl1 + '" />';
             html += '</div>';
-            html += '<div class="store">${shop.shopName}</div>';
-            html += '<div class="time">${shop.roadName}</div>';
+            html += '<div class="store">' + shop.shopName + '</div>';
+            html += '<div class="time">' + shop.roadName + '</div>';
             html += '</div>';
             html += '</a>';
             html += '</div>';
 
             $(".img-big-outer-box").append(html);
-        </c:forEach>
+        });
     }
 });
+
 </script>
 
 

@@ -54,66 +54,58 @@ public class UsrConsultingController {
 
 	// 액션 메서드
 
-	
-	 @RequestMapping("/usr/consulting/crawl")
-	    public String crawlConsultingShops1(
-	            @RequestParam(required = false, defaultValue = "") String inputKey) {
-	        List<conShop> shopInfoList = consultShopService.crawlConsultingShops(inputKey);
-	        return "usr/home/main";
-	    }
+	@RequestMapping("/usr/consulting/crawl")
+	public String crawlConsultingShops1(@RequestParam(required = false, defaultValue = "") String inputKey) {
+		List<conShop> shopInfoList = consultShopService.crawlConsultingShops(inputKey);
+		return "usr/home/main";
+	}
 
-	 @RequestMapping("/usr/consulting/crawl2")
-	    public String crawlConsultingShops2(
-	            @RequestParam(required = false, defaultValue = "") String inputKey) {
-	        List<conShop> shopInfoList = consultShopService.crawlConsultingShops2(inputKey);
-	        return "usr/home/main";
-	    }
-	 
-	 @RequestMapping("/usr/consulting/crawl3")
-	    public String crawlConsultingShops3(
-	            @RequestParam(required = false, defaultValue = "") String inputKey) {
-	        List<conShop> shopInfoList = consultShopService.crawlConsultingShops3(inputKey);
-	        return "usr/home/main";
-	    }
-	
-	
+	@RequestMapping("/usr/consulting/crawl2")
+	public String crawlConsultingShops2(@RequestParam(required = false, defaultValue = "") String inputKey) {
+		List<conShop> shopInfoList = consultShopService.crawlConsultingShops2(inputKey);
+		return "usr/home/main";
+	}
+
+	@RequestMapping("/usr/consulting/crawl3")
+	public String crawlConsultingShops3(@RequestParam(required = false, defaultValue = "") String inputKey) {
+		List<conShop> shopInfoList = consultShopService.crawlConsultingShops3(inputKey);
+		return "usr/home/main";
+	}
+
 	@RequestMapping("/usr/consulting/list")
-    public String showConsultingList(HttpServletRequest req, Model model) {
-        Rq rq = (Rq) req.getAttribute("rq");
-
-        // 상담 가게 정보 가져오기
-        List<conShop> shopInfoList = consultShopService.getShopsList();
-        
-        // 이미지 URI 출력
-        for (conShop shop : shopInfoList) {
-            System.out.println("Image URI: " + shop.getPhotoUrl1());
-        }
-
-
-        // JSP에 상담 가게 정보 전달
-        model.addAttribute("shopInfoList", shopInfoList);
-
-        return "usr/consulting/list";
-    }
-	
-	@RequestMapping("/usr/consulting/showList")
-    public String showConsultingOptionList(HttpServletRequest req, Model model, int categoryId) {
-        
-		System.err.println(categoryId);
+	public String showConsultingList(HttpServletRequest req, Model model) {
 		Rq rq = (Rq) req.getAttribute("rq");
 
-       
-        // 상담 가게 정보 가져오기
-        List<conShop> shopInfoList = consultShopService.getByOptionShopsList(categoryId);
-        
-       
-        // JSP에 상담 가게 정보 전달
-        model.addAttribute("shopInfoList", shopInfoList);
+		// 상담 가게 정보 가져오기
+		List<conShop> shopInfoList = consultShopService.getShopsList();
 
-        return "usr/consulting/list";
-    }
+		// 이미지 URI 출력
+		for (conShop shop : shopInfoList) {
+			System.out.println("Image URI: " + shop.getPhotoUrl1());
+		}
 
-	
+		// JSP에 상담 가게 정보 전달
+		model.addAttribute("shopInfoList", shopInfoList);
+
+		return "usr/consulting/list";
+	}
+
+	@RequestMapping("/usr/consulting/showList")
+	public String showConsultingOptionList(HttpServletRequest req, Model model, int categoryId) {
+		System.out.println("categoryId: " + categoryId); // categoryId 값 확인을 위한 로그 추가
+		System.err.println(categoryId);
+
+		Rq rq = (Rq) req.getAttribute("rq");
+
+		// 상담 가게 정보 가져오기
+		List<conShop> shopInfoList = consultShopService.getByOptionShopsList(categoryId);
+
+		// JSP에 상담 가게 정보 전달
+		model.addAttribute("shopInfoList", shopInfoList);
+
+		return "usr/consulting/list";
+	}
+
 	@RequestMapping("/usr/consulting/detail")
 	public String showconsultingDetail(HttpServletRequest req, Model model,
 			@RequestParam(required = false, defaultValue = "1") int themeId, int id,
@@ -125,9 +117,6 @@ public class UsrConsultingController {
 		model.addAttribute("shop", shop);
 		return "usr/consulting/detail";
 	}
-	
-
-	
 
 	@RequestMapping("/usr/consulting/chat")
 	public String showChat(HttpServletRequest req, Model model) {
@@ -160,7 +149,6 @@ public class UsrConsultingController {
 		return "usr/consulting/reservation3";
 	}
 
-	
 	@RequestMapping("/usr/consulting/reviewWrite")
 	public String showReviewWrite(HttpServletRequest req, Model model,
 			@RequestParam(required = false, defaultValue = "1") int themeId,
@@ -175,27 +163,23 @@ public class UsrConsultingController {
 
 	@RequestMapping("/usr/consulting/doReviewWrite")
 	@ResponseBody
-	public String doReviewWrite(HttpServletRequest req, 
-	        @RequestParam("title") String title, 
-	        @RequestParam("body") String body, 
-	        @RequestParam("themeId") int themeId, 
-	        @RequestParam("id") int id, 
-	        @RequestParam("categoryId") int categoryId,
-	        @RequestParam("rating") int rating) {
-	    Rq rq = (Rq) req.getAttribute("rq");
+	public String doReviewWrite(HttpServletRequest req, @RequestParam("title") String title,
+			@RequestParam("body") String body, @RequestParam("themeId") int themeId, @RequestParam("id") int id,
+			@RequestParam("categoryId") int categoryId, @RequestParam("rating") int rating) {
+		Rq rq = (Rq) req.getAttribute("rq");
 
-	    if (Ut.isNullOrEmpty(title)) {
-	        return Ut.jsHistoryBack("F-1", "제목을 입력해주세요");
-	    }
-	    if (Ut.isNullOrEmpty(body)) {
-	        return Ut.jsHistoryBack("F-2", "내용을 입력해주세요");
-	    }
+		if (Ut.isNullOrEmpty(title)) {
+			return Ut.jsHistoryBack("F-1", "제목을 입력해주세요");
+		}
+		if (Ut.isNullOrEmpty(body)) {
+			return Ut.jsHistoryBack("F-2", "내용을 입력해주세요");
+		}
 
-	    ResultData<Integer> writeReviewRd = consultShopService.writeReview(rq.getLoginedMemberId(), title, body, themeId,
-	            categoryId, id, rating);
+		ResultData<Integer> writeReviewRd = consultShopService.writeReview(rq.getLoginedMemberId(), title, body,
+				themeId, categoryId, id, rating);
 
-	    int newReviewId = writeReviewRd.getData1();
+		int newReviewId = writeReviewRd.getData1();
 
-	    return Ut.jsReplace(writeReviewRd.getResultCode(), writeReviewRd.getMsg(), "../consulting/detail?id=" + id);
+		return Ut.jsReplace(writeReviewRd.getResultCode(), writeReviewRd.getMsg(), "../consulting/detail?id=" + id);
 	}
 }
