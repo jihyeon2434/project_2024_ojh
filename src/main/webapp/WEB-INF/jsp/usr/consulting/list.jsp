@@ -589,9 +589,11 @@ $(document).ready(function() {
             url: "/usr/consulting/showList",
             data: { categoryId: categoryId },
             success: function(response) {
-            	 // 응답 데이터를 JavaScript 객체로 파싱
-          var data = JSON.parse(response);
-drawImages(data); // 데이터를 이미지로 그리는 함수 호출
+            	
+            	 // 응답 데이터를 콘솔에 출력
+                console.log("서버 응답 데이터:", response);
+            	
+drawImages(response); // 데이터를 이미지로 그리는 함수 호출
             },
             error: function(xhr, status, error) {
                 // 요청이 실패했을 때의 처리

@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
 <c:set var="pageTitle" value="#{board.code } SELF LIST"></c:set>
 <%@ include file="../common/head.jspf"%>
 
@@ -9,6 +10,8 @@
 <meta charset="UTF-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+
 <title>Shop Information</title>
 <style>
 /* CSS 스타일은 여기에 작성합니다 */
@@ -212,7 +215,7 @@ style> /* CSS 스타일은 여기에 작성합니다 */ .hidden {
 	/* 수정: 세로 정렬을 위해 flex로 변경 */
 	align-items: center;
 	/* 수직 가운데 정렬 */
-	border: 3px solid orange;
+	
 }
 
 .info-img {
@@ -351,7 +354,7 @@ style> /* CSS 스타일은 여기에 작성합니다 */ .hidden {
 }
 
 .review-outer-box {
-	border: 3px solid;
+	
 	width: 900px;
 }
 
@@ -360,11 +363,7 @@ style> /* CSS 스타일은 여기에 작성합니다 */ .hidden {
 	width: 970px;
 }
 
-.member-date-box>div {
-	width: 100px;
-	border: 1px solid red;
-	display: inline-block;
-}
+
 
 .star-box>div {
 	display: inline-block;
@@ -456,12 +455,17 @@ style> /* CSS 스타일은 여기에 작성합니다 */ .hidden {
 										<div class="info-img">
 											<img src="//velog.velcdn.com/images/jihyeon2434/post/4be9d909-b32d-4d8c-8ae0-9dd6177115a1/image.png" alt="">
 										</div>
-										<c:if test="${not empty shop.menu}">
-											<div class="info">${shop.menu}</div>
-										</c:if>
-										<c:if test="${empty shop.menu}">
-											<div class="info">정보없음</div>
-										</c:if>
+										 <div class="info">
+        <!-- shop.menu의 내용을 줄바꿈하여 출력 -->
+        <c:if test="${not empty shop.menu}">
+            <c:forEach items="${fn:split(shop.menu, ';')}" var="menuItem">
+                <div>${menuItem}</div>
+            </c:forEach>
+        </c:if>
+        <c:if test="${empty shop.menu}">
+            <div>정보없음</div>
+        </c:if>
+    </div>
 									</div>
 
 								</div>
@@ -588,6 +592,9 @@ style> /* CSS 스타일은 여기에 작성합니다 */ .hidden {
 <%@ include file="../common/foot.jspf"%>
 
 <%-- 여기에 JavaScript 코드를 작성합니다 --%>
+
+
+
 <script>
 	// 정보, 포트폴리오, 후기 버튼 클릭 시 해당 섹션을 표시하도록 설정
 	document.querySelector('.information').addEventListener('click',
@@ -641,6 +648,8 @@ style> /* CSS 스타일은 여기에 작성합니다 */ .hidden {
 		starElement.appendChild(starContainer); // 별점을 표시할 요소에 추가
 	});
 </script>
+
+
 
 </body>
 
