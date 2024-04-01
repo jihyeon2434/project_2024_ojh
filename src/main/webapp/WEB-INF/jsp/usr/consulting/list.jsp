@@ -614,7 +614,7 @@ drawImages(response); // 데이터를 이미지로 그리는 함수 호출
         // shopInfoList를 반복하여 이미지를 그립니다.
         $.each(shopInfoList, function(index, shop) {
             var html = '<div class="img-box-1">';
-            html += '<a href="detail?id=' + shop.id + '">';
+            html += '<a href="detail?id=' + shop.id + '&categoryId=' + shop.categoryId + '&themeId=' + shop.themeId + '">';
             html += '<div class="sm-img-outer-box">';
             html += '<div class="img">';
             html += '<img class="banner" style="width: 290px; height: 263px" src="' + shop.photoUrl1 + '" />';
