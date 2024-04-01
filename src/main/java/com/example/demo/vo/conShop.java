@@ -28,5 +28,7 @@ public class conShop {
     private String updateDate;
     private String delDate;
     private int delStatus;
-	private String additionalInfo;
+    
+    private int totalStarPoint;
+    
 }

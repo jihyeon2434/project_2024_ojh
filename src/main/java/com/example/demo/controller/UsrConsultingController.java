@@ -93,11 +93,11 @@ public class UsrConsultingController {
 	}
 
 	@GetMapping("/usr/consulting/showList")
-    public ResponseEntity<?> showConsultingOptionList(@RequestParam int categoryId) {
+	public ResponseEntity<?> showConsultingOptionList(@RequestParam int categoryId) {
 		System.out.println("categoryId: " + categoryId); // categoryId 값 확인을 위한 로그 추가
 		System.err.println(categoryId);
 
-	// 	Rq rq = (Rq) req.getAttribute("rq");
+		// Rq rq = (Rq) req.getAttribute("rq");
 
 		// 상담 가게 정보 가져오기
 		List<conShop> shopInfoList = consultShopService.getByOptionShopsList(categoryId);
@@ -105,13 +105,11 @@ public class UsrConsultingController {
 		// JSP에 상담 가게 정보 전달
 		// model.addAttribute("shopInfoList", shopInfoList);
 
-		 return ResponseEntity.ok().body(shopInfoList);
+		return ResponseEntity.ok().body(shopInfoList);
 	}
 
 	@RequestMapping("/usr/consulting/detail")
-	public String showconsultingDetail(HttpServletRequest req, Model model,
-			@RequestParam(required = false, defaultValue = "1") int themeId, int id,
-			@RequestParam(required = false, defaultValue = "1") int categoryId) {
+	public String showconsultingDetail(HttpServletRequest req, Model model, int themeId, int id, int categoryId) {
 		Rq rq = (Rq) req.getAttribute("rq");
 		conShop shop = consultShopService.getShopById(id);
 		List<Review> reviews = consultShopService.getReviewsByIdandThemeandCategory(themeId, categoryId, id);
@@ -166,8 +164,8 @@ public class UsrConsultingController {
 	@RequestMapping("/usr/consulting/doReviewWrite")
 	@ResponseBody
 	public String doReviewWrite(HttpServletRequest req, @RequestParam("title") String title,
-			@RequestParam("body") String body, @RequestParam("themeId") int themeId, @RequestParam("id") int id,
-			@RequestParam("categoryId") int categoryId, @RequestParam("rating") int rating) {
+			@RequestParam("body") String body, int themeId, int id, int categoryId,
+			@RequestParam("rating") int rating) {
 		Rq rq = (Rq) req.getAttribute("rq");
 
 		if (Ut.isNullOrEmpty(title)) {
@@ -182,6 +180,7 @@ public class UsrConsultingController {
 
 		int newReviewId = writeReviewRd.getData1();
 
-		return Ut.jsReplace(writeReviewRd.getResultCode(), writeReviewRd.getMsg(), "../consulting/detail?id=" + id);
+		return Ut.jsReplace(writeReviewRd.getResultCode(), writeReviewRd.getMsg(), "../consulting/detail?id=" + id + "&categoryId=" + categoryId + "&themeId=" + themeId);
+
 	}
 }

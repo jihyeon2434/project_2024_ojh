@@ -31,7 +31,6 @@ public interface ConsultShopRepository {
 			         regDate = NOW(),
 			         updateDate = NOW(),
 			         delDate = #{delDate},
-			         additionalInfo = #{additionalInfo},
 			         delStatus = #{delStatus}
 			""")
 	public void insertShop(conShop shopInfo);
@@ -39,24 +38,26 @@ public interface ConsultShopRepository {
 	@Select("SELECT * FROM service_Conshop")
 	public List<conShop> getShopsList();
 
-	 @Select("""
-		        <script>
-		        SELECT * FROM service_Conshop
-		        WHERE 1=1
-		        <if test="categoryId != null">
-		        AND categoryId = #{categoryId}
-		        </if>
-		        </script>
-		    """)
-		    List<conShop> getByOptionShopsList(@Param("categoryId") int categoryId);
+	@Select("""
+			    <script>
+			    SELECT * FROM service_Conshop
+			    WHERE 1=1
+			    <if test="categoryId != null">
+			    AND categoryId = #{categoryId}
+			    </if>
+			    </script>
+			""")
+	List<conShop> getByOptionShopsList(@Param("categoryId") int categoryId);
 
 	@Select("""
 			<script>
-				SELECT *
-				FROM service_Conshop AS S
-				WHERE S.id = #{id}
+			SELECT C.*, COALESCE(AVG(R.starPoint), 0) AS totalStarPoint
+			FROM service_Conshop AS C
+			LEFT JOIN service_review AS R ON C.categoryId = R.categoryId AND C.id = R.shopId
+			WHERE C.id = #{id}
+			GROUP BY  C.id, C.categoryId;
 			</script>
-				""")
+			""")
 	public conShop getShopById(int id);
 
 	@Select("""

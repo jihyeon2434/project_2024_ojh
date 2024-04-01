@@ -18,7 +18,6 @@ public class Review {
 	private int starPoint;
 	private String title;
 	private String body;
-	private int review_goodReactionPoint;
 	
 
 	private String extra__writer;

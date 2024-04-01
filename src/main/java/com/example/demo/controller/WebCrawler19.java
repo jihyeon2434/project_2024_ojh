@@ -169,7 +169,7 @@ public class WebCrawler19 {
 			shopInfo.setRegDate(null); // 이 부분은 웹 크롤링으로는 얻을 수 없는 정보인지 확인해야 합니다.
 			shopInfo.setUpdateDate(null); // 이 부분은 웹 크롤링으로는 얻을 수 없는 정보인지 확인해야 합니다.
 			shopInfo.setDelDate(null); // 이 부분은 웹 크롤링으로는 얻을 수 없는 정보인지 확인해야 합니다.
-			shopInfo.setAdditionalInfo(additionalInfo); // 이 부분은 웹 크롤링으로는 얻을 수 없는 정보인지 확인해야 합니다.
+			
 			
 			// 카테고리 번호 설정
 			int categoryId = getCategoryNumber(inputKey);
