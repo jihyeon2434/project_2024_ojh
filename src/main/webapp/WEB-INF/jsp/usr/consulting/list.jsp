@@ -681,7 +681,17 @@ function drawImages(shopInfoList) {
 $(document).ready(function() {
     // 별점이 높은 버튼 클릭 시
     $(".recommend-1").click(function() {
-    	getHighPointShops(); // 별점이 높은 가게 목록을 가져오는 함수 호출
+        getHighPointShops(); // 별점이 높은 가게 목록을 가져오는 함수 호출
+    });
+
+    // 가장 저렴한 버튼 클릭 시
+    $(".recommend-2").click(function() {
+        // AJAX를 통해 서버로부터 가장 저렴한 가게 목록을 요청하는 함수 호출
+    });
+
+    // 전문가가 친절한 버튼 클릭 시
+    $(".recommend-3").click(function() {
+        // AJAX를 통해 서버로부터 전문가가 친절한 가게 목록을 요청하는 함수 호출
     });
 });
 

@@ -112,8 +112,6 @@ public class UsrConsultingController {
 	 @GetMapping("/usr/consulting/getHighPointShops")
 	    public ResponseEntity<?> getHighPointShops() {
 	    	List<conShop> shopInfoList = consultShopService.getHighPointShops(); // 별점이 높은 가게 목록을 가져오는 서비스 메소드 호출
-	
-	    	
 	    	return ResponseEntity.ok().body(shopInfoList);
 	    }
 	
