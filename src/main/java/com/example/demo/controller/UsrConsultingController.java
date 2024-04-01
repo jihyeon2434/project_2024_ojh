@@ -84,6 +84,7 @@ public class UsrConsultingController {
 		// 이미지 URI 출력
 		for (conShop shop : shopInfoList) {
 			System.out.println("Image URI: " + shop.getPhotoUrl1());
+			System.out.println("totalstarPoint: " + shop.getTotalStarPoint());
 		}
 
 		// JSP에 상담 가게 정보 전달
@@ -107,6 +108,15 @@ public class UsrConsultingController {
 
 		return ResponseEntity.ok().body(shopInfoList);
 	}
+	
+	 @GetMapping("/usr/consulting/getHighPointShops")
+	    public ResponseEntity<?> getHighPointShops() {
+	    	List<conShop> shopInfoList = consultShopService.getHighPointShops(); // 별점이 높은 가게 목록을 가져오는 서비스 메소드 호출
+	
+	    	
+	    	return ResponseEntity.ok().body(shopInfoList);
+	    }
+	
 
 	@RequestMapping("/usr/consulting/detail")
 	public String showconsultingDetail(HttpServletRequest req, Model model, int themeId, int id, int categoryId) {

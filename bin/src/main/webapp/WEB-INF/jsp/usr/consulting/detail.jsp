@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
 <c:set var="pageTitle" value="#{board.code } SELF LIST"></c:set>
 <%@ include file="../common/head.jspf"%>
 
@@ -215,7 +215,6 @@ style> /* CSS 스타일은 여기에 작성합니다 */ .hidden {
 	/* 수정: 세로 정렬을 위해 flex로 변경 */
 	align-items: center;
 	/* 수직 가운데 정렬 */
-	
 }
 
 .info-img {
@@ -354,7 +353,6 @@ style> /* CSS 스타일은 여기에 작성합니다 */ .hidden {
 }
 
 .review-outer-box {
-	
 	width: 900px;
 }
 
@@ -362,8 +360,6 @@ style> /* CSS 스타일은 여기에 작성합니다 */ .hidden {
 	border: 1px solid;
 	width: 970px;
 }
-
-
 
 .star-box>div {
 	display: inline-block;
@@ -383,7 +379,7 @@ style> /* CSS 스타일은 여기에 작성합니다 */ .hidden {
 		<div class="shop-info-box">
 			<div class="Group96">
 				<div class="name">${shop.shopName}</div>
-				<div class="score">★4.96(420)</div>
+				<div class="score">★${shop.totalStarPoint}</div>
 			</div>
 		</div>
 
@@ -455,17 +451,17 @@ style> /* CSS 스타일은 여기에 작성합니다 */ .hidden {
 										<div class="info-img">
 											<img src="//velog.velcdn.com/images/jihyeon2434/post/4be9d909-b32d-4d8c-8ae0-9dd6177115a1/image.png" alt="">
 										</div>
-										 <div class="info">
-        <!-- shop.menu의 내용을 줄바꿈하여 출력 -->
-        <c:if test="${not empty shop.menu}">
-            <c:forEach items="${fn:split(shop.menu, ';')}" var="menuItem">
-                <div>${menuItem}</div>
-            </c:forEach>
-        </c:if>
-        <c:if test="${empty shop.menu}">
-            <div>정보없음</div>
-        </c:if>
-    </div>
+										<div class="info">
+											<!-- shop.menu의 내용을 줄바꿈하여 출력 -->
+											<c:if test="${not empty shop.menu}">
+												<c:forEach items="${fn:split(shop.menu, ';')}" var="menuItem">
+													<div>${menuItem}</div>
+												</c:forEach>
+											</c:if>
+											<c:if test="${empty shop.menu}">
+												<div>정보없음</div>
+											</c:if>
+										</div>
 									</div>
 
 								</div>

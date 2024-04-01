@@ -89,11 +89,14 @@ public class WebCrawler20 {
 
 			String address = driver.findElement(By.className("LDgIH")).getText();
 
-			String phoneNumber;
+			String phoneNumber = null; // 기본적으로 phoneNumber를 null로 초기화
 			try {
-				phoneNumber = driver.findElement(By.className("xlx7Q")).getText();
+			    WebElement phoneNumberElement = driver.findElement(By.className("xlx7Q"));
+			    if (phoneNumberElement != null) { // phoneNumberElement가 존재하는 경우에만 전화번호 추출
+			        phoneNumber = phoneNumberElement.getText();
+			    }
 			} catch (Exception ex) {
-				phoneNumber = null;
+			    ex.printStackTrace(); // 디버깅을 위해 예외 출력
 			}
 			String businessHours;
 			try {

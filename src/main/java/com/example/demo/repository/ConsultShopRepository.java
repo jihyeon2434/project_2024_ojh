@@ -35,7 +35,14 @@ public interface ConsultShopRepository {
 			""")
 	public void insertShop(conShop shopInfo);
 
-	@Select("SELECT * FROM service_Conshop")
+	@Select("""
+			<script>
+			SELECT C.*, COALESCE(AVG(R.starPoint), 0) AS totalStarPoint
+			FROM service_Conshop AS C
+			LEFT JOIN service_review AS R ON C.categoryId = R.categoryId AND C.id = R.shopId
+			GROUP BY  C.id, C.categoryId;
+			</script>
+			""")
 	public List<conShop> getShopsList();
 
 	@Select("""
@@ -64,5 +71,17 @@ public interface ConsultShopRepository {
 			SELECT * FROM service_Conshop WHERE shopName = #{shopName}
 			""")
 	public conShop getShopByName(String shopName);
+
+	
+	@Select("""
+	        <script>
+	        SELECT C.*, COALESCE(AVG(R.starPoint), 0) AS totalStarPoint
+	        FROM service_Conshop AS C
+	        LEFT JOIN service_review AS R ON C.categoryId = R.categoryId AND C.id = R.shopId
+	        GROUP BY C.id, C.categoryId
+	        ORDER BY totalStarPoint DESC;
+	        </script>
+	        """)
+	public List<conShop> getHighPointShops();
 
 }

@@ -83,4 +83,9 @@ public class ConsultShopService {
 	public List<Review> getReviewsByIdandThemeandCategory(int themeId, int categoryId, int id) {
 		return reviewRepository.getReviewByIdandThemeandCategory(themeId, categoryId, id);
 	}
+
+	public List<conShop> getHighPointShops() {
+		
+		return consultShopRepository.getHighPointShops();
+	}
 }

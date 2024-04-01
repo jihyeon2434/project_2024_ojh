@@ -483,7 +483,7 @@ GROUP BY RP.relTypeCode,RP.relId
 
 
 
-###############################################
+
 
 -- 테이블 생성 SQL - service_Conshop
 CREATE TABLE service_Conshop
@@ -491,8 +491,7 @@ CREATE TABLE service_Conshop
     `id`                 INT             NOT NULL    AUTO_INCREMENT COMMENT '업체고유번호', 
     `categoryId`         INT             NOT NULL    COMMENT '카테고리 번호(이미지메이킹 / 퍼스널컬러)', 
     `shopName`           VARCHAR(50)     NOT NULL    COMMENT '업체명', 
-    `roadName`       VARCHAR(300)    NOT NULL    COMMENT '위치(도로명주소)',
-    `additionalInfo`       VARCHAR(300)  NULL    COMMENT '도로명주소',  
+    `roadName`           VARCHAR(300)    NOT NULL    COMMENT '위치(도로명주소)',
     `review`             VARCHAR(300)    NULL        COMMENT '리뷰', 
     `photoUrl1`          VARCHAR(500)    NULL        COMMENT '사진 URL 1', 
     `photoUrl2`          VARCHAR(500)    NULL        COMMENT '사진 URL 2', 
@@ -502,20 +501,33 @@ CREATE TABLE service_Conshop
     `phoneNum`           VARCHAR(50)     NOT NULL    COMMENT '전화번호', 
     `con_availableTime`  VARCHAR(50)     NULL        COMMENT '컨설팅 가능 시간', 
     `con_availableDate`  VARCHAR(50)     NULL        COMMENT '컨설팅 가능 날짜', 
-    `operateTime`        VARCHAR(300)     NULL        COMMENT '영업시간', 
-    `menu`               VARCHAR(300)            NULL        COMMENT '가격', 
+    `operateTime`        VARCHAR(300)    NULL        COMMENT '영업시간', 
+    `menu`               VARCHAR(300)    NULL        COMMENT '가격', 
     `themeId`            INT             NULL        COMMENT '테마번호', 
     `regDate`            VARCHAR(50)     NULL        COMMENT '등록날짜', 
     `updateDate`         VARCHAR(50)     NULL        COMMENT '수정날짜', 
     `delDate`            DATETIME        NULL        COMMENT '삭제날짜',
-     
-    `delStatus`          TINYINT         NULL        COMMENT '삭제여부', 
+    `delStatus`          TINYINT(1) UNSIGNED NOT NULL DEFAULT 0 COMMENT '삭제 여부 (0=삭제 전, 1=삭제 후)', 
      PRIMARY KEY (id)
 );
+
+## innerjoin 별점 총점 세팅
+
+SELECT C.*, COALESCE(AVG(R.starPoint), 0) AS totalStarPoint
+FROM service_Conshop AS C
+LEFT JOIN service_review AS R ON C.categoryId = R.categoryId AND C.id = R.shopId
+WHERE C.id = 21
+GROUP BY  C.id, C.categoryId;
 
 
 SELECT *
 FROM service_Conshop;
+
+
+
+SELECT *
+FROM service_Conshop
+WHERE categoryId = 1;
 
 DESC service_Conshop;
 
@@ -527,21 +539,21 @@ CREATE TABLE service_selfshop
     `id`                 INT             NOT NULL    AUTO_INCREMENT COMMENT '업체고유번호', 
     `categoryId`         INT             NOT NULL    COMMENT '카테고리 번호(이미지메이킹 / 퍼스널컬러)', 
     `shopName`           VARCHAR(50)     NOT NULL    COMMENT '업체명', 
-    `roadName`       VARCHAR(300)    NOT NULL    COMMENT '위치(도로명주소)',
+    `roadName`           VARCHAR(300)    NOT NULL    COMMENT '위치(도로명주소)',
     `review`             VARCHAR(300)    NULL        COMMENT '리뷰', 
     `photoUrl1`          VARCHAR(500)    NULL        COMMENT '사진 URL 1', 
     `photoUrl2`          VARCHAR(500)    NULL        COMMENT '사진 URL 2', 
     `photoUrl3`          VARCHAR(500)    NULL        COMMENT '사진 URL 3', 
-    `photoUrl4`          VARCHAR(500)   NULL        COMMENT '사진 URL 4', 
-    `photoUrl5`          VARCHAR(500)   NULL        COMMENT '사진 URL 5', 
+    `photoUrl4`          VARCHAR(500)    NULL        COMMENT '사진 URL 4', 
+    `photoUrl5`          VARCHAR(500)    NULL        COMMENT '사진 URL 5', 
     `phoneNum`           VARCHAR(50)     NOT NULL    COMMENT '전화번호', 
-    `operateTime`        VARCHAR(300)     NULL        COMMENT '영업시간', 
-    `menu`               VARCHAR(300)            NULL        COMMENT '가격', 
+    `operateTime`        VARCHAR(300)    NULL        COMMENT '영업시간', 
+    `menu`               VARCHAR(300)    NULL        COMMENT '가격', 
     `themeId`            INT             NULL        COMMENT '테마번호', 
     `regDate`            VARCHAR(50)     NULL        COMMENT '등록날짜', 
     `updateDate`         VARCHAR(50)     NULL        COMMENT '수정날짜', 
     `delDate`            DATETIME        NULL        COMMENT '삭제날짜',
-    `delStatus`          TINYINT         NULL        COMMENT '삭제여부', 
+    `delStatus`          TINYINT(1) UNSIGNED NOT NULL DEFAULT 0 COMMENT '삭제 여부 (0=삭제 전, 1=삭제 후)',
      PRIMARY KEY (id)
 );
 
@@ -560,16 +572,17 @@ CREATE TABLE service_review
     `memberId`                  VARCHAR(50)    NULL        COMMENT '회원번호', 
     `themeId`                   INT            NULL        COMMENT '업체테마 번호', 
     `categoryId`                INT            NULL        COMMENT '카테고리 번호(이미지메이킹 / 퍼스널컬러 / 헤어 / 메이크업)', 
-    shopId                      INT            NULL        COMMENT '가게 고유번호',
+     shopId                     INT            NULL        COMMENT '가게 고유번호',
     `starPoint`                 INT            NULL        COMMENT '별점',
     `title`                     TEXT           NULL        COMMENT '리뷰 제목', 
     `body`                      TEXT           NULL        COMMENT '리뷰 내용', 
-    `review_goodReactionPoint`  INT            NULL        COMMENT '좋아요', 
      PRIMARY KEY (id)
 );
 
 SELECT *
 FROM service_review;
+
+DROP TABLE service_review;
 
 INSERT INTO service_review
 SET regDate = NOW(),
@@ -580,8 +593,53 @@ categoryId = 3,
 shopId = 1,
 starPoint = 3.0,
 `title` = '리뷰3',
-`body` = '내용3',
- `review_goodReactionPoint` = 1;
+`body` = '내용3';
+ 
+ 
+INSERT INTO service_review
+SET regDate = NOW(),
+updateDate = NOW(),
+memberId = 2,
+themeId = 2,
+categoryId = 1,
+shopId = 1,
+starPoint = 3.0,
+`title` = '리뷰test1',
+`body` = '리뷰test1'; 
+ 
+INSERT INTO service_review
+SET regDate = NOW(),
+updateDate = NOW(),
+memberId = 2,
+themeId = 2,
+categoryId = 1,
+shopId = 1,
+starPoint = 5.0,
+`title` = '리뷰test2',
+`body` = '리뷰test2';  
+
+ 
+INSERT INTO service_review
+SET regDate = NOW(),
+updateDate = NOW(),
+memberId = 2,
+themeId = 1,
+categoryId = 1,
+shopId = 21,
+starPoint = 5.0,
+`title` = '컨설팅리뷰test2',
+`body` = '컨설팅리뷰test2';  
+ 
+ INSERT INTO service_review
+SET regDate = NOW(),
+updateDate = NOW(),
+memberId = 2,
+themeId = 2,
+categoryId = 1,
+shopId = 1,
+starPoint = 1.0,
+`title` = '리뷰test3',
+`body` = '리뷰test3'; 
  
  INSERT INTO service_review
 SET regDate = NOW(),
@@ -592,8 +650,7 @@ categoryId = 3,
 shopId = 1,
 starPoint = 5.0,
 `title` = '리뷰5',
-`body` = '내용5',
- `review_goodReactionPoint` = 1;
+`body` = '내용5';
  
  INSERT INTO service_review
 SET regDate = NOW(),
@@ -604,5 +661,4 @@ categoryId = 3,
 shopId = 2,
 starPoint = 5.0,
 `title` = '리뷰입니다',
-`body` = '너무 좋아요 ~~',
- `review_goodReactionPoint` = 1;
+`body` = '너무 좋아요 ~~';

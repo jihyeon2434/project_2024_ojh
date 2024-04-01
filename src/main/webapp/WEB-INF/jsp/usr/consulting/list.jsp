@@ -489,8 +489,8 @@
 					<div class="menu-box">
 						<div class="theme">
 
-							<button class="theme-button img-making">이미지메이킹</button>
-							<button class="theme-button personal">퍼스널컬러</button>
+							<button class="category-button img-making">이미지메이킹</button>
+							<button class="category-button personal">퍼스널컬러</button>
 						</div>
 
 						<div class="line1"></div>
@@ -583,7 +583,7 @@
 <script>
 $(document).ready(function() {
     // 이미지메이킹 또는 퍼스널컬러 버튼 클릭 시
-    $(".theme-button").click(function() {
+    $(".category-button").click(function() {
         // 버튼의 텍스트 값을 카테고리 ID로 사용합니다.
         var categoryId = $(this).text().trim() === "이미지메이킹" ? 1 : 2;
 
@@ -633,5 +633,57 @@ drawImages(response); // 데이터를 이미지로 그리는 함수 호출
 </script>
 
 
+<script>
+//별점이 높은 가게 목록을 가져오는 함수
+function getHighPointShops() {
+    // AJAX를 통해 서버로부터 별점이 높은 가게 목록을 요청합니다.
+    $.ajax({
+        type: "GET",
+        url: "/usr/consulting/getHighPointShops",
+        success: function(response) {
+            // 응답 데이터를 콘솔에 출력하여 확인
+            console.log("별점이 높은 가게 목록:", response);
+            
+            // 가져온 가게 목록을 이미지로 그리는 함수 호출
+            drawImages(response);
+        },
+        error: function(xhr, status, error) {
+            // 요청이 실패했을 때의 처리
+            console.error("Error:", error);
+        }
+    });
+}
 
+// 이미지를 그리는 함수
+function drawImages(shopInfoList) {
+    console.log("Received shopInfoList:", shopInfoList); // shopInfoList를 콘솔에 출력하여 확인
+
+    $(".img-big-outer-box").empty(); // 이미지 박스를 초기화합니다.
+    
+    // shopInfoList를 반복하여 이미지를 그립니다.
+    $.each(shopInfoList, function(index, shop) {
+        var html = '<div class="img-box-1">';
+        html += '<a href="detail?id=' + shop.id + '&categoryId=' + shop.categoryId + '&themeId=' + shop.themeId + '">';
+        html += '<div class="sm-img-outer-box">';
+        html += '<div class="img">';
+        html += '<img class="banner" style="width: 290px; height: 263px" src="' + shop.photoUrl1 + '" />';
+        html += '</div>';
+        html += '<div class="store">' + shop.shopName + '</div>';
+        html += '<div class="time">' + shop.roadName + '</div>';
+        html += '</div>';
+        html += '</a>';
+        html += '</div>';
+
+        $(".img-big-outer-box").append(html);
+    });
+}
+
+$(document).ready(function() {
+    // 별점이 높은 버튼 클릭 시
+    $(".recommend-1").click(function() {
+    	getHighPointShops(); // 별점이 높은 가게 목록을 가져오는 함수 호출
+    });
+});
+
+</script>
 <%@ include file="../common/foot.jspf"%>

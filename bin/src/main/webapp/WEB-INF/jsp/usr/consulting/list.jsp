@@ -372,10 +372,14 @@
 						<div class="area-option-box-3">
 							<div class="area-7 btn btn-outline btn-sm">부산</div>
 							<div class="area-8 btn btn-outline btn-sm">
-								광주 <br /> 전라
+								광주
+								<br />
+								전라
 							</div>
 							<div class="area-9 btn btn-outline btn-sm">
-								대구 <br /> 경상
+								대구
+								<br />
+								경상
 							</div>
 						</div>
 						<div class="area-option-box-4">
@@ -509,7 +513,7 @@
 										<!-- shopInfoList의 길이를 확인하여 유효한 인덱스인지 검사합니다 -->
 										<c:set var="shop" value="${shopInfoList[i]}" />
 										<div class="img-box-1">
-											<a href="detail?id=${shop.id }">
+											<a href="detail?id=${shop.id}&categoryId=${shop.categoryId}&themeId=${shop.themeId}">
 												<div class="sm-img-outer-box">
 													<div class="img">
 														<img class="banner" style="width: 290px; height: 263px" src="${shop.photoUrl1}" />
@@ -589,9 +593,11 @@ $(document).ready(function() {
             url: "/usr/consulting/showList",
             data: { categoryId: categoryId },
             success: function(response) {
-            	 // 응답 데이터를 JavaScript 객체로 파싱
-          var data = JSON.parse(response);
-drawImages(data); // 데이터를 이미지로 그리는 함수 호출
+            	
+            	 // 응답 데이터를 콘솔에 출력
+                console.log("서버 응답 데이터:", response);
+            	
+drawImages(response); // 데이터를 이미지로 그리는 함수 호출
             },
             error: function(xhr, status, error) {
                 // 요청이 실패했을 때의 처리
@@ -608,7 +614,7 @@ drawImages(data); // 데이터를 이미지로 그리는 함수 호출
         // shopInfoList를 반복하여 이미지를 그립니다.
         $.each(shopInfoList, function(index, shop) {
             var html = '<div class="img-box-1">';
-            html += '<a href="detail?id=' + shop.id + '">';
+            html += '<a href="detail?id=' + shop.id + '&categoryId=' + shop.categoryId + '&themeId=' + shop.themeId + '">';
             html += '<div class="sm-img-outer-box">';
             html += '<div class="img">';
             html += '<img class="banner" style="width: 290px; height: 263px" src="' + shop.photoUrl1 + '" />';
