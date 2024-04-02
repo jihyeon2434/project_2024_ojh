@@ -88,4 +88,9 @@ public class ConsultShopService {
 		
 		return consultShopRepository.getHighPointShops();
 	}
+
+	public List<conShop> getCheapestShops() {
+		
+		return consultShopRepository.getCheapestShops();
+	}
 }

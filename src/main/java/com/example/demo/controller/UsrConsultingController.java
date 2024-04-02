@@ -17,6 +17,7 @@ import com.example.demo.service.BoardService;
 import com.example.demo.service.ConsultShopService;
 import com.example.demo.service.ReactionPointService;
 import com.example.demo.service.ReplyService;
+import com.example.demo.service.menuService;
 import com.example.demo.util.Ut;
 import com.example.demo.vo.Article;
 import com.example.demo.vo.Board;
@@ -25,6 +26,7 @@ import com.example.demo.vo.ResultData;
 import com.example.demo.vo.Review;
 import com.example.demo.vo.Rq;
 import com.example.demo.vo.conShop;
+import com.example.demo.vo.menu;
 import com.example.demo.vo.selfShop;
 
 import jakarta.servlet.http.HttpServletRequest;
@@ -49,6 +51,9 @@ public class UsrConsultingController {
 
 	@Autowired
 	private ConsultShopService consultShopService;
+	
+	@Autowired
+	private menuService menuService;
 
 	public UsrConsultingController() {
 
@@ -59,6 +64,8 @@ public class UsrConsultingController {
 	@RequestMapping("/usr/consulting/crawl")
 	public String crawlConsultingShops1(@RequestParam(required = false, defaultValue = "") String inputKey) {
 		List<conShop> shopInfoList = consultShopService.crawlConsultingShops(inputKey);
+		List<menu> menuList = menuService.crawlMenus();
+		
 		return "usr/home/main";
 	}
 
@@ -112,6 +119,12 @@ public class UsrConsultingController {
 	 @GetMapping("/usr/consulting/getHighPointShops")
 	    public ResponseEntity<?> getHighPointShops() {
 	    	List<conShop> shopInfoList = consultShopService.getHighPointShops(); // 별점이 높은 가게 목록을 가져오는 서비스 메소드 호출
+	    	return ResponseEntity.ok().body(shopInfoList);
+	    }
+	 
+	 @GetMapping("/usr/consulting/getCheapestShops")
+	    public ResponseEntity<?> getCheapestShops() {
+	    	List<conShop> shopInfoList = consultShopService.getCheapestShops(); // 별점이 높은 가게 목록을 가져오는 서비스 메소드 호출
 	    	return ResponseEntity.ok().body(shopInfoList);
 	    }
 	

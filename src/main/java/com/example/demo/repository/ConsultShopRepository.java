@@ -84,4 +84,11 @@ public interface ConsultShopRepository {
 	        """)
 	public List<conShop> getHighPointShops();
 
+	
+	
+	
+	
+	
+	public List<conShop> getCheapestShops();
+
 }
