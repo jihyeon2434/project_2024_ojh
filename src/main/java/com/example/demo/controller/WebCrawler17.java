@@ -124,23 +124,19 @@ public class WebCrawler17 {
 			} catch (Exception ex) {
 				businessHours = null;
 			}
-			
-			 List<menu> menus = crawlMenus(); // crawlMenus 메서드로 메뉴 정보 추출
-			 String menuInfo = menus.stream()
-                     .map(menu -> menu.getMenu() + ":" + menu.getPrice())
-                     .collect(Collectors.joining(";"));
+
+			  String menuInfo; // 메뉴 정보를 저장할 변수를 선언합니다.
 			try {
 			  
 			    List<WebElement> menuEles = driver.findElements(By.className("y0EHb"));
 			    List<WebElement> priceEles = driver.findElements(By.className("CLSES"));
 
 			    // crawlMenu 메서드를 호출하여 메뉴 정보를 가져옵니다.
-			    List<menu> menuList = crawlMenu(menuEles, priceEles, key, 1, 1); // themeId와 categoryId는 임시로 1로 설정
+			    List<menu> menus = crawlMenu(menuEles, priceEles, key, 1, 1); // themeId와 categoryId는 임시로 1로 설정
 			    // menu 객체 리스트를 문자열로 변환하여 menuInfo에 저장합니다.
-			    menuInfo = menuList.stream()
-			                        .map(menu -> menu.getMenu() + ":" + menu.getPrice())
-			                        .collect(Collectors.joining(";"));
-
+			    menuInfo = menus.stream()
+			                    .map(menu -> menu.getMenu() + ":" + menu.getPrice())
+			                    .collect(Collectors.joining(";"));
 
 			    // 이전 코드 생략
 			} catch (Exception ex) {
@@ -250,82 +246,54 @@ public class WebCrawler17 {
 	
 	public List<menu> crawlMenu(List<WebElement> menuEles, List<WebElement> priceEles, String shopName, int themeId, int categoryId) {
 	    List<menu> menuList = new ArrayList<>();
-	   
-	    
-	    // 메뉴와 가격 정보를 가져와서 menu 객체를 생성하고 리스트에 추가
-	    for (int i = 0; i < menuEles.size(); i++) {
-	        try {
-	            String menuName = menuEles.get(i).getText();
-	            String priceString = priceEles.get(i).getText();
-	            
-	            // 메뉴 이름과 가격이 비어있지 않은 경우에만 처리
-	            if (!menuName.isEmpty() && !priceString.isEmpty()) {
-	                // 가격 정보에서 숫자만 추출
-	                int price = Integer.parseInt(priceString.replaceAll("[^\\d]", ""));
 
-	                // menu 객체 생성
-	                menu menuObj = new menu();
-	                menuObj.setThemeId(themeId);
-	                menuObj.setCategoryId(categoryId);
-	                menuObj.setShopName(shopName);
-	                menuObj.setMenu(menuName);
-	                menuObj.setPrice(price);
+	    // menuEles와 priceEles가 모두 null이 아닌 경우에만 메뉴 정보를 가져옴
+	    if (menuEles != null && priceEles != null) {
+	        // 메뉴와 가격 정보를 가져와서 menu 객체를 생성하고 리스트에 추가
+	        for (int i = 0; i < menuEles.size(); i++) {
+	            try {
+	                String menuName = "";
+	                String priceString = "";
 
-	                menuList.add(menuObj);
+	                // 메뉴 요소가 null이 아닌 경우에 메뉴 이름을 가져옴
+	                if (menuEles.get(i) != null) {
+	                    menuName = menuEles.get(i).getText();
+	                }
 
-	                
+	                // 가격 요소가 null이 아닌 경우에 가격을 가져옴
+	                if (priceEles.get(i) != null) {
+	                    priceString = priceEles.get(i).getText();
+	                }
+
+	                // 메뉴 이름과 가격이 비어있지 않은 경우에만 처리
+	                if (!menuName.isEmpty() && !priceString.isEmpty()) {
+	                    // 가격 정보에서 숫자만 추출
+	                    int price = Integer.parseInt(priceString.replaceAll("[^\\d]", ""));
+
+	                    // menu 객체 생성
+	                    menu menuObj = new menu();
+	                    menuObj.setThemeId(themeId);
+	                    menuObj.setCategoryId(categoryId);
+	                    menuObj.setShopName(shopName);
+	                    menuObj.setMenu(menuName);
+	                    menuObj.setPrice(price);
+
+	                    menuList.add(menuObj);
+
+	                    // 메뉴 정보를 콘솔에 출력
+	                    System.err.println("Menu: " + menuName);
+	                    System.err.println("Price: " + price);
+	                }
+	            } catch (Exception e) {
+	                e.printStackTrace();
 	            }
-	        } catch (Exception e) {
-	            e.printStackTrace();
 	        }
-	        
-	     // 메뉴 정보를 콘솔에 출력
-	        for (menu menuObj : menuList) {
-	            System.err.println("Menu:!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! " + menuObj.getMenu());
-	            System.err.println("Price:!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! " + menuObj.getPrice());
-	        }
+	    } else {
+	        System.err.println("Menu elements or price elements are null.");
 	    }
 
 	    return menuList;
 	}
 
-	public List<menu> crawlMenus() {
-	    List<menu> menuList = new ArrayList<>();
 
-	    // WebDriver 초기화
-	    System.setProperty(WEB_DRIVER_ID, WEB_DRIVER_PATH);
-	    ChromeOptions options = new ChromeOptions();
-	    options.setCapability("ignoreProtectedModeSettings", true);
-	    WebDriver driver = new ChromeDriver(options);
-
-	    try {
-	        // 메뉴 요소를 찾는 코드
-	        driver.get(url); // url을 어디서 가져올지 확인 필요
-	        List<WebElement> menuElements = driver.findElements(By.className("y0EHb"));
-	        List<WebElement> priceElements = driver.findElements(By.className("CLSES"));
-	        
-	        // 상점 이름 가져오기
-	        String shopName = null;
-	        try {
-	            // crawlMenus() 메서드에서는 상점 이름을 가져올 요소가 없으므로, menuElements에서 첫 번째 요소를 사용합니다.
-	            WebElement firstMenuElement = menuElements.get(0);
-	            shopName = firstMenuElement.findElement(By.xpath("..")).findElement(By.className("YwYLL")).getText();
-	        } catch (Exception ex) {
-	            ex.printStackTrace();
-	        }
-	        
-	        // crawlMenu 메서드를 호출하여 메뉴 정보를 가져옵니다.
-	        menuList = crawlMenu(menuElements, priceElements, shopName, 1, 1); // themeId와 categoryId는 임시로 1로 설정
-	    } catch (Exception ex) {
-	        ex.printStackTrace();
-	    } finally {
-	        // WebDriver 종료
-	        if (driver != null) {
-	            driver.quit();
-	        }
-	    }
-
-	    return menuList;
-	}
-	
 }

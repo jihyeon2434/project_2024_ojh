@@ -20,7 +20,7 @@ public interface menuRepository {
 			         categoryId = #{categoryId},
 			         shopId = #{shopId},
 			         shopName = #{shopName},
-			         menu = #{menu},
+			         menu = #{menuName},
 			         price= #{price}
 			        
 			""")

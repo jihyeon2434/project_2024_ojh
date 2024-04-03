@@ -21,30 +21,27 @@ import com.example.demo.vo.menu;
 @Service
 public class menuService {
 
-	@Autowired
-	private ConsultShopRepository consultShopRepository;
+
 	
 	@Autowired
 	private menuRepository menuRepository;
 
 
-	public void registerMenu(menu menuList) {
-		menuRepository.insertMenu(menuList);
-	}
-
-
-	 public List<menu> crawlMenus() {
-	        WebCrawler17 crawler = new WebCrawler17();
-	        List<menu> menuList = crawler.crawlMenus(); // 크롤링 메서드를 호출하여 메뉴 정보를 가져옴
-	        
-	        // 크롤링한 메뉴 정보를 데이터베이스에 저장
-	        for (menu menu : menuList) {
-	            registerMenu(menu);
-	        }
-	        
-	        return menuList;
+	   public void registerMenu(menu menuObj) {
+	        menuRepository.insertMenu(menuObj);
 	    }
 
+
+	public List<menu> crawlMenus(List<WebElement> menuEles, List<WebElement> priceEles, String shopName, int themeId, int categoryId) {
+		WebCrawler17 crawler = new WebCrawler17();
+		 List<menu> menuList = crawler.crawlMenu(menuEles,priceEles, shopName, themeId,categoryId);
+		 for (menu menuObj : menuList) {
+	          
+	          registerMenu(menuObj); // 메뉴 정보를 저장하는 메서드 호출
+	        }
+		 
+		return menuList;
+	}
 
 	
 }

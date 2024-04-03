@@ -666,20 +666,9 @@ starPoint = 5.0,
 
 -- service_menu Table Create SQL
 -- 테이블 생성 SQL - service_menu
-CREATE TABLE service_menu
-(
-    `id`           INT            NOT NULL    AUTO_INCREMENT COMMENT '메뉴 고유번호', 
-    `themeId`      INT            NULL        COMMENT '테마 고유번호', 
-    `categoryId`   INT            NULL        COMMENT '카테고리 고유번호', 
-    `VARCHAR(50)`  VARCHAR(50)    NULL        COMMENT '메뉴명', 
-    `price`        INT            NULL        COMMENT '가격', 
-     PRIMARY KEY (id)
-);
-
-SELECT *
-FROM service_menu;
 
 
+DROP TABLE service_menu;
 
 -- service_menu Table Create SQL
 -- 테이블 생성 SQL - service_menu

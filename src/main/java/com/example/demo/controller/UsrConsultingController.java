@@ -3,6 +3,7 @@ package com.example.demo.controller;
 import java.time.LocalDate;
 import java.util.List;
 
+import org.openqa.selenium.WebElement;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
@@ -62,10 +63,10 @@ public class UsrConsultingController {
 	// 액션 메서드
 
 	@RequestMapping("/usr/consulting/crawl")
-	public String crawlConsultingShops1(@RequestParam(required = false, defaultValue = "") String inputKey) {
-		List<conShop> shopInfoList = consultShopService.crawlConsultingShops(inputKey);
-		List<menu> menuList = menuService.crawlMenus();
-		
+    public String crawlConsultingShops(@RequestParam(required = false, defaultValue = "") String inputKey, HttpServletRequest req) {
+        List<conShop> shopInfoList = consultShopService.crawlConsultingShops(inputKey);
+        List<menu> menuList = menuService.crawlMenus(null, null, null, 0, 0); // 임시 값 전달
+        
 		return "usr/home/main";
 	}
 
