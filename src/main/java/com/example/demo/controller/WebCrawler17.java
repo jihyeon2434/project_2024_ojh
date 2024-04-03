@@ -124,19 +124,23 @@ public class WebCrawler17 {
 			} catch (Exception ex) {
 				businessHours = null;
 			}
-
-			  String menuInfo; // 메뉴 정보를 저장할 변수를 선언합니다.
+			
+			 List<menu> menus = crawlMenus(); // crawlMenus 메서드로 메뉴 정보 추출
+			 String menuInfo = menus.stream()
+                     .map(menu -> menu.getMenu() + ":" + menu.getPrice())
+                     .collect(Collectors.joining(";"));
 			try {
 			  
 			    List<WebElement> menuEles = driver.findElements(By.className("y0EHb"));
 			    List<WebElement> priceEles = driver.findElements(By.className("CLSES"));
 
 			    // crawlMenu 메서드를 호출하여 메뉴 정보를 가져옵니다.
-			    List<menu> menus = crawlMenu(menuEles, priceEles, key, 1, 1); // themeId와 categoryId는 임시로 1로 설정
+			    List<menu> menuList = crawlMenu(menuEles, priceEles, key, 1, 1); // themeId와 categoryId는 임시로 1로 설정
 			    // menu 객체 리스트를 문자열로 변환하여 menuInfo에 저장합니다.
-			    menuInfo = menus.stream()
-			                    .map(menu -> menu.getMenu() + ":" + menu.getPrice())
-			                    .collect(Collectors.joining(";"));
+			    menuInfo = menuList.stream()
+			                        .map(menu -> menu.getMenu() + ":" + menu.getPrice())
+			                        .collect(Collectors.joining(";"));
+
 
 			    // 이전 코드 생략
 			} catch (Exception ex) {
@@ -285,7 +289,43 @@ public class WebCrawler17 {
 	    return menuList;
 	}
 
+	public List<menu> crawlMenus() {
+	    List<menu> menuList = new ArrayList<>();
 
+	    // WebDriver 초기화
+	    System.setProperty(WEB_DRIVER_ID, WEB_DRIVER_PATH);
+	    ChromeOptions options = new ChromeOptions();
+	    options.setCapability("ignoreProtectedModeSettings", true);
+	    WebDriver driver = new ChromeDriver(options);
 
+	    try {
+	        // 메뉴 요소를 찾는 코드
+	        driver.get(url); // url을 어디서 가져올지 확인 필요
+	        List<WebElement> menuElements = driver.findElements(By.className("y0EHb"));
+	        List<WebElement> priceElements = driver.findElements(By.className("CLSES"));
+	        
+	        // 상점 이름 가져오기
+	        String shopName = null;
+	        try {
+	            // crawlMenus() 메서드에서는 상점 이름을 가져올 요소가 없으므로, menuElements에서 첫 번째 요소를 사용합니다.
+	            WebElement firstMenuElement = menuElements.get(0);
+	            shopName = firstMenuElement.findElement(By.xpath("..")).findElement(By.className("YwYLL")).getText();
+	        } catch (Exception ex) {
+	            ex.printStackTrace();
+	        }
+	        
+	        // crawlMenu 메서드를 호출하여 메뉴 정보를 가져옵니다.
+	        menuList = crawlMenu(menuElements, priceElements, shopName, 1, 1); // themeId와 categoryId는 임시로 1로 설정
+	    } catch (Exception ex) {
+	        ex.printStackTrace();
+	    } finally {
+	        // WebDriver 종료
+	        if (driver != null) {
+	            driver.quit();
+	        }
+	    }
+
+	    return menuList;
+	}
 	
 }
