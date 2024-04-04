@@ -437,35 +437,35 @@
 
 					<div class="line1"></div>
 				</div>
-				<div class="img-outer-box">
-					<div class="img-box-1">
-						<div class="sm-img-outer-box">
+				<div class="img-outer-box personal-img-outer-box">
+					<div class="img-box-1 personal-img-box">
+						<div class="sm-img-outer-box personal-sm-img-outer-box">
 							<div class="img">
 								<img class="banner" style="width: 290px; height: 263px" src="${shopInfoList[0].photoUrl1}" />
 
 							</div>
-							<div>가게</div>
-							<div>영업식간</div>
+							<div>가게 ${shop.shopName}</div>
+							<div>위치 ${shop.roadName }</div>
 						</div>
 					</div>
-					<div class="img-box-1">
-						<div class="sm-img-outer-box">
+					<div class="img-box-1 personal-img-box">
+						<div class="sm-img-outer-box personal-sm-img-outer-box">
 							<div class="img">
 								<img class="banner" style="width: 290px; height: 263px" src="${shopInfoList[0].photoUrl1}" />
 
 							</div>
-							<div>가게</div>
-							<div>영업식간</div>
+							<div>가게 ${shop.shopName}</div>
+							<div>위치 ${shop.roadName }</div>
 						</div>
 					</div>
-					<div class="img-box-1">
-						<div class="sm-img-outer-box">
+					<div class="img-box-1 personal-img-box">
+						<div class="sm-img-outer-box personal-sm-img-outer-box">
 							<div class="img">
 								<img class="banner" style="width: 290px; height: 263px" src="${shopInfoList[0].photoUrl1}" />
 
 							</div>
-							<div>가게</div>
-							<div>영업식간</div>
+							<div>가게 ${shop.shopName}</div>
+							<div>위치 ${shop.roadName }</div>
 						</div>
 					</div>
 				</div>
@@ -584,32 +584,43 @@
 $(document).ready(function() {
     // 이미지메이킹 또는 퍼스널컬러 버튼 클릭 시
     $(".category-button").click(function() {
-        // 버튼의 텍스트 값을 카테고리 ID로 사용합니다.
         var categoryId = $(this).text().trim() === "이미지메이킹" ? 1 : 2;
+        // AJAX 요청을 보내기 전에 활성화된 버튼 클래스를 제거합니다.
+        $(".category-button").removeClass("btn-active");
 
-        // AJAX를 통해 서버로부터 상담 가게 정보를 요청합니다.
+        // 클릭된 버튼에 활성화된 클래스를 추가합니다.
+        $(this).addClass("btn-active");
+
         $.ajax({
             type: "GET",
             url: "/usr/consulting/showList",
             data: { categoryId: categoryId },
             success: function(response) {
-                drawImages(response); // 데이터를 이미지로 그리는 함수 호출
+                drawImages(response);
             },
             error: function(xhr, status, error) {
-                // 요청이 실패했을 때의 처리
                 console.error("Error:", error);
             }
         });
     });
 
-    // 별점이 높은 버튼 클릭 시
     $(".recommend-1").click(function() {
-        getHighPointShops(); // 별점이 높은 가게 목록을 가져오는 함수 호출
+        $(".recommend-1").addClass("btn-active"); // 클릭된 버튼에 활성화된 클래스를 추가합니다.
+        $(".recommend-2, .recommend-3").removeClass("btn-active"); // 다른 버튼에 대한 활성화된 클래스를 제거합니다.
+        getHighPointShops();
+    });
+
+    $(".recommend-2").click(function() {
+        $(".recommend-2").addClass("btn-active"); // 클릭된 버튼에 활성화된 클래스를 추가합니다.
+        $(".recommend-1, .recommend-3").removeClass("btn-active"); // 다른 버튼에 대한 활성화된 클래스를 제거합니다.
+        getCheapestShops();
     });
 
     // 가장 저렴한 버튼 클릭 시
-    $(".recommend-2").click(function() {
-        getCheapestShops(); // 가장 저렴한 가게 목록을 가져오는 함수 호출
+    $(".recommend-3").click(function() {
+        $(".recommend-3").addClass("btn-active"); // 클릭된 버튼에 활성화된 클래스를 추가합니다.
+        $(".recommend-1, .recommend-2").removeClass("btn-active"); // 다른 버튼에 대한 활성화된 클래스를 제거합니다.
+        // 별점이 높은 가게 목록을 가져오는 함수 호출
     });
 });
 
@@ -667,6 +678,53 @@ function getCheapestShops() {
         }
     });
 }
+
+$(document).ready(function() {
+    // 지역 버튼 클릭 시
+    $(".area-1, .area-2, .area-3, .area-4, .area-5, .area-6, .area-7, .area-8, .area-9, .area-10, .area-11").click(function() {
+        var area = $(this).text().trim(); // 클릭된 버튼의 텍스트를 가져옵니다.
+        
+        // AJAX를 통해 서버에 요청을 보냅니다.
+        $.ajax({
+            type: "GET",
+            url: "/usr/consulting/getShopsByArea", // 해당 URL은 실제 사용하는 URL로 변경해야 합니다.
+            data: { area: area },
+            success: function(response) {
+                // 가져온 데이터를 사용하여 이미지를 그리는 함수를 호출합니다.
+              
+                console.log(response);
+                setShopInfo(response);
+            },
+            error: function(xhr, status, error) {
+                // 요청이 실패했을 때의 처리
+                console.error("Error:", error);
+            }
+        });
+    });
+});
+//받아온 업체 정보를 페이지에 세팅하는 함수
+function setShopInfo(shopInfoList) {
+    // 이미지 박스 초기화
+    $(".img-outer-box").empty();
+
+    // 받아온 업체 정보를 반복하여 페이지에 세팅합니다.
+    $.each(shopInfoList, function(index, shop) {
+        var html = '<div class="img-box-1">';
+        html += '<a href="detail?id=' + shop.id + '&categoryId=' + shop.categoryId + '&themeId=' + shop.themeId + '">';
+        html += '<div class="personal-sm-img-outer-box">';
+        html += '<div class="img">';
+        html += '<img class="banner" style="width: 290px; height: 263px" src="' + shop.photoUrl1 + '" />';
+        html += '</div>';
+        html += '<div class="store">' + shop.shopName + '</div>';
+        html += '<div class="time">' + shop.roadName + '</div>';
+        html += '</div>';
+        html += '</a>';
+        html += '</div>';
+
+        $(".img-outer-box").append(html);
+    });
+}
+
 </script>
 
 <%@ include file="../common/foot.jspf"%>

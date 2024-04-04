@@ -25,9 +25,15 @@ public class ConsultShopService {
 	private ReviewRepository reviewRepository;
 
 	public void registerShop(conShop shopInfo) {
+		 boolean exists = consultShopRepository.existsByShopNameAndRoadName(shopInfo.getShopName(), shopInfo.getRoadName());
+	        if (!exists) {
 		consultShopRepository.insertShop(shopInfo);
+	        }else {
+	            System.out.println("이미 존재하는 가게입니다.");
+	        }
 	}
 
+	
 	public List<conShop> crawlConsultingShops(String inputKey) {
 		WebCrawler17 crawler = new WebCrawler17();
 		List<conShop> shopInfoList = crawler.crawlMap();
@@ -92,5 +98,11 @@ public class ConsultShopService {
 	public List<conShop> getCheapestShops() {
 		
 		return consultShopRepository.getCheapestShops();
+	}
+
+
+	public List<conShop> getShopsByArea(String area) {
+		
+		return consultShopRepository.getShopsByArea(area);
 	}
 }

@@ -130,6 +130,12 @@ public class UsrConsultingController {
 	    	return ResponseEntity.ok().body(shopInfoList);
 	    }
 	
+	
+	 @GetMapping("/usr/consulting/getShopsByArea")
+	    public ResponseEntity<?> getShopsByArea(@RequestParam("area") String area) {
+	    	List<conShop> shopInfoList = consultShopService.getShopsByArea(area); // 별점이 높은 가게 목록을 가져오는 서비스 메소드 호출
+	    	return ResponseEntity.ok().body(shopInfoList);
+	    }
 
 	@RequestMapping("/usr/consulting/detail")
 	public String showconsultingDetail(HttpServletRequest req, Model model, int themeId, int id, int categoryId) {

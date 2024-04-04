@@ -72,23 +72,31 @@ public interface ConsultShopRepository {
 			""")
 	public conShop getShopByName(String shopName);
 
-	
 	@Select("""
-	        <script>
-	        SELECT C.*, COALESCE(AVG(R.starPoint), 0) AS totalStarPoint
-	        FROM service_Conshop AS C
-	        LEFT JOIN service_review AS R ON C.categoryId = R.categoryId AND C.id = R.shopId
-	        GROUP BY C.id, C.categoryId
-	        ORDER BY totalStarPoint DESC;
-	        </script>
-	        """)
+			<script>
+			SELECT C.*, COALESCE(AVG(R.starPoint), 0) AS totalStarPoint
+			FROM service_Conshop AS C
+			LEFT JOIN service_review AS R ON C.categoryId = R.categoryId AND C.id = R.shopId
+			GROUP BY C.id, C.categoryId
+			ORDER BY totalStarPoint DESC;
+			</script>
+			""")
 	public List<conShop> getHighPointShops();
 
-	
-	
-	
-	
-	
 	public List<conShop> getCheapestShops();
+
+	@Select("""
+			SELECT COUNT(*) > 0 FROM service_Conshop
+			WHERE shopName = #{shopName} AND roadName = #{roadName}
+			""")
+	public boolean existsByShopNameAndRoadName(@Param("shopName") String shopName, @Param("roadName") String roadName);
+
+	@Select("""
+			 SELECT * FROM service_Conshop
+			 WHERE LEFT(roadName, 2) = #{area} -- roadName의 앞 두글자가 지역과 일치하는지 확인
+			 ORDER BY id
+			 LIMIT 3; -- 상위 3개 업체만 가져옴
+			""")
+	public List<conShop> getShopsByArea(String area);
 
 }
