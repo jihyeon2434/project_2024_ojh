@@ -662,3 +662,34 @@ shopId = 2,
 starPoint = 5.0,
 `title` = '리뷰입니다',
 `body` = '너무 좋아요 ~~';
+
+
+-- service_menu Table Create SQL
+-- 테이블 생성 SQL - service_menu
+
+
+DROP TABLE service_menu;
+
+-- service_menu Table Create SQL
+-- 테이블 생성 SQL - service_menu
+CREATE TABLE service_menu
+(
+    `id`          INT            NOT NULL    AUTO_INCREMENT COMMENT '메뉴 고유번호', 
+    `themeId`     INT            NULL        COMMENT '테마 고유번호', 
+    `categoryId`  INT            NULL        COMMENT '카테고리 고유번호', 
+    `shopId`      VARCHAR(50)    NULL        COMMENT '업체 고유번호', 
+    `shopName`    VARCHAR(50)    NOT NULL    COMMENT '업체명', 
+    `menu`        VARCHAR(50)    NULL        COMMENT '메뉴명', 
+    `price`       INT            NULL        COMMENT '가격', 
+     PRIMARY KEY (id)
+);
+
+
+SELECT C.*, M.id, M.menu, M.price
+FROM service_Conshop AS C
+INNER JOIN service_menu AS M
+ON C.themeId = M.themeId AND C.categoryId = M.categoryId AND C.id = M.shopId;
+
+
+SELECT *
+FROM service_menu;

@@ -593,11 +593,7 @@ $(document).ready(function() {
             url: "/usr/consulting/showList",
             data: { categoryId: categoryId },
             success: function(response) {
-            	
-            	 // 응답 데이터를 콘솔에 출력
-                console.log("서버 응답 데이터:", response);
-            	
-drawImages(response); // 데이터를 이미지로 그리는 함수 호출
+                drawImages(response); // 데이터를 이미지로 그리는 함수 호출
             },
             error: function(xhr, status, error) {
                 // 요청이 실패했을 때의 처리
@@ -606,60 +602,22 @@ drawImages(response); // 데이터를 이미지로 그리는 함수 호출
         });
     });
 
- // 이미지를 그리는 함수
-    function drawImages(shopInfoList) {
-        console.log("Received shopInfoList:", shopInfoList); // shopInfoList를 콘솔에 출력하여 확인
-
-        $(".img-big-outer-box").empty(); // 이미지 박스를 초기화합니다.
-        // shopInfoList를 반복하여 이미지를 그립니다.
-        $.each(shopInfoList, function(index, shop) {
-            var html = '<div class="img-box-1">';
-            html += '<a href="detail?id=' + shop.id + '&categoryId=' + shop.categoryId + '&themeId=' + shop.themeId + '">';
-            html += '<div class="sm-img-outer-box">';
-            html += '<div class="img">';
-            html += '<img class="banner" style="width: 290px; height: 263px" src="' + shop.photoUrl1 + '" />';
-            html += '</div>';
-            html += '<div class="store">' + shop.shopName + '</div>';
-            html += '<div class="time">' + shop.roadName + '</div>';
-            html += '</div>';
-            html += '</a>';
-            html += '</div>';
-
-            $(".img-big-outer-box").append(html);
-        });
-    }
-});
-
-</script>
-
-
-<script>
-//별점이 높은 가게 목록을 가져오는 함수
-function getHighPointShops() {
-    // AJAX를 통해 서버로부터 별점이 높은 가게 목록을 요청합니다.
-    $.ajax({
-        type: "GET",
-        url: "/usr/consulting/getHighPointShops",
-        success: function(response) {
-            // 응답 데이터를 콘솔에 출력하여 확인
-            console.log("별점이 높은 가게 목록:", response);
-            
-            // 가져온 가게 목록을 이미지로 그리는 함수 호출
-            drawImages(response);
-        },
-        error: function(xhr, status, error) {
-            // 요청이 실패했을 때의 처리
-            console.error("Error:", error);
-        }
+    // 별점이 높은 버튼 클릭 시
+    $(".recommend-1").click(function() {
+        getHighPointShops(); // 별점이 높은 가게 목록을 가져오는 함수 호출
     });
-}
+
+    // 가장 저렴한 버튼 클릭 시
+    $(".recommend-2").click(function() {
+        getCheapestShops(); // 가장 저렴한 가게 목록을 가져오는 함수 호출
+    });
+});
 
 // 이미지를 그리는 함수
 function drawImages(shopInfoList) {
     console.log("Received shopInfoList:", shopInfoList); // shopInfoList를 콘솔에 출력하여 확인
 
     $(".img-big-outer-box").empty(); // 이미지 박스를 초기화합니다.
-    
     // shopInfoList를 반복하여 이미지를 그립니다.
     $.each(shopInfoList, function(index, shop) {
         var html = '<div class="img-box-1">';
@@ -678,22 +636,37 @@ function drawImages(shopInfoList) {
     });
 }
 
-$(document).ready(function() {
-    // 별점이 높은 버튼 클릭 시
-    $(".recommend-1").click(function() {
-        getHighPointShops(); // 별점이 높은 가게 목록을 가져오는 함수 호출
+// 별점이 높은 가게 목록을 가져오는 함수
+function getHighPointShops() {
+    // AJAX를 통해 서버로부터 별점이 높은 가게 목록을 요청합니다.
+    $.ajax({
+        type: "GET",
+        url: "/usr/consulting/getHighPointShops",
+        success: function(response) {
+            drawImages(response); // 가져온 가게 목록을 이미지로 그리는 함수 호출
+        },
+        error: function(xhr, status, error) {
+            // 요청이 실패했을 때의 처리
+            console.error("Error:", error);
+        }
     });
+}
 
-    // 가장 저렴한 버튼 클릭 시
-    $(".recommend-2").click(function() {
-        // AJAX를 통해 서버로부터 가장 저렴한 가게 목록을 요청하는 함수 호출
+// 가장 저렴한 가게 목록을 가져오는 함수
+function getCheapestShops() {
+    // AJAX를 통해 서버로부터 가장 저렴한 가게 목록을 요청합니다.
+    $.ajax({
+        type: "GET",
+        url: "/usr/consulting/getCheapestShops", // 해당 URL은 실제 사용하는 URL로 변경해야 합니다.
+        success: function(response) {
+            drawImages(response); // 가져온 가게 목록을 이미지로 그리는 함수 호출
+        },
+        error: function(xhr, status, error) {
+            // 요청이 실패했을 때의 처리
+            console.error("Error:", error);
+        }
     });
-
-    // 전문가가 친절한 버튼 클릭 시
-    $(".recommend-3").click(function() {
-        // AJAX를 통해 서버로부터 전문가가 친절한 가게 목록을 요청하는 함수 호출
-    });
-});
-
+}
 </script>
+
 <%@ include file="../common/foot.jspf"%>

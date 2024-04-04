@@ -61,13 +61,14 @@ public class UsrConsultingController {
 	}
 
 	// 액션 메서드
-
 	@RequestMapping("/usr/consulting/crawl")
-    public String crawlConsultingShops(@RequestParam(required = false, defaultValue = "") String inputKey, HttpServletRequest req) {
-        List<conShop> shopInfoList = consultShopService.crawlConsultingShops(inputKey);
-        List<menu> menuList = menuService.crawlMenus(null, null, null, 0, 0); // 임시 값 전달
-        
-		return "usr/home/main";
+	public String crawlConsultingShops(@RequestParam(required = false, defaultValue = "") String inputKey,
+	                                    HttpServletRequest request) {
+	    List<conShop> shopInfoList = consultShopService.crawlConsultingShops(inputKey);
+
+	    
+
+	    return "usr/home/main";
 	}
 
 	@RequestMapping("/usr/consulting/crawl2")

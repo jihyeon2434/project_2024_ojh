@@ -2,7 +2,6 @@ package com.example.demo.controller;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
@@ -12,13 +11,21 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.interactions.Actions;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import com.example.demo.service.menuService;
 import com.example.demo.vo.conShop;
 import com.example.demo.vo.menu;
 
+
+
 @Component
 public class WebCrawler17 {
+
+	
+	@Autowired
+	private menuService menuService;
 
 	private WebDriver driver;
 	private String url;
@@ -125,24 +132,27 @@ public class WebCrawler17 {
 				businessHours = null;
 			}
 
-			  String menuInfo; // 메뉴 정보를 저장할 변수를 선언합니다.
+			String menuInfo;
 			try {
-			  
-			    List<WebElement> menuEles = driver.findElements(By.className("y0EHb"));
-			    List<WebElement> priceEles = driver.findElements(By.className("CLSES"));
+	            // 메뉴 요소 추출
+	            List<WebElement> menuEles = driver.findElements(By.className("y0EHb"));
+	            // 가격 요소 추출
+	            List<WebElement> priceEles = driver.findElements(By.className("CLSES"));
+	            StringBuilder menuInfoBuilder = new StringBuilder();
+				for (int i = 0; i < menuEles.size(); i++) {
+					String temp = menuEles.get(i).getText() + ":" + priceEles.get(i).getText() + ";";
+					menuInfoBuilder.append(temp);
+				}
+				menuInfo = menuInfoBuilder.toString();
+	            // 데이터베이스에 메뉴 정보 삽입
+	            insertMenuInfo(menuEles, priceEles, key, 1, 1); // 테마 아이디가 1이라고 가정
+	        } catch (Exception ex) {
+	            menuInfo = null;
+	        }
 
-			    // crawlMenu 메서드를 호출하여 메뉴 정보를 가져옵니다.
-			    List<menu> menus = crawlMenu(menuEles, priceEles, key, 1, 1); // themeId와 categoryId는 임시로 1로 설정
-			    // menu 객체 리스트를 문자열로 변환하여 menuInfo에 저장합니다.
-			    menuInfo = menus.stream()
-			                    .map(menu -> menu.getMenu() + ":" + menu.getPrice())
-			                    .collect(Collectors.joining(";"));
 
-			    // 이전 코드 생략
-			} catch (Exception ex) {
-			    menuInfo = null;
-			}
-			
+
+
 
 
 			// Get image URLs
@@ -244,56 +254,74 @@ public class WebCrawler17 {
 		return shopInfoList;
 	}
 	
-	public List<menu> crawlMenu(List<WebElement> menuEles, List<WebElement> priceEles, String shopName, int themeId, int categoryId) {
-	    List<menu> menuList = new ArrayList<>();
+	private void insertMenuInfo(List<WebElement> menuEles, List<WebElement> priceEles, String shopName, int themeId, int categoryId) {
+	    for (int i = 0; i < menuEles.size(); i++) {
+	        try {
+	            String menuName = menuEles.get(i).getText();
+	            String priceString = priceEles.get(i).getText();
 
-	    // menuEles와 priceEles가 모두 null이 아닌 경우에만 메뉴 정보를 가져옴
-	    if (menuEles != null && priceEles != null) {
-	        // 메뉴와 가격 정보를 가져와서 menu 객체를 생성하고 리스트에 추가
-	        for (int i = 0; i < menuEles.size(); i++) {
-	            try {
-	                String menuName = "";
-	                String priceString = "";
+	            // 가격 문자열에서 가격 추출
+	            int price = Integer.parseInt(priceString.replaceAll("[^\\d]", ""));
 
-	                // 메뉴 요소가 null이 아닌 경우에 메뉴 이름을 가져옴
-	                if (menuEles.get(i) != null) {
-	                    menuName = menuEles.get(i).getText();
-	                }
+	            // 새로운 메뉴 객체 생성
+	            menu menuObj = new menu();
+	            menuObj.setThemeId(themeId);
+	            menuObj.setCategoryId(categoryId); // categoryId 전달
 
-	                // 가격 요소가 null이 아닌 경우에 가격을 가져옴
-	                if (priceEles.get(i) != null) {
-	                    priceString = priceEles.get(i).getText();
-	                }
+	            // 나머지 필드 설정
+	            menuObj.setShopName(shopName);
+	            menuObj.setMenu(menuName);
+	            menuObj.setPrice(price);
 
-	                // 메뉴 이름과 가격이 비어있지 않은 경우에만 처리
-	                if (!menuName.isEmpty() && !priceString.isEmpty()) {
-	                    // 가격 정보에서 숫자만 추출
-	                    int price = Integer.parseInt(priceString.replaceAll("[^\\d]", ""));
-
-	                    // menu 객체 생성
-	                    menu menuObj = new menu();
-	                    menuObj.setThemeId(themeId);
-	                    menuObj.setCategoryId(categoryId);
-	                    menuObj.setShopName(shopName);
-	                    menuObj.setMenu(menuName);
-	                    menuObj.setPrice(price);
-
-	                    menuList.add(menuObj);
-
-	                    // 메뉴 정보를 콘솔에 출력
-	                    System.err.println("Menu: " + menuName);
-	                    System.err.println("Price: " + price);
-	                }
-	            } catch (Exception e) {
-	                e.printStackTrace();
-	            }
+	            
+	            System.err.println("Price: " + price);
+	            System.out.println("themeId : "+themeId); System.out.println("categoryId : "+ categoryId); 
+	            System.out.println("shopName : "+ shopName);
+	            // 메뉴 객체를 데이터베이스에 삽입
+	            menuService.insertMenu(menuObj);
+	        } catch (Exception e) {
+	            e.printStackTrace();
 	        }
-	    } else {
-	        System.err.println("Menu elements or price elements are null.");
+	        
 	    }
-
-	    return menuList;
 	}
-
-
 }
+/*
+ * public List<menu> crawlMenu(List<WebElement> menuEles, List<WebElement>
+ * priceEles, String shopName, int themeId, int categoryId) {
+ * System.out.println("&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&"
+ * ); List<menu> menuList = new ArrayList<>();
+ * 
+ * // menuEles와 priceEles가 모두 null이 아닌 경우에만 메뉴 정보를 가져옴 if (menuEles != null &&
+ * priceEles != null) { // 메뉴와 가격 정보를 가져와서 menu 객체를 생성하고 리스트에 추가 for (int i = 0;
+ * i < menuEles.size(); i++) { try { String menuName = ""; String priceString =
+ * "";
+ * 
+ * // 메뉴 요소가 null이 아닌 경우에 메뉴 이름을 가져옴 if (menuEles.get(i) != null) { menuName =
+ * menuEles.get(i).getText(); }
+ * 
+ * // 가격 요소가 null이 아닌 경우에 가격을 가져옴 if (priceEles.get(i) != null) { priceString =
+ * priceEles.get(i).getText(); }
+ * 
+ * // 메뉴 이름과 가격이 비어있지 않은 경우에만 처리 if (!menuName.isEmpty() &&
+ * !priceString.isEmpty()) { // 가격 정보에서 숫자만 추출 int price =
+ * Integer.parseInt(priceString.replaceAll("[^\\d]", ""));
+ * 
+ * // menu 객체 생성 menu menuObj = new menu(); menuObj.setThemeId(themeId);
+ * menuObj.setCategoryId(categoryId); menuObj.setShopName(shopName);
+ * menuObj.setMenu(menuName); menuObj.setPrice(price);
+ * 
+ * menuList.add(menuObj);
+ * 
+ * // 메뉴 정보를 콘솔에 출력 System.err.println("Menu: " + menuName);
+ * System.err.println("Price: " + price);
+ * System.out.println("themeId : "+themeId); System.out.println("categoryId : "+
+ * categoryId); System.out.println("shopName : "+ shopName);
+ * 
+ * 
+ * } } catch (Exception e) { e.printStackTrace(); } } } else {
+ * System.err.println("Menu elements or price elements are null."); }
+ * 
+ * return menuList; }
+ */
+

@@ -32,5 +32,17 @@ public interface menuRepository {
 	
 	
 	
+	@Select("""
+			SELECT *
+			FROM service_menu
+			""")
+	public List<menu> getAllMenus();
+
+	
+	
+	
+	
+	
+	
 
 }
