@@ -21,7 +21,7 @@ public class menuService {
 
 	public void insertMenu(menu menuObj) {
 		
-		
+		System.err.println("78989789789789789789789789789798");
 		
 		 menuRepository.insertMenu(menuObj);
 		

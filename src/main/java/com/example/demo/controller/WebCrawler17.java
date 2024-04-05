@@ -145,6 +145,9 @@ public class WebCrawler17 {
 				}
 				menuInfo = menuInfoBuilder.toString();
 	            // 데이터베이스에 메뉴 정보 삽입
+				System.err.println(menuEles);
+				System.err.println(priceEles);
+				
 	            insertMenuInfo(menuEles, priceEles, key, 1, 1); // 테마 아이디가 1이라고 가정
 	        } catch (Exception ex) {
 	            menuInfo = null;
