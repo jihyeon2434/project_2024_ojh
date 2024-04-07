@@ -13,6 +13,7 @@ import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.interactions.Actions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.example.demo.service.menuService;
 import com.example.demo.vo.conShop;
@@ -174,7 +175,7 @@ public class WebCrawler17 {
 			// Create conShop object and add it to the list
 			conShop shopInfo = new conShop();
 			shopInfo.setShopName(key);
-			shopInfo.setRoadName(address);
+			shopInfo.setRoadName(address); 
 			shopInfo.setPhoneNum(phoneNumber);
 			shopInfo.setConAvailableTime(null); // 이 부분은 웹 크롤링으로는 얻을 수 없는 정보인지 확인해야 합니다.
 			shopInfo.setConAvailableDate(null); // 이 부분은 웹 크롤링으로는 얻을 수 없는 정보인지 확인해야 합니다.
@@ -250,12 +251,12 @@ public class WebCrawler17 {
 //        
 //    }
 
-	public List<conShop> crawlConsultingShops() {
-		List<conShop> shopInfoList = crawlMap(); // crawlMap 메서드 호출하여 shopInfoList 얻음
-
-		// 크롤링한 상담 가게 리스트 반환
-		return shopInfoList;
-	}
+	/*
+	 * public List<conShop> crawlConsultingShops() { List<conShop> shopInfoList =
+	 * crawlMap(); // crawlMap 메서드 호출하여 shopInfoList 얻음
+	 * 
+	 * // 크롤링한 상담 가게 리스트 반환 return shopInfoList; }
+	 */
 	
 	private void insertMenuInfo(List<WebElement> menuEles, List<WebElement> priceEles, String shopName, int themeId, int categoryId) {
 	    for (int i = 0; i < menuEles.size(); i++) {
@@ -278,8 +279,10 @@ public class WebCrawler17 {
 
 	            
 	            System.err.println("Price: " + price);
-	            System.out.println("themeId : "+themeId); System.out.println("categoryId : "+ categoryId); 
-	            System.out.println("shopName : "+ shopName);
+	            System.err.println("menuName: " + menuName);
+	            System.err.println("themeId : "+themeId); 
+	            System.err.println("categoryId : "+ categoryId); 
+	            System.err.println("shopName : "+ shopName);
 	            // 메뉴 객체를 데이터베이스에 삽입
 	            menuService.insertMenu(menuObj);
 	        } catch (Exception e) {

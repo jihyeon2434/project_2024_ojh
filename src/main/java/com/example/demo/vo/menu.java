@@ -11,7 +11,6 @@ public class menu {
     private int id;
     private int themeId;
     private int categoryId;
-    private int shopId;
     private String shopName;
     private String menu;
     private int price;

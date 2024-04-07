@@ -279,6 +279,7 @@
 	width: 980px;
 	overflow-x: auto; /* x 축으로 넘칠 경우 스크롤 생성 */
 	white-space: nowrap; /* 요소들을 한 줄에 나열 */
+	border: 2px solid pink;
 }
 
 .img-big-outer-box {
@@ -287,6 +288,7 @@
 	display: flex; /* 플렉스 박스 사용 */
 	flex-wrap: wrap; /* 줄 바꿈 허용 */
 	justify-content: space-between; /* 주 축을 따라 아이템을 고르게 분산 */
+	border: 1px solid red;
 }
 
 .small-img-outer-box>.img-big-outer-box>.img-box-1 {
@@ -437,6 +439,7 @@
 
 					<div class="line1"></div>
 				</div>
+				<div class="small-img-outer-box">
 				<div class="img-outer-box personal-img-outer-box">
 					<div class="img-box-1 personal-img-box">
 						<div class="sm-img-outer-box personal-sm-img-outer-box">
@@ -469,6 +472,8 @@
 						</div>
 					</div>
 				</div>
+				</div>
+				
 
 			</div>
 			<div class="list-box">
@@ -706,6 +711,13 @@ $(document).ready(function() {
 function setShopInfo(shopInfoList) {
     // 이미지 박스 초기화
     $(".img-outer-box").empty();
+    
+    if (shopInfoList.length === 0) {
+        // 만약 shopInfoList가 비어있는 경우, 메시지를 표시하거나 아무 작업도 수행하지 않도록 처리할 수 있습니다.
+        // 여기서는 간단히 아무 작업도 수행하지 않습니다.
+        return;
+    }
+
 
     // 받아온 업체 정보를 반복하여 페이지에 세팅합니다.
     $.each(shopInfoList, function(index, shop) {

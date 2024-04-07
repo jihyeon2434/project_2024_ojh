@@ -6,6 +6,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.example.demo.controller.WebCrawler17;
 import com.example.demo.repository.menuRepository;
 import com.example.demo.vo.menu;
 
@@ -20,10 +21,11 @@ public class menuService {
 
 
 	public void insertMenu(menu menuObj) {
-		
+
 		System.err.println("78989789789789789789789789789798");
 		
 		 menuRepository.insertMenu(menuObj);
+		 System.out.println("Menu inserted successfully!");
 		
 	}
 

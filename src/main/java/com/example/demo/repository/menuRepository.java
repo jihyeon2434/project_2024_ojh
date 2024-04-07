@@ -18,7 +18,6 @@ public interface menuRepository {
 			INSERT INTO service_menu SET
 					 themeId = #{themeId},
 			         categoryId = #{categoryId},
-			         shopId = #{shopId},
 			         shopName = #{shopName},
 			         menu = #{menuName},
 			         price= #{price}
