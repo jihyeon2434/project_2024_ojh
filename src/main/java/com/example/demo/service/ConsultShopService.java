@@ -21,6 +21,10 @@ public class ConsultShopService {
 	@Autowired
 	private ConsultShopRepository consultShopRepository;
 
+	
+	@Autowired
+	private menuService menuService;
+	
 	@Autowired
 	private ReviewRepository reviewRepository;
 
@@ -35,13 +39,55 @@ public class ConsultShopService {
 
 	
 	public List<conShop> crawlConsultingShops(String inputKey) {
-		WebCrawler17 crawler = new WebCrawler17();
-		List<conShop> shopInfoList = crawler.crawlMap();
-		for (conShop shopInfo : shopInfoList) {
-			registerShop(shopInfo); // 크롤링한 가게 정보를 저장
-		}
-		return shopInfoList; // 크롤링한 가게 정보를 리턴
+	    WebCrawler17 crawler = new WebCrawler17();
+	    List<conShop> shopInfoList = crawler.crawlMap();
+	    for (conShop shopInfo : shopInfoList) {
+	        registerShop(shopInfo); // 크롤링한 가게 정보를 저장
+	        extractAndSaveMenuInfo(shopInfo); // 메뉴 정보 추출 및 저장
+	    }
+	    return shopInfoList; // 크롤링한 가게 정보를 리턴
 	}
+	
+	public void extractAndSaveMenuInfo(conShop shopInfo) {
+	    String menuInfo = shopInfo.getMenu(); // 가게 정보로부터 메뉴 정보 추출
+	    if (menuInfo != null && !menuInfo.isEmpty()) {
+	        // 메뉴 정보가 존재할 경우
+	        String[] menuEntries = menuInfo.split(";");
+	        for (String entry : menuEntries) {
+	            String[] parts = entry.split(":");
+	            if (parts.length == 2) {
+	                // 메뉴 정보가 유효한 형태일 경우
+	            	 String menuName = parts[0].trim(); // 메뉴명 추출
+	            	 String priceString = parts[1].trim(); // 가격 문자열 추출
+	                 
+	                 // "~" 문자로 가격 범위를 분리하여 첫 번째 값을 사용
+	                 String[] priceRange = priceString.split("~");
+	                 String price = priceRange[0].trim(); // "~" 이전의 값만 사용
+	                int themeId = shopInfo.getThemeId(); // 테마 아이디 추출
+	                int categoryId = shopInfo.getCategoryId(); // 카테고리 아이디 추출
+	                String shopName = shopInfo.getShopName(); // 가게 이름 추출
+	                // 메뉴 정보 저장
+	                menuService.insertMenu(menuName, price, themeId, categoryId, shopName);
+	            }
+	        }
+	    }
+	}
+	
+	public int extractPrice(String priceString) {
+	    // 가격 문자열에서 숫자만 추출하여 정수형으로 변환
+	    int price = 0;
+	    try {
+	        price = Integer.parseInt(priceString.replaceAll("[^\\d]", ""));
+	    } catch (NumberFormatException e) {
+	        e.printStackTrace();
+	    }
+	    return price;
+	}
+
+	
+
+   
+
 
 	public List<conShop> crawlConsultingShops2(String inputKey) {
 		WebCrawler19 crawler = new WebCrawler19();

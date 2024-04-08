@@ -511,6 +511,9 @@ CREATE TABLE service_Conshop
      PRIMARY KEY (id)
 );
 
+
+DROP TABLE service_Conshop;
+
 ## innerjoin 별점 총점 세팅
 
 SELECT C.*, COALESCE(AVG(R.starPoint), 0) AS totalStarPoint
@@ -680,14 +683,15 @@ CREATE TABLE service_menu
     `shopId`      VARCHAR(50)    NULL        COMMENT '업체 고유번호', 
     `shopName`    VARCHAR(50)    NOT NULL    COMMENT '업체명', 
     `menu`        VARCHAR(50)    NULL        COMMENT '메뉴명', 
-    `price`       INT            NULL        COMMENT '가격', 
+    `price`       VARCHAR(50)            NULL        COMMENT '가격', 
      PRIMARY KEY (id)
 );
 
+DROP TABLE service_menu;
 
 SELECT C.*, M.id, M.menu, M.price
 FROM service_Conshop AS C
-INNER JOIN service_menu AS M
+LEFT JOIN service_menu AS M
 ON C.themeId = M.themeId AND C.categoryId = M.categoryId AND C.id = M.shopId;
 
 

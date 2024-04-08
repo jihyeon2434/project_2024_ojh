@@ -149,7 +149,7 @@ public class WebCrawler17 {
 				System.err.println(menuEles);
 				System.err.println(priceEles);
 				
-	            insertMenuInfo(menuEles, priceEles, key, 1, 1); // 테마 아이디가 1이라고 가정
+	          //  insertMenuInfo(menuEles, priceEles, key, 1, 1); // 테마 아이디가 1이라고 가정
 	        } catch (Exception ex) {
 	            menuInfo = null;
 	        }
@@ -244,6 +244,8 @@ public class WebCrawler17 {
 		}
 		return categoryId;
 	}
+	
+	
 
 //    public static void main(String[] args) {
 //        WebCrawler17 crawler = new WebCrawler17();
@@ -258,39 +260,34 @@ public class WebCrawler17 {
 	 * // 크롤링한 상담 가게 리스트 반환 return shopInfoList; }
 	 */
 	
-	private void insertMenuInfo(List<WebElement> menuEles, List<WebElement> priceEles, String shopName, int themeId, int categoryId) {
-	    for (int i = 0; i < menuEles.size(); i++) {
-	        try {
-	            String menuName = menuEles.get(i).getText();
-	            String priceString = priceEles.get(i).getText();
-
-	            // 가격 문자열에서 가격 추출
-	            int price = Integer.parseInt(priceString.replaceAll("[^\\d]", ""));
-
-	            // 새로운 메뉴 객체 생성
-	            menu menuObj = new menu();
-	            menuObj.setThemeId(themeId);
-	            menuObj.setCategoryId(categoryId); // categoryId 전달
-
-	            // 나머지 필드 설정
-	            menuObj.setShopName(shopName);
-	            menuObj.setMenu(menuName);
-	            menuObj.setPrice(price);
-
-	            
-	            System.err.println("Price: " + price);
-	            System.err.println("menuName: " + menuName);
-	            System.err.println("themeId : "+themeId); 
-	            System.err.println("categoryId : "+ categoryId); 
-	            System.err.println("shopName : "+ shopName);
-	            // 메뉴 객체를 데이터베이스에 삽입
-	            menuService.insertMenu(menuObj);
-	        } catch (Exception e) {
-	            e.printStackTrace();
-	        }
-	        
-	    }
-	}
+	
+	
+	// menu 테이블 데이터만 크롤링
+	/*
+	 * private void insertMenuInfo(List<WebElement> menuEles, List<WebElement>
+	 * priceEles, String shopName, int themeId, int categoryId) { for (int i = 0; i
+	 * < menuEles.size(); i++) { try { String menuName = menuEles.get(i).getText();
+	 * String priceString = priceEles.get(i).getText();
+	 * 
+	 * // 가격 문자열에서 가격 추출 int price =
+	 * Integer.parseInt(priceString.replaceAll("[^\\d]", ""));
+	 * 
+	 * // 새로운 메뉴 객체 생성 menu menuObj = new menu(); menuObj.setThemeId(themeId);
+	 * menuObj.setCategoryId(categoryId); // categoryId 전달
+	 * 
+	 * // 나머지 필드 설정 menuObj.setShopName(shopName); menuObj.setMenu(menuName);
+	 * menuObj.setPrice(price);
+	 * 
+	 * 
+	 * System.err.println("Price: " + price); System.err.println("menuName: " +
+	 * menuName); System.err.println("themeId : "+themeId);
+	 * System.err.println("categoryId : "+ categoryId);
+	 * System.err.println("shopName : "+ shopName); // 메뉴 객체를 데이터베이스에 삽입
+	 * menuService.insertMenu(menuObj); } catch (Exception e) { e.printStackTrace();
+	 * }
+	 * 
+	 * } }
+	 */
 }
 /*
  * public List<menu> crawlMenu(List<WebElement> menuEles, List<WebElement>

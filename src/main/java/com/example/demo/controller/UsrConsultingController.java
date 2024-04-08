@@ -66,8 +66,6 @@ public class UsrConsultingController {
 	                                    HttpServletRequest request) {
 	    List<conShop> shopInfoList = consultShopService.crawlConsultingShops(inputKey);
 
-	    
-
 	    return "usr/home/main";
 	}
 

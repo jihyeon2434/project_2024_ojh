@@ -19,13 +19,20 @@ public class menuService {
 	private menuRepository menuRepository;
 
 
+	/*
+	 * public void insertMenu(menu menuObj) {
+	 * 
+	 * System.err.println("78989789789789789789789789789798");
+	 * 
+	 * menuRepository.insertMenu(menuObj);
+	 * System.out.println("Menu inserted successfully!");
+	 * 
+	 * }
+	 */
 
-	public void insertMenu(menu menuObj) {
 
-		System.err.println("78989789789789789789789789789798");
-		
-		 menuRepository.insertMenu(menuObj);
-		 System.out.println("Menu inserted successfully!");
+	public void insertMenu(String menuName, String price, int themeId, int categoryId, String shopName) {
+		 menuRepository.insertMenu(menuName, price, themeId, categoryId, shopName);
 		
 	}
 
