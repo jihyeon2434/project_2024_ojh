@@ -1,5 +1,6 @@
 package com.example.demo.service;
 
+import java.util.Arrays;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -57,36 +58,55 @@ public class ConsultShopService {
 	            String[] parts = entry.split(":");
 	            if (parts.length == 2) {
 	                // 메뉴 정보가 유효한 형태일 경우
-	            	 String menuName = parts[0].trim(); // 메뉴명 추출
-	            	 String priceString = parts[1].trim(); // 가격 문자열 추출
+	                String menuName = parts[0].trim(); // 메뉴명 추출
+	                String priceString = parts[1].trim(); // 가격 문자열 추출
 	                 
-	                 // "~" 문자로 가격 범위를 분리하여 첫 번째 값을 사용
-	                 String[] priceRange = priceString.split("~");
-	                 String price = priceRange[0].trim(); // "~" 이전의 값만 사용
+	                // "원~" 문자로 가격 범위를 분리하여 첫 번째 값을 사용
+	                String[] priceRange = priceString.split("~");
+	                System.err.println(priceRange);
+	                System.err.println(priceRange);
+	                String priceStringBeforeWon = priceRange[0].trim(); // "원~" 이전의 값만 사용
+	                System.err.println(priceStringBeforeWon);
+	                System.err.println(priceStringBeforeWon);
+	                
+	                // 가격 정보에서 숫자만 추출하여 정수형으로 변환
+	                int price = extractPrice(priceStringBeforeWon);
+	                System.err.println(price);
+	                int themeId = shopInfo.getThemeId(); // 테마 아이디 추출
+	                int categoryId = shopInfo.getCategoryId(); // 카테고리 아이디 추출
+	                String shopName = shopInfo.getShopName(); // 가게 이름 추출
+	                // 메뉴 정보 저장
+	                menuService.insertMenu(menuName, price, themeId, categoryId, shopName);
+	            }else if (parts.length >= 2) {
+	                // 메뉴 정보가 다른 형태일 경우 (예: 가격에 ":"가 포함될 경우)
+	                // 마지막 ":"를 기준으로 메뉴명과 가격을 추출
+	                String priceString = parts[parts.length - 1].trim(); // 가격 문자열 추출
+	                String menuName = String.join(":", Arrays.copyOfRange(parts, 0, parts.length - 1)).trim(); // 메뉴명 추출
+	                
+	                // 가격 정보에서 숫자만 추출하여 정수형으로 변환
+	                int price = extractPrice(priceString);
 	                int themeId = shopInfo.getThemeId(); // 테마 아이디 추출
 	                int categoryId = shopInfo.getCategoryId(); // 카테고리 아이디 추출
 	                String shopName = shopInfo.getShopName(); // 가게 이름 추출
 	                // 메뉴 정보 저장
 	                menuService.insertMenu(menuName, price, themeId, categoryId, shopName);
 	            }
+	            
 	        }
 	    }
 	}
-	
+
 	public int extractPrice(String priceString) {
 	    // 가격 문자열에서 숫자만 추출하여 정수형으로 변환
 	    int price = 0;
 	    try {
+	        // "원" 문자를 제거하고 숫자만 남기고 변환
 	        price = Integer.parseInt(priceString.replaceAll("[^\\d]", ""));
 	    } catch (NumberFormatException e) {
 	        e.printStackTrace();
 	    }
 	    return price;
 	}
-
-	
-
-   
 
 
 	public List<conShop> crawlConsultingShops2(String inputKey) {

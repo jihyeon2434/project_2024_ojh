@@ -23,7 +23,7 @@ public interface menuRepository {
 			         price= #{price}
 			        
 			""")
-	public void insertMenu(String menuName, String price, int themeId, int categoryId, String shopName);
+	public void insertMenu(String menuName, int price, int themeId, int categoryId, String shopName);
 
 	
 	
