@@ -171,4 +171,9 @@ public class ConsultShopService {
 		
 		return consultShopRepository.getShopsByArea(area);
 	}
+
+
+	public List<conShop> getShopsByPriceRange(int priceRange) {
+		return consultShopRepository.getShopsByPriceRange(priceRange);
+	}
 }

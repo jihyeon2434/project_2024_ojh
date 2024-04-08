@@ -83,6 +83,18 @@ public interface ConsultShopRepository {
 			""")
 	public List<conShop> getHighPointShops();
 
+	@Select("""
+			SELECT *
+			FROM (
+			    SELECT C.*, MIN(M.price) AS min_price, AVG(M.price) AS avg_price
+			    FROM service_Conshop AS C
+			    LEFT JOIN service_menu AS M
+			    ON C.themeId = M.themeId AND C.categoryId = M.categoryId AND C.shopName = M.shopName AND M.price > 0
+			    GROUP BY C.shopName
+			) AS subquery
+			ORDER BY CASE WHEN subquery.avg_price IS NULL THEN 1 ELSE 0 END ASC, subquery.min_price ASC;
+
+						""")
 	public List<conShop> getCheapestShops();
 
 	@Select("""
@@ -98,5 +110,24 @@ public interface ConsultShopRepository {
 			 LIMIT 3; -- 상위 3개 업체만 가져옴
 			""")
 	public List<conShop> getShopsByArea(String area);
+
+	@Select("""
+	        SELECT C.*, M.menu, M.price
+	        FROM service_Conshop AS C
+	        INNER JOIN service_menu AS M
+	        WHERE
+	            IF(#{priceRange} = 'price-1', M.price <= 70000,
+	                IF(#{priceRange} = 'price-2', M.price > 70000 AND M.price <= 100000,
+	                    IF(#{priceRange} = 'price-3', M.price > 100000 AND M.price <= 200000,
+	                        M.price > 200000
+	                    )
+	                )
+	            ) = 1
+	        ORDER BY M.price = 0, M.price ASC;
+	""")
+	public List<conShop> getShopsByPriceRange(@Param("priceRange") int priceRange);
+
+
+
 
 }

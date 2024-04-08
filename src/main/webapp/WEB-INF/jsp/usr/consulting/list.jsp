@@ -341,12 +341,12 @@
 
 					<div class="price-option-box">
 						<div class="price-option-box-1">
-							<div class="price-1 btn btn-outline btn-sm">~7</div>
-							<div class="price-2 btn btn-outline btn-sm">~10</div>
+							<div class="price-1 btn btn-outline btn-sm">70,000</div>
+							<div class="price-2 btn btn-outline btn-sm">100,000</div>
 						</div>
 						<div class="price-option-box-2">
-							<div class="price-3 btn btn-outline btn-sm">~20</div>
-							<div class="price-4 btn btn-outline btn-sm">30~</div>
+							<div class="price-3 btn btn-outline btn-sm">200,000</div>
+							<div class="price-4 btn btn-outline btn-sm">300,000</div>
 						</div>
 					</div>
 				</div>
@@ -484,7 +484,7 @@
 
 						<button class="theme-button recommend-1">별점이 높은</button>
 						<button class="theme-button recommend-2">가장 저렴한</button>
-						<button class="theme-button recommend-3">전문가가 친절한</button>
+					<!-- 	<button class="theme-button recommend-3">전문가가 친절한</button> -->
 					</div>
 
 					<div class="line1"></div>
@@ -628,6 +628,41 @@ $(document).ready(function() {
         // 별점이 높은 가게 목록을 가져오는 함수 호출
     });
 });
+
+
+$(document).ready(function() {
+    // 가격 범위 버튼 클릭 시
+    $(".price-1, .price-2, .price-3, .price-4").click(function() {
+        // 버튼의 텍스트를 가져옵니다.
+        var buttonText = $(this).text().trim();
+        
+        // 버튼 텍스트에서 숫자 부분을 추출하여 priceRange에 할당합니다.
+        var priceRange = buttonText.replace(/[^0-9]/g, '');
+
+        // AJAX를 통해 서버에 요청을 보냅니다.
+        $.ajax({
+            type: "GET",
+            url: "/usr/consulting/getShopsByPriceRange",
+            data: { priceRange: priceRange },
+            success: function(response) {
+                // 가져온 데이터를 사용하여 이미지를 그리는 함수를 호출합니다.
+                console.log(response);
+                setShopInfo(response);
+            },
+            error: function(xhr, status, error) {
+                // 요청이 실패했을 때의 처리
+                if (typeof error !== 'undefined') {
+                    console.error("Error:", error);
+                } else {
+                    console.error("Unknown error occurred.");
+                }
+            }
+        });
+    });
+});
+
+
+
 
 // 이미지를 그리는 함수
 function drawImages(shopInfoList) {
