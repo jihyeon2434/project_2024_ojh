@@ -11,13 +11,19 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.interactions.Actions;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import com.example.demo.service.menuService;
 import com.example.demo.vo.conShop;
 
 @Component
 public class WebCrawler19 {
 
+
+	@Autowired
+	private menuService menuService;
+	
 	private WebDriver driver;
 	private String url;
 
@@ -235,10 +241,10 @@ public class WebCrawler19 {
 //        
 //    }
 
-	public List<conShop> crawlConsultingShops() {
-		List<conShop> shopInfoList = crawlMap(); // crawlMap 메서드 호출하여 shopInfoList 얻음
-
-		// 크롤링한 상담 가게 리스트 반환
-		return shopInfoList;
-	}
+	/*
+	 * public List<conShop> crawlConsultingShops() { List<conShop> shopInfoList =
+	 * crawlMap(); // crawlMap 메서드 호출하여 shopInfoList 얻음
+	 * 
+	 * // 크롤링한 상담 가게 리스트 반환 return shopInfoList; }
+	 */
 }

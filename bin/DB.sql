@@ -511,6 +511,9 @@ CREATE TABLE service_Conshop
      PRIMARY KEY (id)
 );
 
+
+DROP TABLE service_Conshop;
+
 ## innerjoin 별점 총점 세팅
 
 SELECT C.*, COALESCE(AVG(R.starPoint), 0) AS totalStarPoint
@@ -677,7 +680,6 @@ CREATE TABLE service_menu
     `id`          INT            NOT NULL    AUTO_INCREMENT COMMENT '메뉴 고유번호', 
     `themeId`     INT            NULL        COMMENT '테마 고유번호', 
     `categoryId`  INT            NULL        COMMENT '카테고리 고유번호', 
-    `shopId`      VARCHAR(50)    NULL        COMMENT '업체 고유번호', 
     `shopName`    VARCHAR(50)    NOT NULL    COMMENT '업체명', 
     `menu`        VARCHAR(50)    NULL        COMMENT '메뉴명', 
     `price`       INT            NULL        COMMENT '가격', 
@@ -685,11 +687,48 @@ CREATE TABLE service_menu
 );
 
 
-SELECT C.*, M.id, M.menu, M.price
-FROM service_Conshop AS C
-INNER JOIN service_menu AS M
-ON C.themeId = M.themeId AND C.categoryId = M.categoryId AND C.id = M.shopId;
 
+SELECT C.*, M.menu, M.price
+FROM service_Conshop AS C
+LEFT JOIN service_menu AS M
+ON C.themeId = M.themeId AND C.categoryId = M.categoryId AND C.shopName = M.shopName;
+
+
+SELECT C.*, MIN(M.price) AS min_price
+FROM service_Conshop AS C
+LEFT JOIN service_menu AS M
+ON C.themeId = M.themeId AND C.categoryId = M.categoryId AND C.shopName = M.shopName
+WHERE M.price > 1
+GROUP BY C.shopName
+ORDER BY min_price ASC;
+
+
+
+
+SELECT *
+FROM (
+    SELECT C.*, MIN(M.price) AS min_price, AVG(M.price) AS avg_price
+    FROM service_Conshop AS C
+    LEFT JOIN service_menu AS M
+    ON C.themeId = M.themeId AND C.categoryId = M.categoryId AND C.shopName = M.shopName AND M.price > 0
+    GROUP BY C.shopName
+) AS subquery
+ORDER BY CASE WHEN subquery.avg_price IS NULL THEN 1 ELSE 0 END ASC, subquery.min_price ASC;
+
+
+   SELECT C.*, M.menu, M.price
+	        FROM service_Conshop AS C
+	        INNER JOIN service_menu AS M
+	        WHERE
+	            IF(M.price <= 70000,
+	                IF(M.price > 70000 AND M.price <= 100000,
+	                    IF(M.price > 100000 AND M.price <= 200000,
+	                        M.price > 200000
+	                    )
+	                )
+	            ) = 1
+	        ORDER BY M.price = 0, 
+	        M.price ASC;
 
 SELECT *
 FROM service_menu;

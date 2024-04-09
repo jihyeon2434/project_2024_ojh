@@ -742,6 +742,7 @@ $(document).ready(function() {
         });
     });
 });
+
 //받아온 업체 정보를 페이지에 세팅하는 함수
 function setShopInfo(shopInfoList) {
     // 이미지 박스 초기화
