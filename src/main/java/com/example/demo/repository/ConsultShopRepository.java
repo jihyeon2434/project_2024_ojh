@@ -93,7 +93,6 @@ public interface ConsultShopRepository {
 			    GROUP BY C.shopName
 			) AS subquery
 			ORDER BY CASE WHEN subquery.avg_price IS NULL THEN 1 ELSE 0 END ASC, subquery.min_price ASC;
-
 						""")
 	public List<conShop> getCheapestShops();
 
@@ -112,22 +111,49 @@ public interface ConsultShopRepository {
 	public List<conShop> getShopsByArea(String area);
 
 	@Select("""
-	        SELECT C.*, M.menu, M.price
-	        FROM service_Conshop AS C
-	        INNER JOIN service_menu AS M
-	        WHERE
-	            IF(#{priceRange} = 'price-1', M.price <= 70000,
-	                IF(#{priceRange} = 'price-2', M.price > 70000 AND M.price <= 100000,
-	                    IF(#{priceRange} = 'price-3', M.price > 100000 AND M.price <= 200000,
-	                        M.price > 200000
-	                    )
-	                )
-	            ) = 1
-	        ORDER BY M.price = 0, M.price ASC;
-	""")
+			        SELECT C.*, M.menu, M.price
+			        FROM service_Conshop AS C
+			        INNER JOIN service_menu AS M
+			        WHERE
+			            IF(#{priceRange} = 'price-1', M.price <= 70000,
+			                IF(#{priceRange} = 'price-2', M.price > 70000 AND M.price <= 100000,
+			                    IF(#{priceRange} = 'price-3', M.price > 100000 AND M.price <= 200000,
+			                        M.price > 200000
+			                    )
+			                )
+			            ) = 1
+			        ORDER BY M.price = 0, M.price ASC;
+			""")
 	public List<conShop> getShopsByPriceRange(@Param("priceRange") int priceRange);
 
+	
+	
+	 @Select("""
+	            SELECT C.*, COALESCE(AVG(R.starPoint), 0) AS totalStarPoint
+	            FROM service_Conshop AS C
+	            LEFT JOIN service_review AS R ON C.categoryId = R.categoryId AND C.id = R.shopId
+	            WHERE C.categoryId = #{category}
+	            GROUP BY C.id, C.categoryId
+	            ORDER BY totalStarPoint DESC;
+	            """)
+	    List<conShop> findShopsByHighRating(@Param("category") int category);
 
-
+	    
+	    
+	    
+	    @Select("""
+				SELECT *
+				FROM (
+				    SELECT C.*, MIN(M.price) AS min_price, AVG(M.price) AS avg_price
+				    FROM service_Conshop AS C
+				    LEFT JOIN service_menu AS M
+				    ON C.themeId = M.themeId AND C.categoryId = M.categoryId AND C.shopName = M.shopName AND M.price > 0
+				    WHERE C.categoryId = #{category}
+				    GROUP BY C.shopName
+				) AS subquery
+				ORDER BY CASE WHEN subquery.avg_price IS NULL THEN 1 ELSE 0 END ASC, subquery.min_price ASC;
+							""")
+	public List<conShop> findShopsByLowPrice(int category);
+	
 
 }

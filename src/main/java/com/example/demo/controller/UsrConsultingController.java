@@ -140,6 +140,12 @@ public class UsrConsultingController {
 	    	List<conShop> shopInfoList = consultShopService.getShopsByPriceRange(priceRange); // 별점이 높은 가게 목록을 가져오는 서비스 메소드 호출
 	    	return ResponseEntity.ok().body(shopInfoList);
 	    }
+	 
+	 @GetMapping("/usr/consulting/getShopsByOptions")
+	 public ResponseEntity<?>  getShopsByOptions(@RequestParam String recommend, @RequestParam int category) {
+		 List<conShop> shopInfoList = consultShopService.getShopsByOptions(recommend, category);
+		 return ResponseEntity.ok().body(shopInfoList);  
+	 }
 
 	@RequestMapping("/usr/consulting/detail")
 	public String showconsultingDetail(HttpServletRequest req, Model model, int themeId, int id, int categoryId) {

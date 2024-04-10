@@ -1,5 +1,6 @@
 package com.example.demo.service;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -113,7 +114,8 @@ public class ConsultShopService {
 		WebCrawler19 crawler = new WebCrawler19();
 		List<conShop> shopInfoList = crawler.crawlMap();
 		for (conShop shopInfo : shopInfoList) {
-			registerShop(shopInfo); // 크롤링한 가게 정보를 저장
+			 registerShop(shopInfo); // 크롤링한 가게 정보를 저장
+		        extractAndSaveMenuInfo(shopInfo); // 메뉴 정보 추출 및 저장
 		}
 		return shopInfoList; // 크롤링한 가게 정보를 리턴
 	}
@@ -123,6 +125,7 @@ public class ConsultShopService {
 		List<conShop> shopInfoList = crawler.crawlMap();
 		for (conShop shopInfo : shopInfoList) {
 			registerShop(shopInfo); // 크롤링한 가게 정보를 저장
+			  extractAndSaveMenuInfo(shopInfo); // 메뉴 정보 추출 및 저장
 		}
 		return shopInfoList; // 크롤링한 가게 정보를 리턴
 	}
@@ -176,4 +179,18 @@ public class ConsultShopService {
 	public List<conShop> getShopsByPriceRange(int priceRange) {
 		return consultShopRepository.getShopsByPriceRange(priceRange);
 	}
+
+
+	
+
+
+	 public List<conShop> getShopsByOptions(String recommend, int category) {
+	        // recommend와 category를 기반으로 적절한 쿼리를 생성하여 레파지토리로 전달
+	        if (recommend.equals("별점이 높은")) {
+	            return consultShopRepository.findShopsByHighRating(category);
+	        } else if (recommend.equals("가장 저렴한")) {
+	            return consultShopRepository.findShopsByLowPrice(category);
+	        }
+	        return new ArrayList<>(); // 예외 처리
+	    }
 }
