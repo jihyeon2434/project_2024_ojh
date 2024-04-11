@@ -585,8 +585,6 @@ CREATE TABLE service_review
 SELECT *
 FROM service_review;
 
-DROP TABLE service_review;
-
 INSERT INTO service_review
 SET regDate = NOW(),
 updateDate = NOW(),
@@ -627,11 +625,23 @@ SET regDate = NOW(),
 updateDate = NOW(),
 memberId = 2,
 themeId = 1,
-categoryId = 1,
-shopId = 21,
-starPoint = 5.0,
+categoryId = 2,
+shopId = 3,
+starPoint = 2.0,
 `title` = '컨설팅리뷰test2',
 `body` = '컨설팅리뷰test2';  
+
+
+INSERT INTO service_review
+SET regDate = NOW(),
+updateDate = NOW(),
+memberId = 3,
+themeId = 1,
+categoryId = 2,
+shopId = 1,
+starPoint = 4.0,
+`title` = '컨설팅리뷰test1111',
+`body` = '컨설팅리뷰test1111'; 
  
  INSERT INTO service_review
 SET regDate = NOW(),
@@ -655,14 +665,14 @@ starPoint = 5.0,
 `title` = '리뷰5',
 `body` = '내용5';
  
- INSERT INTO service_review
+INSERT INTO service_review
 SET regDate = NOW(),
 updateDate = NOW(),
 memberId = 2,
-themeId = 2,
-categoryId = 3,
-shopId = 2,
-starPoint = 5.0,
+themeId = 1,
+categoryId = 2,
+shopId = 10,
+starPoint = 4.0,
 `title` = '리뷰입니다',
 `body` = '너무 좋아요 ~~';
 
@@ -686,7 +696,13 @@ CREATE TABLE service_menu
      PRIMARY KEY (id)
 );
 
+## 컨설팅 테이블에 리뷰 테이블 INNERJOIN
 
+	SELECT C.*, COALESCE(AVG(R.starPoint), 0) AS totalStarPoint
+	FROM service_Conshop AS C
+	LEFT JOIN service_review AS R ON C.categoryId = R.categoryId AND C.id = R.shopId
+	GROUP BY C.id, C.categoryId
+	ORDER BY totalStarPoint DESC;
 
 SELECT C.*, M.menu, M.price
 FROM service_Conshop AS C
@@ -716,19 +732,22 @@ FROM (
 ORDER BY CASE WHEN subquery.avg_price IS NULL THEN 1 ELSE 0 END ASC, subquery.min_price ASC;
 
 
-   SELECT C.*, M.menu, M.price
-	        FROM service_Conshop AS C
-	        INNER JOIN service_menu AS M
-	        WHERE
-	            IF(M.price <= 70000,
-	                IF(M.price > 70000 AND M.price <= 100000,
-	                    IF(M.price > 100000 AND M.price <= 200000,
-	                        M.price > 200000
-	                    )
-	                )
-	            ) = 1
-	        ORDER BY M.price = 0, 
-	        M.price ASC;
+
+SELECT C.*, M.menu, M.price
+FROM service_Conshop AS C
+INNER JOIN service_menu AS M
+ON C.themeId = M.themeId AND C.categoryId = M.categoryId AND C.shopName = M.shopName AND M.price > 0
+WHERE
+    (
+        M.price <= 70000 OR
+        (M.price > 70000 AND M.price <= 100000) OR
+        (M.price > 100000 AND M.price <= 200000) OR
+        M.price > 200000
+    )
+ORDER BY 
+    M.price = 0,
+    M.price ASC;
+
 
 SELECT *
 FROM service_menu;

@@ -50,7 +50,7 @@ public interface menuRepository {
 
 
 
-	 @Select("SELECT COUNT(*) > 0 FROM service_menu WHERE menu = #{menuName} AND shop_name = #{shopName}")
+	 @Select("SELECT COUNT(*) > 0 FROM service_menu WHERE menu = #{menuName} AND shopName = #{shopName}")
 	    boolean existsByMenuNameAndShopName(@Param("menuName") String menuName, @Param("shopName") String shopName);
 
 

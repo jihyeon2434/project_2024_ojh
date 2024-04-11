@@ -184,6 +184,10 @@ public class ConsultShopService {
 
 
 	public List<conShop> getShopsByPriceRange(int priceRange) {
+		
+		System.err.println(priceRange);
+		System.err.println(priceRange);
+		
 		return consultShopRepository.getShopsByPriceRange(priceRange);
 	}
 

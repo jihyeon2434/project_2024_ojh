@@ -747,7 +747,65 @@ WHERE
 ORDER BY 
     M.price = 0,
     M.price ASC;
+    
+    SELECT DISTINCT C.*, M.menu, M.price
+FROM service_Conshop AS C
+INNER JOIN service_menu AS M
+ON C.themeId = M.themeId AND C.categoryId = M.categoryId AND C.shopName = M.shopName AND M.price > 0
+WHERE
+    (
+        M.price <= 70000
+       
+    )
+    GROUP BY C.shopName
+ORDER BY 
+    M.price = 0,
+    M.price ASC;
 
+
+SELECT DISTINCT C.*, M.menu, M.price
+FROM service_Conshop AS C
+INNER JOIN service_menu AS M
+ON C.themeId = M.themeId AND C.categoryId = M.categoryId AND C.shopName = M.shopName AND M.price > 0
+WHERE
+    (
+       
+        (M.price > 70000 AND M.price <= 100000)
+    )
+     GROUP BY C.shopName
+ORDER BY 
+    M.price = 0,
+    M.price ASC;
+    
+    
+SELECT DISTINCT C.*, M.menu, M.price
+FROM service_Conshop AS C
+INNER JOIN service_menu AS M
+ON C.themeId = M.themeId AND C.categoryId = M.categoryId AND C.shopName = M.shopName AND M.price > 0
+WHERE
+    (
+
+        (M.price > 100000 AND M.price <= 290000)
+      
+    )
+     GROUP BY C.shopName
+ORDER BY 
+    M.price = 0,
+    M.price ASC;
+    
+    
+SELECT DISTINCT C.*, M.menu, M.price
+			FROM service_Conshop AS C
+			INNER JOIN service_menu AS M
+			ON C.themeId = M.themeId AND C.categoryId = M.categoryId AND C.shopName = M.shopName AND M.price > 0
+			WHERE
+			    (
+			      
+			        M.price > 200000
+			    )
+			GROUP BY C.shopName
+			ORDER BY
+			    M.price ASC;
 
 SELECT *
 FROM service_menu;
