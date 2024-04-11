@@ -587,6 +587,77 @@
 
 <script>
 $(document).ready(function() {
+    var selectedRecommend = ""; // 선택된 recommend 옵션 초기화
+    var selectedCategory = ""; // 선택된 category 옵션 초기화
+
+    // 이미지메이킹 또는 퍼스널컬러 버튼 클릭 시
+    $(".category-button").click(function() {
+        selectedCategory = $(this).text().trim() === "이미지메이킹" ? 1 : 2; // 선택된 category 옵션을 저장
+
+        // 선택된 버튼에 활성화된 클래스를 추가합니다.
+        $(".category-button").removeClass("btn-active");
+        $(this).addClass("btn-active");
+
+        // 선택된 recommend와 category 옵션을 기반으로 데이터를 가져오는 함수 호출
+        getShopsByOptions(selectedRecommend, selectedCategory);
+    });
+
+    // 별점이 높은 또는 가장 저렴한 버튼 클릭 시
+    $(".recommend-1, .recommend-2").click(function() {
+        selectedRecommend = $(this).hasClass("recommend-1") ? "별점이 높은" : "가장 저렴한"; // 선택된 recommend 옵션을 저장
+
+        // 선택된 버튼에 활성화된 클래스를 추가합니다.
+        $(".recommend-1, .recommend-2").removeClass("btn-active");
+        $(this).addClass("btn-active");
+
+        // 선택된 recommend와 category 옵션을 기반으로 데이터를 가져오는 함수 호출
+        getShopsByOptions(selectedRecommend, selectedCategory);
+    });
+
+    // 선택된 옵션들을 기반으로 데이터를 가져오는 함수
+    function getShopsByOptions(recommend, category) {
+        // AJAX를 통해 서버에 선택된 옵션들을 전달하여 데이터를 가져옵니다.
+        $.ajax({
+            type: "GET",
+            url: "/usr/consulting/getShopsByOptions",
+            data: { recommend: recommend, category: category },
+            success: function(response) {
+                drawImages(response); // 가져온 데이터를 사용하여 이미지를 그리는 함수 호출
+            },
+            error: function(xhr, status, error) {
+                // 요청이 실패했을 때의 처리
+                console.error("Error:", error);
+            }
+        });
+    }
+
+    // 이미지를 그리는 함수
+    function drawImages(shopInfoList) {
+        console.log("Received shopInfoList:", shopInfoList); // shopInfoList를 콘솔에 출력하여 확인
+
+        $(".img-big-outer-box").empty(); // 이미지 박스를 초기화합니다.
+        // shopInfoList를 반복하여 이미지를 그립니다.
+        $.each(shopInfoList, function(index, shop) {
+            var html = '<div class="img-box-1">';
+            html += '<a href="detail?id=' + shop.id + '&categoryId=' + shop.categoryId + '&themeId=' + shop.themeId + '">';
+            html += '<div class="sm-img-outer-box">';
+            html += '<div class="img">';
+            html += '<img class="banner" style="width: 290px; height: 263px" src="' + shop.photoUrl1 + '" />';
+            html += '</div>';
+            html += '<div class="store">' + shop.shopName + '</div>';
+            html += '<div class="time">' + shop.roadName + '</div>';
+            html += '</div>';
+            html += '</a>';
+            html += '</div>';
+
+            $(".img-big-outer-box").append(html);
+        });
+    }
+});
+
+
+
+$(document).ready(function() {
     // 이미지메이킹 또는 퍼스널컬러 버튼 클릭 시
     $(".category-button").click(function() {
         var categoryId = $(this).text().trim() === "이미지메이킹" ? 1 : 2;
@@ -607,28 +678,23 @@ $(document).ready(function() {
                 console.error("Error:", error);
             }
         });
-    });
-
+    }); 
+});
+/* 
     $(".recommend-1").click(function() {
         $(".recommend-1").addClass("btn-active"); // 클릭된 버튼에 활성화된 클래스를 추가합니다.
-        $(".recommend-2, .recommend-3").removeClass("btn-active"); // 다른 버튼에 대한 활성화된 클래스를 제거합니다.
+        $(".recommend-2").removeClass("btn-active"); // 다른 버튼에 대한 활성화된 클래스를 제거합니다.
         getHighPointShops();
     });
 
     $(".recommend-2").click(function() {
         $(".recommend-2").addClass("btn-active"); // 클릭된 버튼에 활성화된 클래스를 추가합니다.
-        $(".recommend-1, .recommend-3").removeClass("btn-active"); // 다른 버튼에 대한 활성화된 클래스를 제거합니다.
+        $(".recommend-1").removeClass("btn-active"); // 다른 버튼에 대한 활성화된 클래스를 제거합니다.
         getCheapestShops();
     });
 
-    // 가장 저렴한 버튼 클릭 시
-    $(".recommend-3").click(function() {
-        $(".recommend-3").addClass("btn-active"); // 클릭된 버튼에 활성화된 클래스를 추가합니다.
-        $(".recommend-1, .recommend-2").removeClass("btn-active"); // 다른 버튼에 대한 활성화된 클래스를 제거합니다.
-        // 별점이 높은 가게 목록을 가져오는 함수 호출
-    });
 });
-
+ */
 
 $(document).ready(function() {
     // 가격 범위 버튼 클릭 시
@@ -685,7 +751,7 @@ function drawImages(shopInfoList) {
 
         $(".img-big-outer-box").append(html);
     });
-}
+} 
 
 // 별점이 높은 가게 목록을 가져오는 함수
 function getHighPointShops() {
@@ -703,7 +769,9 @@ function getHighPointShops() {
     });
 }
 
-// 가장 저렴한 가게 목록을 가져오는 함수
+
+
+/* // 가장 저렴한 가게 목록을 가져오는 함수
 function getCheapestShops() {
     // AJAX를 통해 서버로부터 가장 저렴한 가게 목록을 요청합니다.
     $.ajax({
@@ -717,7 +785,7 @@ function getCheapestShops() {
             console.error("Error:", error);
         }
     });
-}
+} */
 
 $(document).ready(function() {
     // 지역 버튼 클릭 시

@@ -105,8 +105,6 @@ public interface ConsultShopRepository {
 	@Select("""
 			 SELECT * FROM service_Conshop
 			 WHERE LEFT(roadName, 2) = #{area} -- roadName의 앞 두글자가 지역과 일치하는지 확인
-			 ORDER BY id
-			 LIMIT 3; -- 상위 3개 업체만 가져옴
 			""")
 	public List<conShop> getShopsByArea(String area);
 

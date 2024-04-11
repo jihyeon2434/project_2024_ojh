@@ -37,6 +37,23 @@ public interface menuRepository {
 			""")
 	public List<menu> getAllMenus();
 
+
+
+
+
+
+	  
+	 
+
+
+
+
+
+
+	 @Select("SELECT COUNT(*) > 0 FROM service_menu WHERE menu = #{menuName} AND shop_name = #{shopName}")
+	    boolean existsByMenuNameAndShopName(@Param("menuName") String menuName, @Param("shopName") String shopName);
+
+
 	
 	
 	

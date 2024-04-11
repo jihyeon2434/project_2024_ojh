@@ -31,10 +31,19 @@ public class menuService {
 	 */
 
 
-	public void insertMenu(String menuName, int price, int themeId, int categoryId, String shopName) {
-		 menuRepository.insertMenu(menuName, price, themeId, categoryId, shopName);
-		
-	}
+	 public void insertMenu(String menuName, int price, int themeId, int categoryId, String shopName) {
+	        // 해당 가게에 이미 같은 이름의 메뉴가 있는지 확인합니다.
+	        if (!menuRepository.existsByMenuNameAndShopName(menuName, shopName)) {
+	            // 메뉴가 존재하지 않으면 새로 추가합니다.
+	        	menuRepository.insertMenu(menuName, price, themeId, categoryId, shopName);
+	        } else {
+	            // 이미 메뉴가 존재하는 경우, 중복 처리를 해줍니다.
+	            System.out.println("가게 '" + shopName + "'에 메뉴 '" + menuName + "'가 이미 존재합니다.");
+	            // 중복된 항목을 처리하는 방법에 따라 로깅하거나 예외를 던지거나 다른 조치를 취할 수 있습니다.
+	        }
+	    }
+
+	
 
 
 		/*

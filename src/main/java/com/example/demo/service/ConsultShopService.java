@@ -40,6 +40,13 @@ public class ConsultShopService {
 	}
 
 	
+	public void insertMenu(String menuName, int price, int themeId, int categoryId, String shopName) {
+	    // 해당 가게에 이미 같은 이름의 메뉴가 있는지 확인합니다.
+	   
+	    	menuService.insertMenu(menuName, price, themeId, categoryId, shopName);
+	   
+	}
+	
 	public List<conShop> crawlConsultingShops(String inputKey) {
 	    WebCrawler17 crawler = new WebCrawler17();
 	    List<conShop> shopInfoList = crawler.crawlMap();
