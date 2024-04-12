@@ -3,7 +3,6 @@ package com.example.demo.controller;
 import java.time.LocalDate;
 import java.util.List;
 
-import org.openqa.selenium.WebElement;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
@@ -20,15 +19,10 @@ import com.example.demo.service.ReactionPointService;
 import com.example.demo.service.ReplyService;
 import com.example.demo.service.menuService;
 import com.example.demo.util.Ut;
-import com.example.demo.vo.Article;
-import com.example.demo.vo.Board;
-import com.example.demo.vo.Reply;
 import com.example.demo.vo.ResultData;
 import com.example.demo.vo.Review;
 import com.example.demo.vo.Rq;
 import com.example.demo.vo.conShop;
-import com.example.demo.vo.menu;
-import com.example.demo.vo.selfShop;
 
 import jakarta.servlet.http.HttpServletRequest;
 
@@ -52,21 +46,17 @@ public class UsrConsultingController {
 
 	@Autowired
 	private ConsultShopService consultShopService;
-	
+
 	@Autowired
 	private menuService menuService;
-
-	public UsrConsultingController() {
-
-	}
 
 	// 액션 메서드
 	@RequestMapping("/usr/consulting/crawl")
 	public String crawlConsultingShops(@RequestParam(required = false, defaultValue = "") String inputKey,
-	                                    HttpServletRequest request) {
-	    List<conShop> shopInfoList = consultShopService.crawlConsultingShops(inputKey);
+			HttpServletRequest request) {
+		List<conShop> shopInfoList = consultShopService.crawlConsultingShops(inputKey);
 
-	    return "usr/home/main";
+		return "usr/home/main";
 	}
 
 	@RequestMapping("/usr/consulting/crawl2")
@@ -115,40 +105,40 @@ public class UsrConsultingController {
 
 		return ResponseEntity.ok().body(shopInfoList);
 	}
-	
-	 @GetMapping("/usr/consulting/getHighPointShops")
-	    public ResponseEntity<?> getHighPointShops() {
-	    	List<conShop> shopInfoList = consultShopService.getHighPointShops(); // 별점이 높은 가게 목록을 가져오는 서비스 메소드 호출
-	    	return ResponseEntity.ok().body(shopInfoList);
-	    }
-	 
-	 @GetMapping("/usr/consulting/getCheapestShops")
-	    public ResponseEntity<?> getCheapestShops() {
-	    	List<conShop> shopInfoList = consultShopService.getCheapestShops(); // 별점이 높은 가게 목록을 가져오는 서비스 메소드 호출
-	    	return ResponseEntity.ok().body(shopInfoList);
-	    }
-	
-	
-	 @GetMapping("/usr/consulting/getShopsByArea")
-	    public ResponseEntity<?> getShopsByArea(@RequestParam("area") String area) {
-	    	List<conShop> shopInfoList = consultShopService.getShopsByArea(area); // 별점이 높은 가게 목록을 가져오는 서비스 메소드 호출
-	    	return ResponseEntity.ok().body(shopInfoList);
-	    }
-	 
-	 @GetMapping("/usr/consulting/getShopsByPriceRange")
-	    public ResponseEntity<?> getShopsByPriceRange(int priceRange) {
-		 System.err.println(priceRange);
-		 System.err.println(priceRange);
-		 System.err.println(priceRange);
-	    	List<conShop> shopInfoList = consultShopService.getShopsByPriceRange(priceRange); // 별점이 높은 가게 목록을 가져오는 서비스 메소드 호출
-	    	return ResponseEntity.ok().body(shopInfoList);
-	    }
-	 
-	 @GetMapping("/usr/consulting/getShopsByOptions")
-	 public ResponseEntity<?>  getShopsByOptions(@RequestParam String recommend, @RequestParam int category) {
-		 List<conShop> shopInfoList = consultShopService.getShopsByOptions(recommend, category);
-		 return ResponseEntity.ok().body(shopInfoList);  
-	 }
+
+	@GetMapping("/usr/consulting/getHighPointShops")
+	public ResponseEntity<?> getHighPointShops() {
+		List<conShop> shopInfoList = consultShopService.getHighPointShops(); // 별점이 높은 가게 목록을 가져오는 서비스 메소드 호출
+		return ResponseEntity.ok().body(shopInfoList);
+	}
+
+	@GetMapping("/usr/consulting/getCheapestShops")
+	public ResponseEntity<?> getCheapestShops() {
+		List<conShop> shopInfoList = consultShopService.getCheapestShops(); // 별점이 높은 가게 목록을 가져오는 서비스 메소드 호출
+		return ResponseEntity.ok().body(shopInfoList);
+	}
+
+	@GetMapping("/usr/consulting/getShopsByArea")
+	public ResponseEntity<?> getShopsByArea(@RequestParam("area") String area) {
+		List<conShop> shopInfoList = consultShopService.getShopsByArea(area); // 별점이 높은 가게 목록을 가져오는 서비스 메소드 호출
+		return ResponseEntity.ok().body(shopInfoList);
+	}
+
+	@GetMapping("/usr/consulting/getShopsByPriceRange")
+	public ResponseEntity<?> getShopsByPriceRange(@RequestParam("priceRange") int priceRange) {
+		System.err.println(priceRange);
+		System.err.println(priceRange);
+		System.err.println(priceRange);
+		List<conShop> shopInfoList = consultShopService.getShopsByPriceRange(priceRange); // 별점이 높은 가게 목록을 가져오는 서비스 메소드
+																							// 호출
+		return ResponseEntity.ok().body(shopInfoList);
+	}
+
+	@GetMapping("/usr/consulting/getShopsByOptions")
+	public ResponseEntity<?> getShopsByOptions(@RequestParam String recommend, @RequestParam int category) {
+		List<conShop> shopInfoList = consultShopService.getShopsByOptions(recommend, category);
+		return ResponseEntity.ok().body(shopInfoList);
+	}
 
 	@RequestMapping("/usr/consulting/detail")
 	public String showconsultingDetail(HttpServletRequest req, Model model, int themeId, int id, int categoryId) {
@@ -222,7 +212,8 @@ public class UsrConsultingController {
 
 		int newReviewId = writeReviewRd.getData1();
 
-		return Ut.jsReplace(writeReviewRd.getResultCode(), writeReviewRd.getMsg(), "../consulting/detail?id=" + id + "&categoryId=" + categoryId + "&themeId=" + themeId);
+		return Ut.jsReplace(writeReviewRd.getResultCode(), writeReviewRd.getMsg(),
+				"../consulting/detail?id=" + id + "&categoryId=" + categoryId + "&themeId=" + themeId);
 
 	}
 }

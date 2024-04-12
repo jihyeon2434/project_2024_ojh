@@ -109,23 +109,22 @@ public interface ConsultShopRepository {
 	public List<conShop> getShopsByArea(String area);
 
 	@Select("""
+			
 			SELECT C.*, M.menu, M.price
 			FROM service_Conshop AS C
 			INNER JOIN service_menu AS M
 			ON C.themeId = M.themeId AND C.categoryId = M.categoryId AND C.shopName = M.shopName AND M.price > 0
 			WHERE
-			    (
-			        M.price <= 70000 OR
-			        (M.price > 70000 AND M.price <= 100000) OR
-			        (M.price > 100000 AND M.price <= 200000) OR
-			        M.price > 200000
-			    )
+			 (
+			     M.price <= ${priceRange}
+			  
+			 )
 			GROUP BY C.shopName
 			ORDER BY
 			    M.price = 0,
 			    M.price ASC;
-
-									""")
+			
+			""")
 	public List<conShop> getShopsByPriceRange(@Param("priceRange") int priceRange);
 
 	@Select("""
