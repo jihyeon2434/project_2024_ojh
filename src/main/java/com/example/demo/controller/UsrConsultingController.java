@@ -141,13 +141,21 @@ public class UsrConsultingController {
 	}
 	
 
-	@GetMapping("/usr/consulting/getShopsBySituation")
-	public ResponseEntity<?> getShopsBySituation(@RequestParam String situation) {
-		 // situation에 따라 업체 목록을 가져오는 비즈니스 로직을 수행하고, 결과를 반환합니다.
-        List<conShop> shopInfoList = consultShopService.getShopsBySituation(situation);
+
+	@GetMapping("/usr/consulting/getShopsByMyOptions")
+	public ResponseEntity<?> getShopsByMyOptions(@RequestParam("priceRange") int priceRange, @RequestParam("area") String area, @RequestParam String situation) {
+		List<conShop> shopInfoList = consultShopService.getShopsByMyOptions(priceRange, area,situation );
 		return ResponseEntity.ok().body(shopInfoList);
 	}
-
+	
+	
+	/*
+	 * @GetMapping("/usr/consulting/getShopsBySituation") public ResponseEntity<?>
+	 * getShopsBySituation(@RequestParam String situation) { // situation에 따라 업체 목록을
+	 * 가져오는 비즈니스 로직을 수행하고, 결과를 반환합니다. List<conShop> shopInfoList =
+	 * consultShopService.getShopsBySituation(situation); return
+	 * ResponseEntity.ok().body(shopInfoList); }
+	 */
 	@RequestMapping("/usr/consulting/detail")
 	public String showconsultingDetail(HttpServletRequest req, Model model, int themeId, int id, int categoryId) {
 		Rq rq = (Rq) req.getAttribute("rq");

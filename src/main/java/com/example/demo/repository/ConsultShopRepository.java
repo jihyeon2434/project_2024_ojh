@@ -151,18 +151,74 @@ public interface ConsultShopRepository {
 						""")
 	public List<conShop> findShopsByLowPrice(int category);
 
-	@Select("""
-			SELECT *
-			FROM service_Conshop AS C
-			WHERE shopName NOT LIKE '%면접%' AND shopName NOT LIKE '%스피치%';
-								""")
-	public List<conShop> getShopsBySituation1();
+	
 
 	@Select("""
-		    SELECT *
-			FROM service_Conshop AS C
-			WHERE shopName LIKE '%면접%' OR shopName LIKE '%스피치%';
-						""")
-	public List<conShop> getShopsBySituation2();
+		    SELECT C.*, M.menu, M.price
+		    FROM service_Conshop AS C
+		    INNER JOIN service_menu AS M
+		    ON C.themeId = M.themeId AND C.categoryId = M.categoryId AND C.shopName = M.shopName AND M.price > 0
+		    WHERE 
+		        M.price <= ${priceRange}
+		        AND LEFT(C.roadName, 2) = #{area} -- roadName의 앞 두글자가 지역과 일치하는지 확인
+		        AND (C.shopName LIKE '%면접%' OR C.shopName LIKE '%스피치%') -- 명시적으로 C 테이블에 속하는 shopName으로 수정
+		    GROUP BY C.shopName
+		    ORDER BY
+		        M.price = 0,
+		        M.price ASC;
+		""")
+		public List<conShop> getShopsBySituation2(@Param("priceRange") int priceRange, @Param("area") String area);
 
+	@Select("""
+		    SELECT C.*, M.menu, M.price
+		    FROM service_Conshop AS C
+		    INNER JOIN service_menu AS M
+		    ON C.themeId = M.themeId AND C.categoryId = M.categoryId AND C.shopName = M.shopName AND M.price > 0
+		    WHERE 
+		        M.price <= ${priceRange}
+		        AND LEFT(C.roadName, 2) = #{area} -- roadName의 앞 두글자가 지역과 일치하는지 확인
+		        AND C.shopName NOT LIKE '%면접%' 
+		        AND C.shopName NOT LIKE '%스피치%'
+		    GROUP BY C.shopName
+		    ORDER BY
+		        M.price = 0,
+		        M.price ASC;
+		""")
+		public List<conShop> getShopsBySituation1(@Param("priceRange") int priceRange, @Param("area") String area);
+
+		
+		@Select("""
+			    SELECT C.*, M.menu, M.price
+			    FROM service_Conshop AS C
+			    INNER JOIN service_menu AS M
+			    ON C.themeId = M.themeId AND C.categoryId = M.categoryId AND C.shopName = M.shopName AND M.price > 0
+			    WHERE 
+			        M.price >= ${priceRange}
+			        AND LEFT(C.roadName, 2) = #{area} -- roadName의 앞 두글자가 지역과 일치하는지 확인
+			        AND C.shopName NOT LIKE '%면접%' 
+			        AND C.shopName NOT LIKE '%스피치%'
+			    GROUP BY C.shopName
+			    ORDER BY
+			        M.price = 0,
+			        M.price ASC;
+			""")
+	public List<conShop> getShopsBySituation1Over3M(int priceRange, String area);
+
+	@Select("""
+		    SELECT C.*, M.menu, M.price
+		    FROM service_Conshop AS C
+		    INNER JOIN service_menu AS M
+		    ON C.themeId = M.themeId AND C.categoryId = M.categoryId AND C.shopName = M.shopName AND M.price > 0
+		    WHERE 
+		        M.price >= ${priceRange}
+		        AND LEFT(C.roadName, 2) = #{area} -- roadName의 앞 두글자가 지역과 일치하는지 확인
+		        AND (C.shopName LIKE '%면접%' OR C.shopName LIKE '%스피치%') -- 명시적으로 C 테이블에 속하는 shopName으로 수정
+		    GROUP BY C.shopName
+		    ORDER BY
+		        M.price = 0,
+		        M.price ASC;
+		""")
+		public List<conShop> getShopsBySituation2Over3M(int priceRange, String area);
+
+	
 }

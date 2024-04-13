@@ -206,11 +206,29 @@ public class ConsultShopService {
 	    }
 
 
-	public List<conShop> getShopsBySituation(String situation) {
+		/*
+		 * public List<conShop> getShopsBySituation(String situation) {
+		 * if(situation.equals("일상")) { return
+		 * consultShopRepository.getShopsBySituation1(); }else
+		 * if(situation.equals("면접")) { return
+		 * consultShopRepository.getShopsBySituation2(); } return new ArrayList<>(); //
+		 * 예외 처리 }
+		 */
+
+
+	
+
+	public List<conShop> getShopsByMyOptions(int priceRange, String area, String situation) {
 		if(situation.equals("일상")) {
-			return consultShopRepository.getShopsBySituation1(); 
+			if(priceRange ==300000) {
+				return consultShopRepository.getShopsBySituation1Over3M(priceRange, area); 
+			}
+			return consultShopRepository.getShopsBySituation1(priceRange, area); 
 		}else if(situation.equals("면접")) {
-		return 	consultShopRepository.getShopsBySituation2();
+			if(priceRange ==300000) {
+				return consultShopRepository.getShopsBySituation2Over3M(priceRange, area); 
+			}
+		return 	consultShopRepository.getShopsBySituation2(priceRange, area);
 		}
 		 return new ArrayList<>(); // 예외 처리
 	}
