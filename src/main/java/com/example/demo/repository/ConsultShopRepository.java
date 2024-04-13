@@ -109,7 +109,7 @@ public interface ConsultShopRepository {
 	public List<conShop> getShopsByArea(String area);
 
 	@Select("""
-			
+
 			SELECT C.*, M.menu, M.price
 			FROM service_Conshop AS C
 			INNER JOIN service_menu AS M
@@ -117,13 +117,13 @@ public interface ConsultShopRepository {
 			WHERE
 			 (
 			     M.price <= ${priceRange}
-			  
+
 			 )
 			GROUP BY C.shopName
 			ORDER BY
 			    M.price = 0,
 			    M.price ASC;
-			
+
 			""")
 	public List<conShop> getShopsByPriceRange(@Param("priceRange") int priceRange);
 
@@ -150,5 +150,19 @@ public interface ConsultShopRepository {
 			ORDER BY CASE WHEN subquery.avg_price IS NULL THEN 1 ELSE 0 END ASC, subquery.min_price ASC;
 						""")
 	public List<conShop> findShopsByLowPrice(int category);
+
+	@Select("""
+			SELECT *
+			FROM service_Conshop AS C
+			WHERE shopName NOT LIKE '%면접%' AND shopName NOT LIKE '%스피치%';
+								""")
+	public List<conShop> getShopsBySituation1();
+
+	@Select("""
+		    SELECT *
+			FROM service_Conshop AS C
+			WHERE shopName LIKE '%면접%' OR shopName LIKE '%스피치%';
+						""")
+	public List<conShop> getShopsBySituation2();
 
 }

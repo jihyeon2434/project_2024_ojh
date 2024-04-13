@@ -404,14 +404,9 @@
 					<div class="situation-option-box">
 						<div class="situation-option-box-1">
 							<div class="situation-1 btn btn-outline btn-sm">일상</div>
-							<div class="situation-2 btn btn-outline btn-sm">비지니스</div>
+							<div class="situation-2 btn btn-outline btn-sm">면접</div>
 						</div>
-						<div class="situation-option-box-2">
-
-							<div class="situation-3 btn btn-outline btn-sm">소개팅</div>
-							<div class="situation-4 btn btn-outline btn-sm">면접</div>
-						</div>
-
+						
 					</div>
 				</div>
 
@@ -695,6 +690,8 @@ $(document).ready(function() {
 
 });
  */
+ 
+
 
 $(document).ready(function() {
     // 가격 범위 버튼 클릭 시
@@ -726,7 +723,29 @@ $(document).ready(function() {
         });
     });
 });
-
+ 
+ 
+ $(document).ready(function() {
+	    // 일상 또는 면접 버튼 클릭 시
+	    $(".situation-1, .situation-2").click(function() {
+	        var situation = $(this).text().trim(); // 클릭된 버튼의 텍스트를 가져옵니다.
+	        
+	        // AJAX를 통해 서버에 요청을 보냅니다.
+	        $.ajax({
+	            type: "GET",
+	            url: "/usr/consulting/getShopsBySituation", // 실제 사용하는 URL로 변경해야 합니다.
+	            data: { situation: situation },
+	            success: function(response) {
+	                // 가져온 데이터를 사용하여 이미지를 그리는 함수를 호출합니다.
+	                setShopInfo(response);
+	            },
+	            error: function(xhr, status, error) {
+	                // 요청이 실패했을 때의 처리
+	                console.error("Error:", error);
+	            }
+	        });
+	    });
+	});
 
 
 

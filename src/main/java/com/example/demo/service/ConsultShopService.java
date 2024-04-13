@@ -204,4 +204,14 @@ public class ConsultShopService {
 	        }
 	        return new ArrayList<>(); // 예외 처리
 	    }
+
+
+	public List<conShop> getShopsBySituation(String situation) {
+		if(situation.equals("일상")) {
+			return consultShopRepository.getShopsBySituation1(); 
+		}else if(situation.equals("면접")) {
+		return 	consultShopRepository.getShopsBySituation2();
+		}
+		 return new ArrayList<>(); // 예외 처리
+	}
 }
