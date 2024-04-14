@@ -40,9 +40,7 @@ public class UsrArticleController {
 	@Autowired
 	private ReactionPointService reactionPointService;
 
-	public UsrArticleController() {
-
-	}
+	
 
 	// 액션 메서드
 
@@ -112,16 +110,12 @@ public class UsrArticleController {
 	@RequestMapping("/usr/article/selfDetail")
 	public String showselfDetail(HttpServletRequest req, Model model) {
 		Rq rq = (Rq) req.getAttribute("rq");
-		
-
 		return "usr/article/selfDetail";
 	}
 	
 	@RequestMapping("/usr/article/search")
 	public String showSearch(HttpServletRequest req, Model model) {
 		Rq rq = (Rq) req.getAttribute("rq");
-		
-
 		return "usr/article/search";
 	}
 	

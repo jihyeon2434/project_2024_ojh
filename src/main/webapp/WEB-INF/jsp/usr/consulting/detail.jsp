@@ -657,50 +657,65 @@
 	});
 </script>
 
+
+
+
 <script>
-    function toggleScrap() {
-        // Ajax 요청을 보내기 전에 현재 스크랩 상태를 확인하고, 스크랩 상태에 따라 처리합니다.
+    function doScrap() {
+        // 로그인 여부 확인
+        if(isNaN(params.memberId) == true){
+            if(confirm('로그인 해야해. 로그인 페이지로 가실???')){
+                var currentUri = encodeURIComponent(window.location.href);
+                window.location.href = '../member/login?afterLoginUri=' + currentUri;
+            }
+            return;
+        }
+        
+        // Ajax 요청을 통해 스크랩 처리
         $.ajax({
-            url: '/usr/scrap/doScrap', // 스크랩을 추가하거나 삭제하는 요청을 처리할 서버의 URL
+            url: '/usr/scrap/doScrap',
             type: 'POST',
             data: {
-                themeId: '${shop.themeId}', // 스크랩할 대상의 고유 식별자 (예: 테마 ID)
-                categoryId : '${shop.categoryId}',
-                shopId : '${shop.id}',
-                memberId: ${loginedMemberId} // 현재 로그인한 사용자의 고유 식별자
+                themeId: themeId,
+                categoryId: categoryId,
+                shopId: id,
+                memberId: ${loginedMemberId}
             },
             dataType: 'json',
             success: function(data) {
+                console.log('data.data1Name : ' + data.data1Name);
+                console.log('data.data1 : ' + data.data1);
+                
                 if (data.resultCode.startsWith('S-')) {
-                    // 성공적으로 스크랩을 추가하거나 삭제한 경우에 대한 처리
                     if (data.resultCode === 'S-1') {
                         // 스크랩이 추가된 경우
                         alert('관심 목록에 추가되었습니다.');
+                        // 관심 추가 후 UI 업데이트
+                        $('.scrap-btn').addClass('scraped');
                     } else if (data.resultCode === 'S-2') {
                         // 스크랩이 삭제된 경우
                         alert('관심 목록에서 삭제되었습니다.');
+                        // 관심 삭제 후 UI 업데이트
+                        $('.scrap-btn').removeClass('scraped');
                     }
                 } else {
-                    // 스크랩 처리 중 에러가 발생한 경우에 대한 처리
                     alert(data.msg);
                 }
             },
             error: function(jqXHR, textStatus, errorThrown) {
-                // Ajax 요청 실패에 대한 처리
                 alert('스크랩 처리 중 오류가 발생했습니다.');
             }
         });
     }
-</script>
 
-<script>
+    // 페이지 로드 후 관심 버튼에 클릭 이벤트 추가
     $(document).ready(function() {
-        // 관심 버튼 클릭 시 toggleScrap 함수 호출
         $('.scrap-btn').on('click', function() {
-            toggleScrap();
+            doScrap(); // doScrap 함수 호출
         });
     });
 </script>
+
 
 
 

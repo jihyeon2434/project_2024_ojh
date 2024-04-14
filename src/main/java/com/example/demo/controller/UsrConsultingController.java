@@ -18,6 +18,7 @@ import com.example.demo.service.ConsultShopService;
 import com.example.demo.service.ReactionPointService;
 import com.example.demo.service.ReplyService;
 import com.example.demo.service.menuService;
+import com.example.demo.service.scrapService;
 import com.example.demo.util.Ut;
 import com.example.demo.vo.ResultData;
 import com.example.demo.vo.Review;
@@ -49,6 +50,9 @@ public class UsrConsultingController {
 
 	@Autowired
 	private menuService menuService;
+	
+	@Autowired
+	private scrapService scrapService;
 
 	// 액션 메서드
 	@RequestMapping("/usr/consulting/crawl")
@@ -156,6 +160,7 @@ public class UsrConsultingController {
 	 * consultShopService.getShopsBySituation(situation); return
 	 * ResponseEntity.ok().body(shopInfoList); }
 	 */
+	
 	@RequestMapping("/usr/consulting/detail")
 	public String showconsultingDetail(HttpServletRequest req, Model model, int themeId, int id, int categoryId) {
 		Rq rq = (Rq) req.getAttribute("rq");

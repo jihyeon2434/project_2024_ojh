@@ -2,15 +2,14 @@ package com.example.demo.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.example.demo.service.ArticleService;
-import com.example.demo.service.ReactionPointService;
-import com.example.demo.util.Ut;
+import com.example.demo.service.scrapService;
 import com.example.demo.vo.ResultData;
 import com.example.demo.vo.Rq;
+import com.example.demo.vo.Scrap;
 
 @Controller
 public class UsrScrapPointController {
@@ -22,75 +21,27 @@ public class UsrScrapPointController {
 	private ArticleService articleService;
 
 	@Autowired
-	private ReactionPointService reactionPointService;
+	private scrapService scrapService;
 
 	@RequestMapping("/usr/scrap/doScrap")
 	@ResponseBody
-	public ResultData doScrap(String relTypeCode, int relId, String replaceUri) {
+	public ResultData doScrap(int themeId, int categoryId, int shopId, int memberId) {
 
-		ResultData usersReactionRd = reactionPointService.usersReaction(rq.getLoginedMemberId(), relTypeCode, relId);
+		ResultData usersReactionRd = scrapService.usersReaction(rq.getLoginedMemberId(), themeId, categoryId, shopId,
+				memberId);
 
 		int usersReaction = (int) usersReactionRd.getData1();
 
 		if (usersReaction == 1) {
-			ResultData rd = reactionPointService.deleteGoodReactionPoint(rq.getLoginedMemberId(), relTypeCode, relId);
-			int goodRP = articleService.getGoodRP(relId);
-			int badRP = articleService.getBadRP(relId);
-			return ResultData.from("S-1", "좋아요 취소", "goodRP", goodRP, "badRP", badRP);
-		} else if (usersReaction == -1) {
-			ResultData rd = reactionPointService.deleteBadReactionPoint(rq.getLoginedMemberId(), relTypeCode, relId);
-			rd = reactionPointService.addGoodReactionPoint(rq.getLoginedMemberId(), relTypeCode, relId);
-			int goodRP = articleService.getGoodRP(relId);
-			int badRP = articleService.getBadRP(relId);
+			ResultData rd = scrapService.deleteScrapPoint(rq.getLoginedMemberId(), themeId, categoryId, shopId);
+			/* int goodRP = articleService.getGoodRP(relId); */
 
-			return ResultData.from("S-2", "싫어요 눌렀잖어", "goodRP", goodRP, "badRP", badRP);
+			return ResultData.from("S-1", "좋아요 취소");
 		}
 
-		ResultData reactionRd = reactionPointService.addGoodReactionPoint(rq.getLoginedMemberId(), relTypeCode, relId);
+		ResultData reactionRd = scrapService.addGoodReactionPoint(rq.getLoginedMemberId(), themeId, categoryId, shopId);
 
-		if (reactionRd.isFail()) {
-			return ResultData.from(reactionRd.getResultCode(), reactionRd.getMsg());
-		}
+		return ResultData.from(reactionRd.getResultCode(), reactionRd.getMsg());
 
-		int goodRP = articleService.getGoodRP(relId);
-		int badRP = articleService.getBadRP(relId);
-
-		return ResultData.from(reactionRd.getResultCode(), reactionRd.getMsg(), "goodRP", goodRP, "badRP", badRP);
 	}
-
-	@RequestMapping("/usr/reactionPoint/doBadReaction")
-	@ResponseBody
-	public ResultData doBadReaction(String relTypeCode, int relId, String replaceUri) {
-
-		ResultData usersReactionRd = reactionPointService.usersReaction(rq.getLoginedMemberId(), relTypeCode, relId);
-
-		int usersReaction = (int) usersReactionRd.getData1();
-
-		if (usersReaction == -1) {
-			ResultData rd = reactionPointService.deleteBadReactionPoint(rq.getLoginedMemberId(), relTypeCode, relId);
-			int goodRP = articleService.getGoodRP(relId);
-			int badRP = articleService.getBadRP(relId);
-
-			return ResultData.from("S-1", "싫어요 취소", "goodRP", goodRP, "badRP", badRP);
-		} else if (usersReaction == 1) {
-			ResultData rd = reactionPointService.deleteGoodReactionPoint(rq.getLoginedMemberId(), relTypeCode, relId);
-			rd = reactionPointService.addBadReactionPoint(rq.getLoginedMemberId(), relTypeCode, relId);
-			int goodRP = articleService.getGoodRP(relId);
-			int badRP = articleService.getBadRP(relId);
-
-			return ResultData.from("S-2", "좋아요 눌렀잖어", "goodRP", goodRP, "badRP", badRP);
-		}
-
-		ResultData reactionRd = reactionPointService.addBadReactionPoint(rq.getLoginedMemberId(), relTypeCode, relId);
-
-		if (reactionRd.isFail()) {
-			return ResultData.from(reactionRd.getResultCode(), reactionRd.getMsg());
-		}
-
-		int goodRP = articleService.getGoodRP(relId);
-		int badRP = articleService.getBadRP(relId);
-
-		return ResultData.from(reactionRd.getResultCode(), reactionRd.getMsg(), "goodRP", goodRP, "badRP", badRP);
-	}
-
 }

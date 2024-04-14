@@ -806,6 +806,40 @@ SELECT DISTINCT C.*, M.menu, M.price
 			GROUP BY C.shopName
 			ORDER BY
 			    M.price ASC;
+			    
+#####서치박스 쿼리
+SELECT C.*, M.menu, M.price
+FROM service_Conshop AS C
+INNER JOIN service_menu AS M
+ON C.themeId = M.themeId AND C.categoryId = M.categoryId AND C.shopName = M.shopName AND M.price > 0
+WHERE
+M.price <= 300000
+AND LEFT(C.roadName, 2) = '서울' -- roadName의 앞 두글자가 지역과 일치하는지 확인
+AND (C.shopName LIKE '%면접%' OR C.shopName LIKE '%스피치%') -- 명시적으로 C 테이블에 속하는 shopName으로 수정
+GROUP BY C.shopName
+ORDER BY
+M.price ASC;
 
 SELECT *
 FROM service_menu;
+
+
+-- service_scrap Table Create SQL
+-- 테이블 생성 SQL - service_scrap
+
+CREATE TABLE service_scrap
+(
+    `id`           INT            NOT NULL    AUTO_INCREMENT COMMENT '스크랩 고유번호', 
+    `memberId`         INT            NULL        COMMENT '회원번호', 
+    `themeId`          INT            NULL        COMMENT '(스크랩 당한) 테마 번호', 
+    `categoryId`       INT            NULL        COMMENT '(스크랩 당한) 카테고리 번호(이미지메이킹 / 퍼스널컬러 / 헤어 / 메이크업)', 
+    `shopId`           VARCHAR(50)    NULL        COMMENT '(스크랩 당한) 업체번호', 
+    `scrapDate`        VARCHAR(50)    NULL        COMMENT '스크랩 등록 일시', 
+    `scrapUpdateDate`  VARCHAR(50)    NULL        COMMENT '스크랩 수정 일시', 
+    `scrapPoint`       INT(10)        NULL        COMMENT '스크랩 유무(유 (1) / 무(-1)', 
+     PRIMARY KEY (id)
+);
+
+SELECT *
+FROM service_scrap;
+ 
