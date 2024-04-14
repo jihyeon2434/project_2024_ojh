@@ -420,8 +420,28 @@
 
 		<div class="small-outer-box-2">
 
-			<div class="main-text">${rq.loginedMember.nickname }님만을위한추천컨설팅업체</div>
 
+
+<%
+// 로그인 여부 확인
+if (session.getAttribute("loginedMember") != null) {
+    // 로그인한 경우
+    com.example.demo.vo.Member loginedMember = (com.example.demo.vo.Member) session.getAttribute("loginedMember");
+%>
+    <div class="main-text"><%= loginedMember.getNickname() %>님만을 위한 추천 컨설팅 업체</div>
+<%
+} else {
+    // 로그인하지 않은 경우
+%>
+    <div class="main-text">당신만을 위한 추천 컨설팅 업체</div>
+<%
+}
+%>
+
+
+
+
+			
 			<div class="con-box">
 				<!-- <div class="menu-box">
 					<div class="theme">

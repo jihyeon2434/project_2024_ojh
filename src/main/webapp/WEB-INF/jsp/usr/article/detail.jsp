@@ -5,6 +5,7 @@
 
 
 <style>
+
 .all {
   width: 80%;
   margin-left: 370px;
@@ -208,6 +209,7 @@ border: 1px solid;
 }
 
 </style>
+
 <!-- <iframe src="http://localhost:8081/usr/article/doIncreaseHitCountRd?id=372" frameborder="0"></iframe> -->
 
 <!-- 변수 -->

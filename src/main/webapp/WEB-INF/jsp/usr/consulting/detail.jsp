@@ -13,23 +13,21 @@
 
 
 <title>Shop Information</title>
+
+
+
+</head>
+
+
+</head>
+
 <style>
+
 /* CSS 스타일은 여기에 작성합니다 */
 .hidden {
 	display: none;
 }
-</style>
-</head>
 
-<style>
-<
-style> /* CSS 스타일은 여기에 작성합니다 */ .hidden {
-	display: none;
-}
-</style>
-</head>
-
-<style>
 .outer-box {
 	margin-top: 50px;
 	width: auto;
@@ -145,7 +143,8 @@ style> /* CSS 스타일은 여기에 작성합니다 */ .hidden {
 }
 
 .Rectangle35 {
-	width: 200.8px;
+	display: inline-block; /* 추가 */
+	width: 230.8px;
 	height: 71.83px;
 	background: rgba(239, 231, 229, 0.7);
 	border-radius: 18px;
@@ -158,10 +157,24 @@ style> /* CSS 스타일은 여기에 작성합니다 */ .hidden {
 	/* 세로 중앙 정렬 */
 }
 
-.Rectangle35 img {
-	position: relative;
-	top: 5px;
-	margin-right: 11px;
+/* .Rectangle35 img {
+	/* position: inline-block; */
+/* 	border:1px solid; */
+/* top: 5px; */
+/* margin-right: 11px; */
+}
+* /
+
+.text {
+	width: 100px;
+	border: 1px solid;
+}
+
+.text-box {
+	width: 200px;
+	height: 100%;
+	display: inline-block;
+	border: 1px solid;
 }
 
 .Group101 {
@@ -371,8 +384,7 @@ style> /* CSS 스타일은 여기에 작성합니다 */ .hidden {
 
 		<!-- 이미지 박스 -->
 		<div class="img-box">
-			<img class="img1" src="${shop.photoUrl2}" />
-			<img class="img1" src="${shop.photoUrl3}" />
+			<img class="img1" src="${shop.photoUrl2}" /> <img class="img1" src="${shop.photoUrl3}" />
 		</div>
 
 		<!-- 가게 정보 -->
@@ -388,16 +400,16 @@ style> /* CSS 스타일은 여기에 작성합니다 */ .hidden {
 
 			<div class="click-box">
 				<div class="Group41">
-					<div class="Rectangle35">
+					<button class="Rectangle35 scrap-btn">
 						<div>♡ 관심</div>
-					</div>
+					</button>
 				</div>
 				<div class="Group97">
 					<a href="../consulting/reservation2">
 						<div class="Rectangle35">
 							<div class="text-box">
 								<img src="//velog.velcdn.com/images/jihyeon2434/post/ca6de2e7-1690-4f95-a522-50fdee8b9637/image.png">
-								온라인 컨설팅 신청
+								<div class="text">온라인 컨설팅 신청</div>
 							</div>
 						</div>
 					</a>
@@ -643,6 +655,51 @@ style> /* CSS 스타일은 여기에 작성합니다 */ .hidden {
 		starElement.innerHTML = ''; // 기존 텍스트 제거
 		starElement.appendChild(starContainer); // 별점을 표시할 요소에 추가
 	});
+</script>
+
+<script>
+    function toggleScrap() {
+        // Ajax 요청을 보내기 전에 현재 스크랩 상태를 확인하고, 스크랩 상태에 따라 처리합니다.
+        $.ajax({
+            url: '/usr/scrap/doScrap', // 스크랩을 추가하거나 삭제하는 요청을 처리할 서버의 URL
+            type: 'POST',
+            data: {
+                themeId: '${shop.themeId}', // 스크랩할 대상의 고유 식별자 (예: 테마 ID)
+                categoryId : '${shop.categoryId}',
+                shopId : '${shop.id}',
+                memberId: ${loginedMemberId} // 현재 로그인한 사용자의 고유 식별자
+            },
+            dataType: 'json',
+            success: function(data) {
+                if (data.resultCode.startsWith('S-')) {
+                    // 성공적으로 스크랩을 추가하거나 삭제한 경우에 대한 처리
+                    if (data.resultCode === 'S-1') {
+                        // 스크랩이 추가된 경우
+                        alert('관심 목록에 추가되었습니다.');
+                    } else if (data.resultCode === 'S-2') {
+                        // 스크랩이 삭제된 경우
+                        alert('관심 목록에서 삭제되었습니다.');
+                    }
+                } else {
+                    // 스크랩 처리 중 에러가 발생한 경우에 대한 처리
+                    alert(data.msg);
+                }
+            },
+            error: function(jqXHR, textStatus, errorThrown) {
+                // Ajax 요청 실패에 대한 처리
+                alert('스크랩 처리 중 오류가 발생했습니다.');
+            }
+        });
+    }
+</script>
+
+<script>
+    $(document).ready(function() {
+        // 관심 버튼 클릭 시 toggleScrap 함수 호출
+        $('.scrap-btn').on('click', function() {
+            toggleScrap();
+        });
+    });
 </script>
 
 
