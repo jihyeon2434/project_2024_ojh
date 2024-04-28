@@ -8,6 +8,7 @@ import com.example.demo.repository.selfShopRepository;
 import com.example.demo.vo.conShop;
 import com.example.demo.vo.selfShop;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -48,5 +49,51 @@ public class selfShopService {
 	public selfShop getShopById(int id) {
 		return selfShopRepository.getShopById(id);
 		
+	}
+
+	public List<selfShop> getShopsByPriceRange(int priceRange) {
+		return selfShopRepository.getShopsByPriceRange(priceRange);
+	}
+
+	public List<selfShop> getShopsByArea(String area) {
+		return selfShopRepository.getShopsByArea(area);
+	}
+
+	public List<selfShop> getCheapestShops() {
+		return selfShopRepository.getCheapestShops();
+	}
+
+	public List<selfShop> getHighPointShops() {
+		return selfShopRepository.getHighPointShops();
+	}
+
+	public List<selfShop> getByOptionShopsList(int categoryId) {
+		System.out.println("categoryId in getByOptionShopsList: " + categoryId); 
+
+		return selfShopRepository.getByOptionShopsList(categoryId);
+	}
+
+	public List<selfShop> getShopsByMyOptions(int priceRange, String area) {
+	    try {
+	        if (priceRange == 300000) {
+	            return selfShopRepository.getShopsBySituation1Over3M(priceRange, area); 
+	        } else {
+	            return selfShopRepository.getShopsBySituation1(priceRange, area); 
+	        }
+	    } catch (Exception e) {
+	        e.printStackTrace(); // 에러 로그 출력 (필요에 따라 수정)
+	        return new ArrayList<>(); // 예외 발생 시 빈 리스트 반환
+	    }
+	}
+
+
+	public List<selfShop> getShopsByOptions(String recommend, int category) {
+		  // recommend와 category를 기반으로 적절한 쿼리를 생성하여 레파지토리로 전달
+        if (recommend.equals("별점이 높은")) {
+            return selfShopRepository.findShopsByHighRating(category);
+        } else if (recommend.equals("가장 저렴한")) {
+            return selfShopRepository.findShopsByLowPrice(category);
+        }
+        return new ArrayList<>(); // 예외 처리
 	}
 }

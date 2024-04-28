@@ -586,6 +586,10 @@ if (session.getAttribute("loginedMember") != null) {
 
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
+
+
+<!-- 통합 박스 스크립트  -->
+
 <script>
 $(document).ready(function() {
     var selectedRecommend = ""; // 선택된 recommend 옵션 초기화
@@ -657,6 +661,9 @@ $(document).ready(function() {
 });
 
 ///////////////////////////////////////////////
+
+
+/* 서치박스 스크립트 */
 
 $(document).ready(function() {
 	 // 페이지 로드 시 서울 지역에 대한 데이터를 가져오는 함수 호출

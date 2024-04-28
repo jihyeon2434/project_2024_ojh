@@ -5,6 +5,7 @@
 
 
 <style>
+
 .all {
   width: 80%;
   margin-left: 370px;
@@ -208,6 +209,7 @@ border: 1px solid;
 }
 
 </style>
+
 <!-- <iframe src="http://localhost:8081/usr/article/doIncreaseHitCountRd?id=372" frameborder="0"></iframe> -->
 
 <!-- 변수 -->
@@ -487,8 +489,7 @@ function doModifyReply(replyId) {
       <c:if test="${article.userCanModify }">
         <a class="btn btn-outline" href="../article/modify?id=${article.id }">수정</a>
       </c:if>
-    
-    
+  
       <c:if test="${article.userCanDelete }">
         <a class="btn btn-outline" onclick="if(confirm('정말 삭제하시겠습니까?') == false) return false;" href="../article/doDelete?id=${article.id }">삭제</a>
       </c:if>

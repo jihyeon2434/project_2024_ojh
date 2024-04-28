@@ -3,8 +3,10 @@ package com.example.demo.controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -19,6 +21,7 @@ import com.example.demo.vo.Article;
 import com.example.demo.vo.ResultData;
 import com.example.demo.vo.Review;
 import com.example.demo.vo.Rq;
+import com.example.demo.vo.conShop;
 import com.example.demo.vo.selfShop;
 
 import jakarta.servlet.http.HttpServletRequest;
@@ -123,6 +126,66 @@ public class UsrSelfController {
 	    int newReviewId = writeReviewRd.getData1();
 
 	    return Ut.jsReplace(writeReviewRd.getResultCode(), writeReviewRd.getMsg(), "../self/detail?id=" + id);
+	}
+	
+	
+	
+	@GetMapping("/usr/self/showList")
+	public ResponseEntity<?> showSelfOptionList(@RequestParam int categoryId) {
+		System.out.println("categoryId: " + categoryId); // categoryId 값 확인을 위한 로그 추가
+		System.err.println(categoryId);
+
+		// Rq rq = (Rq) req.getAttribute("rq");
+
+		// 상담 가게 정보 가져오기
+		List<selfShop> shopInfoList = selfShopService.getByOptionShopsList(categoryId);
+
+		// JSP에 상담 가게 정보 전달
+		// model.addAttribute("shopInfoList", shopInfoList);
+
+		return ResponseEntity.ok().body(shopInfoList);
+	}
+
+	@GetMapping("/usr/self/getHighPointShops")
+	public ResponseEntity<?> getHighPointShops() {
+		List<selfShop> shopInfoList = selfShopService.getHighPointShops(); // 별점이 높은 가게 목록을 가져오는 서비스 메소드 호출
+		return ResponseEntity.ok().body(shopInfoList);
+	}
+
+	@GetMapping("/usr/self/getCheapestShops")
+	public ResponseEntity<?> getCheapestShops() {
+		List<selfShop> shopInfoList = selfShopService.getCheapestShops(); // 별점이 높은 가게 목록을 가져오는 서비스 메소드 호출
+		return ResponseEntity.ok().body(shopInfoList);
+	}
+
+	@GetMapping("/usr/self/getShopsByArea")
+	public ResponseEntity<?> getShopsByArea(@RequestParam("area") String area) {
+		List<selfShop> shopInfoList = selfShopService.getShopsByArea(area); // 별점이 높은 가게 목록을 가져오는 서비스 메소드 호출
+		return ResponseEntity.ok().body(shopInfoList);
+	}
+
+	@GetMapping("/usr/self/getShopsByPriceRange")
+	public ResponseEntity<?> getShopsByPriceRange(@RequestParam("priceRange") int priceRange) {
+		System.err.println(priceRange);
+		System.err.println(priceRange);
+		System.err.println(priceRange);
+		List<selfShop> shopInfoList = selfShopService.getShopsByPriceRange(priceRange); // 별점이 높은 가게 목록을 가져오는 서비스 메소드
+																							// 호출
+		return ResponseEntity.ok().body(shopInfoList);
+	}
+
+	@GetMapping("/usr/self/getShopsByOptions")
+	public ResponseEntity<?> getShopsByOptions(@RequestParam String recommend, @RequestParam int category) {
+		List<selfShop> shopInfoList = selfShopService.getShopsByOptions(recommend, category);
+		return ResponseEntity.ok().body(shopInfoList);
+	}
+	
+
+
+	@GetMapping("/usr/self/getShopsByMyOptions")
+	public ResponseEntity<?> getShopsByMyOptions(@RequestParam("priceRange") int priceRange, @RequestParam("area") String area) {
+		List<selfShop> shopInfoList = selfShopService.getShopsByMyOptions(priceRange, area);
+		return ResponseEntity.ok().body(shopInfoList);
 	}
 
 

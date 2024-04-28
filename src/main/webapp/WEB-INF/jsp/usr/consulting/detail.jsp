@@ -167,14 +167,14 @@
 
 .text {
 	width: 100px;
-	border: 1px solid;
+/* 	border: 1px solid; */
 }
 
 .text-box {
 	width: 200px;
 	height: 100%;
 	display: inline-block;
-	border: 1px solid;
+/* 	border: 1px solid; */
 }
 
 .Group101 {
