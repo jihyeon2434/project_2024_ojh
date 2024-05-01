@@ -507,12 +507,13 @@ CREATE TABLE service_Conshop
     `regDate`            VARCHAR(50)     NULL        COMMENT '등록날짜', 
     `updateDate`         VARCHAR(50)     NULL        COMMENT '수정날짜', 
     `delDate`            DATETIME        NULL        COMMENT '삭제날짜',
-    `delStatus`          TINYINT(1) UNSIGNED NOT NULL DEFAULT 0 COMMENT '삭제 여부 (0=삭제 전, 1=삭제 후)', 
+    `delStatus`          TINYINT(1)      UNSIGNED    NOT NULL DEFAULT 0 COMMENT '삭제 여부 (0=삭제 전, 1=삭제 후)', 
+     ScrapCount          INT(10)         UNSIGNED    NOT NULL DEFAULT 0 COMMENT '스크랩수', 
      PRIMARY KEY (id)
 );
 
 
-DROP TABLE service_Conshop;
+DROP TABLE service_selfshop;
 
 ## innerjoin 별점 총점 세팅
 
@@ -549,7 +550,7 @@ CREATE TABLE service_selfshop
     `photoUrl3`          VARCHAR(500)    NULL        COMMENT '사진 URL 3', 
     `photoUrl4`          VARCHAR(500)    NULL        COMMENT '사진 URL 4', 
     `photoUrl5`          VARCHAR(500)    NULL        COMMENT '사진 URL 5', 
-    `phoneNum`           VARCHAR(50)     NOT NULL    COMMENT '전화번호', 
+    `phoneNum`           VARCHAR(50)     NULL    COMMENT '전화번호', 
     `operateTime`        VARCHAR(300)    NULL        COMMENT '영업시간', 
     `menu`               VARCHAR(300)    NULL        COMMENT '가격', 
     `themeId`            INT             NULL        COMMENT '테마번호', 
@@ -557,6 +558,7 @@ CREATE TABLE service_selfshop
     `updateDate`         VARCHAR(50)     NULL        COMMENT '수정날짜', 
     `delDate`            DATETIME        NULL        COMMENT '삭제날짜',
     `delStatus`          TINYINT(1) UNSIGNED NOT NULL DEFAULT 0 COMMENT '삭제 여부 (0=삭제 전, 1=삭제 후)',
+     ScrapCount          INT(10)         UNSIGNED    NOT NULL DEFAULT 0 COMMENT '스크랩수', 
      PRIMARY KEY (id)
 );
 

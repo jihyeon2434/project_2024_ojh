@@ -11,8 +11,11 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.example.demo.service.ArticleService;
 import com.example.demo.service.BoardService;
+import com.example.demo.service.ConsultShopService;
 import com.example.demo.service.ReactionPointService;
 import com.example.demo.service.ReplyService;
+import com.example.demo.service.scrapService;
+import com.example.demo.service.selfShopService;
 import com.example.demo.util.Ut;
 import com.example.demo.vo.Article;
 import com.example.demo.vo.Board;
@@ -39,6 +42,17 @@ public class UsrArticleController {
 
 	@Autowired
 	private ReactionPointService reactionPointService;
+	
+	@Autowired
+	private ConsultShopService consultShopService;
+	
+	@Autowired
+	private selfShopService selfShopService;
+	
+
+	@Autowired
+	private scrapService scrapService;
+
 
 	
 
@@ -82,37 +96,7 @@ public class UsrArticleController {
 		return "usr/article/list";
 	}
 	
-	
-	@RequestMapping("/usr/article/consultingList")
-	public String showConsultingList(HttpServletRequest req, Model model) {
-		Rq rq = (Rq) req.getAttribute("rq");
-		
 
-		return "usr/article/consultingList";
-	}
-	
-	@RequestMapping("/usr/article/consultingDetail")
-	public String showconsultingDetail(HttpServletRequest req, Model model) {
-		Rq rq = (Rq) req.getAttribute("rq");
-		
-
-		return "usr/article/consultingDetail";
-	}
-	
-	@RequestMapping("/usr/article/selfList")
-	public String showselfList(HttpServletRequest req, Model model) {
-		Rq rq = (Rq) req.getAttribute("rq");
-		
-
-		return "usr/article/selfList";
-	}
-	
-	@RequestMapping("/usr/article/selfDetail")
-	public String showselfDetail(HttpServletRequest req, Model model) {
-		Rq rq = (Rq) req.getAttribute("rq");
-		return "usr/article/selfDetail";
-	}
-	
 	@RequestMapping("/usr/article/search")
 	public String showSearch(HttpServletRequest req, Model model) {
 		Rq rq = (Rq) req.getAttribute("rq");

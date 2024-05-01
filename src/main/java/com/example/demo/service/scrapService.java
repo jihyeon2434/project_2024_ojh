@@ -27,13 +27,13 @@ public class scrapService {
 
 	
 
-	public ResultData usersReaction(int loginedMemberId,int themeId, int categoryId, int shopId, int memberId) {
+	public ResultData usersScrap(int loginedMemberId,int themeId, int categoryId, int shopId) {
 
 		if (loginedMemberId == 0) {
 			return ResultData.from("F-L", "로그인 하고 써야해");
 		}
 
-		int sumReactionPointByMemberId = scrapRepository.getSumReactionPoint(themeId, categoryId, shopId, memberId);
+		int sumReactionPointByMemberId = scrapRepository.getSumReactionPoint(themeId, categoryId, shopId, loginedMemberId);
 
 		if (sumReactionPointByMemberId != 0) {
 			return ResultData.from("F-1", "추천 불가능", "sumReactionPointByMemberId", sumReactionPointByMemberId);

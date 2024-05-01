@@ -232,4 +232,11 @@ public class ConsultShopService {
 		}
 		 return new ArrayList<>(); // 예외 처리
 	}
+
+
+	public int getDoScrap(int categoryId, int shopId, int memberId) {
+		return consultShopRepository.getDoScrap(categoryId, shopId, memberId);
+	}
+
+
 }

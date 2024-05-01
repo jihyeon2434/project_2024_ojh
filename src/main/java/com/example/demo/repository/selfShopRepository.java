@@ -200,6 +200,15 @@ public interface selfShopRepository {
 	public List<selfShop> findShopsByLowPrice(int category);
 
 
+	
+	@Select("""
+			SELECT ScrapCount
+			FROM service_selfshop AS S
+			WHERE id = #{shopId} AND categoryId = #{categoryId} AND 
+			""")
+	public int getDoScrap(int categoryId, int shopId);
+
+
 
 
 }

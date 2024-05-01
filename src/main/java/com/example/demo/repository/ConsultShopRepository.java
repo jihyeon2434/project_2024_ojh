@@ -219,6 +219,14 @@ public interface ConsultShopRepository {
 		        M.price ASC;
 		""")
 		public List<conShop> getShopsBySituation2Over3M(int priceRange, String area);
+		
+		
+		@Select("""
+				SELECT ScrapCount
+				FROM service_Conshop AS C
+				WHERE id = #{shopId} AND categoryId = #{categoryId} AND 
+				""")
+	public int getDoScrap(int categoryId, int shopId, int memberId);
 
 	
 }

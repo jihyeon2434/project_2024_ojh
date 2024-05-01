@@ -3,13 +3,6 @@
 <c:set var="pageTitle" value="#{board.code } ARTICLE LIST"></c:set>
 <%@ include file="../common/head.jspf"%>
 
-<!-- 여기에 선택한 날짜, 시간, 가격을 받아오는 로직을 작성합니다. -->
-<%
-    String selectedDate = request.getParameter("selectedDate");
-    String selectedTime = request.getParameter("selectedTime");
-    String selectedPrice = request.getParameter("selectedPrice");
-%>
-
 <style>
 .outer-box {
 	display: flex;
@@ -17,14 +10,11 @@
 	height: auto;
 	justify-content: center;
 }
-
 .small-outer-box {
 	width: 1000px;
 	height: 900px;
 	margin-top: 30px;
 }
-
-
 .title {
 	width: 441px;
 	height: 154px;
@@ -36,87 +26,70 @@
 	word-wrap: break-word;
 	margin: 0 auto;
 }
-
 .line {
 	width: 100%;
 	height: 0px;
 	border: 3px rgba(239, 231, 229, 0.7) solid;
 	margin: 10px auto;
 }
-
-
 .calendar-box {
 	display: flex;
 	justify-content: center;
 	height: 600px;
 }
-
 .calendar {
 	font-family: Arial, sans-serif;
 	border-collapse: collapse;
 	width: 80%;
-	position: relative; /* 상대 위치 지정 */
-	margin-top: 20px; /* calendar-month와 겹치지 않도록 상단 여백 추가 */
+	position: relative;
+	margin-top: 20px;
 }
-
 .calendar th {
 	background-color: #f2f2f2;
 }
-
 .calendar th, .calendar td {
 	border: 1px solid #dddddd;
 	text-align: center;
 	padding: 8px;
 }
-
 .time-outer-box {
 	display: flex;
 	height: 50px;
 	justify-content: center;
 	align-items: center;
 }
-
 .time-box {
 	width: 500px;
 	height: auto;
 	text-align: center;
 }
-
 .time-selection {
 	margin-top: 20px;
 }
-
 .time-selection label {
 	font-weight: bold;
 }
-
 .time-selection select {
 	padding: 5px;
 	font-size: 16px;
 }
-
 .con-title {
 	padding-left: 10px;
 	font-weight: bold;
 	font-size: 20px;
 	margin-top: 20px;
 }
-
-
 .consulting-item {
 	padding-left: 20px;
 }
-
 .calendar td:hover {
 	background-color: black;
 	color: white;
 	cursor: pointer;
 }
-
 .consulting-reservation {
 	text-align: center;
 }
-
 .reservation-button {
 	display: inline-block;
 	padding: 10px 20px;
@@ -132,103 +105,79 @@
 <div class="outer-box">
 	<div class="small-outer-box">
 		<div class="title-box">
-			<div class="title">
-				JH님 <br />빠른 예약 도와드릴게요.
-			</div>
+			<div class="title">JH님 <br />빠른 예약 도와드릴게요.</div>
 			<div class="line"></div>
 		</div>
 
-		<div class="outer-calendar-box">
-			<div class="calendar-month">
-				<!-- 현재 연도와 월을 표시합니다 -->
-				<%
-				java.util.Calendar cal = java.util.Calendar.getInstance();
-				int year = cal.get(java.util.Calendar.YEAR);
-				int month = cal.get(java.util.Calendar.MONTH) + 1; // 0부터 시작하므로 1을 더해줌
-				%>
-				<p class="font-bold ">
-					현재 연도:
-					<%=year%></p>
-				<p class="present-MonthDay"></p>
-			</div>
-			<div class="calendar-box">
-				<table class="calendar">
-					<thead>
-						<tr>
-							<th colspan="7">
-								<button onclick="prevMonth()">Previous</button>
-								<div class="present-MonthYear"><%=year%>.
-									<%=(month < 10 ? '0' + month : month)%></div>
-								<button onclick="nextMonth()">Next</button>
-							</th>
-						</tr>
-						<tr>
-							<th>Sun</th>
-							<th>Mon</th>
-							<th>Tue</th>
-							<th>Wed</th>
-							<th>Thu</th>
-							<th>Fri</th>
-							<th>Sat</th>
-						</tr>
-					</thead>
-					<tbody id="calendar-body">
-						<!-- 달력 내용은 JavaScript로 채웁니다 -->
-					</tbody>
-				</table>
-			</div>
-			<div class="time-outer-box">
-				<div class="time-box">
-					<!-- 시간 선택 -->
-					<div class="time-selection">
-						<label for="time">시간 선택:</label> <select class="form-control w-full max-w-xs select select-bordered" id="time">
+		<form id="dateForm" action="reservation3" method="POST">
+			<div class="outer-calendar-box">
+				<div class="calendar-month">
+					<%
+					java.util.Calendar cal = java.util.Calendar.getInstance();
+					int year = cal.get(java.util.Calendar.YEAR);
+					int month = cal.get(java.util.Calendar.MONTH) + 1;
+					%>
+					<p class="font-bold">현재 연도: <%=year%></p>
+					<p class="present-MonthDay"></p>
+				</div>
+				<div class="calendar-box">
+					<table class="calendar">
+						<thead>
+							<tr>
+								<th colspan="7">
+									<button type="button" onclick="prevMonth()">Previous</button>
+									<div class="present-MonthYear"><%=year%>.<%=(month < 10 ? '0' + month : month)%></div>
+									<button type="button" onclick="nextMonth()">Next</button>
+								</th>
+							</tr>
+							<tr>
+								<th>Sun</th>
+								<th>Mon</th>
+								<th>Tue</th>
+								<th>Wed</th>
+								<th>Thu</th>
+								<th>Fri</th>
+								<th>Sat</th>
+							</tr>
+						</thead>
+						<tbody id="calendar-body">
+							<!-- 달력 내용은 JavaScript로 채웁니다 -->
+						</tbody>
+					</table>
+				</div>
+				<input type="hidden" id="selectedDateInput" name="selectedDate">
+				<div class="time-outer-box">
+					<div class="time-box">
+						<select name="selectedTime" id="time" class="form-control w-full max-w-xs select select-bordered">
 							<option value="09:00">09:00</option>
 							<option value="10:00">10:00</option>
 							<option value="11:00">11:00</option>
-							<!-- 시간 옵션을 필요에 따라 추가할 수 있습니다 -->
 						</select>
 					</div>
-
 				</div>
 			</div>
 
-		</div>
-
-		<div class="con-title">상담 옵션 선택</div>
-		<div class="line"></div>
-
-		<div class="consulting-item-box">
-			<div class="consulting-item">
-				<div>
-					<input type="checkbox" checked="checked" class="checkbox" />
-				</div>
-				<div class="consulting-title">1:1 30분 컨설팅</div>
-				<div class="consulting-price">30,000원</div>
-			</div>
+			<div class="con-title">상담 옵션 선택</div>
 			<div class="line"></div>
-			<div class="consulting-item">
+
+			<div class="consulting-item-box">
 				<div>
-					<input type="checkbox" checked="checked" class="checkbox" />
+					<input type="radio" name="consultingOption" value="1:1 30분 컨설팅 30,000원" checked="checked"> 1:1 30분 컨설팅 30,000원<br>
+					<input type="radio" name="consultingOption" value="1:1 60분 컨설팅 60,000원"> 1:1 60분 컨설팅 60,000원<br>
 				</div>
-				<div class="consulting-title">1:1 60분 컨설팅</div>
-				<div class="consulting-price">60,000원</div>
 			</div>
-		</div>
-		<div class="consulting-reservation">
-		  <a href="../consulting/reservation3">
-			<div class="reservation-button">예약하기</div>
-			</a>
-		</div>
+			<div class="consulting-reservation">
+				<button type="submit" class="reservation-button">예약하기</button>
+			</div>
+		</form>
 	</div>
 </div>
 
+<%@ include file="../common/foot.jspf"%>
+
 <script>
-	var year =
-<%=year%>
-	; // JSP에서 받아온 년도
-	var month =
-<%=month%>
-	; // JSP에서 받아온 월
+	var year = <%=year%>;
+	var month = <%=month%>;
 
 	function prevMonth() {
 		month--;
@@ -261,7 +210,6 @@
 		var row = document.createElement("tr");
 		for (var i = 0; i < startingDay; i++) {
 			var cell = document.createElement("td");
-			cell.appendChild(document.createTextNode(""));
 			row.appendChild(cell);
 		}
 
@@ -272,6 +220,7 @@
 			}
 			var cell = document.createElement("td");
 			cell.appendChild(document.createTextNode(date));
+			cell.onclick = function() { updateSelectedDate(this.textContent); };
 			row.appendChild(cell);
 			date++;
 		}
@@ -283,37 +232,14 @@
 			}
 			table.appendChild(row);
 		}
-
-		// 현재 년도와 월 표시
-		var monthYearElement = document.querySelector('.present-MonthYear');
-		monthYearElement.textContent = year + '. '
-				+ (month < 10 ? '0' + month : month);
 	}
 
-	// 페이지 로드시에 초기 달력 생성
+	function updateSelectedDate(day) {
+		var selectedDate = year + '-' + (month < 10 ? '0' + month : month) + '-' + (day < 10 ? '0' + day : day);
+		document.getElementById('selectedDateInput').value = selectedDate;
+	}
+
 	window.onload = function() {
-		generateCalendar(year, month);
-	};
-
-	// 모든 캘린더 셀에 이벤트 리스너를 추가합니다.
-	window.onload = function() {
-		var cells = document.querySelectorAll('.calendar td');
-		cells.forEach(function(cell) {
-			cell.addEventListener('mouseover', function() {
-				this.style.backgroundColor = 'black';
-				this.style.color = 'white';
-			});
-
-			cell.addEventListener('mouseout', function() {
-				this.style.backgroundColor = '';
-				this.style.color = '';
-			});
-		});
-
-		// 페이지 로드 시 캘린더를 초기화합니다.
 		generateCalendar(year, month);
 	};
 </script>
-
-
-<%@ include file="../common/foot.jspf"%>

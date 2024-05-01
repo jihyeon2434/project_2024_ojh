@@ -96,4 +96,8 @@ public class selfShopService {
         }
         return new ArrayList<>(); // 예외 처리
 	}
+
+	public int getDoScrap(int categoryId, int shopId) {
+		return selfShopRepository.getDoScrap(categoryId, shopId);
+	}
 }

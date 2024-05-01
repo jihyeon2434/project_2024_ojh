@@ -3,6 +3,14 @@
 <c:set var="pageTitle" value="#{board.code } ARTICLE LIST"></c:set>
 <%@ include file="../common/head.jspf"%>
 
+
+<%
+    String selectedDate = request.getParameter("selectedDate");
+    String selectedTime = request.getParameter("selectedTime");
+    String consultingOption = request.getParameter("consultingOption");
+%>
+
+
 <style>
 .outer-box {
   display: flex;
@@ -108,8 +116,8 @@
     <div class="content-box">
       <div class="Group129">
         <div class="Rectangle62">
-          <div>2.26(월) 10:00</div>
-          <div class="time">일정 1:1 30 분 컨설팅</div>
+          <div> <%= selectedDate %> <%= selectedTime %></div>
+          <div class="time"> <%= consultingOption %></div>
         </div>
         <div class="price-box">
           <div class="price-title">결제 금액</div>
@@ -130,4 +138,4 @@
 
 
 
-<%@ include file="../common/foot.jspf"%>
+<%@ include file="../common/foot.jspf"%>s

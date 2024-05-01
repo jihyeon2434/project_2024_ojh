@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.example.demo.repository.ScrapRepository;
 import com.example.demo.service.ArticleService;
 import com.example.demo.service.BoardService;
 import com.example.demo.service.ConsultShopService;
@@ -166,6 +167,19 @@ public class UsrConsultingController {
 		Rq rq = (Rq) req.getAttribute("rq");
 		conShop shop = consultShopService.getShopById(id);
 		List<Review> reviews = consultShopService.getReviewsByIdandThemeandCategory(themeId, categoryId, id);
+		
+		ResultData usersScrapRd = scrapService.usersScrap(rq.getLoginedMemberId(),themeId, categoryId, id);
+		if (usersScrapRd.isSuccess()) {
+			model.addAttribute("userCanScrap", usersScrapRd.isSuccess());
+		}
+		
+		
+		/* ScrapRepository.updateCafeScrapCount(); */
+		
+		
+		model.addAttribute("isAlreadyAddCafeScrap",
+				scrapService.addGoodReactionPoint(rq.getLoginedMemberId(),themeId, categoryId, id));
+
 		model.addAttribute("reviews", reviews);
 		model.addAttribute("shop", shop);
 		return "usr/consulting/detail";
