@@ -508,7 +508,7 @@ CREATE TABLE service_Conshop
     `updateDate`         VARCHAR(50)     NULL        COMMENT '수정날짜', 
     `delDate`            DATETIME        NULL        COMMENT '삭제날짜',
     `delStatus`          TINYINT(1)      UNSIGNED    NOT NULL DEFAULT 0 COMMENT '삭제 여부 (0=삭제 전, 1=삭제 후)', 
-     ScrapCount          INT(10)         UNSIGNED    NOT NULL DEFAULT 0 COMMENT '스크랩수', 
+   	`goodReactionPoint` INT(10) UNSIGNED NOT NULL DEFAULT 0 COMMENT '스크랩수', 
      PRIMARY KEY (id)
 );
 
@@ -827,21 +827,24 @@ FROM service_menu;
 
 
 -- service_scrap Table Create SQL
--- 테이블 생성 SQL - service_scrap
-
-CREATE TABLE service_scrap
-(
-    `id`           INT            NOT NULL    AUTO_INCREMENT COMMENT '스크랩 고유번호', 
-    `memberId`         INT            NULL        COMMENT '회원번호', 
-    `themeId`          INT            NULL        COMMENT '(스크랩 당한) 테마 번호', 
-    `categoryId`       INT            NULL        COMMENT '(스크랩 당한) 카테고리 번호(이미지메이킹 / 퍼스널컬러 / 헤어 / 메이크업)', 
-    `shopId`           VARCHAR(50)    NULL        COMMENT '(스크랩 당한) 업체번호', 
-    `scrapDate`        VARCHAR(50)    NULL        COMMENT '스크랩 등록 일시', 
-    `scrapUpdateDate`  VARCHAR(50)    NULL        COMMENT '스크랩 수정 일시', 
-    `scrapPoint`       INT(10)        NULL        COMMENT '스크랩 유무(유 (1) / 무(-1)', 
-     PRIMARY KEY (id)
-);
+-- 테이블 생성 SQL - scrap
 
 SELECT *
 FROM service_scrap;
+
+
+CREATE TABLE scrap
+(   id INT(10) UNSIGNED NOT NULL PRIMARY KEY AUTO_INCREMENT,
+    `regDate` DATETIME NOT NULL COMMENT '찜 날짜', 
+    `updateDate` DATETIME NOT NULL,
+    `deleteDate` DATETIME NULL, 
+    `memberId` INT(10) UNSIGNED NOT NULL COMMENT '회원 번호',
+    shopId INT(10) UNSIGNED NOT NULL  COMMENT '목록의 번호', 
+    categoryId INT(10) UNSIGNED NOT NULL  COMMENT '카테고리 번호',
+    themeId INT(10) UNSIGNED NOT NULL  COMMENT '테마 번호',
+    `point` TINYINT(1) UNSIGNED NOT NULL DEFAULT 0 COMMENT '스크랩 상태 찜 여부 (0=찜 취소, 1= 찜)'
+);
+
+
+
  

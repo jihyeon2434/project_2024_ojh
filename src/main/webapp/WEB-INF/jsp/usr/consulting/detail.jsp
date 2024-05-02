@@ -11,15 +11,28 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-
 <title>Shop Information</title>
 
 
 
+<script>
+	const params = {};
+	params.id = parseInt('${param.id}');
+	params.themeId = parseInt('${param.themeId}');
+	params.categoryId = parseInt('${param.categoryId}');
+	params.memberId = parseInt('${loginedMemberId}');
+	
+	console.log(params);
+	console.log(params.memberId);
+	console.log(params.themeId);
+	console.log(params.categoryId);
+	var isAlreadyAddGoodRp = ${isAlreadyAddGoodRp};
+
+	
+	
+</script>
 </head>
 
-
-</head>
 
 <style>
 
@@ -400,7 +413,7 @@
 
 			<div class="click-box">
 				<div class="Group41">
-					<button class="Rectangle35 scrap-btn" id="likeButton">
+					<button class="Rectangle35 scrap-btn" id="likeButton" onclick="doGoodReaction(${param.themeId}, ${param.categoryId}, ${param.id})">
 						<div>♡ 관심</div>
 					</button>
 				</div>
@@ -661,78 +674,68 @@
 <script>
 
 
-//관심 버튼 클릭 시 스크랩 처리를 수행하는 함수
-function doScrap(themeId, categoryId, id, memberId) {
-    // 로그인 여부 확인
-	if(isNaN(params.memberId) == true){
+<!-- 좋아요 싫어요 버튼	-->
+function checkRP() {
+	if(isAlreadyAddGoodRp == true){
+		$('#likeButton').toggleClass('btn-outline');
+	}else {
+		return;
+	}
+}
+console.log("Before doGoodReaction function");
+function doGoodReaction(themeId, categoryId, shopId) {
+if(isNaN(params.memberId) == true){
 		if(confirm('로그인 해야해. 로그인 페이지로 가실???')){
 			var currentUri = encodeURIComponent(window.location.href);
 			window.location.href = '../member/login?afterLoginUri=' + currentUri; // 로그인 페이지에 원래 페이지의 uri를 같이 보냄
 		}
 		return;
-	}
+	} 
+/* console.log("categoryId": categoryId , "themeId" : themeId, "shopId" : shopId); // 콘솔에 academyId 출력 */
+	$.ajax({
+		url: '/usr/scrap/doGoodReaction',
+		type: 'GET',
+		data: {themeId: themeId, categoryId: categoryId, shopId:shopId},
+		dataType: 'json',
+		success: function(data){
+			console.log(data);
+			console.log('data.data1Name : ' + data.data1Name);
+			console.log('data.data1 : ' + data.data1);
+/* 			console.log('data.data2Name : ' + data.data2Name);
+			console.log('data.data2 : ' + data.data2); */
+			if(data.resultCode.startsWith('S-')){
+				var likeButton = $('#likeButton');
+				var likeCount = $('#likeCount');
+			/* 	var DislikeButton = $('#DislikeButton');
+				var DislikeCount = $('#DislikeCount'); */
+				
+				if(data.resultCode == 'S-1'){
+					likeButton.toggleClass('btn-outline');
+					likeCount.text(data.data1);
+				}else if(data.resultCode == 'S-2'){
+				/* 	DislikeButton.toggleClass('btn-outline');
+					DislikeCount.text(data.data2); */
+					likeButton.toggleClass('btn-outline');
+					likeCount.text(data.data1);
+				}else {
+					likeButton.toggleClass('btn-outline');
+					likeCount.text(data.data1);
+				}
+				
+			}else {
+				alert(data.msg);
+			}
+	
+		},
+		error: function(jqXHR,textStatus,errorThrown) {
+			alert('좋아요 오류 발생 : ' + textStatus);
 
-    // Ajax 요청을 통해 스크랩 처리
-    $.ajax({
-        url: '/usr/scrap/doScrap',
-        type: 'POST',
-        data: {
-            themeId: themeId,
-            categoryId: categoryId,
-            shopId: id
-        },
-        dataType: 'json',
-        success: function(data) {
-            console.log('data.data1Name : ' + data.data1Name);
-            console.log('data.data1 : ' + data.data1);
-            
-            if (data.resultCode.startsWith('S-')) {
-                if (data.resultCode === 'S-1') {
-                    // 스크랩이 추가된 경우
-                    alert('관심 목록에 추가되었습니다.');
-                    // 관심 추가 후 UI 업데이트
-                    $('.scrap-btn').addClass('scraped');
-                } else if (data.resultCode === 'S-2') {
-                    // 스크랩이 삭제된 경우
-                    alert('관심 목록에서 삭제되었습니다.');
-                    // 관심 삭제 후 UI 업데이트
-                    $('.scrap-btn').removeClass('scraped');
-                }
-            } else {
-                alert(data.msg);
-            }
-        },
-        error: function(jqXHR, textStatus, errorThrown) {
-            alert('스크랩 처리 중 오류가 발생했습니다.');
-        }
-    });
+		}
+		
+	});
 }
 
-// 페이지 로드 후 관심 버튼에 클릭 이벤트 추가
-$(document).ready(function() {
-    $('.scrap-btn').on('click', function() {
-        // 필요한 경우 해당 버튼에 연결된 데이터를 가져와서 전달
-        var themeId = $(this).data('themeid');
-        var categoryId = $(this).data('categoryid');
-        var id = $(this).data('id');
-        doScrap(themeId, categoryId, id); // doScrap 함수 호출
-    });
-});
-
 </script>
-
-
-
-
-
-<!-- <script>
-    // 페이지 로드 후 관심 버튼에 클릭 이벤트 추가
-    $(document).ready(function() {
-        $('.scrap-btn').on('click', function() {
-            doScrap(); // doScrap 함수 호출
-        });
-    });
-</script> -->
 
 
 

@@ -18,8 +18,8 @@ import com.example.demo.service.BoardService;
 import com.example.demo.service.ConsultShopService;
 import com.example.demo.service.ReactionPointService;
 import com.example.demo.service.ReplyService;
+import com.example.demo.service.ScrapService;
 import com.example.demo.service.menuService;
-import com.example.demo.service.scrapService;
 import com.example.demo.util.Ut;
 import com.example.demo.vo.ResultData;
 import com.example.demo.vo.Review;
@@ -53,7 +53,7 @@ public class UsrConsultingController {
 	private menuService menuService;
 	
 	@Autowired
-	private scrapService scrapService;
+	private ScrapService scrapService;
 
 	// 액션 메서드
 	@RequestMapping("/usr/consulting/crawl")
@@ -162,23 +162,22 @@ public class UsrConsultingController {
 	 * ResponseEntity.ok().body(shopInfoList); }
 	 */
 	
+	
+	
 	@RequestMapping("/usr/consulting/detail")
 	public String showconsultingDetail(HttpServletRequest req, Model model, int themeId, int id, int categoryId) {
 		Rq rq = (Rq) req.getAttribute("rq");
 		conShop shop = consultShopService.getShopById(id);
 		List<Review> reviews = consultShopService.getReviewsByIdandThemeandCategory(themeId, categoryId, id);
 		
-		ResultData usersScrapRd = scrapService.usersScrap(rq.getLoginedMemberId(),themeId, categoryId, id);
-		if (usersScrapRd.isSuccess()) {
-			model.addAttribute("userCanScrap", usersScrapRd.isSuccess());
-		}
-		
-		
-		/* ScrapRepository.updateCafeScrapCount(); */
-		
-		
-		model.addAttribute("isAlreadyAddCafeScrap",
-				scrapService.addGoodReactionPoint(rq.getLoginedMemberId(),themeId, categoryId, id));
+		 ResultData usersScrapRd = scrapService.usersCafeScrap(rq.getLoginedMemberId(), themeId, id, categoryId);
+
+			if (usersScrapRd.isSuccess()) {
+				model.addAttribute("userCanScrap", usersScrapRd.isSuccess());
+			}
+		 
+			model.addAttribute("isAlreadyAddGoodRp",
+					scrapService.isAlreadyAddGoodRp(rq.getLoginedMemberId(), themeId, id, categoryId));
 
 		model.addAttribute("reviews", reviews);
 		model.addAttribute("shop", shop);
@@ -251,4 +250,14 @@ public class UsrConsultingController {
 				"../consulting/detail?id=" + id + "&categoryId=" + categoryId + "&themeId=" + themeId);
 
 	}
+	
+	
+
+	@RequestMapping("/usr/consulting/video")
+	public String showvideo(HttpServletRequest req) {
+		Rq rq = (Rq) req.getAttribute("rq");
+
+		return "usr/consulting/video";
+	}
+	
 }

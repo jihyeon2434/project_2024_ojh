@@ -3,60 +3,67 @@ package com.example.demo.repository;
 import org.apache.ibatis.annotations.Delete;
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Mapper;
-import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;
-
-import com.example.demo.vo.Scrap;
 
 @Mapper
 public interface ScrapRepository {
 
-	@Select("""
-			SELECT * FROM service_scrap
-			WHERE themeId = #{themeId} AND categoryId = #{categoryId} AND shopId = #{shopId} AND memberId = #{memberId}
-			""")
-	public Scrap getScrap(@Param("themeId") String themeId, @Param("categoryId") String categoryId,
-			@Param("shopId") int shopId, @Param("memberId") int memberId);
-
-	@Delete("""
-	        DELETE FROM service_scrap
-	        WHERE memberId = #{memberId}
-	        AND themeId = #{themeId}
-	        AND categoryId = #{categoryId}
-	        AND shopId = #{shopId}
-	        """)
-	int removeScrap(String themeId, String categoryId, int shopId, int memberId);
-
-	@Select("""
-	        SELECT IFNULL(SUM(SC.scrapPoint),0)
-	        FROM service_scrap AS SC
-	        WHERE memberId = #{memberId}
-	        AND themeId = #{themeId}
-	        AND categoryId = #{categoryId}
-	        AND shopId = #{shopId}
-	        """)
-	public int getSumReactionPoint(int themeId, int categoryId, int shopId, int memberId);
 
 
 	@Insert("""
-			INSERT INTO service_scrap
-			SET memberId =#{memberId},
-			themeId =#{themeId},
-			categoryId =#{categoryId},
-			shopId =#{shopId},
-			scrapDate= NOW(),
-			scrapUpdateDate= NOW(),
-			scrapPoint=1
+			INSERT INTO scrap
+			SET regDate = NOW(),
+			updateDate = NOW(),
+			categoryId = #{categoryId},
+			themeId = #{themeId},
+			shopId = #{shopId},
+			memberId = #{loginedMemberId},
+			`point` = 1
 			""")
-	public int addGoodReactionPoint(int memberId, int themeId, int categoryId, int shopId);
+	public int addGoodReactionPoint(int loginedMemberId, int categoryId, int themeId, int shopId);
+
+	/*
+	 * @Insert(""" INSERT INTO scrap SET regDate = NOW(), updateDate = NOW(), relId
+	 * = #{relId}, memberId = #{memberId}, `point` = -1 """) public int
+	 * addBadReactionPoint(int memberId, String relTypeCode, int relId);
+	 */
 
 	@Delete("""
-			DELETE FROM service_scrap
-			WHERE memberId = #{memberId} AND
-			themeId = #{themeId} AND
-			categoryId = #{categoryId} AND
-			shopId = #{shopId}
+			DELETE FROM scrap
+			WHERE categoryId = #{categoryId}
+			AND themeId = #{themeId}
+			AND shopId = #{shopId}
+			AND memberId = #{memberId}
 			""")
-	public void deleteScrapPoint(int memberId, int themeId, int categoryId, int shopId);
+	public void deleteReactionPoint(int memberId, int categoryId, int themeId, int shopId);
+
+	
+	
+	@Select("""
+	        SELECT IFNULL(SUM(S.point),0)
+	        FROM scrap AS S
+	        WHERE S.Id = #{shopId}
+	        AND S.categoryId = #{categoryId}
+	        AND S.themeId = #{themeId}
+	        AND S.memberId = #{loginedMemberId}
+	        """)
+	public int getSumScrapCount(int loginedMemberId, int categoryId, int themeId, int shopId);
+
+
+	
+	@Select("""
+			SELECT IFNULL(SUM(S.point),0)
+			FROM scrap AS S
+			WHERE S.categoryId = #{categoryId}
+			AND S.themeId = #{themeId}
+			AND S.shopId = #{shopId}
+			AND S.memberId = #{memberId}
+			""")
+	public int getSumReactionPoint(int memberId, int categoryId, int themeId, int shopId);
+
+
+
+	
+	
 
 }

@@ -6,6 +6,7 @@ import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;
+import org.apache.ibatis.annotations.Update;
 
 import com.example.demo.vo.conShop;
 
@@ -227,6 +228,36 @@ public interface ConsultShopRepository {
 				WHERE id = #{shopId} AND categoryId = #{categoryId} AND 
 				""")
 	public int getDoScrap(int categoryId, int shopId, int memberId);
+
+		
+		  
+	    @Select("""
+				SELECT goodReactionPoint
+				FROM service_Conshop
+				WHERE id = #{shopId}
+				AND categoryId= #{categoryId}
+				AND themeId= #{themeId}
+				""")
+		public int getGoodRP(int categoryId, int themeId, int shopId);
+
+	    
+	    @Update("""
+				UPDATE service_Conshop
+				SET goodReactionPoint = goodReactionPoint + 1
+				WHERE id = #{shopId}
+				AND categoryId= #{categoryId}
+				AND themeId= #{themeId}
+				""")
+		public int increaseGoodReactionPoint(int categoryId, int themeId, int shopId);
+
+	    @Update("""
+				UPDATE service_Conshop
+				SET goodReactionPoint = goodReactionPoint - 1
+				WHERE id = #{shopId}
+				AND categoryId= #{categoryId}
+				AND themeId= #{themeId}
+				""")
+		public int decreaseGoodReactionPoint(int categoryId, int themeId, int shopId);
 
 	
 }

@@ -234,8 +234,33 @@ public class ConsultShopService {
 	}
 
 
-	public int getDoScrap(int categoryId, int shopId, int memberId) {
-		return consultShopRepository.getDoScrap(categoryId, shopId, memberId);
+
+
+	public int getGoodRP(int categoryId, int themeId, int shopId) {
+		// TODO Auto-generated method stub
+		return consultShopRepository.getGoodRP(categoryId,themeId, shopId);
+	}
+
+
+	public ResultData  decreaseGoodReactionPoint(int categoryId, int themeId, int shopId) {
+		int affectedRow = consultShopRepository.decreaseGoodReactionPoint(categoryId, themeId, shopId);
+
+		if (affectedRow == 0) {
+			return ResultData.from("F-1", "없는 게시물");
+		}
+
+		return ResultData.from("S-1", "좋아요 감소", "affectedRow", affectedRow);
+	}
+
+
+	public ResultData  increaseGoodReactionPoint(int categoryId, int themeId, int shopId) {
+		int affectedRow = consultShopRepository.increaseGoodReactionPoint(categoryId, themeId, shopId);
+
+		if (affectedRow == 0) {
+			return ResultData.from("F-1", "없는 게시물");
+		}
+
+		return ResultData.from("S-1", "좋아요 증가", "affectedRow", affectedRow);
 	}
 
 

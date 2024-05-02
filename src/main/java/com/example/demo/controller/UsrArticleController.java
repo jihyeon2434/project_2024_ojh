@@ -14,7 +14,6 @@ import com.example.demo.service.BoardService;
 import com.example.demo.service.ConsultShopService;
 import com.example.demo.service.ReactionPointService;
 import com.example.demo.service.ReplyService;
-import com.example.demo.service.scrapService;
 import com.example.demo.service.selfShopService;
 import com.example.demo.util.Ut;
 import com.example.demo.vo.Article;
@@ -50,8 +49,7 @@ public class UsrArticleController {
 	private selfShopService selfShopService;
 	
 
-	@Autowired
-	private scrapService scrapService;
+
 
 
 	
