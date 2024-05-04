@@ -2,6 +2,7 @@ package com.example.demo.controller;
 
 import java.time.LocalDate;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -11,16 +12,20 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.multipart.MultipartRequest;
 
 import com.example.demo.repository.ScrapRepository;
 import com.example.demo.service.ArticleService;
 import com.example.demo.service.BoardService;
 import com.example.demo.service.ConsultShopService;
+import com.example.demo.service.GenFileService;
 import com.example.demo.service.ReactionPointService;
 import com.example.demo.service.ReplyService;
 import com.example.demo.service.ScrapService;
 import com.example.demo.service.menuService;
 import com.example.demo.util.Ut;
+import com.example.demo.vo.Article;
 import com.example.demo.vo.ResultData;
 import com.example.demo.vo.Review;
 import com.example.demo.vo.Rq;
@@ -51,6 +56,8 @@ public class UsrConsultingController {
 
 	@Autowired
 	private menuService menuService;
+	@Autowired
+	private GenFileService genFileService;
 	
 	@Autowired
 	private ScrapService scrapService;
@@ -253,11 +260,55 @@ public class UsrConsultingController {
 	
 	
 
-	@RequestMapping("/usr/consulting/video")
-	public String showvideo(HttpServletRequest req) {
+	/*
+	 * @RequestMapping("/usr/consulting/video") public String
+	 * showvideo(HttpServletRequest req) { Rq rq = (Rq) req.getAttribute("rq");
+	 * 
+	 * return "usr/consulting/video"; }
+	 */
+	
+	@RequestMapping("/usr/consulting/write")
+	public String showJoin(Model model) {
+
+		/* int currentId = consultShopService.getCurrentArticleId(); */
+
+		/* model.addAttribute("currentId", currentId); */
+
+		return "usr/consulting/write";
+	}
+
+	@RequestMapping("/usr/consulting/doWrite")
+	@ResponseBody
+	public String doWrite(HttpServletRequest req, String title, String body, String replaceUri,
+			MultipartRequest multipartRequest) {
+
 		Rq rq = (Rq) req.getAttribute("rq");
 
-		return "usr/consulting/video";
+		if (Ut.isNullOrEmpty(title)) {
+			return Ut.jsHistoryBack("F-1", "제목을 입력해주세요");
+		}
+		if (Ut.isNullOrEmpty(body)) {
+			return Ut.jsHistoryBack("F-2", "내용을 입력해주세요");
+		}
+
+		ResultData<Integer> writeArticleRd = consultShopService.writeArticle(rq.getLoginedMemberId(), title, body);
+
+		int id = (int) writeArticleRd.getData1();
+
+		Article article = articleService.getArticle(id);
+
+		Map<String, MultipartFile> fileMap = multipartRequest.getFileMap();
+
+		for (String fileInputName : fileMap.keySet()) {
+			MultipartFile multipartFile = fileMap.get(fileInputName);
+
+			if (multipartFile.isEmpty() == false) {
+				genFileService.save(multipartFile, id);
+			}
+		}
+
+		return Ut.jsReplace(writeArticleRd.getResultCode(), writeArticleRd.getMsg(), "../article/detail?id=" + id);
+
 	}
 	
 }

@@ -264,4 +264,25 @@ public class ConsultShopService {
 	}
 
 
+	public List<conShop> getForPrintScrapShops(int memberId) {
+		
+		return consultShopRepository.getForPrintScrapShops(memberId);
+	}
+
+
+	public int getCurrentArticleId() {
+
+		return consultShopRepository.getCurrentArticleId();
+	}
+
+
+	public ResultData<Integer> writeArticle(int loginedMemberId, String title, String body) {
+		consultShopRepository.writeArticle(loginedMemberId, title, body);
+		int id = consultShopRepository.getLastInsertId();
+		return ResultData.from("S-1", Ut.f("%d번 글이 생성되었습니다", id), "id", id);
+	}
+
+	
+	
+
 }

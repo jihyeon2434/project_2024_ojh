@@ -21,7 +21,7 @@
 	text-align: center;
 	color: black;
 	font-size: 34px;
-	font-family: "Inria Serif", serif;
+	font-family: "Inter";
 	font-weight: 400;
 	word-wrap: break-word;
 	margin: 0 auto;
@@ -38,7 +38,7 @@
 	height: 600px;
 }
 .calendar {
-	font-family: Arial, sans-serif;
+	font-family: ""Inter"";
 	border-collapse: collapse;
 	width: 80%;
 	position: relative;
@@ -95,7 +95,7 @@
 	padding: 10px 20px;
 	background-color: black;
 	color: white;
-	font-family: 'Inria Serif', serif;
+	font-family: "Inter";
 	font-size: 23px;
 	border-radius: 5px;
 	cursor: pointer;

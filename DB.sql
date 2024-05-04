@@ -847,4 +847,16 @@ CREATE TABLE scrap
 
 
 
- 
+ # article 테이블 생성
+CREATE TABLE OnlineConArticle(
+    id INT(10) UNSIGNED NOT NULL PRIMARY KEY AUTO_INCREMENT,
+    `memberId` VARCHAR(50) NULL COMMENT '회원번호', 
+    regDate DATETIME NOT NULL,
+    updateDate DATETIME NOT NULL,
+    title CHAR(100) NOT NULL,
+    `body` TEXT NOT NULL
+);
+
+
+SELECT *
+FROM article;

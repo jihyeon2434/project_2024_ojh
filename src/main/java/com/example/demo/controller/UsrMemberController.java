@@ -1,7 +1,7 @@
 package com.example.demo.controller;
 
 import java.time.LocalDate;
-import java.util.Calendar;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -9,11 +9,13 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.example.demo.service.ConsultShopService;
 import com.example.demo.service.MemberService;
 import com.example.demo.util.Ut;
 import com.example.demo.vo.Member;
 import com.example.demo.vo.ResultData;
 import com.example.demo.vo.Rq;
+import com.example.demo.vo.conShop;
 
 import jakarta.servlet.http.HttpServletRequest;
 
@@ -22,10 +24,15 @@ public class UsrMemberController {
 
 	@Autowired
 	private Rq rq;
-
+	  @Autowired
+	    private ConsultShopService consultShopService;
 	@Autowired
 	private MemberService memberService;
 
+
+	
+	
+	
 	@RequestMapping("/usr/member/doLogout")
 	@ResponseBody
 	public String doLogout(HttpServletRequest req) {
@@ -139,6 +146,16 @@ public class UsrMemberController {
 
 		return "usr/member/myPage";
 	}
+	
+	 @RequestMapping("/usr/member/myPage2")
+	    public String showMyPage2(HttpServletRequest req, Model model) {
+	        Rq rq = (Rq) req.getAttribute("rq");
+	        Integer memberId = rq.getLoginedMemberId();
+	        List<conShop> conshops = consultShopService.getForPrintScrapShops(memberId);
+	        
+	        model.addAttribute("conshops", conshops);
+	        return "usr/member/myPage2";
+	    }
 	
 	@RequestMapping("/usr/member/myCalendar")
 	 public String showMyCalendar(HttpServletRequest req, Model model) {

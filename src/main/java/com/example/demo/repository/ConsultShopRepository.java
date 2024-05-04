@@ -259,5 +259,42 @@ public interface ConsultShopRepository {
 				""")
 		public int decreaseGoodReactionPoint(int categoryId, int themeId, int shopId);
 
+	    
+	    @Select("""
+	            SELECT C.id, C.shopName, C.roadName, C.photoUrl1, C.photoUrl2, C.photoUrl3, C.photoUrl4, C.photoUrl5, C.phoneNum, C.con_availableTime, C.operateTime, C.menu, C.themeId, C.regDate, C.updateDate, C.delDate, C.delStatus, COALESCE(AVG(R.starPoint), 0) AS totalStarPoint
+	            FROM service_Conshop AS C
+	            INNER JOIN scrap AS S
+	            ON S.shopId = C.id AND S.categoryId = C.categoryId
+	            WHERE S.memberId = #{memberId}
+	            GROUP BY C.id
+	            ORDER BY S.updateDate DESC
+	            """)
+	    public List<conShop> getForPrintScrapShops(int memberId);
+
+	    
+	    
+	    @Select("""
+				SELECT MAX(id) + 1
+				FROM conshop_onlineConArticle
+				""")
+		public int getCurrentArticleId();
+
+	    
+	    
+	    @Insert("""
+				INSERT INTO
+				conshop_onlineConArticle SET
+				regDate = NOW(),
+				updateDate = NOW(),
+				memberId = #{memberId},
+				title = #{title}, `body` = #{body}
+				""")
+		public void writeArticle(int loginedMemberId, String title, String body);
+
+	    
+		@Select("SELECT LAST_INSERT_ID()")
+		public int getLastInsertId();
+
+
 	
 }
