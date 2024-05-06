@@ -172,6 +172,12 @@ public class UsrMemberController {
 		return "usr/member/myReservation";
 	}
 
+	@RequestMapping("/usr/member/myScrapShops")
+	 public String showMyScrapShops() {
+     
+		return "usr/member/myScrapShops";
+	}
+	
 	@RequestMapping("/usr/member/checkPw")
 	public String showCheckPw() {
 
