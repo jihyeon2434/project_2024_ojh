@@ -558,13 +558,14 @@ CREATE TABLE service_selfshop
     `updateDate`         VARCHAR(50)     NULL        COMMENT '수정날짜', 
     `delDate`            DATETIME        NULL        COMMENT '삭제날짜',
     `delStatus`          TINYINT(1) UNSIGNED NOT NULL DEFAULT 0 COMMENT '삭제 여부 (0=삭제 전, 1=삭제 후)',
-     ScrapCount          INT(10)         UNSIGNED    NOT NULL DEFAULT 0 COMMENT '스크랩수', 
+     `goodReactionPoint` INT(10) UNSIGNED NOT NULL DEFAULT 0 COMMENT '스크랩수', 
      PRIMARY KEY (id)
 );
 
 
 SELECT *
 FROM service_selfshop;
+
 
 
 -- service_review Table Create SQL
@@ -580,7 +581,8 @@ CREATE TABLE service_review
      shopId                     INT            NULL        COMMENT '가게 고유번호',
     `starPoint`                 INT            NULL        COMMENT '별점',
     `title`                     TEXT           NULL        COMMENT '리뷰 제목', 
-    `body`                      TEXT           NULL        COMMENT '리뷰 내용', 
+    `body`                      TEXT           NULL        COMMENT '리뷰 내용',
+     ScrapCount          INT(10)         UNSIGNED    NOT NULL DEFAULT 0 COMMENT '스크랩수',  
      PRIMARY KEY (id)
 );
 
@@ -830,7 +832,7 @@ FROM service_menu;
 -- 테이블 생성 SQL - scrap
 
 SELECT *
-FROM service_scrap;
+FROM scrap;
 
 
 CREATE TABLE scrap
@@ -860,3 +862,6 @@ CREATE TABLE OnlineConArticle(
 
 SELECT *
 FROM article;
+
+
+

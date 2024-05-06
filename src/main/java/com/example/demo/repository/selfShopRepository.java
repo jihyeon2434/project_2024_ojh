@@ -5,6 +5,7 @@ import java.util.List;
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Select;
+import org.apache.ibatis.annotations.Update;
 
 import com.example.demo.vo.Article;
 import com.example.demo.vo.conShop;
@@ -207,6 +208,36 @@ public interface selfShopRepository {
 			WHERE id = #{shopId} AND categoryId = #{categoryId} AND 
 			""")
 	public int getDoScrap(int categoryId, int shopId);
+
+	  @Update("""
+				UPDATE service_selfshop
+				SET goodReactionPoint = goodReactionPoint + 1
+				WHERE id = #{shopId}
+				AND categoryId= #{categoryId}
+				AND themeId= #{themeId}
+				""")
+	public int increaseGoodReactionPoint(int categoryId, int themeId, int shopId);
+
+
+	  @Select("""
+				SELECT goodReactionPoint
+				FROM service_selfshop
+				WHERE id = #{shopId}
+				AND categoryId= #{categoryId}
+				AND themeId= #{themeId}
+				""")
+	public int getGoodRP(int categoryId, int themeId, int shopId);
+
+
+	  
+	  @Update("""
+				UPDATE service_selfshop
+				SET goodReactionPoint = goodReactionPoint - 1
+				WHERE id = #{shopId}
+				AND categoryId= #{categoryId}
+				AND themeId= #{themeId}
+				""")
+	public int decreaseGoodReactionPoint(int categoryId, int themeId, int shopId);
 
 
 

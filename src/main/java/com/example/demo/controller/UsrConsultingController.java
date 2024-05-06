@@ -177,7 +177,7 @@ public class UsrConsultingController {
 		conShop shop = consultShopService.getShopById(id);
 		List<Review> reviews = consultShopService.getReviewsByIdandThemeandCategory(themeId, categoryId, id);
 		
-		 ResultData usersScrapRd = scrapService.usersCafeScrap(rq.getLoginedMemberId(), themeId, id, categoryId);
+		 ResultData usersScrapRd = scrapService.usersShopScrap(rq.getLoginedMemberId(), themeId, id, categoryId);
 
 			if (usersScrapRd.isSuccess()) {
 				model.addAttribute("userCanScrap", usersScrapRd.isSuccess());

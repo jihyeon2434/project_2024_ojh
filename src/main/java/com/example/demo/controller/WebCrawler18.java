@@ -42,7 +42,7 @@ public class WebCrawler18 {
 		}
 
 		WebElement inputSearch = driver.findElement(By.className("input_search"));
-		String inputKey = "서울 헤어샵";
+		String inputKey = "헤어샵";
 		inputSearch.sendKeys(inputKey);
 		inputSearch.sendKeys(Keys.ENTER);
 

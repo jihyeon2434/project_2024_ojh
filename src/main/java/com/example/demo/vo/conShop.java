@@ -30,4 +30,8 @@ public class conShop {
     private int delStatus;
     private int totalStarPoint;
     
+    
+    public String[] getPhotoUrls() {
+        return new String[] { photoUrl1, photoUrl2, photoUrl3, photoUrl4, photoUrl5 };
+    }
 }

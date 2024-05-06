@@ -15,6 +15,7 @@ import com.example.demo.service.BoardService;
 import com.example.demo.service.ReactionPointService;
 import com.example.demo.service.ReplyService;
 import com.example.demo.service.ReviewService;
+import com.example.demo.service.ScrapService;
 import com.example.demo.service.selfShopService;
 import com.example.demo.util.Ut;
 import com.example.demo.vo.Article;
@@ -46,6 +47,10 @@ public class UsrSelfController {
 
 	@Autowired
 	private selfShopService selfShopService;
+	
+	@Autowired
+	private ScrapService scrapService;
+
 
 	public UsrSelfController() {
 
@@ -83,10 +88,22 @@ public class UsrSelfController {
 			@RequestParam(required = false, defaultValue = "2") int themeId, int id,
 			@RequestParam(required = false, defaultValue = "3") int categoryId) {
 		Rq rq = (Rq) req.getAttribute("rq");
+		
+		 ResultData usersScrapRd = scrapService.usersShopScrap(rq.getLoginedMemberId(), themeId, id, categoryId);
+
+			if (usersScrapRd.isSuccess()) {
+				model.addAttribute("userCanScrap", usersScrapRd.isSuccess());
+			}
+		 
+			
+			
+			
 		selfShop shop = selfShopService.getShopById(id);
 		List<Review> reviews = reviewService.getReviewsByIdandThemeandCategory(themeId, categoryId, id);
 		model.addAttribute("reviews", reviews);
 		model.addAttribute("shop", shop);
+		model.addAttribute("isAlreadyAddGoodRp",
+				scrapService.isAlreadyAddGoodRp(rq.getLoginedMemberId(), themeId, id, categoryId));
 		return "usr/self/detail";
 	}
 

@@ -10,11 +10,13 @@
 	height: auto;
 	justify-content: center;
 }
+
 .small-outer-box {
 	width: 1000px;
 	height: 900px;
 	margin-top: 30px;
 }
+
 .title {
 	width: 441px;
 	height: 154px;
@@ -26,70 +28,85 @@
 	word-wrap: break-word;
 	margin: 0 auto;
 }
+
 .line {
 	width: 100%;
 	height: 0px;
 	border: 3px rgba(239, 231, 229, 0.7) solid;
 	margin: 10px auto;
 }
+
 .calendar-box {
 	display: flex;
 	justify-content: center;
 	height: 600px;
 }
+
 .calendar {
-	font-family: ""Inter"";
+	font-family: "" Inter "";
 	border-collapse: collapse;
 	width: 80%;
 	position: relative;
 	margin-top: 20px;
 }
+
 .calendar th {
 	background-color: #f2f2f2;
 }
+
 .calendar th, .calendar td {
 	border: 1px solid #dddddd;
 	text-align: center;
 	padding: 8px;
 }
+
 .time-outer-box {
 	display: flex;
 	height: 50px;
 	justify-content: center;
 	align-items: center;
 }
+
 .time-box {
 	width: 500px;
 	height: auto;
 	text-align: center;
 }
+
 .time-selection {
 	margin-top: 20px;
 }
+
 .time-selection label {
 	font-weight: bold;
 }
+
 .time-selection select {
 	padding: 5px;
 	font-size: 16px;
 }
+
 .con-title {
 	padding-left: 10px;
 	font-weight: bold;
 	font-size: 20px;
 	margin-top: 20px;
 }
+
 .consulting-item {
 	padding-left: 20px;
 }
+
 .calendar td:hover {
 	background-color: black;
 	color: white;
 	cursor: pointer;
 }
+
 .consulting-reservation {
 	text-align: center;
 }
+
 .reservation-button {
 	display: inline-block;
 	padding: 10px 20px;
@@ -100,13 +117,24 @@
 	border-radius: 5px;
 	cursor: pointer;
 }
+
+.text{
+display: flex;
+justify-content: center;
+
+}
 </style>
 
 <div class="outer-box">
 	<div class="small-outer-box">
 		<div class="title-box">
-			<div class="title">JH님 <br />빠른 예약 도와드릴게요.</div>
+			<div class="title">
+				JH님 <br />빠른 예약 도와드릴게요.
+			</div>
 			<div class="line"></div>
+		</div>
+		<div class="text">
+			<div>답변 받고싶은 날짜를 선택해주세요.</div>
 		</div>
 
 		<form id="dateForm" action="reservation3" method="POST">
@@ -117,7 +145,7 @@
 					int year = cal.get(java.util.Calendar.YEAR);
 					int month = cal.get(java.util.Calendar.MONTH) + 1;
 					%>
-					<p class="font-bold">현재 연도: <%=year%></p>
+					<%-- 					<p class="font-bold">현재 연도: <%=year%></p> --%>
 					<p class="present-MonthDay"></p>
 				</div>
 				<div class="calendar-box">
@@ -125,9 +153,12 @@
 						<thead>
 							<tr>
 								<th colspan="7">
-									<button type="button" onclick="prevMonth()">Previous</button>
-									<div class="present-MonthYear"><%=year%>.<%=(month < 10 ? '0' + month : month)%></div>
-									<button type="button" onclick="nextMonth()">Next</button>
+									<div>
+										<button type="button" onclick="prevMonth()">Previous</button>
+										<div class="present-MonthYear"><%=year%>.<%=(month < 10 ? '0' + month : month)%></div>
+										<button type="button" onclick="nextMonth()">Next</button>
+									</div>
+
 								</th>
 							</tr>
 							<tr>
@@ -146,7 +177,7 @@
 					</table>
 				</div>
 				<input type="hidden" id="selectedDateInput" name="selectedDate">
-				<div class="time-outer-box">
+				<!-- <div class="time-outer-box">
 					<div class="time-box">
 						<select name="selectedTime" id="time" class="form-control w-full max-w-xs select select-bordered">
 							<option value="09:00">09:00</option>
@@ -154,7 +185,7 @@
 							<option value="11:00">11:00</option>
 						</select>
 					</div>
-				</div>
+				</div> -->
 			</div>
 
 			<div class="con-title">상담 옵션 선택</div>
@@ -162,8 +193,10 @@
 
 			<div class="consulting-item-box">
 				<div>
-					<input type="radio" name="consultingOption" value="1:1 30분 컨설팅 30,000원" checked="checked"> 1:1 30분 컨설팅 30,000원<br>
-					<input type="radio" name="consultingOption" value="1:1 60분 컨설팅 60,000원"> 1:1 60분 컨설팅 60,000원<br>
+					<input type="radio" name="consultingOption" value="1:1 30분 컨설팅 30,000원" checked="checked"> 1:1 30분 컨설팅
+					30,000원<br>
+					<!-- 	<input type="radio" name="consultingOption" value="1:1 60분 컨설팅 60,000원"> 1:1 60분 컨설팅 60,000원-->
+					<br>
 				</div>
 			</div>
 			<div class="consulting-reservation">
@@ -176,8 +209,12 @@
 <%@ include file="../common/foot.jspf"%>
 
 <script>
-	var year = <%=year%>;
-	var month = <%=month%>;
+	var year =
+<%=year%>
+	;
+	var month =
+<%=month%>
+	;
 
 	function prevMonth() {
 		month--;
@@ -220,7 +257,9 @@
 			}
 			var cell = document.createElement("td");
 			cell.appendChild(document.createTextNode(date));
-			cell.onclick = function() { updateSelectedDate(this.textContent); };
+			cell.onclick = function() {
+				updateSelectedDate(this.textContent);
+			};
 			row.appendChild(cell);
 			date++;
 		}
@@ -235,7 +274,8 @@
 	}
 
 	function updateSelectedDate(day) {
-		var selectedDate = year + '-' + (month < 10 ? '0' + month : month) + '-' + (day < 10 ? '0' + day : day);
+		var selectedDate = year + '-' + (month < 10 ? '0' + month : month)
+				+ '-' + (day < 10 ? '0' + day : day);
 		document.getElementById('selectedDateInput').value = selectedDate;
 	}
 

@@ -9,6 +9,8 @@ import com.example.demo.vo.ResultData;
 @Service
 public class ScrapService {
 
+	@Autowired
+	private selfShopService selfShopService;
 
 	@Autowired
 	private ConsultShopService ConsultShopService;
@@ -76,7 +78,7 @@ public class ScrapService {
 
 
 
-	public ResultData usersCafeScrap(int loginedMemberId, int categoryId, int themeId, int shopId) {
+	public ResultData usersShopScrap(int loginedMemberId, int categoryId, int themeId, int shopId) {
 
 
 			if (loginedMemberId == 0) {
@@ -96,9 +98,13 @@ public class ScrapService {
 
 	public ResultData deleteGoodReactionPoint(int loginedMemberId, int categoryId, int themeId, int shopId) {
 		scrapRepository.deleteReactionPoint(loginedMemberId, categoryId, themeId, shopId);
-
+		if (themeId == 1) {
+			ConsultShopService.decreaseGoodReactionPoint(categoryId, themeId, shopId);
+		} else {
+			selfShopService.decreaseGoodReactionPoint(categoryId, themeId, shopId);
+		}
 		
-		ConsultShopService.decreaseGoodReactionPoint(categoryId, themeId, shopId);
+	
 		
 		return ResultData.from("S-1", "좋아요 취소 됨");
 
@@ -108,7 +114,9 @@ public class ScrapService {
 
 
 	public ResultData addGoodReactionPoint(int loginedMemberId, int categoryId, int themeId, int shopId) {
-int affectedRow = scrapRepository.addGoodReactionPoint(loginedMemberId,  categoryId, themeId, shopId);
+
+		
+		int affectedRow = scrapRepository.addGoodReactionPoint(loginedMemberId,  categoryId, themeId, shopId);
 		
 		System.err.println(affectedRow);
 		
@@ -116,10 +124,10 @@ int affectedRow = scrapRepository.addGoodReactionPoint(loginedMemberId,  categor
 			return ResultData.from("F-1", "좋아요 실패");
 		}
 
-
+		if (themeId == 1) {
 		ConsultShopService.increaseGoodReactionPoint(categoryId, themeId, shopId);
-	
-
+		} else {selfShopService.increaseGoodReactionPoint(categoryId, themeId, shopId);
+		}
 		return ResultData.from("S-1", "좋아요!");
 	}
 

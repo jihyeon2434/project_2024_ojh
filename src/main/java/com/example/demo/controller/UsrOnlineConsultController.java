@@ -53,9 +53,11 @@ public class UsrOnlineConsultController {
 	public String showJoin(Model model, HttpServletRequest req) {
 		Rq rq = (Rq) req.getAttribute("rq");
 		
-		int currentId = OnlineConsultService.getCurrentArticleId();
-		
-		 model.addAttribute("currentId", currentId);
+		/*
+		 * int currentId = OnlineConsultService.getCurrentArticleId();
+		 * 
+		 * model.addAttribute("currentId", currentId);
+		 */
 		 
 
 		return "usr/onlineConsulting/write";

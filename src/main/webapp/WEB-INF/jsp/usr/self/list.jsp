@@ -18,7 +18,7 @@
 	height: 430px;
 	display: flex;
 	justify-content: center;
-	border: solid 1px;
+	border: 1px solid #EFE7E5;
 	border-radius: 5px;
 }
 
@@ -78,7 +78,7 @@
 
 .line {
 	border-color: rgba(0, 0, 0, 1);
-	border: 0.5px black solid; /* 0.5px로 변경 */
+	border: 1px solid #EFE7E5;
 	border-style: solid;
 	width: 220px;
 	margin-left: 15px;
@@ -151,8 +151,8 @@
 	text-align: center;
 	color: black;
 	font-size: 20px;
-	font-style: Inria-serif;
-	font-weight: 600;
+	font-family: Inter, sans-serif;
+	font-weight: 500;
 	word-wrap: break-word"
 }
 
@@ -211,7 +211,7 @@
 	width: 1000px;
 	height: 0px;
 	position: absolute;
-	border: 0.5px black solid; /* 0.5px로 변경 */
+	border: 1px solid #EFE7E5;
 }
 
 .content-box {
@@ -227,7 +227,7 @@
 .img-outer-box {
 	width: 1000px;
 	height: 400px;
-	border: 1px solid black;
+	border: 1px solid #EFE7E5;
 	justify-content: space-between;
 	border-radius: 7px;
 	display: flex;
@@ -237,7 +237,7 @@
 
 .img-outer-box-2 {
 	width: 1000px;
-	border: 1px solid black;
+	border: 1px solid #EFE7E5;
 	justify-content: center; /* 수평 중앙 정렬 */
 	border-radius: 7px;
 	display: flex;
@@ -277,10 +277,9 @@
 }
 
 .small-img-outer-box {
-	width: 100%;
+	width: auto;
 	overflow-x: auto; /* x 축으로 넘칠 경우 스크롤 생성 */
 	 white-space: nowrap; /* 요소들을 한 줄에 나열*/
-	border: 2px solid pink;
 }
 
 .img-big-outer-box {
@@ -289,7 +288,6 @@
 	display: flex; /* 플렉스 박스 사용 */
 	flex-wrap: wrap; /* 줄 바꿈 허용 */
 	justify-content: space-between; /* 주 축을 따라 아이템을 고르게 분산 */
-	border: 1px solid red;
 }
 
 .small-img-outer-box>.img-big-outer-box>.img-box-1 {
