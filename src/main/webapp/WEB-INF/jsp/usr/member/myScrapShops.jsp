@@ -166,9 +166,11 @@
 
 .store-name {
 	font-family: Inter, sans-serif;
+	width: 500px;
 }
 
 .store-rating {
+	color: #888;
 	font-family: Inter, sans-serif;
 	margin-top: 29px;
 }
@@ -178,6 +180,7 @@
 	font-family: Inter, sans-serif;
 	font-weight: 400;
 	margin-top: 29px;
+	width: 500px;
 }
 
 .store-price {
@@ -190,7 +193,6 @@
 .divider {
 	border-color: rgba(232, 232, 232, 1);
 	border-style: solid;
-
 	background-color: #e8e8e8;
 	margin-top: 29px;
 	height: 1px;
@@ -276,63 +278,165 @@
 <div class="container">
 
 	<aside class="sidebar">
-		<div class="member-info">회원 정보</div>
-		<div class="my-calendar">마이 캘린더</div>
-		<div class="online-reservation">온라인 컨설팅 예약 내역</div>
-		<div class="online-reservation">관심 매장</div>
+		<div class="member-info">
+			<a href="/usr/member/myPage">회원정보</a>
+		</div>
+		<div class="my-calendar">
+			<a href="/usr/member/myCalendar">마이 캘린더</a>
+		</div>
+		<div class="online-reservation">
+			<a href="/usr/member/myReservation">온라인 컨설팅 예약 내역</a>
+		</div>
+		<div class="online-reservation">
+			<a href="/usr/member/myScrapShops">관심 매장</a>
+		</div>
 	</aside>
 
 	<div class="divider1"></div>
-
 
 	<main class="main-content">
 		<div class="content-wrapper">
 			<h2 class="section-title">내 관심 매장</h2>
 			<div class="filter-options">
-				<div class="filter-option-1">IMAGE MAKING</div>
-				<div class="filter-option-2">SELF</div>
+				<div class="filter-option-1" id="imageMakingButton">IMAGE MAKING</div>
+				<div class="filter-option-2" id="selfButton">SELF</div>
+
 			</div>
-			<div class="store-card">
-				<div class="store-card-content">
-					<div class="store-card-row">
-						<div class="store-image-column">
-							<img
-								src="https://cdn.builder.io/api/v1/image/assets/TEMP/dbf6557681cb72efd5904a5310a453378dafc79a95ab93c4217897cf3cc19986?apiKey=4d3772835b8a4f38b4ea30894b56681e&"
-								alt="" class="store-image" />
-						</div>
-						<div class="store-details-column">
-							<div class="store-details">
-								<div class="store-name">앤셜리에허 세종점</div>
-								<div class="store-rating">★ 4.9</div>
-								<div class="store-location">위치 정보</div>
-								<div class="store-price">커트 30,000원</div>
+			<div id="storeListContainer">
+				<!-- 매장 정보 동적 출력 -->
+				<c:forEach var="shop" items="${conShopList}">
+					<div class="store-card">
+						<div class="store-card-content">
+							<div class="store-card-row">
+								<div class="store-image-column">
+									<!-- 이미지 URL 조건 처리 (null 체크 등) -->
+									<img src="${not empty shop.photoUrl1 ? shop.photoUrl1 : 'default-image-path'}" alt="" class="store-image" />
+								</div>
+								<div class="store-details-column">
+									<div class="store-details">
+										<div class="store-name">${shop.shopName}</div>
+										<div class="store-rating">★ ${shop.totalStarPoint}</div>
+										<div class="store-location">${shop.roadName}</div>
+
+									</div>
+								</div>
 							</div>
 						</div>
+						<div class="divider"></div>
 					</div>
-				</div>
-				<div class="divider"></div>
-			</div>
-			<div class="store-card">
-				<div class="store-card-content">
-					<div class="store-card-row">
-						<div class="store-image-column">
-							<img
-								src="https://cdn.builder.io/api/v1/image/assets/TEMP/dbf6557681cb72efd5904a5310a453378dafc79a95ab93c4217897cf3cc19986?apiKey=4d3772835b8a4f38b4ea30894b56681e&"
-								alt="" class="store-image" />
-						</div>
-						<div class="store-details-column">
-							<div class="store-details">
-								<div class="store-name">앤셜리에허 세종점</div>
-								<div class="store-rating">★ 4.9</div>
-								<div class="store-location">위치 정보</div>
-								<div class="store-price">커트 30,000원</div>
-							</div>
-						</div>
-					</div>
-				</div>
-				<div class="divider"></div>
+				</c:forEach>
 			</div>
 		</div>
 	</main>
 </div>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script>
+	$(document)
+			.ready(
+					function() {
+						$('#imageMakingButton')
+								.click(
+										function() {
+											$
+													.ajax({
+														url : '/usr/member/conShopList',
+														type : 'GET',
+														success : function(data) {
+															var html = '';
+															$
+																	.each(
+																			data,
+																			function(
+																					index,
+																					shop) {
+																				html += '<div class="store-card">';
+																				html += '<div class="store-card-content">';
+																				html += '<div class="store-card-row">';
+																				html += '<div class="store-image-column">';
+																				html += '<img src="'
+																						+ (shop.photoUrl1 ? shop.photoUrl1
+																								: 'default-image-path')
+																						+ '" alt="" class="store-image" />';
+																				html += '</div>'; // End of store-image-column
+																				html += '<div class="store-details-column">';
+																				html += '<div class="store-details">';
+																				html += '<div class="store-name">'
+																						+ shop.shopName
+																						+ '</div>';
+																				html += '<div class="store-rating">★ '
+																						+ shop.totalStarPoint
+																						+ '</div>';
+																				html += '<div class="store-location">'
+																						+ shop.roadName
+																						+ '</div>';
+																				html += '</div>'; // End of store-details
+																				html += '</div>'; // End of store-details-column
+																				html += '</div>'; // End of store-card-row
+																				html += '</div>'; // End of store-card-content
+																				html += '<div class="divider"></div>';
+																				html += '</div>'; // End of store-card
+																			});
+															$(
+																	'#storeListContainer')
+																	.html(html);
+														}
+													});
+										});
+
+						$('#selfButton')
+								.click(
+										function() {
+											$
+													.ajax({
+														url : '/usr/member/selfShopList',
+														type : 'GET',
+														success : function(data) {
+															console.log(data); // 서버에서 받은 전체 데이터 로깅
+
+															var html = '';
+															$
+																	.each(
+																			data,
+																			function(
+																					index,
+																					shop) {
+																				console
+																						.log(shop.totalStarPoint); // 각 항목의 totalStarPoint를 로그로 확인s
+																				html += '<div class="store-card">';
+																				html += '<div class="store-card-content">';
+																				html += '<div class="store-card-row">';
+																				html += '<div class="store-image-column">';
+																				html += '<img src="'
+																						+ (shop.photoUrl1 ? shop.photoUrl1
+																								: 'default-image-path')
+																						+ '" alt="" class="store-image" />';
+																				html += '</div>'; // End of store-image-column
+																				html += '<div class="store-details-column">';
+																				html += '<div class="store-details">';
+																				html += '<div class="store-name">'
+																						+ shop.shopName
+																						+ '</div>';
+																				html += '<div class="store-rating">★ '
+																						+ shop.totalStarPoint
+																						+ '</div>';
+																				html += '<div class="store-location">'
+																						+ shop.roadName
+																						+ '</div>';
+																				html += '</div>'; // End of store-details
+																				html += '</div>'; // End of store-details-column
+																				html += '</div>'; // End of store-card-row
+																				html += '</div>'; // End of store-card-content
+																				html += '<div class="divider"></div>';
+																				html += '</div>'; // End of store-card
+																			});
+															$(
+																	'#storeListContainer')
+																	.html(html);
+														}
+													});
+										});
+					});
+</script>
+
+
 <%@ include file="../common/foot.jspf"%>

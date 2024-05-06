@@ -282,6 +282,11 @@ public class ConsultShopService {
 		return ResultData.from("S-1", Ut.f("%d번 글이 생성되었습니다", id), "id", id);
 	}
 
+
+	public List<conShop> getscrapShopsList(int loginedMemberId) {
+		return consultShopRepository.getscrapShopsList(loginedMemberId);
+	}
+
 	
 	
 

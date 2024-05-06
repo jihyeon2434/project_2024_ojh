@@ -295,6 +295,20 @@ public interface ConsultShopRepository {
 		@Select("SELECT LAST_INSERT_ID()")
 		public int getLastInsertId();
 
+		@Select("""
+			    <script>
+			    SELECT C.*, COALESCE(AVG(R.starPoint), 0) AS totalStarPoint
+			    FROM service_Conshop AS C
+			    INNER JOIN scrap AS S ON C.id = S.shopId
+			    LEFT JOIN service_review AS R ON C.id = R.shopId AND C.categoryId = R.categoryId
+			    WHERE S.memberId = #{loginedMemberId} AND S.point = 1 AND S.themeId = 1
+			    AND C.categoryId IN (1, 2)
+			    GROUP BY C.id, C.categoryId
+			    ORDER BY totalStarPoint DESC;
+			    </script>
+			""")
+			public List<conShop> getscrapShopsList(int loginedMemberId);
+
 
 	
 }

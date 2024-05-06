@@ -241,5 +241,21 @@ public interface selfShopRepository {
 
 
 
+		@Select("""
+			    <script>
+			    SELECT S.*, COALESCE(AVG(R.starPoint), 0) AS totalStarPoint
+			    FROM service_selfshop AS S
+			    INNER JOIN scrap AS SC ON S.id = SC.shopId
+			    LEFT JOIN service_review AS R ON S.id = R.shopId AND S.categoryId = R.categoryId
+			    WHERE SC.memberId = #{loginedMemberId} AND SC.point = 1 AND SC.themeId = 2
+			    AND S.categoryId IN (3, 4)
+			    GROUP BY S.id, S.categoryId
+			    ORDER BY totalStarPoint DESC;
+			    </script>
+			""") 
+	public List<selfShop> getscrapShopsList(int loginedMemberId);
+
+
+
 
 }

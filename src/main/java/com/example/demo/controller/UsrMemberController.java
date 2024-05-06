@@ -11,11 +11,13 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.example.demo.service.ConsultShopService;
 import com.example.demo.service.MemberService;
+import com.example.demo.service.selfShopService;
 import com.example.demo.util.Ut;
 import com.example.demo.vo.Member;
 import com.example.demo.vo.ResultData;
 import com.example.demo.vo.Rq;
 import com.example.demo.vo.conShop;
+import com.example.demo.vo.selfShop;
 
 import jakarta.servlet.http.HttpServletRequest;
 
@@ -29,7 +31,8 @@ public class UsrMemberController {
 	@Autowired
 	private MemberService memberService;
 
-
+	@Autowired
+	private selfShopService selfShopService;
 	
 	
 	
@@ -173,10 +176,28 @@ public class UsrMemberController {
 	}
 
 	@RequestMapping("/usr/member/myScrapShops")
-	 public String showMyScrapShops() {
-     
+	 public String showMyScrapShops(HttpServletRequest req, Model model) {
+		Rq rq = (Rq) req.getAttribute("rq");
+		
+		List<conShop> conShopList = consultShopService.getscrapShopsList(rq.getLoginedMemberId());
+		List<selfShop> selfShopList = selfShopService.getscrapShopsList(rq.getLoginedMemberId());
+		 model.addAttribute("conShopList", conShopList);
+		 model.addAttribute("selfShopList", selfShopList);
 		return "usr/member/myScrapShops";
 	}
+	
+	@RequestMapping("/usr/member/conShopList")
+	public @ResponseBody List<conShop> getConShopList(HttpServletRequest req) {
+	    Rq rq = (Rq) req.getAttribute("rq");
+	    return consultShopService.getscrapShopsList(rq.getLoginedMemberId());
+	}
+
+	@RequestMapping("/usr/member/selfShopList")
+	public @ResponseBody List<selfShop> getSelfShopList(HttpServletRequest req) {
+	    Rq rq = (Rq) req.getAttribute("rq");
+	    return selfShopService.getscrapShopsList(rq.getLoginedMemberId());
+	}
+
 	
 	@RequestMapping("/usr/member/checkPw")
 	public String showCheckPw() {

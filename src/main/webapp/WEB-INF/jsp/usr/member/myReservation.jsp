@@ -32,10 +32,12 @@
 
   .member-info {
     font-family: Inter, sans-serif;
+    	width: 150px;
   }
 
   .my-calendar {
     font-family: Inter, sans-serif;
+    	width: 150px;
     margin-top: 44px;
   }
 
@@ -47,6 +49,7 @@
 
   .online-reservation {
     font-family: Inter, sans-serif;
+    	width: 150px;
     margin-top: 43px;
   }
 
@@ -369,11 +372,20 @@
 
 
 <div class="container">
-  <aside class="sidebar">
-    <div class="member-info">회원 정보</div>
-    <div class="my-calendar">마이 캘린더</div>
-    <div class="online-reservation">온라인 컨설팅 예약 내역</div>
-  </aside>
+ <aside class="sidebar">
+		<div class="member-info">
+			<a href="/usr/member/myPage">회원정보</a>
+		</div>
+		<div class="my-calendar">
+			<a href="/usr/member/myCalendar">마이 캘린더</a>
+		</div>
+		<div class="online-reservation">
+			<a href="/usr/member/myReservation">온라인 컨설팅 예약 내역</a>
+		</div>
+		<div class="online-reservation">
+			<a href="/usr/member/myScrapShops">관심 매장</a>
+		</div>
+	</aside>
   
   <div class="divider"></div>
   

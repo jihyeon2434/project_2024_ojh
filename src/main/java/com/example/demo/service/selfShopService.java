@@ -139,4 +139,8 @@ public class selfShopService {
 		return ResultData.from("S-1", "좋아요 감소", "affectedRow", affectedRow);
 	}
 
+	public List<selfShop> getscrapShopsList(int loginedMemberId) {
+		return selfShopRepository.getscrapShopsList(loginedMemberId);
+	}
+
 }
