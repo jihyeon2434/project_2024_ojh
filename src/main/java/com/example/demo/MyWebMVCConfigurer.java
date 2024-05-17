@@ -70,6 +70,9 @@ public class MyWebMVCConfigurer implements WebMvcConfigurer {
 		ir.addPathPatterns("/usr/reactionPoint/doGoodReaction");
 		ir.addPathPatterns("/usr/reactionPoint/doBadReaction");
 
+//      컨설팅 관련
+		ir.addPathPatterns("/usr/consulting/reservation2");
+		
 		ir = registry.addInterceptor(needLogoutInterceptor);
 		ir.addPathPatterns("/usr/member/login");
 		ir.addPathPatterns("/usr/member/doLogin");
@@ -79,6 +82,9 @@ public class MyWebMVCConfigurer implements WebMvcConfigurer {
 		ir.addPathPatterns("/usr/member/doFindLoginId");
 		ir.addPathPatterns("/usr/member/findLoginPw");
 		ir.addPathPatterns("/usr/member/doFindLoginPw");
+		
+		
+
 	}
 
 }

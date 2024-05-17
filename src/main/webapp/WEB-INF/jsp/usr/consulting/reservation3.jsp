@@ -3,7 +3,9 @@
 <c:set var="pageTitle" value="#{board.code } ARTICLE LIST"></c:set>
 <%@ include file="../common/head.jspf"%>
 
-
+<%
+com.example.demo.vo.Member loginedMember = (com.example.demo.vo.Member) session.getAttribute("loginedMember");
+%>
 <%
     String selectedDate = request.getParameter("selectedDate");
 /*     String selectedTime = request.getParameter("selectedTime"); */
@@ -109,7 +111,7 @@
 <div class="outer-box">
   <div class="small-outer-box">
     <div class="title-box">
-      <div class="title">JH님 <br />빠른 예약 도와드릴게요.</div>
+      <div class="title">	<%= loginedMember.getNickname() %>님<br />빠른 예약 도와드릴게요.</div>
       <div class="line"></div>
     </div>
     <div class="content-box">
@@ -146,7 +148,7 @@
             const paymentData = {
                     amount: 30000,
                     orderId: "order__" + new Date().getTime(), // Generating a unique orderId using timestamp
-                    orderName: "Consultation Service",
+                    orderName: "1:1 30분 컨설팅",
                     customerName: "JH", // Replace with dynamic customer name if available
                     successUrl: "http://localhost:8081/usr/member/myReservation",
                     failUrl: window.location.origin + "/fail",
@@ -154,7 +156,6 @@
 
             tossPayments.requestPayment(method, paymentData);
         }
-
     </script>
 
 <%@ include file="../common/foot.jspf"%>s

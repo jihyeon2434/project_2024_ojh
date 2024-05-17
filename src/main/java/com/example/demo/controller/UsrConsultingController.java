@@ -26,6 +26,7 @@ import com.example.demo.service.ScrapService;
 import com.example.demo.service.menuService;
 import com.example.demo.util.Ut;
 import com.example.demo.vo.Article;
+import com.example.demo.vo.Member;
 import com.example.demo.vo.ResultData;
 import com.example.demo.vo.Review;
 import com.example.demo.vo.Rq;
@@ -207,12 +208,15 @@ public class UsrConsultingController {
 
 	@RequestMapping("/usr/consulting/reservation2")
 	public String showReservation2(HttpServletRequest req, Model model) {
-		Rq rq = (Rq) req.getAttribute("rq");
-		LocalDate currentDate = LocalDate.now();
-		model.addAttribute("year", currentDate.getYear());
-		model.addAttribute("month", currentDate.getMonthValue() - 1); // 월은 0부터 시작하므로 1을 빼줍니다.
+	    Rq rq = (Rq) req.getAttribute("rq");
+	    Member loginedMember = rq.getLoginedMember(); // 로그인한 사용자의 정보를 가져옵니다.
 
-		return "usr/consulting/reservation2";
+	    LocalDate currentDate = LocalDate.now();
+	    model.addAttribute("year", currentDate.getYear());
+	    model.addAttribute("month", currentDate.getMonthValue() - 1); // 월은 0부터 시작하므로 1을 빼줍니다.
+	    model.addAttribute("loginedMember", loginedMember); // 로그인한 사용자 정보를 모델에 추가합니다.
+
+	    return "usr/consulting/reservation2";
 	}
 
 	@RequestMapping("/usr/consulting/reservation3")
