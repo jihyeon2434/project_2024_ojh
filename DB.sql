@@ -395,13 +395,10 @@ SELECT LAST_INSERT_ID();
 SELECT *
 FROM article AS A
 WHERE 1
-
-	AND boardId = 1
-
-			AND A.title LIKE CONCAT('%','0000','%')
-			OR A.body LIKE CONCAT('%','0000','%')
-
-ORDER BY id DESC
+AND boardId = 1
+AND A.title LIKE CONCAT('%','0000','%')
+OR A.body LIKE CONCAT('%','0000','%')
+ORDER BY id DESC;
 
 SELECT COUNT(*)
 FROM article AS A
@@ -409,7 +406,7 @@ WHERE 1
 AND boardId = 1
 AND A.title LIKE CONCAT('%','0000','%')
 OR A.body LIKE CONCAT('%','0000','%')
-ORDER BY id DESC
+ORDER BY id DESC;
 
 
 SELECT hitCount
@@ -418,13 +415,13 @@ WHERE id = 374;
 
 SELECT A.*
 FROM article AS A
-WHERE A.id = 1
+WHERE A.id = 1;
 
 SELECT A.*, M.nickname AS extra__writer
 FROM article AS A
 INNER JOIN `member` AS M
 ON A.memberId = M.id
-WHERE A.id = 1
+WHERE A.id = 1;
 
 # LEFT JOIN
 SELECT A.*, M.nickname AS extra__writer, RP.point
@@ -468,24 +465,21 @@ ORDER BY A.id DESC;
 
 SELECT *, COUNT(*)
 FROM reactionPoint AS RP
-GROUP BY RP.relTypeCode,RP.relId
+GROUP BY RP.relTypeCode,RP.relId;
 
 SELECT IF(RP.point > 0, '큼','작음')
 FROM reactionPoint AS RP
-GROUP BY RP.relTypeCode,RP.relId
+GROUP BY RP.relTypeCode,RP.relId;
 
 # 각 게시물의 좋아요, 싫어요 갯수
 SELECT RP.relTypeCode, RP.relId,
 SUM(IF(RP.point > 0,RP.point,0)) AS goodReactionPoint,
 SUM(IF(RP.point < 0,RP.point * -1,0)) AS badReactionPoint
 FROM reactionPoint AS RP
-GROUP BY RP.relTypeCode,RP.relId
+GROUP BY RP.relTypeCode,RP.relId;
 
 
-
-
-
--- 테이블 생성 SQL - service_Conshop
+# service_Conshop 테이블 생성
 CREATE TABLE service_Conshop
 (
     `id`                 INT             NOT NULL    AUTO_INCREMENT COMMENT '업체고유번호', 
@@ -513,25 +507,7 @@ CREATE TABLE service_Conshop
 );
 
 
-DROP TABLE service_selfshop;
 
-## innerjoin 별점 총점 세팅
-
-SELECT C.*, COALESCE(AVG(R.starPoint), 0) AS totalStarPoint
-FROM service_Conshop AS C
-LEFT JOIN service_review AS R ON C.categoryId = R.categoryId AND C.id = R.shopId
-WHERE C.id = 21
-GROUP BY  C.id, C.categoryId;
-
-
-SELECT *
-FROM service_Conshop;
-
-
-
-SELECT *
-FROM service_Conshop
-WHERE categoryId = 1;
 
 DESC service_Conshop;
 
@@ -647,7 +623,7 @@ starPoint = 4.0,
 `title` = '컨설팅리뷰test1111',
 `body` = '컨설팅리뷰test1111'; 
  
- INSERT INTO service_review
+INSERT INTO service_review
 SET regDate = NOW(),
 updateDate = NOW(),
 memberId = 2,
@@ -658,7 +634,7 @@ starPoint = 1.0,
 `title` = '리뷰test3',
 `body` = '리뷰test3'; 
  
- INSERT INTO service_review
+INSERT INTO service_review
 SET regDate = NOW(),
 updateDate = NOW(),
 memberId = 2,
@@ -700,117 +676,9 @@ CREATE TABLE service_menu
      PRIMARY KEY (id)
 );
 
-## 컨설팅 테이블에 리뷰 테이블 INNERJOIN
-
-	SELECT C.*, COALESCE(AVG(R.starPoint), 0) AS totalStarPoint
-	FROM service_Conshop AS C
-	LEFT JOIN service_review AS R ON C.categoryId = R.categoryId AND C.id = R.shopId
-	GROUP BY C.id, C.categoryId
-	ORDER BY totalStarPoint DESC;
-
-SELECT C.*, M.menu, M.price
-FROM service_Conshop AS C
-LEFT JOIN service_menu AS M
-ON C.themeId = M.themeId AND C.categoryId = M.categoryId AND C.shopName = M.shopName;
-
-
-SELECT C.*, MIN(M.price) AS min_price
-FROM service_Conshop AS C
-LEFT JOIN service_menu AS M
-ON C.themeId = M.themeId AND C.categoryId = M.categoryId AND C.shopName = M.shopName
-WHERE M.price > 1
-GROUP BY C.shopName
-ORDER BY min_price ASC;
 
 
 
-
-SELECT *
-FROM (
-    SELECT C.*, MIN(M.price) AS min_price, AVG(M.price) AS avg_price
-    FROM service_Conshop AS C
-    LEFT JOIN service_menu AS M
-    ON C.themeId = M.themeId AND C.categoryId = M.categoryId AND C.shopName = M.shopName AND M.price > 0
-    GROUP BY C.shopName
-) AS subquery
-ORDER BY CASE WHEN subquery.avg_price IS NULL THEN 1 ELSE 0 END ASC, subquery.min_price ASC;
-
-
-
-SELECT C.*, M.menu, M.price
-FROM service_Conshop AS C
-INNER JOIN service_menu AS M
-ON C.themeId = M.themeId AND C.categoryId = M.categoryId AND C.shopName = M.shopName AND M.price > 0
-WHERE
-    (
-        M.price <= 70000 OR
-        (M.price > 70000 AND M.price <= 100000) OR
-        (M.price > 100000 AND M.price <= 200000) OR
-        M.price > 200000
-    )
-ORDER BY 
-    M.price = 0,
-    M.price ASC;
-    
-    SELECT DISTINCT C.*, M.menu, M.price
-FROM service_Conshop AS C
-INNER JOIN service_menu AS M
-ON C.themeId = M.themeId AND C.categoryId = M.categoryId AND C.shopName = M.shopName AND M.price > 0
-WHERE
-    (
-        M.price <= 70000
-       
-    )
-    GROUP BY C.shopName
-ORDER BY 
-    M.price = 0,
-    M.price ASC;
-
-
-SELECT DISTINCT C.*, M.menu, M.price
-FROM service_Conshop AS C
-INNER JOIN service_menu AS M
-ON C.themeId = M.themeId AND C.categoryId = M.categoryId AND C.shopName = M.shopName AND M.price > 0
-WHERE
-    (
-       
-        (M.price > 70000 AND M.price <= 100000)
-    )
-     GROUP BY C.shopName
-ORDER BY 
-    M.price = 0,
-    M.price ASC;
-    
-    
-SELECT DISTINCT C.*, M.menu, M.price
-FROM service_Conshop AS C
-INNER JOIN service_menu AS M
-ON C.themeId = M.themeId AND C.categoryId = M.categoryId AND C.shopName = M.shopName AND M.price > 0
-WHERE
-    (
-
-        (M.price > 100000 AND M.price <= 290000)
-      
-    )
-     GROUP BY C.shopName
-ORDER BY 
-    M.price = 0,
-    M.price ASC;
-    
-    
-SELECT DISTINCT C.*, M.menu, M.price
-			FROM service_Conshop AS C
-			INNER JOIN service_menu AS M
-			ON C.themeId = M.themeId AND C.categoryId = M.categoryId AND C.shopName = M.shopName AND M.price > 0
-			WHERE
-			    (
-			      
-			        M.price > 200000
-			    )
-			GROUP BY C.shopName
-			ORDER BY
-			    M.price ASC;
-			    
 #####서치박스 쿼리
 SELECT C.*, M.menu, M.price
 FROM service_Conshop AS C
@@ -824,17 +692,11 @@ GROUP BY C.shopName
 ORDER BY
 M.price ASC;
 
-SELECT *
-FROM service_menu;
 
 
--- service_scrap Table Create SQL
--- 테이블 생성 SQL - scrap
-
-SELECT *
-FROM scrap;
 
 
+# scrap 테이블 생성
 CREATE TABLE scrap
 (   id INT(10) UNSIGNED NOT NULL PRIMARY KEY AUTO_INCREMENT,
     `regDate` DATETIME NOT NULL COMMENT '찜 날짜', 

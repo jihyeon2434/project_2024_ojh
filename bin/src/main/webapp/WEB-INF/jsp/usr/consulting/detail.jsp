@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
-<c:set var="pageTitle" value="#{board.code } SELF LIST"></c:set>
+<c:set var="pageTitle" value="#{board.code } CONSULTING LIST"></c:set>
 <%@ include file="../common/head.jspf"%>
 
 <html lang="ko">
@@ -11,15 +11,28 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-
 <title>Shop Information</title>
 
 
 
+<script>
+	const params = {};
+	params.id = parseInt('${param.id}');
+	params.themeId = parseInt('${param.themeId}');
+	params.categoryId = parseInt('${param.categoryId}');
+	params.memberId = parseInt('${loginedMemberId}');
+	
+	console.log(params);
+	console.log(params.memberId);
+	console.log(params.themeId);
+	console.log(params.categoryId);
+	var isAlreadyAddGoodRp = ${isAlreadyAddGoodRp};
+
+	
+	
+</script>
 </head>
 
-
-</head>
 
 <style>
 
@@ -106,13 +119,11 @@
 	height: 67.81px;
 	text-align: center;
 	color: black;
-	font-family: 'Pretendard-Regular';
 	font-weight: 400;
 	font-size: medium;
 	display: flex;
 	justify-content: space-around;
 	align-items: center;
-	border: 3px solid blue;
 	position: relative;
 }
 
@@ -167,14 +178,14 @@
 
 .text {
 	width: 100px;
-	border: 1px solid;
+	/* 	border: 1px solid; */
 }
 
 .text-box {
 	width: 200px;
 	height: 100%;
 	display: inline-block;
-	border: 1px solid;
+	/* 	border: 1px solid; */
 }
 
 .Group101 {
@@ -187,7 +198,6 @@
 	width: 1000px;
 	display: flex;
 	justify-content: center;
-	border: 3px solid red;
 }
 
 .info-content-outer-box {
@@ -196,30 +206,26 @@
 	display: flex;
 	justify-content: center;
 	flex-direction: column;
-	border: 7px solid pink;
 }
 
 .info-content-box {
 	width: 1000px;
 	height: 800px;
-	border: 3px solid green;
 	padding-left: 20px;
 }
 
 .info-content-portfolio {
 	width: 1000px;
 	height: 800px;
-	border: 5px solid yellow;
 	padding-left: 20px;
 }
 
 .info-content-review {
 	width: 1000px;
 	height: 800px;
-	border: 1px solid #EFE7E5;
+/* 	border: 1px solid #EFE7E5; */
 	padding-left: 10px;
 	padding-right: 10px;
-	border: 3px solid green;
 }
 
 .info-box {
@@ -300,7 +306,6 @@
 	margin-top: 15px;
 	padding: 10px;
 	box-sizing: border-box;
-	border: 3px solid green;
 	display: flex; /* 요소들을 가로로 배열하기 위해 flex 사용 */
 	justify-content: flex-start; /* 요소들을 간격을 벌리면서 가로로 정렬 */
 	flex-wrap: wrap;
@@ -308,7 +313,6 @@
 }
 
 .sm-img-outer-box {
-	border: 3px solid red;
 	width: 300px;
 	height: 300px;
 	display: flex;
@@ -329,7 +333,6 @@
 }
 
 .write-box {
-	border: 3px solid purple;
 	display: flex;
 	justify-content: flex-end;
 }
@@ -377,6 +380,169 @@
 .star-box>div {
 	display: inline-block;
 }
+
+.gallery-container {
+	display: flex;
+	flex-direction: column;
+}
+
+.gallery {
+	margin-top: 30px;
+}
+
+.gallery-row {
+	display: flex; /* 이 부분이 각 이미지를 가로로 배열 */
+	justify-content: center; /* 이미지 사이에 공간을 균등하게 배분 */
+	margin-bottom: 20px; /* 각 행 사이의 여백 */
+	gap: 10px;
+}
+
+.customer-reviews {
+	background-color: #fff;
+	display: flex;
+	max-width: 640px;
+	flex-direction: column;
+	padding: 31px 0 53px;
+}
+
+.reviews-header {
+	display: flex;
+	width: 100%;
+	flex-direction: column;
+	font-size: 16px;
+	color: #111;
+	font-weight: 700;
+	line-height: 120%;
+	padding: 0 16px;
+}
+
+@media ( max-width : 991px) {
+	.reviews-header {
+		max-width: 100%;
+	}
+}
+
+.reviews-title {
+	font-family: Inter, sans-serif;
+}
+
+@media ( max-width : 991px) {
+	.reviews-title {
+		max-width: 100%;
+	}
+}
+
+.reviews-divider {
+	background-color: #f3f3f3;
+	margin-top: 19px;
+	height: 1px;
+}
+
+@media ( max-width : 991px) {
+	.reviews-divider {
+		max-width: 100%;
+	}
+}
+
+.review-item {
+	align-items: start;
+	background-color: #fff;
+	display: flex;
+	width: 100%;
+	flex-direction: column;
+	padding: 28px 80px 28px 16px;
+}
+
+@media ( max-width : 991px) {
+	.review-item {
+		max-width: 100%;
+		padding-right: 20px;
+	}
+}
+
+.review-title {
+	color: #111;
+	font: 500 16px/119% Inter, sans-serif;
+}
+
+@media ( max-width : 991px) {
+	.review-title {
+		max-width: 100%;
+	}
+}
+
+.review-rating {
+	display: flex;
+	margin-top: 14px;
+	gap: 4px;
+}
+
+.rating-stars {
+	display: flex;
+	gap: 1px;
+}
+
+.star-icon {
+	aspect-ratio: 1;
+	object-fit: auto;
+	object-position: center;
+	width: 13px;
+}
+
+.rating-score {
+	color: #111;
+	font: 400 13px/134% Inter, sans-serif;
+}
+
+.review-content {
+	color: #111;
+	margin-top: 11px;
+	font: 400 15px/150% Inter, sans-serif;
+}
+
+@media ( max-width : 991px) {
+	.review-content {
+		max-width: 100%;
+	}
+}
+
+.review-meta {
+	display: flex;
+	margin-top: 15px;
+	gap: 5px;
+	color: #888;
+	font-weight: 400;
+	white-space: nowrap;
+}
+
+@media ( max-width : 991px) {
+	.review-meta {
+		white-space: initial;
+	}
+}
+
+.review-author {
+	font: 14px/122% Inter, sans-serif;
+}
+
+.meta-divider {
+	background-color: #f3f3f3;
+	align-self: start;
+	width: 1px;
+	height: 10px;
+}
+
+.review-date {
+	font: 13px/126% Inter, sans-serif;
+}
+
+.review-arrow {
+	aspect-ratio: 1;
+	object-fit: auto;
+	object-position: center;
+	width: 10px;
+	margin-top: 30px;
+}
 </style>
 
 <div class="outer-box">
@@ -400,17 +566,18 @@
 
 			<div class="click-box">
 				<div class="Group41">
-					<button class="Rectangle35 scrap-btn">
+					<button class="Rectangle35 scrap-btn" id="likeButton"
+						onclick="doGoodReaction(${param.themeId}, ${param.categoryId}, ${param.id})">
 						<div>♡ 관심</div>
 					</button>
 				</div>
 				<div class="Group97">
 					<a href="../consulting/reservation2">
 						<div class="Rectangle35">
-							<div class="text-box">
-								<img src="//velog.velcdn.com/images/jihyeon2434/post/ca6de2e7-1690-4f95-a522-50fdee8b9637/image.png">
-								<div class="text">온라인 컨설팅 신청</div>
-							</div>
+							<!-- <div class="text-box"> -->
+							<img src="//velog.velcdn.com/images/jihyeon2434/post/ca6de2e7-1690-4f95-a522-50fdee8b9637/image.png">
+							<div class="text">온라인 컨설팅 신청</div>
+							<!-- 			</div> -->
 						</div>
 					</a>
 				</div>
@@ -431,6 +598,7 @@
 							<div class="Line5"></div>
 						</div>
 						<div class="info-content-outer-box">
+
 							<!-- 정보 섹션 -->
 							<div class="info-content-box">
 								<div>
@@ -479,39 +647,19 @@
 								</div>
 							</div>
 
+							<!-- 포트폴리오 섹션 -->
 							<div class="info-content-portfolio hidden">
-								<!-- 포트폴리오 내용을 표시할 공간 -->
-								<div class="img-box-1">
-									<!-- 첫 번째 줄 -->
-									<div class="img-1-box">
-										<div class="sm-img-outer-box">
-											<div class="img">
-												<img class="banner" style="width: 290px; height: 263px" src="${shop.photoUrl1}" />
-											</div>
+								<div class="gallery">
+									<div class="gallery-container">
+										<div class="gallery-row">
+											<img src="${shop.photoUrl1}" alt="Gallery image 1" class="gallery-image" style="width: 290px; height: 283px" />
+											<img src="${shop.photoUrl2}" alt="Gallery image 2" class="gallery-image" style="width: 290px; height: 283px" />
+											<img src="${shop.photoUrl3}" alt="Gallery image 3" class="gallery-image" style="width: 290px; height: 283px" />
 										</div>
-										<div class="sm-img-outer-box">
-											<div class="img">
-												<img class="banner" style="width: 290px; height: 263px" src="${shop.photoUrl2}" />
-											</div>
-										</div>
-										<div class="sm-img-outer-box">
-											<div class="img">
-												<img class="banner" style="width: 290px; height: 263px" src="${shop.photoUrl3}" />
-											</div>
-										</div>
-									</div>
-									<!-- 두 번째 줄 -->
-									<div class="img-2-box">
-										<!-- 두 번째 줄에 대한 스타일 추가 -->
-										<div class="sm-img-outer-box">
-											<div class="img">
-												<img class="banner" style="width: 290px; height: 263px" src="${shop.photoUrl4}" />
-											</div>
-										</div>
-										<div class="sm-img-outer-box">
-											<div class="img">
-												<img class="banner" style="width: 290px; height: 263px" src="${shop.photoUrl5}" />
-											</div>
+										<div class="gallery-row">
+											<img src="${shop.photoUrl4}" alt="Gallery image 4" class="gallery-image" style="width: 290px; height: 283px" />
+											<img src="${shop.photoUrl5}" alt="Gallery image 5" class="gallery-image" style="width: 290px; height: 283px" />
+
 										</div>
 									</div>
 								</div>
@@ -527,38 +675,36 @@
 										<div class="write">글쓰기</div>
 									</a>
 								</div>
-								<div class="review-head-title">고객 리뷰</div>
-
-								<div class="review-outer-box">
 
 
-
+								<section class="customer-reviews">
+									<header class="reviews-header">
+										<h2 class="reviews-title">고객 리뷰</h2>
+										<div class="reviews-divider"></div>
+									</header>
 									<c:forEach var="review" items="${reviews }">
-										<div class="review-small-box">
-											<div class="review-title">
-												<a href="detail?id=${review.shopId }">${review.title }</a>
+										<article class="review-item">
+											<h3 class="review-title">${review.title }</h3>
+											<div class="review-rating">
+												<div class="star-box">
+													<div class="review-star">${review.starPoint }</div>
+													<div>${review.starPoint }</div>
+												</div>
 											</div>
-											<div class="star-box">
-												<div class="review-star">${review.starPoint }</div>
-												<div>${review.starPoint }</div>
+											<p class="review-content">${review.body }</p>
+											<div class="review-meta">
+												<div class="review-author">${review.memberId }</div>
+												<div class="meta-divider"></div>
+												<time class="review-date">${review.regDate.substring(0,10) }</time>
+												<div class="meta-divider"></div>
 											</div>
-
-
-											<div class="review-body">${review.body }</div>
-											<div class="member-date-box">
-												<div>${review.memberId }</div>
-												<div>${review.regDate.substring(0,10) }</div>
-											</div>
-
-											<div class="review-line"></div>
-										</div>
-
-
+											<img
+												src="https://cdn.builder.io/api/v1/image/assets/TEMP/06c2c6aa04dbe2983a6ffd7341d28e41de965746b836facb8a0bc513b6007e60?apiKey=4d3772835b8a4f38b4ea30894b56681e&"
+												alt="" class="review-arrow" />
+										</article>
 
 									</c:forEach>
-
-								</div>
-
+								</section>
 								<!-- 	동적 페이징 -->
 								<div class="pagination flex justify-center mt-3">
 									<c:set var="paginationLen" value="3" />
@@ -658,64 +804,71 @@
 </script>
 
 
-
-
 <script>
-    function doScrap() {
-        // 로그인 여부 확인
-        if(isNaN(params.memberId) == true){
-            if(confirm('로그인 해야해. 로그인 페이지로 가실???')){
-                var currentUri = encodeURIComponent(window.location.href);
-                window.location.href = '../member/login?afterLoginUri=' + currentUri;
-            }
-            return;
-        }
-        
-        // Ajax 요청을 통해 스크랩 처리
-        $.ajax({
-            url: '/usr/scrap/doScrap',
-            type: 'POST',
-            data: {
-                themeId: themeId,
-                categoryId: categoryId,
-                shopId: id,
-                memberId: ${loginedMemberId}
-            },
-            dataType: 'json',
-            success: function(data) {
-                console.log('data.data1Name : ' + data.data1Name);
-                console.log('data.data1 : ' + data.data1);
-                
-                if (data.resultCode.startsWith('S-')) {
-                    if (data.resultCode === 'S-1') {
-                        // 스크랩이 추가된 경우
-                        alert('관심 목록에 추가되었습니다.');
-                        // 관심 추가 후 UI 업데이트
-                        $('.scrap-btn').addClass('scraped');
-                    } else if (data.resultCode === 'S-2') {
-                        // 스크랩이 삭제된 경우
-                        alert('관심 목록에서 삭제되었습니다.');
-                        // 관심 삭제 후 UI 업데이트
-                        $('.scrap-btn').removeClass('scraped');
-                    }
-                } else {
-                    alert(data.msg);
-                }
-            },
-            error: function(jqXHR, textStatus, errorThrown) {
-                alert('스크랩 처리 중 오류가 발생했습니다.');
-            }
-        });
-    }
 
-    // 페이지 로드 후 관심 버튼에 클릭 이벤트 추가
-    $(document).ready(function() {
-        $('.scrap-btn').on('click', function() {
-            doScrap(); // doScrap 함수 호출
-        });
-    });
+
+<!-- 좋아요 싫어요 버튼	-->
+function checkRP() {
+	if(isAlreadyAddGoodRp == true){
+		$('#likeButton').toggleClass('btn-outline');
+	}else {
+		return;
+	}
+}
+console.log("Before doGoodReaction function");
+function doGoodReaction(themeId, categoryId, shopId) {
+if(isNaN(params.memberId) == true){
+		if(confirm('로그인 해야해. 로그인 페이지로 가실???')){
+			var currentUri = encodeURIComponent(window.location.href);
+			window.location.href = '../member/login?afterLoginUri=' + currentUri; // 로그인 페이지에 원래 페이지의 uri를 같이 보냄
+		}
+		return;
+	} 
+/* console.log("categoryId": categoryId , "themeId" : themeId, "shopId" : shopId); // 콘솔에 academyId 출력 */
+	$.ajax({
+		url: '/usr/scrap/doGoodReaction',
+		type: 'GET',
+		data: {themeId: themeId, categoryId: categoryId, shopId:shopId},
+		dataType: 'json',
+		success: function(data){
+			console.log(data);
+			console.log('data.data1Name : ' + data.data1Name);
+			console.log('data.data1 : ' + data.data1);
+/* 			console.log('data.data2Name : ' + data.data2Name);
+			console.log('data.data2 : ' + data.data2); */
+			if(data.resultCode.startsWith('S-')){
+				var likeButton = $('#likeButton');
+				var likeCount = $('#likeCount');
+			/* 	var DislikeButton = $('#DislikeButton');
+				var DislikeCount = $('#DislikeCount'); */
+				
+				if(data.resultCode == 'S-1'){
+					likeButton.toggleClass('btn-outline');
+					likeCount.text(data.data1);
+				}else if(data.resultCode == 'S-2'){
+				/* 	DislikeButton.toggleClass('btn-outline');
+					DislikeCount.text(data.data2); */
+					likeButton.toggleClass('btn-outline');
+					likeCount.text(data.data1);
+				}else {
+					likeButton.toggleClass('btn-outline');
+					likeCount.text(data.data1);
+				}
+				
+			}else {
+				alert(data.msg);
+			}
+	
+		},
+		error: function(jqXHR,textStatus,errorThrown) {
+			alert('좋아요 오류 발생 : ' + textStatus);
+
+		}
+		
+	});
+}
+
 </script>
-
 
 
 

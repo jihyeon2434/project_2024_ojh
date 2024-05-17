@@ -127,14 +127,34 @@
     </div>
 
   <div class="consulting-reservation">
-			<a href="../member/myReservation">
-				<div class="reservation-button">예약하기</div>
-			</a>
+			
+			<button onclick="payment()" class="reservation-button">예약하기</button>
+				
+			
 		</div>
 
   </div>
 </div>
 
+ <script src="https://js.tosspayments.com/v1"></script>
+ <script>
+        const tossPayments = TossPayments("test_ck_mBZ1gQ4YVXg1XpDRqdO93l2KPoqN");
 
+        function payment(){
+            const method = "카드"; // 카드 or 가상계좌
+
+            const paymentData = {
+                    amount: 30000,
+                    orderId: "order__" + new Date().getTime(), // Generating a unique orderId using timestamp
+                    orderName: "Consultation Service",
+                    customerName: "JH", // Replace with dynamic customer name if available
+                    successUrl: "http://localhost:8081/usr/member/myReservation",
+                    failUrl: window.location.origin + "/fail",
+                };
+
+            tossPayments.requestPayment(method, paymentData);
+        }
+
+    </script>
 
 <%@ include file="../common/foot.jspf"%>s

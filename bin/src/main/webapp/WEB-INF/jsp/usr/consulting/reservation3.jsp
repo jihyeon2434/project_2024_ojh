@@ -3,6 +3,14 @@
 <c:set var="pageTitle" value="#{board.code } ARTICLE LIST"></c:set>
 <%@ include file="../common/head.jspf"%>
 
+
+<%
+    String selectedDate = request.getParameter("selectedDate");
+/*     String selectedTime = request.getParameter("selectedTime"); */
+    String consultingOption = request.getParameter("consultingOption");
+%>
+
+
 <style>
 .outer-box {
   display: flex;
@@ -23,8 +31,7 @@
   text-align: center;
   color: black;
   font-size: 34px;
-  font-family: "Inria Serif", serif;
-  font-weight: 400;
+  font-weight: 200;
   word-wrap: break-word;
   margin: 0 auto;
 }
@@ -79,10 +86,10 @@
 
 .reservation-button {
   display: inline-block;
+
   padding: 10px 20px;
   background-color: black;
   color: white;
-  font-family: "Inria Serif", serif;
   font-size: 23px;
   border-radius: 5px;
   cursor: pointer;
@@ -94,7 +101,7 @@
 }
 
 .price-title {
-  font-size: large;
+/*   font-size: large; */
 }
 
 
@@ -108,8 +115,8 @@
     <div class="content-box">
       <div class="Group129">
         <div class="Rectangle62">
-          <div>2.26(월) 10:00</div>
-          <div class="time">일정 1:1 30 분 컨설팅</div>
+          <div> <%= selectedDate %></div>
+          <div class="time"> <%= consultingOption %></div>
         </div>
         <div class="price-box">
           <div class="price-title">결제 금액</div>
@@ -130,4 +137,4 @@
 
 
 
-<%@ include file="../common/foot.jspf"%>
+<%@ include file="../common/foot.jspf"%>s

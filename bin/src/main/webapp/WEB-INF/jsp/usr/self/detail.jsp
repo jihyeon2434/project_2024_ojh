@@ -5,6 +5,22 @@
 
 <html lang="ko">
 
+<script>
+	const params = {};
+	params.id = parseInt('${param.id}');
+	params.themeId = parseInt('${param.themeId}');
+	params.categoryId = parseInt('${param.categoryId}');
+	params.memberId = parseInt('${loginedMemberId}');
+	
+	console.log(params);
+	console.log(params.memberId);
+	console.log(params.themeId);
+	console.log(params.categoryId);
+	var isAlreadyAddGoodRp = ${isAlreadyAddGoodRp};
+
+	
+	
+</script>
 <head>
 <meta charset="UTF-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -111,7 +127,6 @@ style> /* CSS 스타일은 여기에 작성합니다 */ .hidden {
 	display: flex;
 	justify-content: space-around;
 	align-items: center;
-	border: 3px solid blue;
 	position: relative;
 }
 
@@ -171,7 +186,6 @@ style> /* CSS 스타일은 여기에 작성합니다 */ .hidden {
 	width: 1000px;
 	display: flex;
 	justify-content: center;
-	border: 3px solid red;
 }
 
 .info-content-outer-box {
@@ -180,30 +194,25 @@ style> /* CSS 스타일은 여기에 작성합니다 */ .hidden {
 	display: flex;
 	justify-content: center;
 	flex-direction: column;
-	border: 7px solid pink;
 }
 
 .info-content-box {
 	width: 1000px;
 	height: 800px;
-	border: 3px solid green;
 	padding-left: 20px;
 }
 
 .info-content-portfolio {
 	width: 1000px;
 	height: 800px;
-	border: 5px solid yellow;
 	padding-left: 20px;
 }
 
 .info-content-review {
 	width: 1000px;
 	height: 800px;
-	border: 1px solid #EFE7E5;
 	padding-left: 10px;
 	padding-right: 10px;
-	border: 3px solid green;
 }
 
 .info-box {
@@ -212,7 +221,6 @@ style> /* CSS 스타일은 여기에 작성합니다 */ .hidden {
 	/* 수정: 세로 정렬을 위해 flex로 변경 */
 	align-items: center;
 	/* 수직 가운데 정렬 */
-	border: 3px solid orange;
 }
 
 .info-img {
@@ -278,19 +286,6 @@ style> /* CSS 스타일은 여기에 작성합니다 */ .hidden {
 	cursor: pointer;
 }
 
-.img-box-1 {
-	border: 0.5px solid #EFE7E5;
-	width: 900px;
-	height: 500px; /* 높이를 자동으로 설정하여 내용에 맞게 조정 */
-	margin-top: 15px;
-	padding: 10px;
-	box-sizing: border-box;
-	border: 3px solid green;
-	display: flex; /* 요소들을 가로로 배열하기 위해 flex 사용 */
-	justify-content: flex-start; /* 요소들을 간격을 벌리면서 가로로 정렬 */
-	flex-wrap: wrap;
-	flex-direction: row;
-}
 
 .sm-img-outer-box {
 	border: 3px solid red;
@@ -314,7 +309,6 @@ style> /* CSS 스타일은 여기에 작성합니다 */ .hidden {
 }
 
 .write-box {
-	border: 3px solid purple;
 	display: flex;
 	justify-content: flex-end;
 }
@@ -369,6 +363,169 @@ style> /* CSS 스타일은 여기에 작성합니다 */ .hidden {
 .star-box>div {
 	display: inline-block;
 }
+
+.gallery-container {
+	display: flex;
+	flex-direction: column;
+}
+
+.gallery {
+	margin-top: 30px;
+}
+
+.gallery-row {
+	display: flex; /* 이 부분이 각 이미지를 가로로 배열 */
+	justify-content: center; /* 이미지 사이에 공간을 균등하게 배분 */
+	margin-bottom: 20px; /* 각 행 사이의 여백 */
+	gap: 10px;
+}
+
+.customer-reviews {
+	background-color: #fff;
+	display: flex;
+	max-width: 640px;
+	flex-direction: column;
+	padding: 31px 0 53px;
+}
+
+.reviews-header {
+	display: flex;
+	width: 100%;
+	flex-direction: column;
+	font-size: 16px;
+	color: #111;
+	font-weight: 700;
+	line-height: 120%;
+	padding: 0 16px;
+}
+
+@media ( max-width : 991px) {
+	.reviews-header {
+		max-width: 100%;
+	}
+}
+
+.reviews-title {
+	font-family: Inter, sans-serif;
+}
+
+@media ( max-width : 991px) {
+	.reviews-title {
+		max-width: 100%;
+	}
+}
+
+.reviews-divider {
+	background-color: #f3f3f3;
+	margin-top: 19px;
+	height: 1px;
+}
+
+@media ( max-width : 991px) {
+	.reviews-divider {
+		max-width: 100%;
+	}
+}
+
+.review-item {
+	align-items: start;
+	background-color: #fff;
+	display: flex;
+	width: 100%;
+	flex-direction: column;
+	padding: 28px 80px 28px 16px;
+}
+
+@media ( max-width : 991px) {
+	.review-item {
+		max-width: 100%;
+		padding-right: 20px;
+	}
+}
+
+.review-title {
+	color: #111;
+	font: 500 16px/119% Inter, sans-serif;
+}
+
+@media ( max-width : 991px) {
+	.review-title {
+		max-width: 100%;
+	}
+}
+
+.review-rating {
+	display: flex;
+	margin-top: 14px;
+	gap: 4px;
+}
+
+.rating-stars {
+	display: flex;
+	gap: 1px;
+}
+
+.star-icon {
+	aspect-ratio: 1;
+	object-fit: auto;
+	object-position: center;
+	width: 13px;
+}
+
+.rating-score {
+	color: #111;
+	font: 400 13px/134% Inter, sans-serif;
+}
+
+.review-content {
+	color: #111;
+	margin-top: 11px;
+	font: 400 15px/150% Inter, sans-serif;
+}
+
+@media ( max-width : 991px) {
+	.review-content {
+		max-width: 100%;
+	}
+}
+
+.review-meta {
+	display: flex;
+	margin-top: 15px;
+	gap: 5px;
+	color: #888;
+	font-weight: 400;
+	white-space: nowrap;
+}
+
+@media ( max-width : 991px) {
+	.review-meta {
+		white-space: initial;
+	}
+}
+
+.review-author {
+	font: 14px/122% Inter, sans-serif;
+}
+
+.meta-divider {
+	background-color: #f3f3f3;
+	align-self: start;
+	width: 1px;
+	height: 10px;
+}
+
+.review-date {
+	font: 13px/126% Inter, sans-serif;
+}
+
+.review-arrow {
+	aspect-ratio: 1;
+	object-fit: auto;
+	object-position: center;
+	width: 10px;
+	margin-top: 30px;
+}
 </style>
 
 <div class="outer-box">
@@ -390,8 +547,11 @@ style> /* CSS 스타일은 여기에 작성합니다 */ .hidden {
 		<!-- 관심 버튼 -->
 		<div class="Group101">
 			<div class="click-box">
-				<div class="Rectangle35">
-					<div>♡ 관심</div>
+				<div class="Group41">
+					<button class="Rectangle35 scrap-btn" id="likeButton"
+						onclick="doGoodReaction(${param.themeId}, ${param.categoryId}, ${param.id})">
+						<div>♡ 관심</div>
+					</button>
 				</div>
 			</div>
 
@@ -454,41 +614,28 @@ style> /* CSS 스타일은 여기에 작성합니다 */ .hidden {
 							</div>
 
 							<div class="info-content-portfolio hidden">
+
+
+
 								<!-- 포트폴리오 내용을 표시할 공간 -->
-								<div class="img-box-1">
-									<!-- 첫 번째 줄 -->
-									<div class="img-1-box">
-										<div class="sm-img-outer-box">
-											<div class="img">
-												<img class="banner" style="width: 290px; height: 263px" src="${shop.photoUrl1}" />
+								<!-- 포트폴리오 섹션 -->
+						
+									<div class="gallery">
+										<div class="gallery-container">
+											<div class="gallery-row">
+												<img src="${shop.photoUrl1}" alt="Gallery image 1" class="gallery-image" style="width: 290px; height: 283px" />
+												<img src="${shop.photoUrl2}" alt="Gallery image 2" class="gallery-image" style="width: 290px; height: 283px" />
+												<img src="${shop.photoUrl3}" alt="Gallery image 3" class="gallery-image" style="width: 290px; height: 283px" />
 											</div>
-										</div>
-										<div class="sm-img-outer-box">
-											<div class="img">
-												<img class="banner" style="width: 290px; height: 263px" src="${shop.photoUrl2}" />
-											</div>
-										</div>
-										<div class="sm-img-outer-box">
-											<div class="img">
-												<img class="banner" style="width: 290px; height: 263px" src="${shop.photoUrl3}" />
+											<div class="gallery-row">
+												<img src="${shop.photoUrl4}" alt="Gallery image 4" class="gallery-image" style="width: 290px; height: 283px" />
+												<img src="${shop.photoUrl5}" alt="Gallery image 5" class="gallery-image" style="width: 290px; height: 283px" />
+
 											</div>
 										</div>
 									</div>
-									<!-- 두 번째 줄 -->
-									<div class="img-2-box">
-										<!-- 두 번째 줄에 대한 스타일 추가 -->
-										<div class="sm-img-outer-box">
-											<div class="img">
-												<img class="banner" style="width: 290px; height: 263px" src="${shop.photoUrl4}" />
-											</div>
-										</div>
-										<div class="sm-img-outer-box">
-											<div class="img">
-												<img class="banner" style="width: 290px; height: 263px" src="${shop.photoUrl5}" />
-											</div>
-										</div>
-									</div>
-								</div>
+
+								
 
 							</div>
 
@@ -496,43 +643,41 @@ style> /* CSS 스타일은 여기에 작성합니다 */ .hidden {
 							<div class="info-content-review hidden">
 								<!-- 후기 내용을 표시할 공간 -->
 								<div class="write-box">
-									<a href="../self/reviewWrite?themeId=${shop.themeId }&categoryId=${shop.categoryId }&id=${shop.id }">
-									
+									<a href="../consulting/reviewWrite?themeId=${shop.themeId }&categoryId=${shop.categoryId }&id=${shop.id }">
+
 										<div class="write">글쓰기</div>
 									</a>
 								</div>
-								<div class="review-head-title">고객 리뷰</div>
-
-								<div class="review-outer-box">
 
 
-
+								<section class="customer-reviews">
+									<header class="reviews-header">
+										<h2 class="reviews-title">고객 리뷰</h2>
+										<div class="reviews-divider"></div>
+									</header>
 									<c:forEach var="review" items="${reviews }">
-										<div class="review-small-box">
-											<div class="review-title">
-												<a href="detail?id=${review.shopId }">${review.title }</a>
+										<article class="review-item">
+											<h3 class="review-title">${review.title }</h3>
+											<div class="review-rating">
+												<div class="star-box">
+													<div class="review-star">${review.starPoint }</div>
+													<div>${review.starPoint }</div>
+												</div>
 											</div>
-											<div class="star-box">
-												<div class="review-star">${review.starPoint }</div>
-												<div>${review.starPoint }</div>
+											<p class="review-content">${review.body }</p>
+											<div class="review-meta">
+												<div class="review-author">${review.memberId }</div>
+												<div class="meta-divider"></div>
+												<time class="review-date">${review.regDate.substring(0,10) }</time>
+												<div class="meta-divider"></div>
 											</div>
-
-
-											<div class="review-body">${review.body }</div>
-											<div class="member-date-box">
-												<div>${review.memberId }</div>
-												<div>${review.regDate.substring(0,10) }</div>
-											</div>
-
-											<div class="review-line"></div>
-										</div>
-
-
+											<img
+												src="https://cdn.builder.io/api/v1/image/assets/TEMP/06c2c6aa04dbe2983a6ffd7341d28e41de965746b836facb8a0bc513b6007e60?apiKey=4d3772835b8a4f38b4ea30894b56681e&"
+												alt="" class="review-arrow" />
+										</article>
 
 									</c:forEach>
-
-								</div>
-
+								</section>
 								<!-- 	동적 페이징 -->
 								<div class="pagination flex justify-center mt-3">
 									<c:set var="paginationLen" value="3" />
@@ -568,10 +713,6 @@ style> /* CSS 스타일은 여기에 작성합니다 */ .hidden {
 </div>
 </div>
 
-</body>
-
-</html>
-<%@ include file="../common/foot.jspf"%>
 
 <%-- 여기에 JavaScript 코드를 작성합니다 --%>
 <script>
@@ -627,6 +768,74 @@ style> /* CSS 스타일은 여기에 작성합니다 */ .hidden {
 		starElement.appendChild(starContainer); // 별점을 표시할 요소에 추가
 	});
 </script>
+
+
+<script>
+
+
+<!-- 좋아요 싫어요 버튼	-->
+function checkRP() {
+	if(isAlreadyAddGoodRp == true){
+		$('#likeButton').toggleClass('btn-outline');
+	}else {
+		return;
+	}
+}
+console.log("Before doGoodReaction function");
+function doGoodReaction(themeId, categoryId, shopId) {
+if(isNaN(params.memberId) == true){
+		if(confirm('로그인 해야해. 로그인 페이지로 가실???')){
+			var currentUri = encodeURIComponent(window.location.href);
+			window.location.href = '../member/login?afterLoginUri=' + currentUri; // 로그인 페이지에 원래 페이지의 uri를 같이 보냄
+		}
+		return;
+	} 
+/* console.log("categoryId": categoryId , "themeId" : themeId, "shopId" : shopId); // 콘솔에 academyId 출력 */
+	$.ajax({
+		url: '/usr/scrap/doGoodReaction',
+		type: 'GET',
+		data: {themeId: themeId, categoryId: categoryId, shopId:shopId},
+		dataType: 'json',
+		success: function(data){
+			console.log(data);
+			console.log('data.data1Name : ' + data.data1Name);
+			console.log('data.data1 : ' + data.data1);
+/* 			console.log('data.data2Name : ' + data.data2Name);
+			console.log('data.data2 : ' + data.data2); */
+			if(data.resultCode.startsWith('S-')){
+				var likeButton = $('#likeButton');
+				var likeCount = $('#likeCount');
+			/* 	var DislikeButton = $('#DislikeButton');
+				var DislikeCount = $('#DislikeCount'); */
+				
+				if(data.resultCode == 'S-1'){
+					likeButton.toggleClass('btn-outline');
+					likeCount.text(data.data1);
+				}else if(data.resultCode == 'S-2'){
+				/* 	DislikeButton.toggleClass('btn-outline');
+					DislikeCount.text(data.data2); */
+					likeButton.toggleClass('btn-outline');
+					likeCount.text(data.data1);
+				}else {
+					likeButton.toggleClass('btn-outline');
+					likeCount.text(data.data1);
+				}
+				
+			}else {
+				alert(data.msg);
+			}
+	
+		},
+		error: function(jqXHR,textStatus,errorThrown) {
+			alert('좋아요 오류 발생 : ' + textStatus);
+
+		}
+		
+	});
+}
+
+</script>
+
 
 </body>
 

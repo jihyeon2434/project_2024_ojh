@@ -18,7 +18,7 @@
 	height: 590px;
 	display: flex;
 	justify-content: center;
-	border: solid 1px;
+	border: 1px solid #EFE7E5;
 	border-radius: 5px;
 }
 
@@ -45,7 +45,7 @@
 }
 
 .price {
-	font: 15px Inria Serif, sans-serif;
+	font-family: Inter, sans-serif;
 	align-content: center;
 	display: block;
 }
@@ -62,7 +62,7 @@
 
 .area {
 	margin-top: 23px;
-	font: 13px Inria Serif, sans-serif;
+	font-family: Inter, sans-serif;
 	align-content: center;
 	display: block;
 	font-size: 15px;
@@ -77,8 +77,7 @@
 }
 
 .line {
-	border-color: rgba(0, 0, 0, 1);
-	border: 0.5px black solid; /* 0.5px로 변경 */
+	border: 0.5px solid #EFE7E5;
 	border-style: solid;
 	width: 220px;
 	margin-left: 15px;
@@ -99,7 +98,7 @@
 
 .area-1, .area-2, .area-3, .area-4, .area-5, .area-6, .area-7, .area-8,
 	.area-9, .area-10, .area-11 {
-	font-family: Inria Serif, sans-serif;
+	font-family: Inter, sans-serif;
 	width: 20px;
 	height: 20px;
 }
@@ -115,7 +114,7 @@
 
 .situation {
 	margin-top: 23px;
-	font: 13px Inria Serif, sans-serif;
+	font-family: Inter, sans-serif;
 	align-content: center;
 	display: block;
 	font-size: 15px;
@@ -140,7 +139,7 @@
 }
 
 .situation-1, .situation-2, .situation-3, .situation-4 {
-	font-family: Inria Serif, sans-serif;
+	font-family: Inter, sans-serif;
 	width: 30px;
 	height: 30px;
 }
@@ -151,8 +150,8 @@
 	text-align: center;
 	color: black;
 	font-size: 20px;
-	font-style: Inria-serif;
-	font-weight: 600;
+	font-family: Inter, sans-serif;
+	font-weight: 500;
 	word-wrap: break-word"
 }
 
@@ -176,7 +175,7 @@
 	text-align: center;
 	color: black;
 	font-size: 40px;
-	font-family: "Inria Serif", serif;
+	font-family: Inter, sans-serif;
 	font-weight: 400px;
 	word-wrap: break-word;
 }
@@ -211,7 +210,7 @@
 	width: 1000px;
 	height: 0px;
 	position: absolute;
-	border: 0.5px black solid; /* 0.5px로 변경 */
+
 }
 
 .content-box {
@@ -227,7 +226,7 @@
 .img-outer-box {
 	width: 1000px;
 	height: 400px;
-	border: 1px solid black;
+	border: 1px solid #EFE7E5;
 	justify-content: space-between;
 	border-radius: 7px;
 	display: flex;
@@ -237,7 +236,7 @@
 
 .img-outer-box-2 {
 	width: 1000px;
-	border: 1px solid black;
+	border: 1px solid #EFE7E5;
 	justify-content: center; /* 수평 중앙 정렬 */
 	border-radius: 7px;
 	display: flex;
@@ -280,7 +279,6 @@
 	width: 100%;
 	overflow-x: auto; /* x 축으로 넘칠 경우 스크롤 생성 */
 	 white-space: nowrap; /* 요소들을 한 줄에 나열*/
-	border: 2px solid pink;
 }
 
 .img-big-outer-box {
@@ -289,7 +287,6 @@
 	display: flex; /* 플렉스 박스 사용 */
 	flex-wrap: wrap; /* 줄 바꿈 허용 */
 	justify-content: space-between; /* 주 축을 따라 아이템을 고르게 분산 */
-	border: 1px solid red;
 }
 
 .small-img-outer-box>.img-big-outer-box>.img-box-1 {
@@ -443,15 +440,7 @@ if (session.getAttribute("loginedMember") != null) {
 
 			
 			<div class="con-box">
-				<!-- <div class="menu-box">
-					<div class="theme">
-
-						<div class="img-making">이미지메이킹</div>
-						<div class="personal">퍼스널컬러</div>
-					</div>
-
-					<div class="line1"></div>
-				</div> -->
+				
 				<div class="img-outer-box-2">
 					<div class="small-img-outer-box">
 						<div class="img-outer-box personal-img-outer-box">
@@ -586,6 +575,10 @@ if (session.getAttribute("loginedMember") != null) {
 
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
+
+
+<!-- 통합 박스 스크립트  -->
+
 <script>
 $(document).ready(function() {
     var selectedRecommend = ""; // 선택된 recommend 옵션 초기화
@@ -657,6 +650,9 @@ $(document).ready(function() {
 });
 
 ///////////////////////////////////////////////
+
+
+/* 서치박스 스크립트 */
 
 $(document).ready(function() {
 	 // 페이지 로드 시 서울 지역에 대한 데이터를 가져오는 함수 호출

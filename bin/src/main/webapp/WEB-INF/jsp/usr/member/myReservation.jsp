@@ -5,344 +5,484 @@
 
 
 <style>
-.text {
-  width: 212px;
-  height: 76px;
-  color: black;
-  font-size: 20px;
-  font-weight: 400;
-  word-wrap: break-word;
-  position: relative;
-  top: 24px;
-  
-}
 
-.Rectangle-box {
-  width: 1070px;
-  height: 143px;
-  position: relative;
-}
+  .container {
+    background-color: #fff;
+    display: flex;
+    gap: 20px;
+    color: #000;
+    padding: 50px 80px 50px 17px;
+  }
 
-.line {
-  width: 1060px;
-  height: 0px;
-  top: 70px;
-  position: absolute;
-  border: 3px rgba(239, 231, 229, 0.7) solid;
-}
+  @media (max-width: 991px) {
+    .container {
+      flex-wrap: wrap;
+      padding-right: 20px;
+    }
+  }
 
-.box-line2 {
-  width: 1060px;
-  height: 0px;
-  margin-top: 25px;
-  position: absolute;
-  border: 3px rgba(239, 231, 229, 0.7) solid;
-}
+  .sidebar {
+    align-self: start;
+    display: flex;
+    margin-top: 23px;
+    flex-direction: column;
+    font-size: 10px;
+    font-weight: 500;
+  }
 
-.Rectangle {
-  width: 500px;
-  height: 110px;
-  margin-top: 10px;
-  top: 7px;
-  position: absolute;
-  background: white;
-  border-radius: 10px;
-  border: 1px black solid;
-}
+  .member-info {
+    font-family: Inter, sans-serif;
+    	width: 150px;
+  }
 
-.reservation-content1 {
-  color: black;
-  font-size: 18px;
-  font-weight: 700;
-  word-wrap: break-word;
-}
+  .my-calendar {
+    font-family: Inter, sans-serif;
+    	width: 150px;
+    margin-top: 44px;
+  }
 
-.reservation-content2 {
-  width: 65.72px;
-  height: 20.5px;
-  left: 25.82px;
-  top: 63px;
-  position: absolute;
-  color: black;
-  font-size: 15px;
-  font-weight: 400;
-  word-wrap: break-word;
-}
-.reservation-content2-1 {
-  width: 231.62px;
-  height: 20.5px;
-  left: 94px;
-  top: 61px;
-  position: absolute;
-  color: black;
-  font-size: 18px;
-  font-weight: 700;
-  word-wrap: break-word;
-}
+  @media (max-width: 991px) {
+    .my-calendar {
+      margin-top: 40px;
+    }
+  }
 
-.content2-all {
-  display: inline-block;
-}
+  .online-reservation {
+    font-family: Inter, sans-serif;
+    	width: 150px;
+    margin-top: 43px;
+  }
 
-.group1 {
-  width: 984.19px;
-  height: 51px;
-  left: 25.82px;
-  top: 20px;
-  position: absolute;
-}
+  @media (max-width: 991px) {
+    .online-reservation {
+      margin-top: 40px;
+    }
+  }
 
-.red-alert {
-  width: 1051px;
-  height: 34px;
-  color: #fa0909;
-  font-size: 13px;
-  font-family: Inria Serif;
-  font-weight: 400;
-  word-wrap: break-word;
-  position: absolute;
-  top: 220px;
-  left: 10px;
-}
+  .main-content {
+    display: flex;
+    gap: 20px;
+    font-weight: 400;
+    flex-grow: 1;
+    flex-basis: auto;
+  }
 
-.text2 {
-  width: 212px;
-  height: 76px;
-  color: black;
-  font-size: 20px;
-  font-weight: 400;
-  word-wrap: break-word;
-  position: absolute;
-  top: 300px;
-}
+  @media (max-width: 991px) {
+    .main-content {
+      flex-wrap: wrap;
+    }
+  }
 
-.line2 {
-  width: 1060px;
-  height: 0px;
-  top: 350px;
-  position: absolute;
-  border: 3px rgba(239, 231, 229, 0.7) solid;
-}
+  .divider {
+    border-color: rgba(232, 232, 232, 1);
+    border-style: solid;
+    border-width: 1px;
+    background-color: #e8e8e8;
+    width: 1px;
+    height: 924px;
+  }
 
-.name {
-  width: 127px;
-  height: 43px;
-  color: black;
-  font-size: 24px;
-  font-family: Inria Serif;
-  font-weight: 400;
-  word-wrap: break-word;
-  position: absolute;
-  left: 30px;
-  top: 50px;
-}
+  .content-wrapper {
+    align-self: start;
+    display: flex;
+    margin-top: 12px;
+    flex-direction: column;
+    flex-grow: 1;
+    flex-basis: 0;
+    width: fit-content;
+  }
 
-.shopname {
-  width: 137px;
-  height: 52px;
-  margin-left: 20px; /* 요소들 사이의 간격 조정 */
-  color: black;
-  font-size: 24px;
-  font-family: Inria Serif;
-  font-weight: 400;
-  word-wrap: break-word;
-  position: absolute;
-  left: 280px;
-  top: 50px;
-}
+  @media (max-width: 991px) {
+    .content-wrapper {
+      max-width: 100%;
+    }
+  }
 
-.time {
-  width: 174px;
-  height: 65px;
-  margin-left: 20px; /* 요소들 사이의 간격 조정 */
-  color: black;
-  font-size: 24px;
-  font-family: Inria Serif;
-  font-weight: 400;
-  word-wrap: break-word;
-  position: absolute;
-  left: 550px;
-  top: 50px;
-}
-.uri {
-  width: 174px;
-  height: 65px;
-  margin-left: 20px; /* 요소들 사이의 간격 조정 */
-  color: black;
-  font-size: 24px;
-  font-family: Inria Serif;
-  font-weight: 400;
-  word-wrap: break-word;
-  position: absolute;
-  left: 800px;
-  top: 50px;
-}
-.chat-menu {
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  position: absolute;
-  top: 330px; /* 조정된 위치 */
-}
+  .payment-history-header {
+    display: flex;
+    align-items: start;
+    gap: 20px;
+    font-size: 12px;
+    font-weight: 300;
+    text-align: center;
+    justify-content: space-between;
+  }
 
-.line3 {
-  width: 1060px;
-  height: 0px;
-  top: 420px;
-  position: absolute;
-  border: 1px black solid;
-}
+  @media (max-width: 991px) {
+    .payment-history-header {
+      max-width: 100%;
+      flex-wrap: wrap;
+      padding-right: 20px;
+    }
+  }
 
-.chat-info {
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  position: absolute;
-  top: 400px; /* 조정된 위치 */
-}
+  .payment-history-title {
+    font-family: Inria Serif, sans-serif;
+  }
 
+  .write-post-button {
+    font-family: Inria Serif, sans-serif;
+    border-radius: 5px;
+    background-color: rgba(239, 231, 229, 0.4);
+    margin-top: 10px;
+    margin-bottom: 10px;
+    justify-content: center;
+    padding: 12px 29px;
+  }
 
-.chat-menu>div{
-font-size: 13px;
-}
-.chat-info > div {
-  font-size: 12px;
-}
+  @media (max-width: 991px) {
+    .write-post-button {
+      padding: 0 20px;
+    }
+  }
 
+  .payment-history-table-header {
+    border-color: rgba(226, 226, 226, 1);
+    border-style: solid;
+    border-bottom-width: 1px;
+    background-color: #efe7e5;
+    display: flex;
+    margin-top: 7px;
+    gap: 20px;
+    font-size: 13px;
+    white-space: nowrap;
+    text-align: center;
+    letter-spacing: -0.7px;
+    line-height: 262%;
+    justify-content: space-between;
+    padding: 11px 19px;
+  }
 
-.modify-btn {
-  background: #232020;
-  margin-left: 600px;
-  top: 550px;
-  left: -30px;
-}
+  @media (max-width: 991px) {
+    .payment-history-table-header {
+      max-width: 100%;
+      flex-wrap: wrap;
+      white-space: initial;
+    }
+  }
 
-.modifyBack-btn {
-  background: #929294;
-  margin-left: 760px;
-  top: 550px;
-  left: -30px;
-}
+  .payment-history-table-header-number,
+  .payment-history-table-header-title,
+  .payment-history-table-header-amount,
+  .payment-history-table-header-company,
+  .payment-history-table-header-date {
+    font-family: Inter, sans-serif;
+  }
 
-.btn-1 {
-  position: relative;
-}
+  .payment-history-table-row {
+    border-color: rgba(226, 226, 226, 1);
+    border-style: solid;
+    border-bottom-width: 1px;
+    display: flex;
+    width: 100%;
+    gap: 20px;
+    color: #3b3b3b;
+    white-space: nowrap;
+    letter-spacing: -0.7px;
+    justify-content: space-between;
+    padding: 12px 23px;
+  }
 
-.modify-btn,
-.modifyBack-btn {
-  width: 130px;
-  height: 50px;
-  border-radius: 5px;
-  float: left;
-  text-align: center;
-  display: flex; /* 추가된 부분 */
-  justify-content: center; /* 추가된 부분 */
-  align-items: center; /* 추가된 부분 */
-  color: white;
-  position: absolute;
-  font-size: small;
-}
+  @media (max-width: 991px) {
+    .payment-history-table-row {
+      max-width: 100%;
+      flex-wrap: wrap;
+      white-space: initial;
+      padding: 0 20px;
+    }
+  }
 
-.left-menu {
-  width: 148px;
-	height: 32px;
-	left: 20px;
-	top: 100px;
-	position: absolute;
-	color: black;
-	font-size: 10px;
-	font-family: Inria Serif;
-	font-weight: 700;
-	word-wrap: break-word;
-}
+  .payment-history-table-row-number-title {
+    display: flex;
+    gap: 20px;
+    font-size: 13px;
+    line-height: 262%;
+  }
 
-.left-line {
-   width: 700px;
-  height: 0px;
-  transform: rotate(90deg);
-  transform-origin: 0 0;
-  border: 1px #c6c6c6 solid;
-  margin-left: 170px;
-  position: relative;
-  top: 30px;
-}
+  @media (max-width: 991px) {
+    .payment-history-table-row-number-title {
+      white-space: initial;
+    }
+  }
 
-.reserve-section{
-  position: absolute;
-  left: 220px;
+  .payment-history-table-row-number {
+    text-align: center;
+    font-family: Inter, sans-serif;
+  }
+
+  .payment-history-table-row-title {
+    font-family: Inter, sans-serif;
+  }
+
+  .payment-history-table-row-details {
+    align-self: start;
+    display: flex;
+    gap: 20px;
+    font-size: 12px;
+    text-align: center;
+    line-height: 286%;
+    justify-content: space-between;
+  }
+
+  @media (max-width: 991px) {
+    .payment-history-table-row-details {
+      white-space: initial;
+    }
+  }
+
+  .payment-history-table-row-amount,
+  .payment-history-table-row-company,
+  .payment-history-table-row-date {
+    font-family: Inter, sans-serif;
+  }
+
+  .payment-history-table-row-date {
+    line-height: 284%;
+  }
+
+  .inquiry-history-title {
+    text-align: center;
+    align-self: start;
+    margin: 285px 0 0 10px;
+    font: 300 12px Inria Serif, sans-serif;
+    margin-bottom: 30px;
+  }
+
+  @media (max-width: 991px) {
+    .inquiry-history-title {
+      margin: 40px 0 0 10px;
+    }
+  }
+
+  .inquiry-history-table-header {
+    border-color: rgba(226, 226, 226, 1);
+    border-style: solid;
+    border-bottom-width: 1px;
+    background-color: #efe7e5;
+    display: flex;
+    margin-top: 31px;
+    width: 100%;
+    gap: 20px;
+    font-size: 13px;
+    white-space: nowrap;
+    text-align: center;
+    letter-spacing: -0.7px;
+    line-height: 262%;
+    justify-content: space-between;
+    padding: 11px 19px;
+  }
+
+  @media (max-width: 991px) {
+    .inquiry-history-table-header {
+      max-width: 100%;
+      flex-wrap: wrap;
+      white-space: initial;
+    }
+  }
+
+  .inquiry-history-table-header-number,
+  .inquiry-history-table-header-title,
+  .inquiry-history-table-header-company,
+  .inquiry-history-table-header-date {
+    font-family: Inter, sans-serif;
+  }
+
+  .inquiry-history-table-header-company-date {
+    align-self: start;
+    display: flex;
+    gap: 20px;
+    justify-content: space-between;
+  }
+
+  @media (max-width: 991px) {
+    .inquiry-history-table-header-company-date {
+      white-space: initial;
+    }
+  }
+
+  .inquiry-history-table-row {
+    border-color: rgba(226, 226, 226, 1);
+    border-style: solid;
+    border-bottom-width: 1px;
+    display: flex;
+    width: 100%;
+    gap: 20px;
+    color: #3b3b3b;
+    text-align: center;
+    letter-spacing: -0.7px;
+    padding: 12px 23px;
+  }
+
+  @media (max-width: 991px) {
+    .inquiry-history-table-row {
+      max-width: 100%;
+      flex-wrap: wrap;
+      padding: 0 20px;
+    }
+  }
+
+  .inquiry-history-table-row-number-title {
+    display: flex;
+    gap: 20px;
+    font-size: 13px;
+    line-height: 262%;
+    flex: 1;
+  }
+
+  .inquiry-history-table-row-number {
+    font-family: Inter, sans-serif;
+  }
+
+  .inquiry-history-table-row-title {
+    font-family: Inter, sans-serif;
+    flex-grow: 1;
+    flex-basis: auto;
+  }
+
+  .inquiry-history-table-row-details {
+    align-self: start;
+    display: flex;
+    gap: 20px;
+    font-size: 12px;
+    white-space: nowrap;
+    justify-content: space-between;
+    flex: 1;
+  }
+
+  @media (max-width: 991px) {
+    .inquiry-history-table-row-details {
+      white-space: initial;
+    }
+  }
+
+  .inquiry-history-table-row-company {
+    font-family: Inter, sans-serif;
+    line-height: 286%;
+  }
+
+  .inquiry-history-table-row-date {
+    font-family: Inter, sans-serif;
+    line-height: 284%;
+  }
+.list-table{
+     border-color: rgba(226, 226, 226, 1);
+         background-color: #efe7e5;
 }
 </style>
 
 
+<div class="container">
+ <aside class="sidebar">
+		<div class="member-info">
+			<a href="/usr/member/myPage">회원정보</a>
+		</div>
+		<div class="my-calendar">
+			<a href="/usr/member/myCalendar">마이 캘린더</a>
+		</div>
+		<div class="online-reservation">
+			<a href="/usr/member/myReservation">온라인 컨설팅 예약 내역</a>
+		</div>
+		<div class="online-reservation">
+			<a href="/usr/member/myScrapShops">관심 매장</a>
+		</div>
+	</aside>
+  
+  <div class="divider"></div>
+  
+  <main class="main-content">
+    <div class="content-wrapper">
+      <header class="payment-history-header">
+        <h2 class="payment-history-title">나의 결제내역</h2>
+        <button class="write-post-button"> <a href="../onlineConsulting/write">상담글 작성</a></button>
+     
+      </header>
+      
+     <table class="table ">
+					<colgroup>
+						<col style="width: 5%" />
+						<col style="width: 60%" />
+						<col style="width: 20%" />
+						<col style="width: 10%" />
+						<col style="width: 5%" />
+					</colgroup>
+					<thead class="list-table">
+						<tr>
+							<th>번호</th>
+							<th>옵션</th>
+							<th>결제금액</th>
+							<th>업체명</th>
+							<th>결제일</th>
+						</tr>
+					</thead>
+					
+					
+					<tbody>
+<%-- 						<c:forEach items="${competitions}" var="competition"> --%>
+							<tr>
+								<td>1</td>
+								<!-- 첫 번째 td에 학회의 ID -->
+								<td>
+									<a href="detail?themeId=${competition.themeId}&id=${competition.id}">옵션내용1:1; 컨설팅</a>
+								</td>
+								<!-- 두 번째 td에 학회의 제목 -->
+								<td>30,000</td>
+								<!-- 세 번째 td에 행사 기간 -->
+								<td>업체명</td>
+								<!-- 네 번째 td에 등록/수정일 -->
+								<td>2024.05.06</td>
+								<!-- 다섯 번째 td에 조회수 -->
+							</tr>
 
-<div class="left-menu">
-  <div>
-    회원정보
-  </div>
-  <br>
-  <br>
-  <br>
-  <div>
-    마이 캘린더
-  </div>
-  <br>
-  <br>
-  <br>
-  <div>
-    온라인 컨설팅 예약내역
-  </div>
-</div>
+					</tbody>
+					
+					
+					
+				</table>
 
-<div class="left-line"> </div>
-<div class="reserve-section"><div class="text">예약내역</div>
-
-<div class="line"></div>
-<div class="Rectangle-box">
-  <div class="Rectangle">
-    <div class=group1>
-      <div class="reservation-content1">
-        1:1 30 분 컨설팅
-      </div>
+      <h2 class="inquiry-history-title">나의 문의내역</h2>
+            
+       <table class="table ">
+					<colgroup>
+						<col style="width: 5%" />
+						<col style="width: 60%" />
+						<col style="width: 30%" />
+						<col style="width: 5%" />
+					</colgroup>
+					<thead class="list-table">
+						<tr>
+							<th>번호</th>
+							<th>제목</th>
+				<!-- 			<th>접수기간</th> -->
+							<th>업체명</th>
+							<th>등록/수정일</th>
+						</tr>
+					</thead>
+					
+					
+					<tbody>
+<%-- 						<c:forEach items="${competitions}" var="competition"> --%>
+							<tr>
+								<td>${competition.id}</td>
+								<!-- 첫 번째 td에 학회의 ID -->
+								<td>
+									<a href="detail?themeId=${competition.themeId}&id=${competition.id}">${competition.title}</a>
+								</td>
+								<!-- 두 번째 td에 학회의 제목 -->
+						<%-- 		<td>${competition.applicationPeriod}</td> --%>
+								<!-- 세 번째 td에 행사 기간 -->
+								<td>블라블라 이미지컨설팅</td>
+								<!-- 네 번째 td에 등록/수정일 -->
+								<td>2024.05.01</td>
+								<!-- 다섯 번째 td에 조회수 -->
+							</tr>
+	<%-- 					</c:forEach> --%>
+					</tbody>
+					
+					
+					
+				</table>
     </div>
-
-    <div class="content2-all">
-      <div class="reservation-content2"> 일정 </div>
-      <div class="reservation-content2-1">2.26(월) 10:00
-      </div>
-    </div>
-  </div>
+  </main>
 </div>
-
-<div class="red-alert">30분 내로 채팅방이 MY채팅방에 생성됩니다.</div>
-
-<div class="text2">My 채팅방</div>
-<div class="line2"></div>
-
-<div class="chat-menu">
-  <div class="name">
-    채팅방명
-  </div>
-  <div class="shopname">업체정보</div>
-  <div class="time">시간</div>
-  <div class="uri">채팅방 주소</div>
-</div>
-<div class="line3"></div>
-<div class="chat-info">
-  <div class="name">
-    JH 님 30분 컨설팅_이미지컨설팅
-  </div>
-  <div class="shopname">ㅇㅇ뷰티</div>
-  <div class="time">2024.02.26 14:00-15:00</div>
-  <div class="uri">https://bbomicoding.tistory.com/32</div>
-</div>
-</div>
-
-<div class="btn-1">
-  <div class="modify-btn">수정</div>
-  <div class="modifyBack-btn">취소</div>
-
-
-
-
 
 <%@ include file="../common/foot.jspf"%>

@@ -507,12 +507,13 @@ CREATE TABLE service_Conshop
     `regDate`            VARCHAR(50)     NULL        COMMENT '등록날짜', 
     `updateDate`         VARCHAR(50)     NULL        COMMENT '수정날짜', 
     `delDate`            DATETIME        NULL        COMMENT '삭제날짜',
-    `delStatus`          TINYINT(1) UNSIGNED NOT NULL DEFAULT 0 COMMENT '삭제 여부 (0=삭제 전, 1=삭제 후)', 
+    `delStatus`          TINYINT(1)      UNSIGNED    NOT NULL DEFAULT 0 COMMENT '삭제 여부 (0=삭제 전, 1=삭제 후)', 
+   	`goodReactionPoint` INT(10) UNSIGNED NOT NULL DEFAULT 0 COMMENT '스크랩수', 
      PRIMARY KEY (id)
 );
 
 
-DROP TABLE service_Conshop;
+DROP TABLE service_selfshop;
 
 ## innerjoin 별점 총점 세팅
 
@@ -549,7 +550,7 @@ CREATE TABLE service_selfshop
     `photoUrl3`          VARCHAR(500)    NULL        COMMENT '사진 URL 3', 
     `photoUrl4`          VARCHAR(500)    NULL        COMMENT '사진 URL 4', 
     `photoUrl5`          VARCHAR(500)    NULL        COMMENT '사진 URL 5', 
-    `phoneNum`           VARCHAR(50)     NOT NULL    COMMENT '전화번호', 
+    `phoneNum`           VARCHAR(50)     NULL    COMMENT '전화번호', 
     `operateTime`        VARCHAR(300)    NULL        COMMENT '영업시간', 
     `menu`               VARCHAR(300)    NULL        COMMENT '가격', 
     `themeId`            INT             NULL        COMMENT '테마번호', 
@@ -557,12 +558,14 @@ CREATE TABLE service_selfshop
     `updateDate`         VARCHAR(50)     NULL        COMMENT '수정날짜', 
     `delDate`            DATETIME        NULL        COMMENT '삭제날짜',
     `delStatus`          TINYINT(1) UNSIGNED NOT NULL DEFAULT 0 COMMENT '삭제 여부 (0=삭제 전, 1=삭제 후)',
+     `goodReactionPoint` INT(10) UNSIGNED NOT NULL DEFAULT 0 COMMENT '스크랩수', 
      PRIMARY KEY (id)
 );
 
 
 SELECT *
 FROM service_selfshop;
+
 
 
 -- service_review Table Create SQL
@@ -578,7 +581,8 @@ CREATE TABLE service_review
      shopId                     INT            NULL        COMMENT '가게 고유번호',
     `starPoint`                 INT            NULL        COMMENT '별점',
     `title`                     TEXT           NULL        COMMENT '리뷰 제목', 
-    `body`                      TEXT           NULL        COMMENT '리뷰 내용', 
+    `body`                      TEXT           NULL        COMMENT '리뷰 내용',
+     ScrapCount          INT(10)         UNSIGNED    NOT NULL DEFAULT 0 COMMENT '스크랩수',  
      PRIMARY KEY (id)
 );
 
@@ -825,21 +829,39 @@ FROM service_menu;
 
 
 -- service_scrap Table Create SQL
--- 테이블 생성 SQL - service_scrap
-
-CREATE TABLE service_scrap
-(
-    `id`           INT            NOT NULL    AUTO_INCREMENT COMMENT '스크랩 고유번호', 
-    `memberId`         INT            NULL        COMMENT '회원번호', 
-    `themeId`          INT            NULL        COMMENT '(스크랩 당한) 테마 번호', 
-    `categoryId`       INT            NULL        COMMENT '(스크랩 당한) 카테고리 번호(이미지메이킹 / 퍼스널컬러 / 헤어 / 메이크업)', 
-    `shopId`           VARCHAR(50)    NULL        COMMENT '(스크랩 당한) 업체번호', 
-    `scrapDate`        VARCHAR(50)    NULL        COMMENT '스크랩 등록 일시', 
-    `scrapUpdateDate`  VARCHAR(50)    NULL        COMMENT '스크랩 수정 일시', 
-    `scrapPoint`       INT(10)        NULL        COMMENT '스크랩 유무(유 (1) / 무(-1)', 
-     PRIMARY KEY (id)
-);
+-- 테이블 생성 SQL - scrap
 
 SELECT *
-FROM service_scrap;
- 
+FROM scrap;
+
+
+CREATE TABLE scrap
+(   id INT(10) UNSIGNED NOT NULL PRIMARY KEY AUTO_INCREMENT,
+    `regDate` DATETIME NOT NULL COMMENT '찜 날짜', 
+    `updateDate` DATETIME NOT NULL,
+    `deleteDate` DATETIME NULL, 
+    `memberId` INT(10) UNSIGNED NOT NULL COMMENT '회원 번호',
+    shopId INT(10) UNSIGNED NOT NULL  COMMENT '목록의 번호', 
+    categoryId INT(10) UNSIGNED NOT NULL  COMMENT '카테고리 번호',
+    themeId INT(10) UNSIGNED NOT NULL  COMMENT '테마 번호',
+    `point` TINYINT(1) UNSIGNED NOT NULL DEFAULT 0 COMMENT '스크랩 상태 찜 여부 (0=찜 취소, 1= 찜)'
+);
+
+
+
+ # article 테이블 생성
+CREATE TABLE OnlineConArticle(
+    id INT(10) UNSIGNED NOT NULL PRIMARY KEY AUTO_INCREMENT,
+    `memberId` VARCHAR(50) NULL COMMENT '회원번호', 
+    regDate DATETIME NOT NULL,
+    updateDate DATETIME NOT NULL,
+    title CHAR(100) NOT NULL,
+    `body` TEXT NOT NULL
+);
+
+
+SELECT *
+FROM article;
+
+
+
