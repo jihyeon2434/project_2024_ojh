@@ -727,3 +727,17 @@ FROM article;
 
 
 
+# payment 테이블 생성
+CREATE TABLE payment (
+   id INT(10) UNSIGNED NOT NULL PRIMARY KEY AUTO_INCREMENT,
+   memberId INT NOT NULL,
+   shopName VARCHAR(50) NULL,
+   amount DECIMAL(10, 2) NOT NULL,
+   paymentDate DATETIME NOT NULL,
+   paymentStatus TINYINT(1) UNSIGNED NOT NULL DEFAULT 0 COMMENT '결제 여부 (0=결제 전, 1=결제 후)'
+);
+
+
+SELECT *
+FROM payment;
+
