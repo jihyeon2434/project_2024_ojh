@@ -474,7 +474,6 @@ if (session.getAttribute("loginedMember") != null) {
 
 						<button class="theme-button recommend-1">별점이 높은</button>
 						<button class="theme-button recommend-2">가장 저렴한</button>
-						<!-- 	<button class="theme-button recommend-3">전문가가 친절한</button> -->
 					</div>
 
 					<div class="line1"></div>

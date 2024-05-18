@@ -11,9 +11,11 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.example.demo.service.ConsultShopService;
 import com.example.demo.service.MemberService;
+import com.example.demo.service.PaymentService;
 import com.example.demo.service.selfShopService;
 import com.example.demo.util.Ut;
 import com.example.demo.vo.Member;
+import com.example.demo.vo.Payment;
 import com.example.demo.vo.ResultData;
 import com.example.demo.vo.Rq;
 import com.example.demo.vo.conShop;
@@ -26,16 +28,18 @@ public class UsrMemberController {
 
 	@Autowired
 	private Rq rq;
-	  @Autowired
-	    private ConsultShopService consultShopService;
+	@Autowired
+	private ConsultShopService consultShopService;
 	@Autowired
 	private MemberService memberService;
 
 	@Autowired
 	private selfShopService selfShopService;
 	
+	@Autowired
+	private PaymentService paymentService;
 	
-	
+
 	@RequestMapping("/usr/member/doLogout")
 	@ResponseBody
 	public String doLogout(HttpServletRequest req) {
@@ -149,56 +153,61 @@ public class UsrMemberController {
 
 		return "usr/member/myPage";
 	}
-	
-	 @RequestMapping("/usr/member/myPage2")
-	    public String showMyPage2(HttpServletRequest req, Model model) {
-	        Rq rq = (Rq) req.getAttribute("rq");
-	        Integer memberId = rq.getLoginedMemberId();
-	        List<conShop> conshops = consultShopService.getForPrintScrapShops(memberId);
-	        
-	        model.addAttribute("conshops", conshops);
-	        return "usr/member/myPage2";
-	    }
-	
-	@RequestMapping("/usr/member/myCalendar")
-	 public String showMyCalendar(HttpServletRequest req, Model model) {
+
+	@RequestMapping("/usr/member/myPage2")
+	public String showMyPage2(HttpServletRequest req, Model model) {
 		Rq rq = (Rq) req.getAttribute("rq");
-        LocalDate currentDate = LocalDate.now();
-        model.addAttribute("year", currentDate.getYear());
-        model.addAttribute("month", currentDate.getMonthValue() - 1); // 월은 0부터 시작하므로 1을 빼줍니다.
+		Integer memberId = rq.getLoginedMemberId();
+		List<conShop> conshops = consultShopService.getForPrintScrapShops(memberId);
+
+		model.addAttribute("conshops", conshops);
+		return "usr/member/myPage2";
+	}
+
+	@RequestMapping("/usr/member/myCalendar")
+	public String showMyCalendar(HttpServletRequest req, Model model) {
+		Rq rq = (Rq) req.getAttribute("rq");
+		LocalDate currentDate = LocalDate.now();
+		model.addAttribute("year", currentDate.getYear());
+		model.addAttribute("month", currentDate.getMonthValue() - 1); // 월은 0부터 시작하므로 1을 빼줍니다.
 		return "usr/member/myCalendar";
 	}
-	
+
 	@RequestMapping("/usr/member/myReservation")
-	 public String showMyReservation() {
-      
+	public String showMyReservation(HttpServletRequest req, Model model) {
+		Rq rq = (Rq) req.getAttribute("rq");
+		int memberId = rq.getLoginedMemberId();
+
+		List<Payment> payments = paymentService.getPaymentsByMemberId(memberId);
+		System.err.println("payments" + payments);
+		model.addAttribute("payments", payments);
+
 		return "usr/member/myReservation";
 	}
 
 	@RequestMapping("/usr/member/myScrapShops")
-	 public String showMyScrapShops(HttpServletRequest req, Model model) {
+	public String showMyScrapShops(HttpServletRequest req, Model model) {
 		Rq rq = (Rq) req.getAttribute("rq");
-		
+
 		List<conShop> conShopList = consultShopService.getscrapShopsList(rq.getLoginedMemberId());
 		List<selfShop> selfShopList = selfShopService.getscrapShopsList(rq.getLoginedMemberId());
-		 model.addAttribute("conShopList", conShopList);
-		 model.addAttribute("selfShopList", selfShopList);
+		model.addAttribute("conShopList", conShopList);
+		model.addAttribute("selfShopList", selfShopList);
 		return "usr/member/myScrapShops";
 	}
-	
+
 	@RequestMapping("/usr/member/conShopList")
 	public @ResponseBody List<conShop> getConShopList(HttpServletRequest req) {
-	    Rq rq = (Rq) req.getAttribute("rq");
-	    return consultShopService.getscrapShopsList(rq.getLoginedMemberId());
+		Rq rq = (Rq) req.getAttribute("rq");
+		return consultShopService.getscrapShopsList(rq.getLoginedMemberId());
 	}
 
 	@RequestMapping("/usr/member/selfShopList")
 	public @ResponseBody List<selfShop> getSelfShopList(HttpServletRequest req) {
-	    Rq rq = (Rq) req.getAttribute("rq");
-	    return selfShopService.getscrapShopsList(rq.getLoginedMemberId());
+		Rq rq = (Rq) req.getAttribute("rq");
+		return selfShopService.getscrapShopsList(rq.getLoginedMemberId());
 	}
 
-	
 	@RequestMapping("/usr/member/checkPw")
 	public String showCheckPw() {
 
@@ -244,8 +253,7 @@ public class UsrMemberController {
 		ResultData modifyRd;
 
 		if (Ut.isNullOrEmpty(loginPw)) {
-			modifyRd = memberService.modifyWithoutPw(rq.getLoginedMemberId(), name, nickname, cellphoneNum,
-					email);
+			modifyRd = memberService.modifyWithoutPw(rq.getLoginedMemberId(), name, nickname, cellphoneNum, email);
 		} else {
 			modifyRd = memberService.modify(rq.getLoginedMemberId(), loginPw, name, nickname, cellphoneNum, email);
 		}

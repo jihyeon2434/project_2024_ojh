@@ -223,7 +223,7 @@
 .info-content-review {
 	width: 1000px;
 	height: 800px;
-/* 	border: 1px solid #EFE7E5; */
+	/* 	border: 1px solid #EFE7E5; */
 	padding-left: 10px;
 	padding-right: 10px;
 }
@@ -572,7 +572,7 @@
 					</button>
 				</div>
 				<div class="Group97">
-					<a href="../consulting/reservation2">
+					<a href="../consulting/reservation2?id=${param.id}">
 						<div class="Rectangle35">
 							<!-- <div class="text-box"> -->
 							<img src="//velog.velcdn.com/images/jihyeon2434/post/ca6de2e7-1690-4f95-a522-50fdee8b9637/image.png">
@@ -659,11 +659,9 @@
 										<div class="gallery-row">
 											<img src="${shop.photoUrl4}" alt="Gallery image 4" class="gallery-image" style="width: 290px; height: 283px" />
 											<img src="${shop.photoUrl5}" alt="Gallery image 5" class="gallery-image" style="width: 290px; height: 283px" />
-
 										</div>
 									</div>
 								</div>
-
 							</div>
 
 							<!-- 후기 섹션 -->

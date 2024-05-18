@@ -207,24 +207,37 @@ public class UsrConsultingController {
 	}
 
 	@RequestMapping("/usr/consulting/reservation2")
-	public String showReservation2(HttpServletRequest req, Model model) {
+	public String showReservation2(HttpServletRequest req, @RequestParam("id") int shopId, Model model) {
 	    Rq rq = (Rq) req.getAttribute("rq");
 	    Member loginedMember = rq.getLoginedMember(); // 로그인한 사용자의 정보를 가져옵니다.
-
+	    conShop shop = consultShopService.getShopById(shopId);
 	    LocalDate currentDate = LocalDate.now();
 	    model.addAttribute("year", currentDate.getYear());
 	    model.addAttribute("month", currentDate.getMonthValue() - 1); // 월은 0부터 시작하므로 1을 빼줍니다.
 	    model.addAttribute("loginedMember", loginedMember); // 로그인한 사용자 정보를 모델에 추가합니다.
-
+	    model.addAttribute("shop", shop);
 	    return "usr/consulting/reservation2";
 	}
 
+	// 예시 컨트롤러 메소드
 	@RequestMapping("/usr/consulting/reservation3")
-	public String showReservation3(HttpServletRequest req, Model model) {
-		Rq rq = (Rq) req.getAttribute("rq");
+	public String showReservation3(HttpServletRequest req, @RequestParam("shopId") int shopId, Model model) {
+	    Rq rq = (Rq) req.getAttribute("rq");
+	    Member loginedMember = rq.getLoginedMember();
+	    conShop shop = consultShopService.getShopById(shopId);  // 상점 정보 조회
 
-		return "usr/consulting/reservation3";
+	    if (shop != null) {
+	        model.addAttribute("shopName", shop.getShopName());  // 상점 이름을 모델에 추가
+	    } else {
+	        model.addAttribute("shopName", "상점 정보 없음");
+	    }
+
+	    // 다른 필요한 데이터 모델에 추가
+	    model.addAttribute("loginedMember", loginedMember);
+
+	    return "usr/consulting/reservation3";  // JSP 페이지 이름
 	}
+
 
 	@RequestMapping("/usr/consulting/reviewWrite")
 	public String showReviewWrite(HttpServletRequest req, Model model,

@@ -5,6 +5,12 @@
 <%
 com.example.demo.vo.Member loginedMember = (com.example.demo.vo.Member) session.getAttribute("loginedMember");
 %>
+<%@ page import="com.example.demo.vo.conShop"%>
+
+<%
+String shopId = request.getParameter("id");
+%>
+
 <style>
 .outer-box {
 	display: flex;
@@ -120,10 +126,9 @@ com.example.demo.vo.Member loginedMember = (com.example.demo.vo.Member) session.
 	cursor: pointer;
 }
 
-.text{
-display: flex;
-justify-content: center;
-
+.text {
+	display: flex;
+	justify-content: center;
 }
 </style>
 
@@ -131,8 +136,7 @@ justify-content: center;
 	<div class="small-outer-box">
 		<div class="title-box">
 			<div class="title">
-			
-				<%= loginedMember.getNickname() %>님  <br />빠른 예약 도와드릴게요.
+				<%=loginedMember.getNickname()%>님 <br />빠른 예약 도와드릴게요.
 			</div>
 			<div class="line"></div>
 		</div>
@@ -140,7 +144,9 @@ justify-content: center;
 			<div>답변 받고싶은 날짜를 선택해주세요.</div>
 		</div>
 
-		<form id="dateForm" action="reservation3" method="POST">
+		<form id="dateForm" action="reservation3?shopId=<%=shopId%>" method="POST">
+			<input type="hidden" name="shopId" value="<%=shopId%>">
+			<!-- 업체 ID를 숨겨진 필드로 추가 -->
 			<div class="outer-calendar-box">
 				<div class="calendar-month">
 					<%
@@ -161,7 +167,6 @@ justify-content: center;
 										<div class="present-MonthYear"><%=year%>.<%=(month < 10 ? '0' + month : month)%></div>
 										<button type="button" onclick="nextMonth()">Next</button>
 									</div>
-
 								</th>
 							</tr>
 							<tr>
@@ -180,15 +185,6 @@ justify-content: center;
 					</table>
 				</div>
 				<input type="hidden" id="selectedDateInput" name="selectedDate">
-				<!-- <div class="time-outer-box">
-					<div class="time-box">
-						<select name="selectedTime" id="time" class="form-control w-full max-w-xs select select-bordered">
-							<option value="09:00">09:00</option>
-							<option value="10:00">10:00</option>
-							<option value="11:00">11:00</option>
-						</select>
-					</div>
-				</div> -->
 			</div>
 
 			<div class="con-title">상담 옵션 선택</div>

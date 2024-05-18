@@ -2,7 +2,9 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <c:set var="pageTitle" value="#{board.code } ARTICLE LIST"></c:set>
 <%@ include file="../common/head.jspf"%>
-
+<%
+com.example.demo.vo.Member loginedMember = (com.example.demo.vo.Member) session.getAttribute("loginedMember");
+%>
 <style>
 .outer-box {
 	display: flex;
@@ -129,7 +131,8 @@ justify-content: center;
 	<div class="small-outer-box">
 		<div class="title-box">
 			<div class="title">
-				JH님 <br />빠른 예약 도와드릴게요.
+			
+				<%= loginedMember.getNickname() %>님  <br />빠른 예약 도와드릴게요.
 			</div>
 			<div class="line"></div>
 		</div>
