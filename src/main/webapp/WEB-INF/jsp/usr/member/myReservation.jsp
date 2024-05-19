@@ -451,7 +451,7 @@
 					<c:forEach items="${payments}" var="payment" varStatus="status">
 						<tr>
 							<td>${status.index + 1}</td>
-							<td>옵션내용1:1 컨설팅</td>
+							<td>1:1 컨설팅</td>
 							<td>${payment.amount}</td>
 							<td>${payment.shopName}</td>
 							<td>${payment.paymentDate}</td>

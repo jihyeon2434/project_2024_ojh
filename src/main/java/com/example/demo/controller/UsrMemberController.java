@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.example.demo.service.ConsultShopService;
@@ -282,4 +283,31 @@ public class UsrMemberController {
 
 		return Ut.jsReplace(modifyRd.getResultCode(), modifyRd.getMsg(), "../member/myPage");
 	}
+	
+	
+	
+	
+	@RequestMapping("/usr/member/doWithdraw")
+	@ResponseBody
+	// 회원 탈퇴를 처리하는 메서드
+	public String doWithdraw(HttpServletRequest req,
+			@RequestParam(defaultValue = "../member/login") String afterLogoutUri) {
+		Rq rq = (Rq) req.getAttribute("rq");
+
+		if (!rq.isLogined()) {
+			return Ut.jsHistoryBack("F-1", "로그인이 필요합니다.");
+		}
+
+		Member loginedMember = rq.getLoginedMember();
+		ResultData withdrawRd = memberService.withdrawMember(loginedMember.getId());
+
+		if (withdrawRd.isFail()) {
+			return Ut.jsReplace(withdrawRd.getResultCode(), withdrawRd.getMsg(), afterLogoutUri);
+		}
+
+		rq.logout(); // 회원 탈퇴 후 자동 로그아웃
+		return Ut.jsReplace("S-1", "탈퇴 처리되었습니다.", "/");
+	}
+	
+	
 }

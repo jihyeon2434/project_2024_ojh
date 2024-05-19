@@ -493,8 +493,8 @@ if (session.getAttribute("loginedMember") != null) {
 					<div class="menu-box">
 						<div class="theme">
 
-							<button class="category-button img-making">이미지메이킹</button>
-							<button class="category-button personal">퍼스널컬러</button>
+							<button class="category-button img-making">헤어</button>
+							<button class="category-button personal">메이크업</button>
 						</div>
 
 						<div class="line1"></div>
@@ -591,7 +591,7 @@ $(document).ready(function() {
 
     // 이미지메이킹 또는 퍼스널컬러 버튼 클릭 시
     $(".category-button").click(function() {
-        selectedCategory = $(this).text().trim() === "이미지메이킹" ? 1 : 2; // 선택된 category 옵션을 저장
+        selectedCategory = $(this).text().trim() === "헤어" ? 3 : 4; // 선택된 category 옵션을 저장
 
         // 선택된 버튼에 활성화된 클래스를 추가합니다.
         $(".category-button").removeClass("btn-active");

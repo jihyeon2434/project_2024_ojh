@@ -13,7 +13,7 @@
 
 .outer-box {
 	width: 700px; /* 수정된 너비 */
-	height: 650px;
+	height: 800px;
 	display: flex;
 	box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
 	border-radius: 8px;
@@ -35,10 +35,12 @@
 	background: rgba(239, 231, 229, 0.25);
 }
 
-.join-box input[type="text"] {
-	background: rgba(239, 231, 229, 0.25);
-	/* join-box의 input 태그 배경색 변경 */
+.join-box input[type="text"],
+.join-box select {
+    background: rgba(239, 231, 229, 0.25);
+    /* join-box의 input[type="text"]와 select 태그 배경색 변경 */
 }
+
 
 .submit-btn {
 	text-align: center;

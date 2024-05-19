@@ -72,6 +72,7 @@ public class MyWebMVCConfigurer implements WebMvcConfigurer {
 
 //      컨설팅 관련
 		ir.addPathPatterns("/usr/consulting/reservation2");
+		ir.addPathPatterns("/usr/consulting/reviewWrite");
 		
 		ir = registry.addInterceptor(needLogoutInterceptor);
 		ir.addPathPatterns("/usr/member/login");

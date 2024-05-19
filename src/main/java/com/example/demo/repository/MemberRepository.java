@@ -105,4 +105,12 @@ public interface MemberRepository {
 			""")
 	public Member getMemberById(int memberId);
 
+
+	@Update("""
+	        UPDATE member
+	        SET delStatus = #{delStatus}, delDate = NOW()
+	        WHERE id = #{memberId}
+	        """)
+	int updateDelStatus(int memberId, int delStatus);
+
 }
