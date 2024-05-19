@@ -25,18 +25,20 @@ public interface MemberRepository {
 	public Member getMemberByNameAndEmail(String name, String email);
 
 	@Insert("""
-			INSERT INTO
-			`member` SET
-			regDate = NOW(),
-			updateDate = NOW(),
-			loginId = #{loginId},
-			loginPw = #{loginPw},
-			`name` = #{name},
-			nickname = #{nickname},
-			cellphoneNum = #{cellphoneNum},
-			email = #{email}
-			""")
-	public void join(String loginId, String loginPw, String name, String nickname, String cellphoneNum, String email);
+	        INSERT INTO
+	        `member` SET
+	        regDate = NOW(),
+	        updateDate = NOW(),
+	        loginId = #{loginId},
+	        loginPw = #{loginPw},
+	        `name` = #{name},
+	        nickname = #{nickname},
+	        cellphoneNum = #{cellphoneNum},
+	        email = #{email},
+	        memberType = #{memberType},
+	        companyName = #{companyName}
+	        """)
+	public void join(String loginId, String loginPw, String name, String nickname, String cellphoneNum, String email, String memberType, String companyName);
 
 	@Select("SELECT LAST_INSERT_ID()")
 	public int getLastInsertId();
@@ -93,5 +95,14 @@ public interface MemberRepository {
 			</script>
 			""")
 	public void modifyWithoutPw(int loginedMemberId, String name, String nickname, String cellphoneNum, String email);
+
+	
+	
+	@Select("""
+			SELECT *
+			FROM `member`
+			WHERE id = #{memberId}
+			""")
+	public Member getMemberById(int memberId);
 
 }

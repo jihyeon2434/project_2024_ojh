@@ -1,5 +1,7 @@
 package com.example.demo.service;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -24,13 +26,7 @@ public class OnlineConsultService {
 	@Autowired
 	private ReviewRepository reviewRepository;
 
-	
 
-	/*
-	 * public int getCurrentArticleId() {
-	 * 
-	 * return OnlineConsultShopRepository.getCurrentArticleId(); }
-	 */
 
 	public ResultData<Integer> writeArticle(int loginedMemberId, String title, String body) {
 		OnlineConsultShopRepository.writeArticle(loginedMemberId, title, body);
@@ -50,8 +46,12 @@ public class OnlineConsultService {
 
 
 	public int getCurrentArticleId() {
-		// TODO Auto-generated method stub
 		return OnlineConsultShopRepository.getCurrentArticleId();
+	}
+
+
+	public List<OnlineConArticle> getInquiriesForCompany(int memberId) {
+		return OnlineConsultShopRepository.getInquiriesForCompany(memberId);
 	}
 
 	

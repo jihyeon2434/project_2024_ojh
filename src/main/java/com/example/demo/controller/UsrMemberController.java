@@ -11,10 +11,12 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.example.demo.service.ConsultShopService;
 import com.example.demo.service.MemberService;
+import com.example.demo.service.OnlineConsultService;
 import com.example.demo.service.PaymentService;
 import com.example.demo.service.selfShopService;
 import com.example.demo.util.Ut;
 import com.example.demo.vo.Member;
+import com.example.demo.vo.OnlineConArticle;
 import com.example.demo.vo.Payment;
 import com.example.demo.vo.ResultData;
 import com.example.demo.vo.Rq;
@@ -30,9 +32,12 @@ public class UsrMemberController {
 	private Rq rq;
 	@Autowired
 	private ConsultShopService consultShopService;
+	
+	@Autowired
+	private OnlineConsultService OnlineConsultService;
 	@Autowired
 	private MemberService memberService;
-
+	
 	@Autowired
 	private selfShopService selfShopService;
 	
@@ -110,9 +115,9 @@ public class UsrMemberController {
 
 	@RequestMapping("/usr/member/doJoin")
 	@ResponseBody
-	public String doJoin(HttpServletRequest req, String loginId, String loginPw, String name, String nickname,
-			String cellphoneNum, String email) {
-		Rq rq = (Rq) req.getAttribute("rq");
+	public String doJoin(HttpServletRequest req, String loginId, String loginPw, String name, String nickname, String cellphoneNum, String email, String memberType, String companyName) {
+	    Rq rq = (Rq) req.getAttribute("rq");
+
 		if (rq.isLogined()) {
 			return Ut.jsHistoryBack("F-A", "이미 로그인 상태입니다");
 		}
@@ -123,6 +128,11 @@ public class UsrMemberController {
 		if (Ut.isNullOrEmpty(loginPw)) {
 			return Ut.jsHistoryBack("F-2", "비밀번호를 입력해주세요");
 		}
+		
+		if ("업체".equals(memberType) && Ut.isNullOrEmpty(companyName)) {
+	        return Ut.jsHistoryBack("F-9", "업체명을 입력해주세요");
+	    }
+		
 		if (Ut.isNullOrEmpty(name)) {
 			return Ut.jsHistoryBack("F-3", "이름을 입력해주세요");
 		}
@@ -136,16 +146,16 @@ public class UsrMemberController {
 		if (Ut.isNullOrEmpty(email)) {
 			return Ut.jsHistoryBack("F-6", "이메일을 입력해주세요");
 		}
-
-		ResultData<Integer> joinRd = memberService.join(loginId, loginPw, name, nickname, cellphoneNum, email);
+		
+	
+		ResultData<Integer> joinRd = memberService.join(loginId, loginPw, name, nickname, cellphoneNum, email, memberType, companyName);
 
 		if (joinRd.isFail()) {
-			return Ut.jsHistoryBack(joinRd.getResultCode(), joinRd.getMsg());
-		}
-
+	        return Ut.jsHistoryBack(joinRd.getResultCode(), joinRd.getMsg());
+	    }
 		Member member = memberService.getMember(joinRd.getData1());
 
-		return Ut.jsReplace(joinRd.getResultCode(), joinRd.getMsg(), "../member/login");
+		 return Ut.jsReplace(joinRd.getResultCode(), joinRd.getMsg(), "../member/login");
 	}
 
 	@RequestMapping("/usr/member/myPage")
@@ -175,15 +185,27 @@ public class UsrMemberController {
 
 	@RequestMapping("/usr/member/myReservation")
 	public String showMyReservation(HttpServletRequest req, Model model) {
-		Rq rq = (Rq) req.getAttribute("rq");
-		int memberId = rq.getLoginedMemberId();
+	    Rq rq = (Rq) req.getAttribute("rq");
+	    int memberId = rq.getLoginedMemberId();
+	    Member member = memberService.getMemberById(memberId); // 회원 정보를 가져오는 메소드
 
-		List<Payment> payments = paymentService.getPaymentsByMemberId(memberId);
-		System.err.println("payments" + payments);
-		model.addAttribute("payments", payments);
+	    model.addAttribute("memberType", member.getMemberType()); // 회원 유형을 모델에 추가
 
-		return "usr/member/myReservation";
+	    if (member.getMemberType().equals("업체")) {
+	        // 업체 유형인 경우, 들어온 컨설팅 문의를 로드
+	        List<OnlineConArticle> inquiries = OnlineConsultService.getInquiriesForCompany(memberId);
+	        model.addAttribute("inquiries", inquiries);
+	        System.err.println("Inquiries: " + inquiries);
+	    } else {
+	        // 고객 유형인 경우, 결제 내역을 로드
+	        List<Payment> payments = paymentService.getPaymentsByMemberId(memberId);
+	        model.addAttribute("payments", payments);
+	        System.err.println("Payments: " + payments);
+	    }
+
+	    return "usr/member/myReservation";
 	}
+
 
 	@RequestMapping("/usr/member/myScrapShops")
 	public String showMyScrapShops(HttpServletRequest req, Model model) {

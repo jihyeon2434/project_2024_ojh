@@ -14,11 +14,14 @@ public class Member {
 	private String loginId;
 	private String loginPw;
 	private int authLevel;
+	private String memberType;
+	private String companyName;
 	private String name;
 	private String nickname;
 	private String cellphoneNum;
 	private String email;
 	private boolean delStatus;
 	private String delDate;
+	
 
 }

@@ -12,10 +12,9 @@ public class OnlineConArticle {
 	private String regDate;
 	private String updateDate;
 	private int memberId;
+	private String shopName;
 	private String title;
 	private String body;
-
-
 	private int extra__repliesCnt;
 	private String extra__writer;
 

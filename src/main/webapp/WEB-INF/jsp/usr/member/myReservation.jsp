@@ -391,15 +391,33 @@
 
 	<main class="main-content">
 		<div class="content-wrapper">
-			<header class="payment-history-header">
-				<h2 class="payment-history-title">나의 결제내역</h2>
-				<c:if test="${not empty payments}">
-					<button class="write-post-button">
-						<a href="../onlineConsulting/write">상담글 작성</a>
-					</button>
-				</c:if>
+			<c:choose>
+				<c:when test="${memberType == '업체'}">
+					<!-- 업체가 로그인했을 때 표시할 컨텐츠 -->
+					<header class="payment-history-header">
+						<h2 class="payment-history-title">나에게 들어온 컨설팅 문의</h2>
+						<c:if test="${not empty inquiries}">
+							<button class="write-post-button">
+								<a href="../onlineConsulting/respond">문의 답변하기</a>
+							</button>
+						</c:if>
+					</header>
+					<!-- 문의 내역 테이블 렌더링 -->
+				</c:when>
+				<c:otherwise>
+					<!-- 고객이 로그인했을 때 표시할 컨텐츠 -->
+					<header class="payment-history-header">
+						<h2 class="payment-history-title">나의 결제내역</h2>
+						<c:if test="${not empty payments}">
+							<button class="write-post-button">
+								<a href="../onlineConsulting/write">상담글 작성</a>
+							</button>
+						</c:if>
+					</header>
+					<!-- 결제 내역 테이블 렌더링 -->
+				</c:otherwise>
+			</c:choose>
 
-			</header>
 
 			<table class="table ">
 				<colgroup>

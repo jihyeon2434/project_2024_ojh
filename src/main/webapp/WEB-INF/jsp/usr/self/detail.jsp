@@ -383,7 +383,7 @@ style> /* CSS 스타일은 여기에 작성합니다 */ .hidden {
 .customer-reviews {
 	background-color: #fff;
 	display: flex;
-	max-width: 640px;
+	max-width: 900px;
 	flex-direction: column;
 	padding: 31px 0 53px;
 }
@@ -407,6 +407,8 @@ style> /* CSS 스타일은 여기에 작성합니다 */ .hidden {
 
 .reviews-title {
 	font-family: Inter, sans-serif;
+
+	width: 100%;
 }
 
 @media ( max-width : 991px) {
@@ -419,6 +421,8 @@ style> /* CSS 스타일은 여기에 작성합니다 */ .hidden {
 	background-color: #f3f3f3;
 	margin-top: 19px;
 	height: 1px;
+	width:100%;
+	
 }
 
 @media ( max-width : 991px) {

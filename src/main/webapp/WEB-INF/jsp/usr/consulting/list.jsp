@@ -467,7 +467,7 @@ if (session.getAttribute("loginedMember") != null) {
 
 			</div>
 			<div class="list-box">
-				<div class="main-text">ㅇㅇ들의 선택</div>
+				<div class="main-text">TrendX들의 선택</div>
 
 				<div class="menu-box">
 					<div class="theme">

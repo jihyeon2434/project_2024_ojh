@@ -65,8 +65,17 @@ public interface OnlineConsultShopRepository {
 				FROM OnlineConArticle
 				""")
 		public int getCurrentArticleId();
-			
-	
+
+
+		
+		@Select("""
+			    SELECT a.*
+			    FROM OnlineConArticle a
+			    INNER JOIN member m ON a.shopName = m.companyName
+			    WHERE m.id = #{memberId} AND m.memberType = '업체'
+			""")
+			public List<OnlineConArticle> getInquiriesForCompany(int memberId);
+
 
 
 		

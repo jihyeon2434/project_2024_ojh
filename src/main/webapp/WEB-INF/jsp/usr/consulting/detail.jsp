@@ -400,7 +400,7 @@
 .customer-reviews {
 	background-color: #fff;
 	display: flex;
-	max-width: 640px;
+	max-width: 900px;
 	flex-direction: column;
 	padding: 31px 0 53px;
 }
