@@ -5,6 +5,8 @@
 
 
 <style>
+
+/* 왼쪽 메뉴 박스 */
 .container {
 	background-color: #fff;
 	display: flex;
@@ -58,6 +60,22 @@
 	}
 }
 
+
+.divider {
+	border-color: rgba(232, 232, 232, 1);
+	border-style: solid;
+	border-width: 1px;
+	background-color: #e8e8e8;
+	width: 1px;
+	height: 924px;
+}
+
+/* 왼쪽 메뉴 박스 끝 */
+
+
+
+
+
 .main-content {
 	display: flex;
 	gap: 20px;
@@ -72,14 +90,6 @@
 	}
 }
 
-.divider {
-	border-color: rgba(232, 232, 232, 1);
-	border-style: solid;
-	border-width: 1px;
-	background-color: #e8e8e8;
-	width: 1px;
-	height: 924px;
-}
 
 .content-wrapper {
 	align-self: start;
