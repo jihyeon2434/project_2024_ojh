@@ -162,9 +162,11 @@ public class ConsultShopService {
 		return ResultData.from("S-1", Ut.f("%d번 글이 생성되었습니다", newReviewId), "id", newReviewId);
 	}
 
-	public List<Review> getReviewsByIdandThemeandCategory(int themeId, int categoryId, int id) {
-		return reviewRepository.getReviewByIdandThemeandCategory(themeId, categoryId, id);
-	}
+	/*
+	 * public List<Review> getReviewsByIdandThemeandCategory(int themeId, int
+	 * categoryId, int id) { return
+	 * reviewRepository.getReviewByIdandThemeandCategory(themeId, categoryId, id); }
+	 */
 
 	public List<conShop> getHighPointShops() {
 		

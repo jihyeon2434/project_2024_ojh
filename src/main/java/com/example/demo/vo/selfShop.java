@@ -26,4 +26,5 @@ public class selfShop {
     private String updateDate;
     private String delDate;
     private int delStatus;
+    private int totalStarPoint;
 }

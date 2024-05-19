@@ -47,10 +47,9 @@ public class UsrSelfController {
 
 	@Autowired
 	private selfShopService selfShopService;
-	
+
 	@Autowired
 	private ScrapService scrapService;
-
 
 	public UsrSelfController() {
 
@@ -63,7 +62,7 @@ public class UsrSelfController {
 		List<selfShop> shopInfoList = selfShopService.crawlSelfShops(inputKey);
 		return "usr/home/main";
 	}
-	
+
 	@RequestMapping("/usr/self/crawl2")
 	public String crawlSelfShops2(@RequestParam(required = false, defaultValue = "") String inputKey) {
 		List<selfShop> shopInfoList = selfShopService.crawlSelfShops2(inputKey);
@@ -84,22 +83,21 @@ public class UsrSelfController {
 	}
 
 	@RequestMapping("/usr/self/detail")
-	public String showconsultingDetail(HttpServletRequest req, Model model,
+	public String showSelfDetail(HttpServletRequest req, Model model,
 			@RequestParam(required = false, defaultValue = "2") int themeId, int id,
 			@RequestParam(required = false, defaultValue = "3") int categoryId) {
 		Rq rq = (Rq) req.getAttribute("rq");
-		
-		 ResultData usersScrapRd = scrapService.usersShopScrap(rq.getLoginedMemberId(), themeId, id, categoryId);
-
-			if (usersScrapRd.isSuccess()) {
-				model.addAttribute("userCanScrap", usersScrapRd.isSuccess());
-			}
-		 
-			
-			
-			
 		selfShop shop = selfShopService.getShopById(id);
 		List<Review> reviews = reviewService.getReviewsByIdandThemeandCategory(themeId, categoryId, id);
+		System.err.println(themeId);
+		System.err.println(categoryId);
+		System.err.println(id);
+	
+		ResultData usersScrapRd = scrapService.usersShopScrap(rq.getLoginedMemberId(), themeId, id, categoryId);
+		
+		if (usersScrapRd.isSuccess()) {
+			model.addAttribute("userCanScrap", usersScrapRd.isSuccess());
+		}
 		model.addAttribute("reviews", reviews);
 		model.addAttribute("shop", shop);
 		model.addAttribute("isAlreadyAddGoodRp",
@@ -121,32 +119,26 @@ public class UsrSelfController {
 
 	@RequestMapping("/usr/self/doReviewWrite")
 	@ResponseBody
-	public String doReviewWrite(HttpServletRequest req, 
-	        @RequestParam("title") String title, 
-	        @RequestParam("body") String body, 
-	        @RequestParam("themeId") int themeId, 
-	        @RequestParam("id") int id, 
-	        @RequestParam("categoryId") int categoryId,
-	        @RequestParam("rating") int rating) {
-	    Rq rq = (Rq) req.getAttribute("rq");
+	public String doReviewWrite(HttpServletRequest req, @RequestParam("title") String title,
+			@RequestParam("body") String body, @RequestParam("themeId") int themeId, @RequestParam("id") int id,
+			@RequestParam("categoryId") int categoryId, @RequestParam("rating") int rating) {
+		Rq rq = (Rq) req.getAttribute("rq");
 
-	    if (Ut.isNullOrEmpty(title)) {
-	        return Ut.jsHistoryBack("F-1", "제목을 입력해주세요");
-	    }
-	    if (Ut.isNullOrEmpty(body)) {
-	        return Ut.jsHistoryBack("F-2", "내용을 입력해주세요");
-	    }
+		if (Ut.isNullOrEmpty(title)) {
+			return Ut.jsHistoryBack("F-1", "제목을 입력해주세요");
+		}
+		if (Ut.isNullOrEmpty(body)) {
+			return Ut.jsHistoryBack("F-2", "내용을 입력해주세요");
+		}
 
-	    ResultData<Integer> writeReviewRd = reviewService.writeReview(rq.getLoginedMemberId(), title, body, themeId,
-	            categoryId, id, rating);
+		ResultData<Integer> writeReviewRd = reviewService.writeReview(rq.getLoginedMemberId(), title, body, themeId,
+				categoryId, id, rating);
 
-	    int newReviewId = writeReviewRd.getData1();
+		int newReviewId = writeReviewRd.getData1();
 
-	    return Ut.jsReplace(writeReviewRd.getResultCode(), writeReviewRd.getMsg(), "../self/detail?id=" + id);
+		return Ut.jsReplace(writeReviewRd.getResultCode(), writeReviewRd.getMsg(), "../self/detail?id=" + id + "&categoryId=" + categoryId + "&themeId=" + themeId);
 	}
-	
-	
-	
+
 	@GetMapping("/usr/self/showList")
 	public ResponseEntity<?> showSelfOptionList(@RequestParam int categoryId) {
 		System.out.println("categoryId: " + categoryId); // categoryId 값 확인을 위한 로그 추가
@@ -187,7 +179,7 @@ public class UsrSelfController {
 		System.err.println(priceRange);
 		System.err.println(priceRange);
 		List<selfShop> shopInfoList = selfShopService.getShopsByPriceRange(priceRange); // 별점이 높은 가게 목록을 가져오는 서비스 메소드
-																							// 호출
+																						// 호출
 		return ResponseEntity.ok().body(shopInfoList);
 	}
 
@@ -196,14 +188,12 @@ public class UsrSelfController {
 		List<selfShop> shopInfoList = selfShopService.getShopsByOptions(recommend, category);
 		return ResponseEntity.ok().body(shopInfoList);
 	}
-	
-
 
 	@GetMapping("/usr/self/getShopsByMyOptions")
-	public ResponseEntity<?> getShopsByMyOptions(@RequestParam("priceRange") int priceRange, @RequestParam("area") String area) {
+	public ResponseEntity<?> getShopsByMyOptions(@RequestParam("priceRange") int priceRange,
+			@RequestParam("area") String area) {
 		List<selfShop> shopInfoList = selfShopService.getShopsByMyOptions(priceRange, area);
 		return ResponseEntity.ok().body(shopInfoList);
 	}
-
 
 }

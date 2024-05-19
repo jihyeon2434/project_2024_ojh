@@ -286,7 +286,6 @@ style> /* CSS 스타일은 여기에 작성합니다 */ .hidden {
 	cursor: pointer;
 }
 
-
 .sm-img-outer-box {
 	border: 3px solid red;
 	width: 300px;
@@ -407,7 +406,6 @@ style> /* CSS 스타일은 여기에 작성합니다 */ .hidden {
 
 .reviews-title {
 	font-family: Inter, sans-serif;
-
 	width: 100%;
 }
 
@@ -421,8 +419,7 @@ style> /* CSS 스타일은 여기에 작성합니다 */ .hidden {
 	background-color: #f3f3f3;
 	margin-top: 19px;
 	height: 1px;
-	width:100%;
-	
+	width: 100%;
 }
 
 @media ( max-width : 991px) {
@@ -544,7 +541,7 @@ style> /* CSS 스타일은 여기에 작성합니다 */ .hidden {
 		<div class="shop-info-box">
 			<div class="Group96">
 				<div class="name">${shop.shopName}</div>
-				<div class="score">★4.96(420)</div>
+				<div class="score">★${shop.totalStarPoint}</div>
 			</div>
 		</div>
 
@@ -623,23 +620,21 @@ style> /* CSS 스타일은 여기에 작성합니다 */ .hidden {
 
 								<!-- 포트폴리오 내용을 표시할 공간 -->
 								<!-- 포트폴리오 섹션 -->
-						
-									<div class="gallery">
-										<div class="gallery-container">
-											<div class="gallery-row">
-												<img src="${shop.photoUrl1}" alt="Gallery image 1" class="gallery-image" style="width: 290px; height: 283px" />
-												<img src="${shop.photoUrl2}" alt="Gallery image 2" class="gallery-image" style="width: 290px; height: 283px" />
-												<img src="${shop.photoUrl3}" alt="Gallery image 3" class="gallery-image" style="width: 290px; height: 283px" />
-											</div>
-											<div class="gallery-row">
-												<img src="${shop.photoUrl4}" alt="Gallery image 4" class="gallery-image" style="width: 290px; height: 283px" />
-												<img src="${shop.photoUrl5}" alt="Gallery image 5" class="gallery-image" style="width: 290px; height: 283px" />
 
-											</div>
+								<div class="gallery">
+									<div class="gallery-container">
+										<div class="gallery-row">
+											<img src="${shop.photoUrl1}" alt="Gallery image 1" class="gallery-image" style="width: 290px; height: 283px" />
+											<img src="${shop.photoUrl2}" alt="Gallery image 2" class="gallery-image" style="width: 290px; height: 283px" />
+											<img src="${shop.photoUrl3}" alt="Gallery image 3" class="gallery-image" style="width: 290px; height: 283px" />
+										</div>
+										<div class="gallery-row">
+											<img src="${shop.photoUrl4}" alt="Gallery image 4" class="gallery-image" style="width: 290px; height: 283px" />
+											<img src="${shop.photoUrl5}" alt="Gallery image 5" class="gallery-image" style="width: 290px; height: 283px" />
+
 										</div>
 									</div>
-
-								
+								</div>
 
 							</div>
 
@@ -647,13 +642,10 @@ style> /* CSS 스타일은 여기에 작성합니다 */ .hidden {
 							<div class="info-content-review hidden">
 								<!-- 후기 내용을 표시할 공간 -->
 								<div class="write-box">
-									<a href="../consulting/reviewWrite?themeId=${shop.themeId }&categoryId=${shop.categoryId }&id=${shop.id }">
-
+									<a href="../self/reviewWrite?themeId=${shop.themeId }&categoryId=${shop.categoryId }&id=${shop.id }">
 										<div class="write">글쓰기</div>
 									</a>
 								</div>
-
-
 								<section class="customer-reviews">
 									<header class="reviews-header">
 										<h2 class="reviews-title">고객 리뷰</h2>

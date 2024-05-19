@@ -22,6 +22,7 @@ import com.example.demo.service.ConsultShopService;
 import com.example.demo.service.GenFileService;
 import com.example.demo.service.ReactionPointService;
 import com.example.demo.service.ReplyService;
+import com.example.demo.service.ReviewService;
 import com.example.demo.service.ScrapService;
 import com.example.demo.service.menuService;
 import com.example.demo.util.Ut;
@@ -42,7 +43,8 @@ public class UsrConsultingController {
 
 	@Autowired
 	private ArticleService articleService;
-
+	@Autowired
+	private ReviewService reviewService;
 	@Autowired
 	private BoardService boardService;
 
@@ -173,10 +175,10 @@ public class UsrConsultingController {
 	
 	
 	@RequestMapping("/usr/consulting/detail")
-	public String showconsultingDetail(HttpServletRequest req, Model model, int themeId, int id, int categoryId) {
+	public String showConsultingDetail(HttpServletRequest req, Model model, int themeId, int id, int categoryId) {
 		Rq rq = (Rq) req.getAttribute("rq");
 		conShop shop = consultShopService.getShopById(id);
-		List<Review> reviews = consultShopService.getReviewsByIdandThemeandCategory(themeId, categoryId, id);
+		List<Review> reviews = reviewService.getReviewsByIdandThemeandCategory(themeId, categoryId, id);
 		
 		 ResultData usersScrapRd = scrapService.usersShopScrap(rq.getLoginedMemberId(), themeId, id, categoryId);
 
@@ -265,7 +267,7 @@ public class UsrConsultingController {
 			return Ut.jsHistoryBack("F-2", "내용을 입력해주세요");
 		}
 
-		ResultData<Integer> writeReviewRd = consultShopService.writeReview(rq.getLoginedMemberId(), title, body,
+		ResultData<Integer> writeReviewRd = reviewService.writeReview(rq.getLoginedMemberId(), title, body,
 				themeId, categoryId, id, rating);
 
 		int newReviewId = writeReviewRd.getData1();

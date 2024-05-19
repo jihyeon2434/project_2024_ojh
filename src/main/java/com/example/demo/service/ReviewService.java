@@ -31,7 +31,11 @@ public class ReviewService {
 	
 
 	public List<Review> getReviewsByIdandThemeandCategory(int themeId, int categoryId, int id) {
-	    return reviewRepository.getReviewByIdandThemeandCategory(themeId, categoryId, id);
+	    System.err.println("themeId:"+themeId);
+	    System.err.println("categoryId:"+categoryId);
+	    System.err.println("id:"+id);
+	    
+		return reviewRepository.getReviewByIdandThemeandCategory(themeId, categoryId, id);
 	}
 
 	  public ResultData<Integer> writeReview(int loginedMemberId, String title, String body, int themeId, int categoryId, int shopId, int rating) {

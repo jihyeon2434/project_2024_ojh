@@ -48,11 +48,13 @@ public interface selfShopRepository {
 	
 	@Select("""
 			<script>
-				SELECT *
-				FROM service_selfshop AS S
-				WHERE S.id = #{id}
+			SELECT S.*, COALESCE(AVG(R.starPoint), 0) AS totalStarPoint
+			FROM service_selfshop AS S
+			LEFT JOIN service_review AS R ON S.categoryId = R.categoryId AND S.id = R.shopId
+			WHERE S.id = #{id}
+			GROUP BY  S.id, S.categoryId;
 			</script>
-				""")
+			""")
 	public selfShop getShopById(int id);
 
 	@Select("""
@@ -64,7 +66,7 @@ public interface selfShopRepository {
 	
 	@Select("""
 
-			SELECT C.*, M.menu, M.price
+			SELECT S.*, M.menu, M.price
 			FROM service_selfshop AS S
 			INNER JOIN service_menu AS M
 			ON S.themeId = M.themeId AND S.categoryId = M.categoryId AND S.shopName = M.shopName AND M.price > 0
