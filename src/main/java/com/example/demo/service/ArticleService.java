@@ -105,18 +105,15 @@ public class ArticleService {
 		return articleRepository.getArticleHitCount(id);
 	}
 
-	public List<Article> getForPrintArticles(int boardId, int itemsInAPage, int page, String searchKeywordTypeCode,
-			String searchKeyword) {
+	public List<Article> getForPrintArticles(int memberId, int boardId, int itemsInAPage, int page, String searchKeywordTypeCode,
+            String searchKeyword) {
+        int limitFrom = (page - 1) * itemsInAPage;
+        int limitTake = itemsInAPage;
 
-//		SELECT * FROM article WHERE boardId = 1 ORDER BY id DESC LIMIT 0, 10; 1page
-//		SELECT * FROM article WHERE boardId = 1 ORDER BY id DESC LIMIT 10, 10; 2page
+        return articleRepository.getForPrintArticles(memberId, boardId, limitFrom, limitTake, searchKeywordTypeCode,
+                searchKeyword);
+    }
 
-		int limitFrom = (page - 1) * itemsInAPage;
-		int limitTake = itemsInAPage;
-
-		return articleRepository.getForPrintArticles(boardId, limitFrom, limitTake, searchKeywordTypeCode,
-				searchKeyword);
-	}
 
 	public ResultData increaseGoodReactionPoint(int relId) {
 		int affectedRow = articleRepository.increaseGoodReactionPoint(relId);
@@ -164,6 +161,11 @@ public class ArticleService {
 
 	public int getBadRP(int relId) {
 		return articleRepository.getBadRP(relId);
+	}
+
+	public int getCurrentArticleId() {
+		return articleRepository.getCurrentArticleId();
+		
 	}
 
 }

@@ -1,214 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+
 <c:set var="pageTitle" value="ARTICLE DETAIL"></c:set>
 <%@ include file="../common/head.jspf"%>
-
-
-<style>
-
-.all {
-  width: 80%;
-  margin-left: 370px;
-  margin-top: 30px;
-  
-}
-
-.all-content{
-  width: 80%;
-  margin: 30px auto; /* 위아래는 30px, 좌우는 auto로 설정하여 가운데 정렬됩니다 */
-  
-}
-
-.top-box {
-  margin-top: 30px;
-}
-
-.line-main {
-  width: 70%;
-  position: relative;
-  top: 5px;
-  border: 1.5px #929294 solid;
-  
-}
-.line1 {
-  width: 70%;
-  position: relative;
-  top: 5px;
-  border: 1px #929294 solid;
-  
-}
-
-.title-box-1 {
-  width: 70%;
-  height: 100px;
-  
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-.title-box > div {
-  font-size: 35px;
-}
-
-.top-content-2 {
-  width: 70%;
-  height: 80px;
-  
-  display: flex;
-  justify-content: space-between; /* 수평으로 간격을 벌립니다 */
-  align-items: flex-end;
-  margin-left: 0;
-  display: block;
-}
-
-.writer {
-
-  font-weight: bold;
-}
-
-.repliesCount {
-  width: 130px;
-  margin-left: auto; /* 해당 div를 가장 오른쪽으로 이동시킵니다 */
-  
-}
-
-.hit-rel-count {
-  display: flex;
-  justify-content: space-between; /* 자식 요소를 양 끝으로 이동시킵니다 */
-  align-items: center; /* 내용을 수직으로 중앙에 정렬합니다 */
-  
-}
-
-.body-box {
-  width: 70%;
-  height: 500px;
-  border: 1px solid black;
-  margin-top: 20px;
-}
-
-.line2 {
-  width: 70%;
-  height: 0px;
-  margin-top: 20px;
-  border: 1px #929294 solid;
-}
-
-.under-box {
-  width: 70%;
-  height: 50px;
- 
-  display: flex; /* 자식 요소들을 수직선상에서 정렬하기 위해 플렉스박스 속성을 추가합니다 */
-  align-items: center; /* 자식 요소들을 수직으로 가운데 정렬합니다 */
-  justify-content: space-between;
-}
-
-.good {
-  display: flex;
-  
-}
-
-.good-count {
-  margin-left: 10px;
-  font-weight: bold;
-}
-
-.rep-top-box {
-  width: 70%;
-  height: 50px;
-  
-  display: flex;
-  align-items: center;
-}
-
-.modify-btn {
-  width: 50px;
-  height: 30px;
-  margin-right: 10px;
-  border: 1px #929294 solid;
-  border-radius: 5px;
-  text-align: center;
-}
-.delete-btn {
-  width: 50px;
-  height: 30px;
-  margin-right: 10px;
-  border: 1px #929294 solid;
-
-  border-radius: 5px;
-  text-align: center;
-}
-
-.line3 {
-  width: 70%;
-  height: 0px;
-  border: 1px #929294 solid;
-}
-
-.mod-del-box {
-  display: flex;
-  margin-right: 30px;
-}
-
-.rep {
-  margin-left: 20px;
-  font-weight: bold;
-  font-size: 20px;
-}
-
-.rep-outer-box {
-  width: 70%;
-  height: auto; /* 높이를 자동으로 조정합니다 */
- 
-  position: relative;
-}
-
-.write-box .text {
-  width: 2000px;
-  height: 30px;
-  border-radius: 5px;
-}
-
-.write-box .text-box .text {
-  width: 2000px;
-}
-
-.rep-write-box {
-  
-  border-radius: 5px;
-  height: 50px;
-}
-.text-box{
-
-border: 1px solid;
-}
-
-.rep-list-box .mod-btn,
-.rep-list-box .save-btn,
-.rep-list-box .del-btn,
- {
-  margin-right: 5px; /* 버튼 사이에 일정한 간격 추가 */
-  border-radius: 20px; /* 버튼 모서리를 둥글게 만듭니다 */
-  padding: 5px 15px; /* 버튼을 더 크게 만들기 위해 내부 여백을 추가합니다 */
-  font-size: 14px; /* 글자 크기 조정 */
-}
-
-.rep-list-box .mod-btn,
-.rep-list-box .save-btn,
-.rep-list-box .del-btn, {
-  color: #3498db; /* 텍스트 색상 설정 */
-  border-color: #3498db; /* 테두리 색상 설정 */
-  
-}
-
-.rep-list-box .mod-btn:hover,
-.rep-list-box .save-btn:hover,
-.rep-list-box .del-btn:hover {
-  background-color: #3498db; /* 호버 시 배경 색상 변경 */
-  color: #fff; /* 호버 시 텍스트 색상 변경 */
-}
-
-</style>
+<%@ include file="../common/toastUiEditorLib.jspf"%>
 
 <!-- <iframe src="http://localhost:8081/usr/article/doIncreaseHitCountRd?id=372" frameborder="0"></iframe> -->
 
@@ -443,160 +238,176 @@ function doModifyReply(replyId) {
         }
 	})
 }
+
 </script>
 
-<div class="all">
-  <div class="all-content"><div class="top-box">
-  <div class="line-main"></div>
-  <div class="title-box-1">
-  
-    <div>${article.title }</div>
 
-  </div>
-  <div class="top-content">
-  <div class="line-main"></div>
-  <br />
-    <div class="top-content-2">
-      <div class="writer">${article.extra__writer }</div>
+<section class="mt-8 text-xl px-4 ">
+	<div class="">
+		<table class="table-box-1 " border="1">
+			<tbody>
+				<tr>
+					<th>번호</th>
+					<td>${article.id }${goodRP}${badRP}</td>
+				</tr>
+				<tr>
+					<th>작성날짜</th>
+					<td>${article.regDate }</td>
+				</tr>
+				<tr>
+					<th>수정날짜</th>
+					<td>${article.updateDate }</td>
+				</tr>
+				<tr>
+					<th>작성자</th>
+					<td>${article.extra__writer }</td>
+				</tr>
+				<tr>
+					<th>좋아요</th>
+					<td id="likeCount">${article.goodReactionPoint }</td>
+				</tr>
+				<tr>
+					<th>싫어요</th>
+					<td id="DislikeCount">${article.badReactionPoint }</td>
+				</tr>
+				<tr>
+					<th>추천 ${usersReaction }</th>
+					<td>
+						<!-- href="/usr/reactionPoint/doGoodReaction?relTypeCode=article&relId=${param.id }&replaceUri=${rq.currentUri}" -->
+						<button id="likeButton" class="btn btn-outline btn-success" onclick="doGoodReaction(${param.id})">좋아요</button>
 
-      <div class="updateDate">
-        <div>${article.updateDate }</div>
-      </div>
-      <div class="hit-rel-count">
-        <div class="hitCount">
-          <div>조회수 ${article.hitCount }</div>
-        </div>
-        <div class="repliesCount">
-          <div>댓글 ${repliesCount}개</div>
-        </div>
-      </div>
-    </div>
-    <div class="line1"></div>
-  </div>
-</div>
-<div class="body-box">
-  <div>
-    ${article.body }
-  </div>
-</div>
-<div class="line2"></div>
-<div class="under-box">
-  <div class="good"> <button id="likeButton" class="btn btn-outline btn-success" onclick="doGoodReaction(${param.id})">좋아요</button>
-    <div class="good-count">${article.goodReactionPoint }</div>
-  </div>
-  <div class="mod-del-box">
-    
-      <c:if test="${article.userCanModify }">
-        <a class="btn btn-outline" href="../article/modify?id=${article.id }">수정</a>
-      </c:if>
-  
-      <c:if test="${article.userCanDelete }">
-        <a class="btn btn-outline" onclick="if(confirm('정말 삭제하시겠습니까?') == false) return false;" href="../article/doDelete?id=${article.id }">삭제</a>
-      </c:if>
-    
-  </div>
+						<button id="DislikeButton" class="btn btn-outline btn-error" onclick="doBadReaction(${param.id})">싫어요</button>
+					</td>
+				</tr>
+				<tr>
+					<th>조회수</th>
+					<td>
+						<span class="article-detail__hit-count">${article.hitCount }</span>
+					</td>
+				</tr>
+				<tr>
+					<th>제목</th>
+					<td>${article.title }</td>
+				</tr>
+				<tr>
+					<th>첨부 이미지</th>
+					<td>
+						<img class="w-full rounded-xl" src="${rq.getImgUri(article.id)}" onerror="${rq.profileFallbackImgOnErrorHtml}"
+							alt="" />
+						<div>${rq.getImgUri(article.id)}</div>
+					</td>
+				</tr>
+				<tr>
+					<th>내용</th>
+					<td>
+						<div class="toast-ui-viewer">
+							<script type="text/x-template">${article.body}</script>
+						</div>
+					</td>
+				</tr>
+			</tbody>
+		</table>
+		<div class="btns mt-5">
+			<button class="btn btn-outline" type="button" onclick="history.back();">뒤로가기</button>
+			<c:if test="${article.userCanModify }">
+				<a class="btn btn-outline" href="../article/modify?id=${article.id }">수정</a>
+			</c:if>
+			<c:if test="${article.userCanDelete }">
+				<a class="btn btn-outline" onclick="if(confirm('정말 삭제하시겠습니까?') == false) return false;"
+					href="../article/doDelete?id=${article.id }">삭제</a>
+			</c:if>
+		</div>
+	</div>
+</section>
 
-</div>
-<div class="line3"></div>
+<section class="mt-5 px-3">
+	<c:if test="${rq.isLogined() }">
+		<form action="../reply/doWrite" method="POST" onsubmit="ReplyWrite__submit(this); return false;">
+			<input type="hidden" name="relTypeCode" value="article" />
+			<input type="hidden" name="relId" value="${article.id }" />
+			<table class="write-box table-box-1" border="1">
+				<tbody>
+					<tr>
+						<th>내용</th>
+						<td>
+							<textarea class="input input-bordered input-primary w-full max-w-xs" autocomplete="off" placeholder="내용을 입력해주세요"
+								name="body"> </textarea>
+						</td>
+					</tr>
+					<tr>
+						<th></th>
+						<td>
+							<input class="btn btn-outline btn-info" type="submit" value="댓글 작성" />
+						</td>
+					</tr>
+				</tbody>
+			</table>
+		</form>
+	</c:if>
+	<c:if test="${!rq.isLogined() }">
+		<a class="btn btn-outline btn-ghost" href="${rq.loginUri }">LOGIN</a> 하고 댓글 써
+	</c:if>
+	<div class="mx-auto">
+		<h2>댓글 리스트(${repliesCount })</h2>
+		<table class="table-box-1 table" border="1">
+			<colgroup>
+				<col style="width: 10%" />
+				<col style="width: 20%" />
+				<col style="width: 60%" />
+				<col style="width: 10%" />
+			</colgroup>
+			<thead>
+				<tr>
+					<th>번호</th>
+					<th>날짜</th>
+					<th>내용</th>
+					<th>작성자</th>
+					<th>좋아요</th>
+					<th>싫어요</th>
+					<th>수정</th>
+					<th>삭제</th>
+				</tr>
+			</thead>
+			<tbody>
 
-<div class="rep-top-box">
-  <div class="rep">댓글</div>
-</div>
-<div class="rep-outer-box">
-  <section class="px-3">
-    <div class="rep-write-box">
-      <c:if test="${rq.isLogined() }">
-        <form action="../reply/doWrite" method="POST" onsubmit="ReplyWrite__submit(this); return false;">
-          <input type="hidden" name="relTypeCode" value="article" />
-          <input type="hidden" name="relId" value="${article.id }" />
-          <table class="write-box table-box-1" border="1">
-            <tbody>
-              <tr>
+				<c:forEach var="reply" items="${replies }">
+					<tr class="hover">
+						<td>${reply.id }</td>
+						<td>${reply.regDate.substring(0,10) }</td>
+						<td>
+							<span id="reply-${reply.id }">${reply.body }</span>
+							<form method="POST" id="modify-form-${reply.id }" style="display: none;" action="/usr/reply/doModify">
+								<input type="text" value="${reply.body }" name="reply-text-${reply.id }" />
+							</form>
+						</td>
+						<td>${reply.extra__writer }</td>
+						<td>${reply.goodReactionPoint }</td>
+						<td>${reply.badReactionPoint }</td>
+						<td>
+							<c:if test="${reply.userCanModify }">
+								<%-- 							href="../reply/modify?id=${reply.id }" --%>
+								<button onclick="toggleModifybtn('${reply.id}');" id="modify-btn-${reply.id }" style="white-space: nowrap;"
+									class="btn btn-outline">수정</button>
+								<button onclick="doModifyReply('${reply.id}');" style="white-space: nowrap; display: none;"
+									id="save-btn-${reply.id }" class="btn btn-outline">저장</button>
+							</c:if>
+						</td>
+						<td>
+							<c:if test="${reply.userCanDelete }">
+								<a style="white-space: nowrap;" class="btn btn-outline"
+									onclick="if(confirm('정말 삭제하시겠습니까?') == false) return false;" href="../reply/doDelete?id=${reply.id }">삭제</a>
+							</c:if>
+						</td>
+					</tr>
+				</c:forEach>
+			</tbody>
+		</table>
+	</div>
 
-                <td class="text-box textarea textarea-bordered ">
-                  <textarea class="h-24 text input input-bordered input-primary w-full max-w-xs" autocomplete="off" type="text" placeholder="내용을 입력해주세요" name="body"> </textarea>
-               
-                
-                </td>
-                <td>
-                  <input class="btn btn-outline btn-info" type="submit" value="댓글" />
-                </td>
-              </tr>
+</section>
 
-            </tbody>
-          </table>
-        </form>
-      </c:if>
-    <c:if test="${!rq.isLogined() }">
-      <a class="btn btn-outline btn-ghost" href="../member/login">LOGIN</a> 하고 댓글 써
-    </c:if>
-    </div>
+<script>
 
-    
- 
-    <div class="rep-list-box mx-auto">
-      <h2>댓글 리스트(${repliesCount })</h2>
-      <table class="table-box-1 table" border="1">
-        <colgroup>
-          <col style="width: 35%" />
-          <col style="width: 10%" />
-          <col style="width: 15%" />
-          <col style="width: 10%" />
-          <col style="width: 15%" />
-          <col style="width: 15%" />
-        
-        </colgroup>
-        <thead>
-          <tr>
-
-            <th>댓글</th>
-            <th>닉네임</th>
-            <th>날짜</th>
-            <th>좋아요</th>
-            <th>싫어요</th>
-            <th>수정</th>
-            <th>삭제</th>
-          </tr>
-           <tr><!-- 이 줄을 추가합니다 -->
-    <td colspan="7"><hr></td><!-- 이 줄을 추가합니다 -->
-  </tr><!-- 이 줄을 추가합니다 -->
-        </thead>
-        <tbody>
-
-          <c:forEach var="reply" items="${replies }">
-            <tr class="hover">
-              <td>
-                <span id="reply-${reply.id }">${reply.body }</span>
-                <form method="POST" id="modify-form-${reply.id }" style="display: none;" action="/usr/reply/doModify">
-                  <input type="text" value="${reply.body }" name="reply-text-${reply.id }" />
-                </form>
-              </td>
-              <td>${reply.extra__writer }</td>
-              <td>${reply.regDate.substring(0,10) }</td>
-
-              <td>${reply.goodReactionPoint }</td>
-              <td>${reply.badReactionPoint }</td>
-              <td>
-                <c:if test="${reply.userCanModify }">
-                  <%-- 							href="../reply/modify?id=${reply.id }" --%>
-                  <button onclick="toggleModifybtn('${reply.id}');" id="modify-btn-${reply.id }" style="white-space: nowrap;" class="mod-btn">수정</button>
-                  <button onclick="doModifyReply('${reply.id}');" style="white-space: nowrap; display: none;" id="save-btn-${reply.id }" class="save-btn btn-outline">저장</button>
-                </c:if>
-              </td>
-              <td>
-                <c:if test="${reply.userCanDelete }">
-                  <a style="white-space: nowrap;" class="del-btn btn-outline" onclick="if(confirm('정말 삭제하시겠습니까?') == false) return false;" href="../reply/doDelete?id=${reply.id }">삭제</a>
-                </c:if>
-              </td>
-            </tr>
-          </c:forEach>
-        </tbody>
-      </table>
-    </div>
-
-  </section>
-</div></div>
-  
-</div>
+</script>
 
 <%@ include file="../common/foot.jspf"%>

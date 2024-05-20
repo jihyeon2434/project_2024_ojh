@@ -10,12 +10,17 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.example.demo.service.ArticleService;
+import com.example.demo.service.BoardService;
 import com.example.demo.service.ConsultShopService;
 import com.example.demo.service.MemberService;
 import com.example.demo.service.OnlineConsultService;
 import com.example.demo.service.PaymentService;
+import com.example.demo.service.ReplyService;
 import com.example.demo.service.selfShopService;
 import com.example.demo.util.Ut;
+import com.example.demo.vo.Article;
+import com.example.demo.vo.Board;
 import com.example.demo.vo.Member;
 import com.example.demo.vo.OnlineConArticle;
 import com.example.demo.vo.Payment;
@@ -28,6 +33,16 @@ import jakarta.servlet.http.HttpServletRequest;
 
 @Controller
 public class UsrMemberController {
+	
+
+	@Autowired
+	private ArticleService articleService;
+
+	@Autowired
+	private BoardService boardService;
+
+	@Autowired
+	private ReplyService replyService;
 
 	@Autowired
 	private Rq rq;
@@ -185,11 +200,39 @@ public class UsrMemberController {
 	}
 
 	@RequestMapping("/usr/member/myReservation")
-	public String showMyReservation(HttpServletRequest req, Model model) {
+	public String showMyReservation(HttpServletRequest req, Model model, @RequestParam(defaultValue = "1") int boardId,
+			@RequestParam(defaultValue = "1") int page,
+			@RequestParam(defaultValue = "title,body") String searchKeywordTypeCode,
+			@RequestParam(defaultValue = "") String searchKeyword) {
 	    Rq rq = (Rq) req.getAttribute("rq");
 	    int memberId = rq.getLoginedMemberId();
 	    Member member = memberService.getMemberById(memberId); // 회원 정보를 가져오는 메소드
+	    Board board = boardService.getBoardById(boardId);
 
+		int articlesCount = articleService.getArticlesCount(boardId, searchKeywordTypeCode, searchKeyword);
+
+		if (board == null) {
+			return rq.historyBackOnView("없는 게시판이야");
+		}
+
+		// 한페이지에 글 10개씩이야
+		// 글 20개 -> 2 page
+		// 글 24개 -> 3 page
+		int itemsInAPage = 10;
+
+		int pagesCount = (int) Math.ceil(articlesCount / (double) itemsInAPage);
+
+		List<Article> articles = articleService.getForPrintArticles(memberId, boardId, itemsInAPage, page, searchKeywordTypeCode,
+				searchKeyword);
+
+		model.addAttribute("board", board);
+		model.addAttribute("boardId", boardId);
+		model.addAttribute("page", page);
+		model.addAttribute("pagesCount", pagesCount);
+		model.addAttribute("searchKeywordTypeCode", searchKeywordTypeCode);
+		model.addAttribute("searchKeyword", searchKeyword);
+		model.addAttribute("articlesCount", articlesCount);
+		model.addAttribute("articles", articles);
 	    model.addAttribute("memberType", member.getMemberType()); // 회원 유형을 모델에 추가
 
 	    if (member.getMemberType().equals("업체")) {

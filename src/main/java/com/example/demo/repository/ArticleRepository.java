@@ -50,6 +50,7 @@ public interface ArticleRepository {
 	public void deleteArticle(int id);
 
 	@Update("""
+			<script>
 			UPDATE article
 				<set>
 					<if test="title != null and title != ''">title = #{title},</if>
@@ -57,6 +58,7 @@ public interface ArticleRepository {
 					updateDate = NOW()
 				</set>
 			WHERE id = #{id}
+			</script>
 				""")
 	public void modifyArticle(int id, String title, String body);
 
@@ -125,41 +127,41 @@ public interface ArticleRepository {
 			""")
 	public int getArticleHitCount(int id);
 
-	@Select("""
-			<script>
-			SELECT A.*, M.nickname AS extra__writer, IFNULL(COUNT(R.id),0) AS extra__repliesCnt
-			FROM article AS A
-			INNER JOIN `member` AS M
-			ON A.memberId = M.id
-			LEFT JOIN `reply` AS R
-			ON A.id = R.relId
-			WHERE 1
-			<if test="boardId != 0">
-				AND A.boardId = #{boardId}
-			</if>
-			<if test="searchKeyword != ''">
-				<choose>
-					<when test="searchKeywordTypeCode == 'title'">
-						AND A.title LIKE CONCAT('%',#{searchKeyword},'%')
-					</when>
-					<when test="searchKeywordTypeCode == 'body'">
-						AND A.body LIKE CONCAT('%',#{searchKeyword},'%')
-					</when>
-					<otherwise>
-						AND A.title LIKE CONCAT('%',#{searchKeyword},'%')
-						OR A.body LIKE CONCAT('%',#{searchKeyword},'%')
-					</otherwise>
-				</choose>
-			</if>
-			GROUP BY A.id
-			ORDER BY A.id DESC
-			<if test="limitFrom >= 0 ">
-				LIMIT #{limitFrom}, #{limitTake}
-			</if>
-			</script>
-			""")
-	public List<Article> getForPrintArticles(int boardId, int limitFrom, int limitTake, String searchKeywordTypeCode,
-			String searchKeyword);
+	 @Select("""
+	            <script>
+	            SELECT A.*, M.nickname AS extra__writer, IFNULL(COUNT(R.id),0) AS extra__repliesCnt
+	            FROM article AS A
+	            INNER JOIN `member` AS M
+	            ON A.memberId = M.id
+	            LEFT JOIN `reply` AS R
+	            ON A.id = R.relId
+	            WHERE A.memberId = #{memberId}
+	            <if test="boardId != 0">
+	                AND A.boardId = #{boardId}
+	            </if>
+	            <if test="searchKeyword != ''">
+	                <choose>
+	                    <when test="searchKeywordTypeCode == 'title'">
+	                        AND A.title LIKE CONCAT('%',#{searchKeyword},'%')
+	                    </when>
+	                    <when test="searchKeywordTypeCode == 'body'">
+	                        AND A.body LIKE CONCAT('%',#{searchKeyword},'%')
+	                    </when>
+	                    <otherwise>
+	                        AND A.title LIKE CONCAT('%',#{searchKeyword},'%')
+	                        OR A.body LIKE CONCAT('%',#{searchKeyword},'%')
+	                    </otherwise>
+	                </choose>
+	            </if>
+	            GROUP BY A.id
+	            ORDER BY A.id DESC
+	            <if test="limitFrom >= 0">
+	                LIMIT #{limitFrom}, #{limitTake}
+	            </if>
+	            </script>
+	            """)
+	    public List<Article> getForPrintArticles(int memberId, int boardId, int limitFrom, int limitTake, String searchKeywordTypeCode,
+	            String searchKeyword);
 
 	@Update("""
 			UPDATE article
@@ -202,5 +204,11 @@ public interface ArticleRepository {
 			WHERE id = #{relId}
 			""")
 	public int getBadRP(int relId);
+
+	@Select("""
+			SELECT MAX(id) + 1
+			FROM article
+			""")
+	public int getCurrentArticleId();
 
 }

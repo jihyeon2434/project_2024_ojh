@@ -16,4 +16,5 @@ public class Payment {
 	private int amount;
 	private String paymentDate;
 	private String paymentStatus;
+	private boolean canWriteArticle;
 }

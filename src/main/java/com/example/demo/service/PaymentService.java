@@ -25,4 +25,15 @@ public class PaymentService {
 		return paymentRepository.getPaymentsByMemberId(memberId);
 	}
 
+
+	public Boolean canWriteArticle(int memberId, String shopName) {
+		return paymentRepository.canWriteArticle(memberId, shopName);
+	}
+
+
+	public void useArticleWritePermission(int memberId, String shopName) {
+		paymentRepository.useArticleWritePermission(memberId, shopName);
+		
+	}
+
 }

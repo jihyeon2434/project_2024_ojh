@@ -1,6 +1,7 @@
 package com.example.demo.controller;
 
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -8,13 +9,15 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.multipart.MultipartRequest;
 
 import com.example.demo.service.ArticleService;
 import com.example.demo.service.BoardService;
-import com.example.demo.service.ConsultShopService;
+import com.example.demo.service.GenFileService;
+import com.example.demo.service.PaymentService;
 import com.example.demo.service.ReactionPointService;
 import com.example.demo.service.ReplyService;
-import com.example.demo.service.selfShopService;
 import com.example.demo.util.Ut;
 import com.example.demo.vo.Article;
 import com.example.demo.vo.Board;
@@ -32,6 +35,9 @@ public class UsrArticleController {
 
 	@Autowired
 	private ArticleService articleService;
+	
+	@Autowired
+	private PaymentService paymentService;
 
 	@Autowired
 	private BoardService boardService;
@@ -40,19 +46,16 @@ public class UsrArticleController {
 	private ReplyService replyService;
 
 	@Autowired
+	private GenFileService genFileService;
+
+	@Autowired
 	private ReactionPointService reactionPointService;
 	
-	@Autowired
-	private ConsultShopService consultShopService;
-	
-	@Autowired
-	private selfShopService selfShopService;
 	
 
+	public UsrArticleController() {
 
-
-
-	
+	}
 
 	// 액션 메서드
 
@@ -63,7 +66,7 @@ public class UsrArticleController {
 			@RequestParam(defaultValue = "") String searchKeyword) {
 
 		Rq rq = (Rq) req.getAttribute("rq");
-
+	    int memberId = rq.getLoginedMemberId();
 		Board board = boardService.getBoardById(boardId);
 
 		int articlesCount = articleService.getArticlesCount(boardId, searchKeywordTypeCode, searchKeyword);
@@ -79,7 +82,7 @@ public class UsrArticleController {
 
 		int pagesCount = (int) Math.ceil(articlesCount / (double) itemsInAPage);
 
-		List<Article> articles = articleService.getForPrintArticles(boardId, itemsInAPage, page, searchKeywordTypeCode,
+		List<Article> articles = articleService.getForPrintArticles(memberId, boardId, itemsInAPage, page, searchKeywordTypeCode,
 				searchKeyword);
 
 		model.addAttribute("board", board);
@@ -93,14 +96,6 @@ public class UsrArticleController {
 
 		return "usr/article/list";
 	}
-	
-
-	@RequestMapping("/usr/article/search")
-	public String showSearch(HttpServletRequest req, Model model) {
-		Rq rq = (Rq) req.getAttribute("rq");
-		return "usr/article/search";
-	}
-	
 
 	@RequestMapping("/usr/article/detail")
 	public String showDetail(HttpServletRequest req, Model model, int id) {
@@ -147,17 +142,33 @@ public class UsrArticleController {
 	}
 
 	@RequestMapping("/usr/article/write")
-	public String showJoin(HttpServletRequest req) {
+	public String showJoin(Model model) {
+
+		int currentId = articleService.getCurrentArticleId();
+
+		model.addAttribute("currentId", currentId);
 
 		return "usr/article/write";
 	}
 
 	@RequestMapping("/usr/article/doWrite")
 	@ResponseBody
-	public String doWrite(HttpServletRequest req, String title, String body, int boardId) {
+	public String doWrite(HttpServletRequest req, int boardId, String title, String body, String replaceUri,
+			MultipartRequest multipartRequest, String shopName) {
 
 		Rq rq = (Rq) req.getAttribute("rq");
+		int memberId = rq.getLoginedMemberId();
+System.out.println(memberId);
+System.err.println(shopName);
+		 // 권한 검사
+	    Boolean canWrite = paymentService.canWriteArticle(memberId, shopName);
+	    
+	    System.err.println("canWrite:"+canWrite);
+	    if (canWrite == null || !canWrite) {
+	        return Ut.jsHistoryBack("F-1", "해당 업체에 대한 글 작성 권한이 없습니다.");
+	    }
 
+		
 		if (Ut.isNullOrEmpty(title)) {
 			return Ut.jsHistoryBack("F-1", "제목을 입력해주세요");
 		}
@@ -165,11 +176,26 @@ public class UsrArticleController {
 			return Ut.jsHistoryBack("F-2", "내용을 입력해주세요");
 		}
 
+	  System.err.println("shopName:"+shopName);
+		
 		ResultData<Integer> writeArticleRd = articleService.writeArticle(rq.getLoginedMemberId(), title, body, boardId);
 
 		int id = (int) writeArticleRd.getData1();
 
 		Article article = articleService.getArticle(id);
+
+		Map<String, MultipartFile> fileMap = multipartRequest.getFileMap();
+
+		for (String fileInputName : fileMap.keySet()) {
+			MultipartFile multipartFile = fileMap.get(fileInputName);
+
+			if (multipartFile.isEmpty() == false) {
+				genFileService.save(multipartFile, id);
+			}
+		}
+		
+		  // 권한 사용
+	    paymentService.useArticleWritePermission(memberId, shopName);
 
 		return Ut.jsReplace(writeArticleRd.getResultCode(), writeArticleRd.getMsg(), "../article/detail?id=" + id);
 

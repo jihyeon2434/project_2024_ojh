@@ -25,7 +25,6 @@ public class Rq {
 	private Member loginedMember;
 
 	private HttpSession session;
-	private boolean init = false;
 
 	private HttpServletRequest req;
 	private HttpServletResponse resp;
@@ -105,12 +104,45 @@ public class Rq {
 		return currentUri;
 	}
 
-	public boolean isInit() {
-		return init;
+	public void jsprintReplace(String resultCode, String msg, String replaceUri) {
+		resp.setContentType("text/html; charset=UTF-8");
+		print(Ut.jsReplace(resultCode, msg, replaceUri));
+
 	}
 
-	public void setInit(boolean init) {
-		this.init = init;
+	public String getLoginUri() {
+		return "../member/login?afterLoginUri=" + getAfterLoginUri();
+	}
+
+	private String getAfterLoginUri() {
+		return getEncodedCurrentUri();
+	}
+
+	public String getEncodedCurrentUri() {
+		return Ut.getEncodedCurrentUri(getCurrentUri());
+	}
+
+	public String getLogoutUri() {
+		return "../member/doLogout?afterLogoutUri=" + getAfterLogoutUri();
+	}
+
+	private String getAfterLogoutUri() {
+
+		String requestUri = req.getRequestURI();
+
+		return getEncodedCurrentUri();
+	}
+
+	public String getImgUri(int id) {
+		return "/common/genFile/file/article/" + id + "/extra/Img/1";
+	}
+
+	public String getProfileFallbackImgUri() {
+		return "https://via.placeholder.com/150/?text=*^_^*";
+	}
+
+	public String getProfileFallbackImgOnErrorHtml() {
+		return "this.src = '" + getProfileFallbackImgUri() + "'";
 	}
 
 }
