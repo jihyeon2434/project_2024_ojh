@@ -6,7 +6,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.example.demo.controller.WebCrawler17;
+import com.example.demo.controller.WebConsultingCrawler;
 import com.example.demo.repository.menuRepository;
 import com.example.demo.vo.menu;
 

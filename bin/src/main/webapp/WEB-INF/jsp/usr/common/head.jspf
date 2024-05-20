@@ -41,14 +41,7 @@ ul.flex {
         style="background-color: #efe7e5; display: flex; align-items: center; position: relative;"> <!-- Added position: relative; -->
         <!-- 배경색 및 불투명도 조정 -->
     <div class="total-search-box">
-    <!-- 검색바 -->
-        <div class="flex items-center">
-            <!-- 왼쪽 여백 추가 -->
-            <input type="text" placeholder="Search Keyword" tabindex="1" name="keyword" id="top_search" onclick="../article/search"
-                class="bg-opacity-70 bg-white border-black border rounded-md px-2 py-1 mr-4 text-sm font-serif" style="background-color: #efe7e5;">
-            <i class="fas fa-search text-gray-400 mr-2"></i>
-            <!-- 돋보기 아이콘 추가 및 오른쪽 여백 추가 -->
-        </div>
+    
     </div>
         
         <!-- 로고 -->

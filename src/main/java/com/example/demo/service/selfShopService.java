@@ -1,8 +1,8 @@
 package com.example.demo.service;
 
-import com.example.demo.controller.WebCrawler17;
-import com.example.demo.controller.WebCrawler18;
-import com.example.demo.controller.WebCrawler20;
+import com.example.demo.controller.WebConsultingCrawler;
+import com.example.demo.controller.WebSelfCrawler;
+import com.example.demo.controller.WebSelfCrawler2;
 import com.example.demo.repository.ConsultShopRepository;
 import com.example.demo.repository.selfShopRepository;
 import com.example.demo.vo.ResultData;
@@ -29,7 +29,7 @@ public class selfShopService {
 	}
 
 	public List<selfShop> crawlSelfShops(String inputKey) {
-		WebCrawler18 crawler = new WebCrawler18();
+		WebSelfCrawler crawler = new WebSelfCrawler();
 		List<selfShop> shopInfoList = crawler.crawlMap();
 		for (selfShop shopInfo : shopInfoList) {
 			registerShop(shopInfo); // 크롤링한 가게 정보를 저장
@@ -38,7 +38,7 @@ public class selfShopService {
 	}
 
 	public List<selfShop> crawlSelfShops2(String inputKey) {
-		WebCrawler20 crawler = new WebCrawler20();
+		WebSelfCrawler2 crawler = new WebSelfCrawler2();
 		List<selfShop> shopInfoList = crawler.crawlMap();
 		for (selfShop shopInfo : shopInfoList) {
 			registerShop(shopInfo); // 크롤링한 가게 정보를 저장

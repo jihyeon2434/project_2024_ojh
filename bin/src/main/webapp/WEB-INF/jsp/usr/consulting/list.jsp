@@ -5,6 +5,8 @@
 <%@ include file="../common/head.jspf"%>
 
 <style>
+
+
 .outer-box {
 	display: flex;
 	margin-top: 30px;
@@ -210,7 +212,6 @@
 	width: 1000px;
 	height: 0px;
 	position: absolute;
-
 }
 
 .content-box {
@@ -278,7 +279,7 @@
 .small-img-outer-box {
 	width: 100%;
 	overflow-x: auto; /* x 축으로 넘칠 경우 스크롤 생성 */
-	 white-space: nowrap; /* 요소들을 한 줄에 나열*/
+	white-space: nowrap; /* 요소들을 한 줄에 나열*/
 }
 
 .img-big-outer-box {
@@ -408,7 +409,7 @@
 				</div>
 
 			</div>
-			
+
 
 		</div>
 
@@ -419,30 +420,48 @@
 
 
 
-<%
-// 로그인 여부 확인
-if (session.getAttribute("loginedMember") != null) {
-    // 로그인한 경우
-    com.example.demo.vo.Member loginedMember = (com.example.demo.vo.Member) session.getAttribute("loginedMember");
-%>
-    <div class="main-text"><%= loginedMember.getNickname() %>님만을 위한 추천 컨설팅 업체</div>
-<%
-} else {
-    // 로그인하지 않은 경우
-%>
-    <div class="main-text">당신만을 위한 추천 컨설팅 업체</div>
-<%
-}
-%>
+			<%
+			// 로그인 여부 확인
+			if (session.getAttribute("loginedMember") != null) {
+				// 로그인한 경우
+				com.example.demo.vo.Member loginedMember = (com.example.demo.vo.Member) session.getAttribute("loginedMember");
+			%>
+			<div class="main-text"><%=loginedMember.getNickname()%>님만을 위한 추천 컨설팅 업체
+			</div>
+			<%
+			} else {
+			// 로그인하지 않은 경우
+			%>
+			<div class="main-text">당신만을 위한 추천 컨설팅 업체</div>
+			<%
+			}
+			%>
 
 
 
 
-			
+
 			<div class="con-box">
 				
+
+
+
+
 				<div class="img-outer-box-2">
 					<div class="small-img-outer-box">
+
+
+
+
+
+
+
+
+
+
+
+
+
 						<div class="img-outer-box personal-img-outer-box">
 							<c:forEach var="i" begin="${startIndex}" end="${endIndex}">
 								<c:if test="${i < fn:length(shopInfoList)}">
@@ -467,14 +486,13 @@ if (session.getAttribute("loginedMember") != null) {
 
 			</div>
 			<div class="list-box">
-				<div class="main-text">ㅇㅇ들의 선택</div>
+				<div class="main-text">TrendX들의 선택</div>
 
 				<div class="menu-box">
 					<div class="theme">
 
 						<button class="theme-button recommend-1">별점이 높은</button>
 						<button class="theme-button recommend-2">가장 저렴한</button>
-						<!-- 	<button class="theme-button recommend-3">전문가가 친절한</button> -->
 					</div>
 
 					<div class="line1"></div>
@@ -896,5 +914,14 @@ function setShopInfo(shopInfoList) {
 }
 
 </script>
+
+
+
+
+
+
+
+
+
 
 <%@ include file="../common/foot.jspf"%>

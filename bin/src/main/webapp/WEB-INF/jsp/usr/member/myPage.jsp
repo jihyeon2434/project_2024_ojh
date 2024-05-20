@@ -5,37 +5,66 @@
 
 
 <style>
-.outer-box {
+.container {
+	background-color: #fff;
 	display: flex;
-	width: 1300px;
+	gap: 20px;
+	color: #000;
+	padding: 50px 80px 50px 17px;
 }
 
-.left-menu-box {
-	width: 200px;
-	height: 300px;
+@media ( max-width : 991px) {
+	.container {
+		flex-wrap: wrap;
+		padding-right: 20px;
+	}
 }
 
-.left-menu {
-	width: 148px;
-	height: 32px;
-	left: 20px;
-	top: 100px;
-	position: absolute;
-	color: black;
+.sidebar {
+	align-self: start;
+	display: flex;
+	margin-top: 23px;
+	flex-direction: column;
 	font-size: 10px;
-	font-family: Inria Serif;
-	font-weight: 700;
-	word-wrap: break-word;
+	font-weight: 500;
 }
 
-.left-menu>div {
-	font-size: 16px;
+.member-info {
+	font-family: Inter, sans-serif;
+	width: 150px;
 }
 
-.right-box {
-	width: 1800px;
-	display: flex;
-	justify-content: center;
+.my-calendar {
+	font-family: Inter, sans-serif;
+	width: 150px;
+	margin-top: 44px;
+}
+
+@media ( max-width : 991px) {
+	.my-calendar {
+		margin-top: 40px;
+	}
+}
+
+.online-reservation {
+	font-family: Inter, sans-serif;
+	width: 150px;
+	margin-top: 43px;
+}
+
+@media ( max-width : 991px) {
+	.online-reservation {
+		margin-top: 40px;
+	}
+}
+
+.divider {
+	border-color: rgba(232, 232, 232, 1);
+	border-style: solid;
+	border-width: 1px;
+	background-color: #e8e8e8;
+	width: 1px;
+	height: 924px;
 }
 
 .word {
@@ -120,134 +149,169 @@
 	top: 50x; /* 수정된 부분 */
 }
 
-.conBtn-outer-box {
-	display: flex;
-	justify-content: center;
-	flex-direction: column;
-}
-
-.btn-outer-box {
-	font-size: small;
-	width: 900px;
-	height: 100px;
-	display: flex;
-	justify-content: center;
-	margin-top: 30px;
-}
-
-.btn-small-box {
-	width: 200px;
+.modify_btn {
+	width: 110px;
+	height: 70px;
+	font-size: 16px;
+	line-height: 72px;
+	border-radius: 18px;
+	background: rgba(239, 231, 229, 0.33);
+	color: black;
 	text-align: center;
+	box-shadow: 4px 4px 4px 0px rgba(0, 0, 0, 0.25);
 }
 
-.modify-btn, .modifyBack-btn {
-	display: inline-block;
+.info_box {
+	height: 87px;
+	width: 1000px;
+	position: relative;
+	border-bottom-width: 1px;
+	border-color: #878787;
+}
+
+.info1 {
+	width: 160px;
+	height: 87px;
+	background: rgba(239, 231, 229, 0.33);
+	color: black;
+	position: relative;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	text-align: center;
+	border-bottom-width: 1px;
+	border-color: #878787;
+}
+
+.info2 {
+	top: -55px;
+	left: 19%;
+	width: 200px;
+	position: relative;
+}
+
+.info_name {
+	height: 89px;
+	border-top-width: 2px;
+	border-top-color: #535353;
+}
+
+.pw_btn, .withdraw_btn {
+	top: -65px;
+	width: 95px;
+	height: 38px;
+	font-size: 14px;
+	border-radius: 10px;
+		background: rgba(239, 231, 229, 0.33);
+	color: black;
+	box-shadow: 4px 3px 3px 0px rgba(0, 0, 0, 0.25);
+}
+
+.content-wrapper {
+margin-top: 20px;
+	height: 700px;
+	display: flex;
+	justify-content: center;
+	height: 700px;
+}
+
+.mod-btn-box {
+	display: flex;
+	justify-content: center;
+	margin-top: 20px;
 }
 </style>
 
 
 
-<section class="mt-8 text-xl px-4 ">
-	<div class="outer-box">
 
-		<div class="left-menu-box">
-			<div class="left-menu">
-				<div>
-					<a href="/usr/member/myPage">회원정보</a>
-				</div>
-				<br>
-				<div>
-					<a href="/usr/member/myCalendar">마이 캘린더</a>
-				</div>
-
-				<br>
-				<div>
-					<a href="/usr/member/myReservation">온라인 컨설팅 <br>예약내역
-					</a>
-				</div>
-			</div>
-			<div class="left-line"></div>
+<div class="container">
+	<aside class="sidebar">
+		<div class="member-info">
+			<a href="/usr/member/myPage">회원정보</a>
 		</div>
-
-
-		<div class="right-box">
-			<div class="conBtn-outer-box">
-				<div class="content-outer-box">
-					<div class="Rectangle">
-						<div class="word">기본정보</div>
-
-
-						<div class="all-Content">
-							<div class="Rectangle-line"></div>
-
-
-							<div class="line"></div>
-							<div class="content-line">
-								<div class="id">아이디 *</div>
-								<div class="content">${rq.loginedMember.loginId }</div>
-							</div>
-
-
-							<div class="line"></div>
-							<div class="content-line">
-								<div class="id">이름</div>
-								<div class="content">${rq.loginedMember.name }</div>
-							</div>
-
-							<div class="line"></div>
-							<div class="content-line">
-								<div class="id">닉네임</div>
-								<div class="content">${rq.loginedMember.nickname }</div>
-							</div>
-
-							<div class="line"></div>
-							<div class="content-line">
-								<div class="id">전화번호</div>
-								<div class="content">${rq.loginedMember.cellphoneNum }</div>
-							</div>
-
-							<div class="line"></div>
-							<div class="content-line">
-								<div class="id">이메일 *</div>
-								<div class="content">${rq.loginedMember.email }</div>
-							</div>
-
-
-
-							<div class="line"></div>
-							<div class="content-line">
-								<div class="id">가입날짜</div>
-								<div class="content">${rq.loginedMember.regDate }</div>
-								<div class="line"></div>
-							</div>
-						</div>
-
-
-					</div>
-				</div>
-
-
-				<div class="btn-outer-box">
-					<div class="btn-small-box">
-						<div class="modify-btn">
-							<a href="../member/checkPw" class="btn btn-outline">회원정보 수정</a>
-						</div>
-						<div class="modifyBack-btn">
-							<button class="btn btn-active btn-ghost" type="button" onclick="history.back();">취소</button>
-						</div>
-					</div>
-
-				</div>
-			</div>
+		<div class="my-calendar">
+			<a href="/usr/member/myCalendar">마이 캘린더</a>
 		</div>
+		<div class="online-reservation">
+			<a href="/usr/member/myReservation">온라인 컨설팅 예약 내역</a>
+		</div>
+		<div class="online-reservation">
+			<a href="/usr/member/myScrapShops">관심 매장</a>
+		</div>
+	</aside>
+	<div class="divider"></div>
+
+	<main class="main-content">
+		<div class="content-wrapper">
+			<div class="small-content-wrapper">
+				<div class="info_box info_name">
+					<div class="info1">이름</div>
+					<div class="info2">${rq.loginedMember.name }</div>
+				</div>
+
+				<div class="info_box info_id">
+					<div class="info1">아이디</div>
+					<div class="info2">${rq.loginedMember.loginId }</div>
+				</div>
+
+				<div class="info_box info_pw">
+					<div class="info1">비밀번호</div>
+					<button class="info2 pw_btn">
+						<a href="../member/checkPw">변경하기</a>
+					</button>
+				</div>
+
+				<div class="info_box info_pn">
+					<div class="info1">핸드폰 번호</div>
+					<div class="info2">${rq.loginedMember.cellphoneNum }</div>
+				</div>
+
+				<div class="info_box info_email">
+					<div class="info1">이메일</div>
+					<div class="info2">${rq.loginedMember.email }</div>
+				</div>
+				<div class="info_box info_email">
+					<div class="info1">닉네임</div>
+					<div class="info2">${rq.loginedMember.nickname }</div>
+				</div>
+				<div class="info_box info_withdraw">
+					<div class="info1">탇퇴</div>
+
+					<!-- 탈퇴하기 버튼, 한 번만 선언합니다 -->
+					<button class="info2 withdraw_btn" onclick="return confirmWithdrawal();">탈퇴하기</button>
+
+				</div>
+				<div class="mod-btn-box">
+					<button class="modify_btn">
+						<a href="../member/checkPw">수정하기</a>
+					</button>
+				</div>
+
+			</div>
 
 
 
-	</div>
+		</div>
+	</main>
 
 
-</section>
 
+
+
+</div>
+
+
+
+
+
+<script>
+	function confirmWithdrawal() {
+		if (confirm('정말 탈퇴하시겠습니까?')) {
+			window.location.href = '../member/doWithdraw'; // 서버의 탈퇴 처리 URL로 이동
+		}
+	}
+</script>
 
 
 

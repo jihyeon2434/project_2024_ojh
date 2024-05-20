@@ -173,26 +173,28 @@ public class UsrConsultingController {
 	 */
 	
 	
-	
 	@RequestMapping("/usr/consulting/detail")
 	public String showConsultingDetail(HttpServletRequest req, Model model, int themeId, int id, int categoryId) {
-		Rq rq = (Rq) req.getAttribute("rq");
-		conShop shop = consultShopService.getShopById(id);
-		List<Review> reviews = reviewService.getReviewsByIdandThemeandCategory(themeId, categoryId, id);
-		
-		 ResultData usersScrapRd = scrapService.usersShopScrap(rq.getLoginedMemberId(), themeId, id, categoryId);
+	    Rq rq = (Rq) req.getAttribute("rq");  // 세션에서 Rq 객체를 직접 가져오는 방법으로 변경
+	    if (rq == null) {
+	        return "redirect:/login";  // Rq 객체가 null이면 로그인 페이지로 리디렉트
+	    }
 
-			if (usersScrapRd.isSuccess()) {
-				model.addAttribute("userCanScrap", usersScrapRd.isSuccess());
-			}
-		 
-			model.addAttribute("isAlreadyAddGoodRp",
-					scrapService.isAlreadyAddGoodRp(rq.getLoginedMemberId(), themeId, id, categoryId));
+	    conShop shop = consultShopService.getShopById(id);
+	    List<Review> reviews = reviewService.getReviewsByIdandThemeandCategory(themeId, categoryId, id);
 
-		model.addAttribute("reviews", reviews);
-		model.addAttribute("shop", shop);
-		return "usr/consulting/detail";
+	    ResultData usersScrapRd = scrapService.usersShopScrap(rq.getLoginedMemberId(), themeId, id, categoryId);
+
+	    if (usersScrapRd.isSuccess()) {
+	        model.addAttribute("userCanScrap", usersScrapRd.isSuccess());
+	    }
+
+	    model.addAttribute("isAlreadyAddGoodRp", scrapService.isAlreadyAddGoodRp(rq.getLoginedMemberId(), themeId, id, categoryId));
+	    model.addAttribute("reviews", reviews);
+	    model.addAttribute("shop", shop);
+	    return "usr/consulting/detail";
 	}
+
 
 	@RequestMapping("/usr/consulting/chat")
 	public String showChat(HttpServletRequest req, Model model) {

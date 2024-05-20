@@ -137,7 +137,7 @@
 				<!-- 확인 버튼 추가 -->
 				<div class="btn-1">
 					<div class="ok-btn">
-						<button class="btn-outline btn-info" type="submit">확인</button>
+						<button type="submit">확인</button>
 					</div>
 					<div class="back-btn">
 						<button class="btn-outline" type="button" onclick="history.back();">뒤로가기</button>

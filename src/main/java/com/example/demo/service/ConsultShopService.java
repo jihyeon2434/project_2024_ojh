@@ -7,9 +7,9 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.example.demo.controller.WebCrawler17;
-import com.example.demo.controller.WebCrawler19;
-import com.example.demo.controller.WebCrawler21;
+import com.example.demo.controller.WebConsultingCrawler;
+import com.example.demo.controller.WebConsultingCrawler2;
+import com.example.demo.controller.WebConsultingCrawler3;
 import com.example.demo.repository.ConsultShopRepository;
 import com.example.demo.repository.ReviewRepository;
 import com.example.demo.util.Ut;
@@ -48,7 +48,7 @@ public class ConsultShopService {
 	}
 	
 	public List<conShop> crawlConsultingShops(String inputKey) {
-	    WebCrawler17 crawler = new WebCrawler17();
+	    WebConsultingCrawler crawler = new WebConsultingCrawler();
 	    List<conShop> shopInfoList = crawler.crawlMap();
 	    for (conShop shopInfo : shopInfoList) {
 	        registerShop(shopInfo); // 크롤링한 가게 정보를 저장
@@ -118,7 +118,7 @@ public class ConsultShopService {
 
 
 	public List<conShop> crawlConsultingShops2(String inputKey) {
-		WebCrawler19 crawler = new WebCrawler19();
+		WebConsultingCrawler2 crawler = new WebConsultingCrawler2();
 		List<conShop> shopInfoList = crawler.crawlMap();
 		for (conShop shopInfo : shopInfoList) {
 			 registerShop(shopInfo); // 크롤링한 가게 정보를 저장
@@ -128,7 +128,7 @@ public class ConsultShopService {
 	}
 
 	public List<conShop> crawlConsultingShops3(String inputKey) {
-		WebCrawler21 crawler = new WebCrawler21();
+		WebConsultingCrawler3 crawler = new WebConsultingCrawler3();
 		List<conShop> shopInfoList = crawler.crawlMap();
 		for (conShop shopInfo : shopInfoList) {
 			registerShop(shopInfo); // 크롤링한 가게 정보를 저장

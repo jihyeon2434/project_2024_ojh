@@ -12,7 +12,7 @@ CREATE TABLE article(
 );
 
 # member 테이블 생성
-CREATE TABLE `member`(
+CREATE TABLE `member` (
     id INT(10) UNSIGNED NOT NULL PRIMARY KEY AUTO_INCREMENT,
     regDate DATETIME NOT NULL,
     updateDate DATETIME NOT NULL,
@@ -23,9 +23,15 @@ CREATE TABLE `member`(
     nickname CHAR(20) NOT NULL,
     cellphoneNum CHAR(20) NOT NULL,
     email CHAR(50) NOT NULL,
+    memberType CHAR(10) NOT NULL COMMENT '회원 종류 (업체, 고객 등)',
+    companyName CHAR(50) COMMENT '업체명, 회원종류가 업체인 경우만 필요',
     delStatus TINYINT(1) UNSIGNED NOT NULL DEFAULT 0 COMMENT '탈퇴 여부 (0=탈퇴 전, 1=탈퇴 후)',
     delDate DATETIME COMMENT '탈퇴 날짜'
 );
+
+
+SELECT *
+FROM `member`;
 
 
 # article TD 생성
@@ -512,6 +518,9 @@ CREATE TABLE service_Conshop
 DESC service_Conshop;
 
 
+SELECT *
+FROM service_Conshop;
+
 
 -- 테이블 생성 SQL - service_Conshop
 CREATE TABLE service_selfshop
@@ -714,7 +723,8 @@ CREATE TABLE scrap
  # article 테이블 생성
 CREATE TABLE OnlineConArticle(
     id INT(10) UNSIGNED NOT NULL PRIMARY KEY AUTO_INCREMENT,
-    `memberId` VARCHAR(50) NULL COMMENT '회원번호', 
+    `memberId` VARCHAR(50) NULL COMMENT '회원번호',
+    shopName VARCHAR(50) NULL COMMENT '업체명',
     regDate DATETIME NOT NULL,
     updateDate DATETIME NOT NULL,
     title CHAR(100) NOT NULL,
@@ -723,7 +733,21 @@ CREATE TABLE OnlineConArticle(
 
 
 SELECT *
-FROM article;
+FROM OnlineConArticle;
 
 
+
+# payment 테이블 생성
+CREATE TABLE payment (
+   id INT(10) UNSIGNED NOT NULL PRIMARY KEY AUTO_INCREMENT,
+   memberId INT NOT NULL,
+   shopName VARCHAR(50) NULL,
+   amount DECIMAL(10, 2) NOT NULL,
+   paymentDate DATETIME NOT NULL,
+   paymentStatus TINYINT(1) UNSIGNED NOT NULL DEFAULT 0 COMMENT '결제 여부 (0=결제 전, 1=결제 후)'
+);
+
+
+SELECT *
+FROM payment;
 

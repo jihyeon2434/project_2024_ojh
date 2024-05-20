@@ -8,37 +8,36 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.example.demo.vo.vogueArticle;
+import jakarta.servlet.http.HttpServletRequest;
 
 @Controller
 public class UsrHomeController {
-    
-	@Autowired
-    private VogueCrawler4 vogueCrawler;
-
-//    public UsrHomeController(VogueCrawler4 vogueCrawler) {
-//        this.vogueCrawler = vogueCrawler;
-//    }
 
     @RequestMapping("/usr/home/main")
-    public String showMain(Model model) {
-    	
-        List<vogueArticle> articles = vogueCrawler.crawlArticles();
+    public String showMain(HttpServletRequest request, Model model) {
+        // 인터셉터에서 저장된 크롤링 결과를 가져옵니다.
+        List<vogueArticle> articles = (List<vogueArticle>) request.getAttribute("articles");
         
-        System.out.println("VOGUE articel: " + articles.toString());
-        
-        // 여기서 articles를 사용하여 필요한 작업을 수행합니다.
-        model.addAttribute("articles", articles);
+        if (articles == null) {
+            System.out.println("No articles found");
+        } else {
+            System.out.println("VOGUE article: " + articles.toString());
+            model.addAttribute("articles", articles);
+        }
         return "/usr/home/main";
     }
+
     @RequestMapping("/")
-    public String showMain2(Model model) {
-    	
-        List<vogueArticle> articles = vogueCrawler.crawlArticles();
+    public String showMain2(HttpServletRequest request, Model model) {
+        // 인터셉터에서 저장된 크롤링 결과를 가져옵니다.
+        List<vogueArticle> articles = (List<vogueArticle>) request.getAttribute("articles");
         
-        System.out.println("VOGUE articel: " + articles.toString());
-        
-        // 여기서 articles를 사용하여 필요한 작업을 수행합니다.
-        model.addAttribute("articles", articles);
+        if (articles == null) {
+            System.out.println("No articles found");
+        } else {
+            System.out.println("VOGUE article: " + articles.toString());
+            model.addAttribute("articles", articles);
+        }
         return "redirect:/usr/home/main";
     }
 }
