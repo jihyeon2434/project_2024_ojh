@@ -6,8 +6,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.example.demo.repository.ArticleRepository;
+import com.example.demo.repository.MemberRepository;
 import com.example.demo.util.Ut;
 import com.example.demo.vo.Article;
+import com.example.demo.vo.Member;
 import com.example.demo.vo.ResultData;
 
 @Service
@@ -15,19 +17,31 @@ public class ArticleService {
 
 	@Autowired
 	private ArticleRepository articleRepository;
+	
+	@Autowired
+	private MemberRepository memberRepository;
+	
 
 	public ArticleService(ArticleRepository articleRepository) {
 		this.articleRepository = articleRepository;
 	}
 
 	// 서비스 메서드
-	public Article getForPrintArticle(int loginedMemberId, int id) {
-		Article article = articleRepository.getForPrintArticle(id);
+	public Article getForPrintArticle(int loginedMemberId, int articleId) {
+	    Article article = articleRepository.getForPrintArticle(articleId);
+	    if (article == null) {
+	        return null; // 게시글이 없는 경우 null 반환
+	    }
 
-		controlForPrintData(loginedMemberId, article);
-
-		return article;
+	    // 사용자 정보와 게시글의 shopName 일치 여부 검사
+	    Member member = memberRepository.getMemberById(loginedMemberId);
+	    if (article.getShopName().equals(member.getCompanyName()) || article.getMemberId() == loginedMemberId) {
+	        controlForPrintData(loginedMemberId, article); // 권한 조정 로직 수행
+	        return article;
+	    }
+	    return null; // 권한이 없는 경우 null 반환
 	}
+
 
 	private void controlForPrintData(int loginedMemberId, Article article) {
 		if (article == null) {
@@ -167,5 +181,10 @@ public class ArticleService {
 		return articleRepository.getCurrentArticleId();
 		
 	}
+
+	public List<Article> getArticlesByCompanyName(String companyName) {
+	    return articleRepository.findArticlesByCompanyName(companyName);
+	}
+
 
 }

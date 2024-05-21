@@ -15,6 +15,9 @@ public class Payment {
 	private String shopName;
 	private int amount;
 	private String paymentDate;
+	private String answerDate;
+	
 	private String paymentStatus;
 	private boolean canWriteArticle;
+
 }

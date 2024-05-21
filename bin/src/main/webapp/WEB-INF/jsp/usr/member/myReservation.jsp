@@ -60,7 +60,6 @@
 	}
 }
 
-
 .divider {
 	border-color: rgba(232, 232, 232, 1);
 	border-style: solid;
@@ -71,11 +70,6 @@
 }
 
 /* 왼쪽 메뉴 박스 끝 */
-
-
-
-
-
 .main-content {
 	display: flex;
 	gap: 20px;
@@ -89,7 +83,6 @@
 		flex-wrap: wrap;
 	}
 }
-
 
 .content-wrapper {
 	align-self: start;
@@ -418,11 +411,7 @@
 					<!-- 고객이 로그인했을 때 표시할 컨텐츠 -->
 					<header class="payment-history-header">
 						<h2 class="payment-history-title">나의 결제내역</h2>
-						<c:if test="${not empty payments}">
-							<button class="write-post-button">
-								<a href="../onlineConsulting/write">상담글 작성</a>
-							</button>
-						</c:if>
+
 					</header>
 					<!-- 결제 내역 테이블 렌더링 -->
 				</c:otherwise>
@@ -432,9 +421,10 @@
 			<table class="table ">
 				<colgroup>
 					<col style="width: 5%" />
-					<col style="width: 35%" />
-					<col style="width: 20%" />
 					<col style="width: 25%" />
+					<col style="width: 10%" />
+					<col style="width: 30%" />
+					<col style="width: 15%" />
 					<col style="width: 15%" />
 				</colgroup>
 				<thead class="list-table">
@@ -444,9 +434,9 @@
 						<th>결제금액</th>
 						<th>업체명</th>
 						<th>결제일</th>
+						<th></th>
 					</tr>
 				</thead>
-
 				<tbody>
 					<c:forEach items="${payments}" var="payment" varStatus="status">
 						<tr>
@@ -455,10 +445,20 @@
 							<td>${payment.amount}</td>
 							<td>${payment.shopName}</td>
 							<td>${payment.paymentDate}</td>
+							<td><c:choose>
+									<c:when test="${payment.canWriteArticle}">
+										<button class="write-post-button">
+											<a href="../article/write?shopName=${payment.shopName}">상담글 작성</a>
+										</button>
+									</c:when>
+									<c:otherwise>
+										<button class="write-post-button" disabled="disabled">상담 완료</button>
+									</c:otherwise>
+								</c:choose></td>
 						</tr>
 					</c:forEach>
 				</tbody>
-			</table>
+
 			</table>
 
 			<h2 class="inquiry-history-title">나의 문의내역</h2>
@@ -478,23 +478,21 @@
 						<th>등록/수정일</th>
 					</tr>
 				</thead>
-
-
 				<tbody>
-					<%-- 						<c:forEach items="${competitions}" var="competition"> --%>
-					<tr>
-						<td>${competition.id}</td>
-						<!-- 첫 번째 td에 학회의 ID -->
-						<td><a href="detail?themeId=${competition.themeId}&id=${competition.id}">${competition.title}</a></td>
-						<!-- 두 번째 td에 학회의 제목 -->
-						<%-- 		<td>${competition.applicationPeriod}</td> --%>
-						<!-- 세 번째 td에 행사 기간 -->
-						<td>블라블라 이미지컨설팅</td>
-						<!-- 네 번째 td에 등록/수정일 -->
-						<td>2024.05.01</td>
-						<!-- 다섯 번째 td에 조회수 -->
-					</tr>
-					<%-- 					</c:forEach> --%>
+					<c:forEach items="${articles}" var="article">
+						<tr>
+							<td>${article.id}</td>
+							<!-- 첫 번째 td에 학회의 ID -->
+							<td><a href="../article/detail?id=${article.id }">${article.title }</td>
+							<!-- 두 번째 td에 학회의 제목 -->
+							<%-- 		<td>${competition.applicationPeriod}</td> --%>
+							<!-- 세 번째 td에 행사 기간 -->
+							<td>${article.shopName}</td>
+							<!-- 네 번째 td에 등록/수정일 -->
+							<td>${article.regDate}</td>
+							<!-- 다섯 번째 td에 조회수 -->
+						</tr>
+					</c:forEach>
 				</tbody>
 
 

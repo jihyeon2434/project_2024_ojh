@@ -148,6 +148,8 @@ String shopId = request.getParameter("id");
 
 		<form id="dateForm" action="reservation3?shopId=<%=shopId%>" method="POST">
 			<input type="hidden" name="shopId" value="<%=shopId%>">
+			
+			
 			<!-- 업체 ID를 숨겨진 필드로 추가 -->
 			<div class="outer-calendar-box">
 				<div class="calendar-month">

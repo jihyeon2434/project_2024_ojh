@@ -33,7 +33,6 @@ import jakarta.servlet.http.HttpServletRequest;
 
 @Controller
 public class UsrMemberController {
-	
 
 	@Autowired
 	private ArticleService articleService;
@@ -48,18 +47,17 @@ public class UsrMemberController {
 	private Rq rq;
 	@Autowired
 	private ConsultShopService consultShopService;
-	
+
 	@Autowired
 	private OnlineConsultService OnlineConsultService;
 	@Autowired
 	private MemberService memberService;
-	
+
 	@Autowired
 	private selfShopService selfShopService;
-	
+
 	@Autowired
 	private PaymentService paymentService;
-	
 
 	@RequestMapping("/usr/member/doLogout")
 	@ResponseBody
@@ -131,8 +129,9 @@ public class UsrMemberController {
 
 	@RequestMapping("/usr/member/doJoin")
 	@ResponseBody
-	public String doJoin(HttpServletRequest req, String loginId, String loginPw, String name, String nickname, String cellphoneNum, String email, String memberType, String companyName) {
-	    Rq rq = (Rq) req.getAttribute("rq");
+	public String doJoin(HttpServletRequest req, String loginId, String loginPw, String name, String nickname,
+			String cellphoneNum, String email, String memberType, String companyName) {
+		Rq rq = (Rq) req.getAttribute("rq");
 
 		if (rq.isLogined()) {
 			return Ut.jsHistoryBack("F-A", "이미 로그인 상태입니다");
@@ -144,11 +143,11 @@ public class UsrMemberController {
 		if (Ut.isNullOrEmpty(loginPw)) {
 			return Ut.jsHistoryBack("F-2", "비밀번호를 입력해주세요");
 		}
-		
+
 		if ("업체".equals(memberType) && Ut.isNullOrEmpty(companyName)) {
-	        return Ut.jsHistoryBack("F-9", "업체명을 입력해주세요");
-	    }
-		
+			return Ut.jsHistoryBack("F-9", "업체명을 입력해주세요");
+		}
+
 		if (Ut.isNullOrEmpty(name)) {
 			return Ut.jsHistoryBack("F-3", "이름을 입력해주세요");
 		}
@@ -162,16 +161,16 @@ public class UsrMemberController {
 		if (Ut.isNullOrEmpty(email)) {
 			return Ut.jsHistoryBack("F-6", "이메일을 입력해주세요");
 		}
-		
-	
-		ResultData<Integer> joinRd = memberService.join(loginId, loginPw, name, nickname, cellphoneNum, email, memberType, companyName);
+
+		ResultData<Integer> joinRd = memberService.join(loginId, loginPw, name, nickname, cellphoneNum, email,
+				memberType, companyName);
 
 		if (joinRd.isFail()) {
-	        return Ut.jsHistoryBack(joinRd.getResultCode(), joinRd.getMsg());
-	    }
+			return Ut.jsHistoryBack(joinRd.getResultCode(), joinRd.getMsg());
+		}
 		Member member = memberService.getMember(joinRd.getData1());
 
-		 return Ut.jsReplace(joinRd.getResultCode(), joinRd.getMsg(), "../member/login");
+		return Ut.jsReplace(joinRd.getResultCode(), joinRd.getMsg(), "../member/login");
 	}
 
 	@RequestMapping("/usr/member/myPage")
@@ -204,10 +203,10 @@ public class UsrMemberController {
 			@RequestParam(defaultValue = "1") int page,
 			@RequestParam(defaultValue = "title,body") String searchKeywordTypeCode,
 			@RequestParam(defaultValue = "") String searchKeyword) {
-	    Rq rq = (Rq) req.getAttribute("rq");
-	    int memberId = rq.getLoginedMemberId();
-	    Member member = memberService.getMemberById(memberId); // 회원 정보를 가져오는 메소드
-	    Board board = boardService.getBoardById(boardId);
+		Rq rq = (Rq) req.getAttribute("rq");
+		int memberId = rq.getLoginedMemberId();
+		Member member = memberService.getMemberById(memberId); // 회원 정보를 가져오는 메소드
+		Board board = boardService.getBoardById(boardId);
 
 		int articlesCount = articleService.getArticlesCount(boardId, searchKeywordTypeCode, searchKeyword);
 
@@ -222,8 +221,8 @@ public class UsrMemberController {
 
 		int pagesCount = (int) Math.ceil(articlesCount / (double) itemsInAPage);
 
-		List<Article> articles = articleService.getForPrintArticles(memberId, boardId, itemsInAPage, page, searchKeywordTypeCode,
-				searchKeyword);
+		List<Article> articles = articleService.getForPrintArticles(memberId, boardId, itemsInAPage, page,
+				searchKeywordTypeCode, searchKeyword);
 
 		model.addAttribute("board", board);
 		model.addAttribute("boardId", boardId);
@@ -233,23 +232,22 @@ public class UsrMemberController {
 		model.addAttribute("searchKeyword", searchKeyword);
 		model.addAttribute("articlesCount", articlesCount);
 		model.addAttribute("articles", articles);
-	    model.addAttribute("memberType", member.getMemberType()); // 회원 유형을 모델에 추가
+		model.addAttribute("memberType", member.getMemberType()); // 회원 유형을 모델에 추가
 
-	    if (member.getMemberType().equals("업체")) {
-	        // 업체 유형인 경우, 들어온 컨설팅 문의를 로드
-	        List<OnlineConArticle> inquiries = OnlineConsultService.getInquiriesForCompany(memberId);
-	        model.addAttribute("inquiries", inquiries);
-	        System.err.println("Inquiries: " + inquiries);
-	    } else {
-	        // 고객 유형인 경우, 결제 내역을 로드
-	        List<Payment> payments = paymentService.getPaymentsByMemberId(memberId);
-	        model.addAttribute("payments", payments);
-	        System.err.println("Payments: " + payments);
-	    }
+		if (member.getMemberType().equals("업체")) {
+			// 업체 유형인 경우, 해당 업체의 문의글만 로드
+			String companyName = member.getCompanyName();
+			List<Article> inquiries = articleService.getArticlesByCompanyName(companyName);
+			model.addAttribute("inquiries", inquiries);
+		} else {
+			// 고객 유형인 경우, 결제 내역을 로드
+			List<Payment> payments = paymentService.getPaymentsByMemberId(memberId);
+			model.addAttribute("payments", payments);
+			System.err.println("Payments: " + payments);
+		}
 
-	    return "usr/member/myReservation";
+		return "usr/member/myReservation";
 	}
-
 
 	@RequestMapping("/usr/member/myScrapShops")
 	public String showMyScrapShops(HttpServletRequest req, Model model) {
@@ -326,10 +324,7 @@ public class UsrMemberController {
 
 		return Ut.jsReplace(modifyRd.getResultCode(), modifyRd.getMsg(), "../member/myPage");
 	}
-	
-	
-	
-	
+
 	@RequestMapping("/usr/member/doWithdraw")
 	@ResponseBody
 	// 회원 탈퇴를 처리하는 메서드
@@ -351,6 +346,5 @@ public class UsrMemberController {
 		rq.logout(); // 회원 탈퇴 후 자동 로그아웃
 		return Ut.jsReplace("S-1", "탈퇴 처리되었습니다.", "/");
 	}
-	
-	
+
 }

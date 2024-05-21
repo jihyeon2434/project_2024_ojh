@@ -99,29 +99,24 @@ public class UsrArticleController {
 
 	@RequestMapping("/usr/article/detail")
 	public String showDetail(HttpServletRequest req, Model model, int id) {
-		Rq rq = (Rq) req.getAttribute("rq");
+	    Rq rq = (Rq) req.getAttribute("rq");
+	    int memberId = rq.getLoginedMemberId();
 
-		Article article = articleService.getForPrintArticle(rq.getLoginedMemberId(), id);
-		ResultData usersReactionRd = reactionPointService.usersReaction(rq.getLoginedMemberId(), "article", id);
+	    Article article = articleService.getForPrintArticle(memberId, id);
+	    if (article == null) {
+	        return rq.historyBackOnView("접근 권한이 없습니다."); // 권한이 없을 경우 경고
+	    }
 
-		if (usersReactionRd.isSuccess()) {
-			model.addAttribute("userCanMakeReaction", usersReactionRd.isSuccess());
-		}
+	    List<Reply> replies = replyService.getForPrintReplies(memberId, "article", id);
+	    int repliesCount = replies.size();
 
-		List<Reply> replies = replyService.getForPrintReplies(rq.getLoginedMemberId(), "article", id);
+	    model.addAttribute("article", article);
+	    model.addAttribute("replies", replies);
+	    model.addAttribute("repliesCount", repliesCount);
 
-		int repliesCount = replies.size();
-
-		model.addAttribute("article", article);
-		model.addAttribute("replies", replies);
-		model.addAttribute("repliesCount", repliesCount);
-		model.addAttribute("isAlreadyAddGoodRp",
-				reactionPointService.isAlreadyAddGoodRp(rq.getLoginedMemberId(), id, "article"));
-		model.addAttribute("isAlreadyAddBadRp",
-				reactionPointService.isAlreadyAddBadRp(rq.getLoginedMemberId(), id, "article"));
-
-		return "usr/article/detail";
+	    return "usr/article/detail";
 	}
+
 
 	@RequestMapping("/usr/article/doIncreaseHitCountRd")
 	@ResponseBody

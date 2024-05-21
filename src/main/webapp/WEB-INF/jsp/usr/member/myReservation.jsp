@@ -399,13 +399,35 @@
 					<!-- 업체가 로그인했을 때 표시할 컨텐츠 -->
 					<header class="payment-history-header">
 						<h2 class="payment-history-title">나에게 들어온 컨설팅 문의</h2>
-						<c:if test="${not empty inquiries}">
-							<button class="write-post-button">
-								<a href="../onlineConsulting/respond">문의 답변하기</a>
-							</button>
-						</c:if>
 					</header>
+
 					<!-- 문의 내역 테이블 렌더링 -->
+					<c:if test="${not empty inquiries}">
+						<table class="table">
+								<thead class="list-table">
+								<tr>
+									<th>번호</th>
+									<th>제목</th>
+									<th>문의 일자</th>
+									
+									<th>답변 기한</th>
+								</tr>
+							</thead>
+							<tbody>
+								<c:forEach var="inquiry" items="${inquiries}" varStatus="status">
+									<tr>
+										<td>${status.index + 1}</td>
+										<td><a href="../article/detail?id=${inquiry.id}">${inquiry.title}</a></td>
+										<td>${inquiry.regDate}</td>
+										<td></td>
+									</tr>
+								</c:forEach>
+							</tbody>
+						</table>
+					</c:if>
+					<c:if test="${empty inquiries}">
+						<p>받은 문의가 없습니다.</p>
+					</c:if>
 				</c:when>
 				<c:otherwise>
 					<!-- 고객이 로그인했을 때 표시할 컨텐츠 -->
@@ -414,52 +436,52 @@
 
 					</header>
 					<!-- 결제 내역 테이블 렌더링 -->
+
+
+					<table class="table ">
+						<colgroup>
+							<col style="width: 5%" />
+							<col style="width: 25%" />
+							<col style="width: 10%" />
+							<col style="width: 30%" />
+							<col style="width: 15%" />
+							<col style="width: 15%" />
+						</colgroup>
+						<thead class="list-table">
+							<tr>
+								<th>번호</th>
+								<th>옵션</th>
+								<th>결제금액</th>
+								<th>업체명</th>
+								<th>결제일</th>
+								<th></th>
+							</tr>
+						</thead>
+						<tbody>
+							<c:forEach items="${payments}" var="payment" varStatus="status">
+								<tr>
+									<td>${status.index + 1}</td>
+									<td>1:1 컨설팅</td>
+									<td>${payment.amount}</td>
+									<td>${payment.shopName}</td>
+									<td>${payment.paymentDate}</td>
+									<td><c:choose>
+											<c:when test="${payment.canWriteArticle}">
+												<button class="write-post-button">
+													<a href="../article/write?shopName=${payment.shopName}">상담글 작성</a>
+												</button>
+											</c:when>
+											<c:otherwise>
+												<button class="write-post-button" disabled="disabled">상담 완료</button>
+											</c:otherwise>
+										</c:choose></td>
+								</tr>
+							</c:forEach>
+						</tbody>
+
+					</table>
 				</c:otherwise>
 			</c:choose>
-
-
-			<table class="table ">
-				<colgroup>
-					<col style="width: 5%" />
-					<col style="width: 25%" />
-					<col style="width: 10%" />
-					<col style="width: 30%" />
-					<col style="width: 15%" />
-					<col style="width: 15%" />
-				</colgroup>
-				<thead class="list-table">
-					<tr>
-						<th>번호</th>
-						<th>옵션</th>
-						<th>결제금액</th>
-						<th>업체명</th>
-						<th>결제일</th>
-						<th></th>
-					</tr>
-				</thead>
-				<tbody>
-					<c:forEach items="${payments}" var="payment" varStatus="status">
-						<tr>
-							<td>${status.index + 1}</td>
-							<td>1:1 컨설팅</td>
-							<td>${payment.amount}</td>
-							<td>${payment.shopName}</td>
-							<td>${payment.paymentDate}</td>
-							<td><c:choose>
-									<c:when test="${payment.canWriteArticle}">
-										<button class="write-post-button">
-											<a href="../article/write?shopName=${payment.shopName}">상담글 작성</a>
-										</button>
-									</c:when>
-									<c:otherwise>
-										<button class="write-post-button" disabled="disabled">상담 완료</button>
-									</c:otherwise>
-								</c:choose></td>
-						</tr>
-					</c:forEach>
-				</tbody>
-
-			</table>
 
 			<h2 class="inquiry-history-title">나의 문의내역</h2>
 

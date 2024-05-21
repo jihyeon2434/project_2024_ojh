@@ -10,31 +10,29 @@
 .full-content-outer-box {
 	display: flex;
 	justify-content: center;
-	border: 3px solid red;
-	width: auto;
+	width: 100%;
 	height: auto;
-	flex-direction: column;
+
+}
+
+.content-outer-box {
+	width: 1000px;
+		
 }
 
 .small-content-outer-box {
 	border: 3px solid #efefef;
 	border-radius: 10px;
-	width: 70%;
+	width: 1000px;
 }
 
 .small-reply-outer-box {
 	border: 3px solid #efefef;
-	width: 70%;
-}
-
-.content-box {
-	
+	width: 1000px;
 }
 
 th {
-	border: 1px solid black; /* 원하는 테두리 스타일과 색상으로 변경할 수 있습니다 */
-	width: 100px; /* 원하는 너비로 변경하세요 */
-	s
+	width: 50px; /* 원하는 너비로 변경하세요 */
 }
 
 tr {
@@ -43,11 +41,10 @@ tr {
 
 .body {
 	height: 600px;
-	border: 3px solid pink;
+	
 }
 
 .btn-box {
-	border: 3px solid blue;
 	display: flex;
 	justify-content: center;
 }
@@ -61,8 +58,15 @@ tr {
 	width: auto;
 }
 
+.custom-textarea-width {
+	width: 850px; /* 또는 다른 특정 너비 */
+	margin-right: 13px;
+}
+
+/* .reply-body{
+width: 
+} */
 .content-box th {
-	border: 1px solid black; /* 원하는 테두리 스타일과 색상으로 변경할 수 있습니다 */
 	width: 150px; /* 원하는 너비로 변경하세요 */
 	padding-left: 10px; /* 왼쪽 패딩을 추가합니다 */
 }
@@ -186,9 +190,9 @@ tr {
 </script>
 
 
-<section class="mt-8 text-xl px-4 ">
+<section class="mt-8">
 	<div class="full-content-outer-box">
-		<div class="">
+		<div class="content-outer-box">
 			<div class="small-content-outer-box">
 				<table class="table-box-1 content-box" border="1">
 					<tbody>
@@ -206,17 +210,12 @@ tr {
 						</tr>
 						<tr>
 							<th>조회수</th>
-							<td>
-								<span class="article-detail__hit-count">${article.hitCount }</span>
-							</td>
+							<td><span class="article-detail__hit-count">${article.hitCount }</span></td>
 						</tr>
 
 						<tr>
-							<td colspan="2">
-								<img class="w-full rounded-xl" src="${rq.getImgUri(article.id)}" onerror="${rq.profileFallbackImgOnErrorHtml}"
-									alt="" />
-
-							</td>
+							<td colspan="2"><img class="w-full rounded-xl" src="${rq.getImgUri(article.id)}"
+								onerror="${rq.profileFallbackImgOnErrorHtml}" alt="" /></td>
 						</tr>
 
 						<tr class="body">
@@ -245,23 +244,17 @@ tr {
 			<div class="mt-5 px-3 small-reply-outer-box">
 				<c:if test="${rq.isLogined() }">
 					<form action="../reply/doWrite" method="POST" onsubmit="ReplyWrite__submit(this); return false;">
-						<input type="hidden" name="relTypeCode" value="article" />
-						<input type="hidden" name="relId" value="${article.id }" />
+						<input type="hidden" name="relTypeCode" value="article" /> <input type="hidden" name="relId"
+							value="${article.id }" />
 						<table class="write-box table-box-1" border="1">
 							<tbody class="reply-box">
 								<tr>
 
-									<td colspan="2">
-										<textarea class="input input-bordered input-primary w-full max-w-xs" autocomplete="off"
-											placeholder="내용을 입력해주세요" name="body"> </textarea>
-									</td>
+									<td colspan="2"><textarea class="input input-bordered custom-textarea-width" autocomplete="off"
+											placeholder="답변을 입력해주세요" name="body"> </textarea></td>
+									<td><input class="btn btn-outline" type="submit" value="답변 작성" /></td>
 								</tr>
-								<tr>
 
-									<td>
-										<input class="btn btn-outline btn-info" type="submit" value="댓글 작성" />
-									</td>
-								</tr>
 							</tbody>
 						</table>
 					</form>
@@ -270,12 +263,13 @@ tr {
 					<a class="btn btn-outline btn-ghost" href="${rq.loginUri }">LOGIN</a> 하고 댓글 써
 	</c:if>
 				<div class="mx-auto">
-					<h2>댓글 리스트(${repliesCount })</h2>
+					<%-- <h2>댓글 리스트(${repliesCount })</h2> --%>
 					<table class="table-box-1 table" border="1">
 						<colgroup>
+							<col style="width: 65%" />
 							<col style="width: 10%" />
-							<col style="width: 20%" />
-							<col style="width: 60%" />
+							<col style="width: 15%" />
+							<col style="width: 10%" />
 							<col style="width: 10%" />
 						</colgroup>
 						<thead>
@@ -296,36 +290,29 @@ tr {
 								<tr class="hover">
 
 
-									<td>
-										<span id="reply-${reply.id }">${reply.body }</span>
+									<td><span id="reply-${reply.id }">${reply.body }</span>
 										<form method="POST" id="modify-form-${reply.id }" style="display: none;" action="/usr/reply/doModify">
 											<input type="text" value="${reply.body }" name="reply-text-${reply.id }" />
-										</form>
-									</td>
+										</form></td>
 									<td>${reply.extra__writer }</td>
 
 									<td>${reply.regDate.substring(0,10) }</td>
-									<td>
-										<c:if test="${reply.userCanModify }">
+									<td><c:if test="${reply.userCanModify }">
 											<%-- 							href="../reply/modify?id=${reply.id }" --%>
 											<button onclick="toggleModifybtn('${reply.id}');" id="modify-btn-${reply.id }" style="white-space: nowrap;"
 												class="btn btn-outline">수정</button>
 											<button onclick="doModifyReply('${reply.id}');" style="white-space: nowrap; display: none;"
 												id="save-btn-${reply.id }" class="btn btn-outline">저장</button>
-										</c:if>
-									</td>
-									<td>
-										<c:if test="${reply.userCanDelete }">
+										</c:if></td>
+									<td><c:if test="${reply.userCanDelete }">
 											<a style="white-space: nowrap;" class="btn btn-outline"
 												onclick="if(confirm('정말 삭제하시겠습니까?') == false) return false;" href="../reply/doDelete?id=${reply.id }">삭제</a>
-										</c:if>
-									</td>
+										</c:if></td>
 								</tr>
 							</c:forEach>
 						</tbody>
 					</table>
 				</div>
-
 			</div>
 		</div>
 

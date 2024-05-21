@@ -212,4 +212,11 @@ public interface ArticleRepository {
 			""")
 	public int getCurrentArticleId();
 
+	@Select("""
+	        SELECT * FROM article 
+	        WHERE shopName = #{companyName}
+	        """)
+	List<Article> findArticlesByCompanyName(String companyName);
+
+
 }
