@@ -17,7 +17,8 @@ public class Article {
 	private int hitCount;
 	private int goodReactionPoint;
 	private int badReactionPoint;
-
+	private String shopName;
+	
 	private int extra__repliesCnt;
 	private String extra__writer;
 

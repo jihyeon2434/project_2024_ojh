@@ -487,7 +487,7 @@
 							<!-- 두 번째 td에 학회의 제목 -->
 							<%-- 		<td>${competition.applicationPeriod}</td> --%>
 							<!-- 세 번째 td에 행사 기간 -->
-							<td>블라블라 이미지컨설팅</td>
+							<td>${article.shopName}</td>
 							<!-- 네 번째 td에 등록/수정일 -->
 							<td>${article.regDate}</td>
 							<!-- 다섯 번째 td에 조회수 -->

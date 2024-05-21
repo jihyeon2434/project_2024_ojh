@@ -58,8 +58,8 @@ public class ArticleService {
 		return ResultData.from("S-1", Ut.f("%d번 글을 수정했습니다", article.getId()));
 	}
 
-	public ResultData<Integer> writeArticle(int memberId, String title, String body, int boardId) {
-		articleRepository.writeArticle(memberId, title, body, boardId);
+	public ResultData<Integer> writeArticle(int memberId, String title, String body, int boardId, String shopName) {
+		articleRepository.writeArticle(memberId, title, body, boardId, shopName);
 
 		int id = articleRepository.getLastInsertId();
 

@@ -178,7 +178,7 @@ System.err.println(shopName);
 
 	  System.err.println("shopName:"+shopName);
 		
-		ResultData<Integer> writeArticleRd = articleService.writeArticle(rq.getLoginedMemberId(), title, body, boardId);
+		ResultData<Integer> writeArticleRd = articleService.writeArticle(rq.getLoginedMemberId(), title, body, boardId, shopName);
 
 		int id = (int) writeArticleRd.getData1();
 
