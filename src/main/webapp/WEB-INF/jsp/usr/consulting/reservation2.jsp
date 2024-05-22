@@ -138,7 +138,7 @@ String shopId = request.getParameter("id");
 	<div class="small-outer-box">
 		<div class="title-box">
 			<div class="title">
-				<%=loginedMember.getNickname()%>님 <br />빠른 예약 도와드릴게요.
+				${loginedMember.getNickname()}님 <br />빠른 예약 도와드릴게요.
 			</div>
 			<div class="line"></div>
 		</div>

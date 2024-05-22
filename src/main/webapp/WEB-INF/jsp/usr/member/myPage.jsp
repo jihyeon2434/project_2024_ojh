@@ -25,17 +25,17 @@
 	display: flex;
 	margin-top: 23px;
 	flex-direction: column;
-	font-size: 10px;
-	font-weight: 500;
+	font-size: 15px;
+	font-weight: 450;
 }
 
 .member-info {
-	font-family: Inter, sans-serif;
+
 	width: 150px;
 }
 
 .my-calendar {
-	font-family: Inter, sans-serif;
+
 	width: 150px;
 	margin-top: 44px;
 }
@@ -47,7 +47,7 @@
 }
 
 .online-reservation {
-	font-family: Inter, sans-serif;
+
 	width: 150px;
 	margin-top: 43px;
 }
@@ -72,7 +72,7 @@
 	text-align: center;
 	color: black;
 	font-size: 19px;
-	font-family: Inria Serif;
+
 	font-weight: 700;
 	word-wrap: break-word;
 	position: absolute;
@@ -110,7 +110,6 @@
 	height: 40px;
 	color: black;
 	font-size: 15px;
-	font-family: Inria Serif;
 	font-weight: 700;
 	word-wrap: break-word;
 	margin-left: 20px;

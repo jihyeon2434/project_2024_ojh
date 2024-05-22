@@ -216,6 +216,7 @@ public class UsrConsultingController {
 	    Member loginedMember = rq.getLoginedMember(); // 로그인한 사용자의 정보를 가져옵니다.
 	    conShop shop = consultShopService.getShopById(shopId);
 	    LocalDate currentDate = LocalDate.now();
+	    System.err.println("loginedMember:"+loginedMember);
 	    model.addAttribute("year", currentDate.getYear());
 	    model.addAttribute("month", currentDate.getMonthValue() - 1); // 월은 0부터 시작하므로 1을 빼줍니다.
 	    model.addAttribute("loginedMember", loginedMember); // 로그인한 사용자 정보를 모델에 추가합니다.

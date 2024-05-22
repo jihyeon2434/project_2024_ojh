@@ -27,17 +27,20 @@
 	display: flex;
 	margin-top: 23px;
 	flex-direction: column;
-	font-size: 10px;
-	font-weight: 500;
+	font-size: 15px;
+	font-weight: 450;
 }
 
+
+
+
 .member-info {
-	font-family: Inter, sans-serif;
+
 	width: 150px;
 }
 
 .my-calendar {
-	font-family: Inter, sans-serif;
+
 	width: 150px;
 	margin-top: 44px;
 }
@@ -49,7 +52,7 @@
 }
 
 .online-reservation {
-	font-family: Inter, sans-serif;
+
 	width: 150px;
 	margin-top: 43px;
 }
@@ -119,12 +122,12 @@
 }
 
 .payment-history-title {
-	font-family: Inria Serif, sans-serif;
+
 	margin-bottom: 28px;
 }
 
 .write-post-button {
-	font-family: Inria Serif, sans-serif;
+
 	border-radius: 5px;
 	background-color: rgba(239, 231, 229, 0.4);
 	margin-top: 10px;
@@ -169,7 +172,7 @@
 	.payment-history-table-header-amount,
 	.payment-history-table-header-company,
 	.payment-history-table-header-date {
-	font-family: Inter, sans-serif;
+
 }
 
 .payment-history-table-row {
@@ -210,11 +213,11 @@
 
 .payment-history-table-row-number {
 	text-align: center;
-	font-family: Inter, sans-serif;
+/* 	font-family: Inter, sans-serif; */
 }
 
 .payment-history-table-row-title {
-	font-family: Inter, sans-serif;
+
 }
 
 .payment-history-table-row-details {
@@ -235,7 +238,7 @@
 
 .payment-history-table-row-amount, .payment-history-table-row-company,
 	.payment-history-table-row-date {
-	font-family: Inter, sans-serif;
+
 }
 
 .payment-history-table-row-date {
@@ -246,7 +249,7 @@
 	text-align: center;
 	align-self: start;
 	margin: 285px 0 0 10px;
-	font: 300 12px Inria Serif, sans-serif;
+
 	margin-bottom: 30px;
 }
 
@@ -431,10 +434,10 @@
 				</c:when>
 				<c:otherwise>
 					<!-- 고객이 로그인했을 때 표시할 컨텐츠 -->
-					<header class="payment-history-header">
+					
 						<h2 class="payment-history-title">나의 결제내역</h2>
 
-					</header>
+			
 					<!-- 결제 내역 테이블 렌더링 -->
 
 
