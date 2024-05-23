@@ -127,10 +127,11 @@ public interface MemberRepository {
 	        """)
 	public String getLoginIdByEmail(String email);
 
-	public void sendResetPasswordEmail(String email);
-	
-	 @Update("UPDATE member SET loginPw = #{newPassword} WHERE email = #{email}")
-	public void updatePasswordByEmail(String email, String newPassword);
-
+	/*
+	 * public void sendResetPasswordEmail(String email);
+	 * 
+	 * @Update("UPDATE member SET loginPw = #{newPassword} WHERE email = #{email}")
+	 * public void updatePasswordByEmail(String email, String newPassword);
+	 */
 
 }

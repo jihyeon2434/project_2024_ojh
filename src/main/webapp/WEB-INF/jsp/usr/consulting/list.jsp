@@ -216,6 +216,10 @@
 	background-color: rgba(239, 231, 229, 0.3); /* 불투명도 조정 */
 }
 
+
+.img > img{
+	object-fit: cover;
+}
 .img-outer-box-2 {
 	width: 1000px;
 	border: 1px solid #EFE7E5;
@@ -225,6 +229,8 @@
 	margin-top: 15px;
 	padding: 10px;
 }
+
+
 
 .con-box, .self-box, .trend-box, .community-box {
 	margin-top: 20px;
@@ -250,10 +256,11 @@
 
 .img-box-1 {
 	border: 0.5px solid #EFE7E5;
-	width: 300px; /* 각 항목의 너비 정의 */
+	width: 400px; /* 각 항목의 너비 정의 */
 	height: 350px;
 	margin-top: 15px;
-	padding: 10px;
+	padding: 30px;
+	margin: 10px;
 	box-sizing: border-box; /* 너비에 패딩과 테두리를 포함 */
 	border-radius: 10px;
 }
@@ -263,7 +270,6 @@
 	height: 100%;
 	overflow-x: auto; /* x 축으로 넘칠 경우 스크롤 생성 */
 	white-space: nowrap; /* 요소들을 한 줄에 나열*/
-	border: 3px solid green;
 }
 
 .personal-img-outer-box {
@@ -275,12 +281,10 @@
 	margin-top: 15px;
 	align-items: center;
 	padding: 10px;
-	border: 3px solid blue;
 }
 
 .personal-img-box {
 	background-color: red;
-	border: 5px solid pink;
 }
 
 .img-big-outer-box {
@@ -358,13 +362,15 @@
 	background: #rgba(239, 231, 229, 0.3); /* 사용자가 스크롤바에 호버할 때의 배경색 */
 }
 
-.content {
-    width: 300px; /* 예시로 너비를 200px로 설정합니다. 필요에 따라 조정하세요. */
-    border: 3px solid red;
-}
+.store{
+
+width: 300px;}
+
+.time{
+width: 300px;}
 
 .sm-img-outer-box{
- border: 3px solid red;
+
 }
 
 </style>
@@ -492,7 +498,7 @@
 									<!-- shopInfoList의 길이를 확인하여 유효한 인덱스인지 검사합니다 -->
 									<c:set var="shop" value="${shopInfoList[i]}" />
 									<div class="img-box-1 personal-img-box">
-										<div class="sm-img-outer-box personal-sm-img-outer-box">
+										<div class="sm-img-outer-box">
 											<div class="img">
 												<img class="banner" style="width: 290px; height: 263px" src="${shopInfoList[0].photoUrl1}" />
 
@@ -551,8 +557,11 @@
 												<div class="img">
 													<img class="banner" style="width: 290px; height: 263px" src="${shop.photoUrl1}" />
 												</div>
+												<div class="content">
+							
 												<div class="store">${shop.shopName}</div>
 												<div class="time">${shop.roadName}</div>
+											</div>
 											</div>
 										</a>
 									</div>

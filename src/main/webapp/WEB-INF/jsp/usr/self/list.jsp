@@ -188,6 +188,10 @@
 	justify-content: center;
 }
 
+.img > img{
+	object-fit: cover;
+}
+
 .search-box {
 	width: 900px;
 	height: 100px;
@@ -269,10 +273,11 @@
 
 .img-box-1 {
 	border: 0.5px solid #EFE7E5;
-	width: 300px; /* 각 항목의 너비 정의 */
+	width: 400px; /* 각 항목의 너비 정의 */
 	height: 350px;
 	margin-top: 15px;
-	padding: 10px;
+	padding: 30px;
+	margin: 10px;
 	box-sizing: border-box; /* 너비에 패딩과 테두리를 포함 */
 		border-radius: 10px;
 }
@@ -357,7 +362,12 @@
 ::-webkit-scrollbar-thumb:hover {
   background: #rgba(239, 231, 229, 0.3); /* 사용자가 스크롤바에 호버할 때의 배경색 */
 }
+.store{
 
+width: 300px;}
+
+.time{
+width: 300px;}
 </style>
 <div class="outer-box">
 	<div class="small-outer-box">

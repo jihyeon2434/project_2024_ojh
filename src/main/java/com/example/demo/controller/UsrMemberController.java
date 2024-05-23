@@ -384,19 +384,17 @@ public class UsrMemberController {
 
 		return Ut.jsReplace("S-1", "회원님의 아이디는 " + loginId + " 입니다.", "../member/login");
 	}
-
-	@RequestMapping("/usr/member/findLoginPw")
-	public String findLoginPw() {
-
-		return "/usr/member/findLoginPw";
-
-	}
-
-	@RequestMapping("/usr/member/doFindLoginPw")
-	    @ResponseBody
-	    public String findLoginPw(@RequestParam String email) {
-	        String resultMessage = memberService.sendResetPasswordEmail(email);
-	        return resultMessage;
-	    }
-
+	/*
+	 * @RequestMapping("/usr/member/findLoginPw") public String findLoginPw() {
+	 * 
+	 * return "/usr/member/findLoginPw";
+	 * 
+	 * }
+	 * 
+	 * @RequestMapping("/usr/member/doFindLoginPw")
+	 * 
+	 * @ResponseBody public String findLoginPw(@RequestParam String email) { String
+	 * resultMessage = memberService.sendResetPasswordEmail(email); return
+	 * resultMessage; }
+	 */
 }
