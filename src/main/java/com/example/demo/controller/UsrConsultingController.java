@@ -92,6 +92,7 @@ public class UsrConsultingController {
 
 		// 상담 가게 정보 가져오기
 		List<conShop> shopInfoList = consultShopService.getShopsList();
+		System.err.println("shopInfoList:"+shopInfoList);
 
 		// 이미지 URI 출력
 		for (conShop shop : shopInfoList) {

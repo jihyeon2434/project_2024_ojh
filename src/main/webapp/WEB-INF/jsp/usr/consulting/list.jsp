@@ -4,6 +4,7 @@
 <c:set var="pageTitle" value="#{board.code } CONSULTING LIST"></c:set>
 <%@ include file="../common/head.jspf"%>
 
+
 <style>
 
 
@@ -47,7 +48,7 @@
 }
 
 .price {
-	font-family: Inter, sans-serif;
+	
 	align-content: center;
 	display: block;
 }
@@ -64,7 +65,7 @@
 
 .area {
 	margin-top: 23px;
-	font-family: Inter, sans-serif;
+	
 	align-content: center;
 	display: block;
 	font-size: 15px;
@@ -100,7 +101,7 @@
 
 .area-1, .area-2, .area-3, .area-4, .area-5, .area-6, .area-7, .area-8,
 	.area-9, .area-10, .area-11 {
-	font-family: Inter, sans-serif;
+	
 	width: 20px;
 	height: 20px;
 }
@@ -116,7 +117,7 @@
 
 .situation {
 	margin-top: 23px;
-	font-family: Inter, sans-serif;
+
 	align-content: center;
 	display: block;
 	font-size: 15px;
@@ -141,7 +142,6 @@
 }
 
 .situation-1, .situation-2, .situation-3, .situation-4 {
-	font-family: Inter, sans-serif;
 	width: 30px;
 	height: 30px;
 }
@@ -152,7 +152,6 @@
 	text-align: center;
 	color: black;
 	font-size: 20px;
-	font-family: Inter, sans-serif;
 	font-weight: 500;
 	word-wrap: break-word"
 }
@@ -177,7 +176,6 @@
 	text-align: center;
 	color: black;
 	font-size: 40px;
-	font-family: Inter, sans-serif;
 	font-weight: 400px;
 	word-wrap: break-word;
 }
@@ -224,16 +222,7 @@
 	background-color: rgba(239, 231, 229, 0.3); /* 불투명도 조정 */
 }
 
-.img-outer-box {
-	width: 1000px;
-	height: 400px;
-	border: 1px solid #EFE7E5;
-	justify-content: space-between;
-	border-radius: 7px;
-	display: flex;
-	margin-top: 15px;
-	padding: 10px;
-}
+
 
 .img-outer-box-2 {
 	width: 1000px;
@@ -270,20 +259,40 @@
 .img-box-1 {
 	border: 0.5px solid #EFE7E5;
 	width: 300px; /* 각 항목의 너비 정의 */
-	height: 330px;
+	height: 350px;
 	margin-top: 15px;
 	padding: 10px;
 	box-sizing: border-box; /* 너비에 패딩과 테두리를 포함 */
+	border-radius: 10px;
 }
 
 .small-img-outer-box {
-	width: 100%;
+	width: auto;
+	height: 100%;
 	overflow-x: auto; /* x 축으로 넘칠 경우 스크롤 생성 */
 	white-space: nowrap; /* 요소들을 한 줄에 나열*/
+	border: 3px solid green;
+}
+.personal-img-outer-box {
+	width: auto;
+	height: 450px;
+	justify-content: space-between;
+	border-radius: 57px;
+	display: flex;
+	margin-top: 15px;
+	align-items: center;
+	padding: 10px;
+	border: 3px solid blue;
 }
 
+.personal-img-box{
+background-color: red;
+}
+
+
+
 .img-big-outer-box {
-	width: 975px;
+	width: 100%;
 	height: 1000px;
 	display: flex; /* 플렉스 박스 사용 */
 	flex-wrap: wrap; /* 줄 바꿈 허용 */
@@ -328,7 +337,39 @@
 .time {
 	font-size: 10px;
 }
+
+.img-box-1 {
+  transition: transform 0.3s ease, box-shadow 0.3s ease; /* 애니메이션 효과를 부드럽게 만듭니다 */
+}
+
+.img-box-1:hover {
+  transform: scale(1.05); /* 이미지를 살짝 키웁니다 */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3); /* 그림자 효과를 추가하여 포인트를 줍니다 */
+}
+
+
+/* 커스텀 스크롤바 스타일링 */
+::-webkit-scrollbar {
+  width: 10px; /* 스크롤바의 너비 */
+}
+
+::-webkit-scrollbar-track {
+  background: #f1f1f1; /* 스크롤바 트랙의 배경색 */
+}
+
+::-webkit-scrollbar-thumb {
+  background: white; /* 스크롤바 썸의 배경색 */
+  border-radius: 25px; /* 스크롤바 썸의 모서리를 둥글게 만듭니다 */
+
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #rgba(239, 231, 229, 0.3); /* 사용자가 스크롤바에 호버할 때의 배경색 */
+}
+
 </style>
+
+
 <div class="outer-box">
 	<div class="small-outer-box">
 		<div class="search-box">
@@ -450,18 +491,6 @@
 				<div class="img-outer-box-2">
 					<div class="small-img-outer-box">
 
-
-
-
-
-
-
-
-
-
-
-
-
 						<div class="img-outer-box personal-img-outer-box">
 							<c:forEach var="i" begin="${startIndex}" end="${endIndex}">
 								<c:if test="${i < fn:length(shopInfoList)}">
@@ -473,8 +502,11 @@
 												<img class="banner" style="width: 290px; height: 263px" src="${shopInfoList[0].photoUrl1}" />
 
 											</div>
+											<div class="content">
 											<div>가게 ${shop.shopName}</div>
 											<div>위치 ${shop.roadName }</div>
+											</div>
+											
 										</div>
 									</div>
 								</c:if>
@@ -509,64 +541,31 @@
 						<div class="line1"></div>
 					</div>
 					<!-- 추천 업체 목록 -->
-					<div class="img-outer-box-2">
-						<div class="small-img-outer-box">
-							<div class="img-big-outer-box">
-								<%-- 페이지네이션을 위한 변수 설정 --%>
-								<c:set var="pageSize" value="9" />
-								<c:set var="totalShops" value="${fn:length(shopInfoList)}" />
-								<c:set var="pagesCount" value="${totalShops / pageSize + (totalShops % pageSize > 0 ? 1 : 0)}" />
-								<c:set var="page" value="${param.page != null ? param.page : 1}" />
-								<c:set var="startIndex" value="${(page - 1) * pageSize}" />
-								<c:set var="endIndex" value="${startIndex + pageSize - 1}" />
+					<!-- 추천 업체 목록 -->
+<div class="img-outer-box-2">
+    <div class="small-img-outer-box">
+        <div class="img-big-outer-box">
+            <%-- 페이지네이션을 위한 변수 설정 --%>
+           <c:forEach var="shop" items="${shopInfoList }" >
+       
 
-								<%-- 페이지에 표시될 가게 정보를 추출하여 표시 --%>
-								<c:forEach var="i" begin="${startIndex}" end="${endIndex}">
-									<c:if test="${i < fn:length(shopInfoList)}">
-										<!-- shopInfoList의 길이를 확인하여 유효한 인덱스인지 검사합니다 -->
-										<c:set var="shop" value="${shopInfoList[i]}" />
-										<div class="img-box-1">
-											<a href="detail?id=${shop.id}&categoryId=${shop.categoryId}&themeId=${shop.themeId}">
-												<div class="sm-img-outer-box">
-													<div class="img">
-														<img class="banner" style="width: 290px; height: 263px" src="${shop.photoUrl1}" />
-													</div>
-													<div class="store">${shop.shopName}</div>
-													<div class="time">${shop.roadName}</div>
-												</div>
-											</a>
-										</div>
-									</c:if>
-								</c:forEach>
-							</div>
+                <!-- shopInfoList의 길이를 확인하여 유효한 인덱스인지 검사합니다 -->
+                <div class="img-box-1">
+                    <a href="detail?id=${shop.id}&categoryId=${shop.categoryId}&themeId=${shop.themeId}">
+                        <div class="sm-img-outer-box">
+                            <div class="img">
+                                <img class="banner" style="width: 290px; height: 263px" src="${shop.photoUrl1}" />
+                            </div>
+                            <div class="store">${shop.shopName}</div>
+                            <div class="time">${shop.roadName}</div>
+                        </div>
+                    </a>
+                </div>
+            </c:forEach>
+        </div>
+    </div>
+</div>
 
-							<%-- 페이지네이션 버튼 생성 --%>
-							<div class="pagination-container">
-								<div class="pagination flex justify-center mt-3">
-									<%-- 이전 페이지 버튼 --%>
-									<c:if test="${page > 1}">
-										<a class="btn btn-xs"
-											href="?boardId=${boardId}&searchKeywordTypeCode=${searchKeywordTypeCode}&searchKeyword=${searchKeyword}&page=${page - 1}">&lt;</a>
-									</c:if>
-
-									<%-- 페이지 버튼 --%>
-									<c:forEach var="i" begin="1" end="${pagesCount}">
-										<a class="btn btn-xs ${page == i ? 'btn-active' : ''}"
-											href="?boardId=${boardId}&searchKeywordTypeCode=${searchKeywordTypeCode}&searchKeyword=${searchKeyword}&page=${i}">${i}</a>
-									</c:forEach>
-
-									<%-- 다음 페이지 버튼 --%>
-									<c:if test="${page < pagesCount}">
-										<a class="btn btn-xs"
-											href="?boardId=${boardId}&searchKeywordTypeCode=${searchKeywordTypeCode}&searchKeyword=${searchKeyword}&page=${page+1}">&gt;</a>
-									</c:if>
-
-
-
-								</div>
-							</div>
-						</div>
-					</div>
 
 
 				</div>
@@ -578,18 +577,6 @@
 
 </div>
 
-<script>
-  // 페이지 변수 설정
-  var totalShops = ${fn:length(shopInfoList)};
-  var pageSize = 9;
-  var pagesCount = Math.ceil(totalShops / pageSize);
-  var currentPage = ${param.page != null ? param.page : 1};
-
-  // 마지막 페이지인 경우 다음 페이지 버튼을 숨김
-  if (currentPage === pagesCount) {
-    document.querySelector('.pagination-container .pagination').lastElementChild.style.display = 'none';
-  }
-</script>
 
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 

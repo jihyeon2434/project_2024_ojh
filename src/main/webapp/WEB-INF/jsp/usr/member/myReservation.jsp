@@ -420,7 +420,7 @@
 								<c:forEach var="inquiry" items="${inquiries}" varStatus="status">
 									<tr>
 										<td>${status.index + 1}</td>
-										<td><a href="../article/detail?id=${inquiry.id}">${inquiry.title}</a></td>
+										<td><a href="../articledetail?id=${inquiry.id}">${inquiry.title}</a></td>
 										<td>${inquiry.regDate}</td>
 										<td></td>
 									</tr>

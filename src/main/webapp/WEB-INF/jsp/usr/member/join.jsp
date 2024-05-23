@@ -35,7 +35,7 @@
 	background: rgba(239, 231, 229, 0.25);
 }
 
-.join-box input[type="text"],
+.join-box input[type="text"],.join-box input[type="password"],.join-box input[type="email"],
 .join-box select {
     background: rgba(239, 231, 229, 0.25);
     /* join-box의 input[type="text"]와 select 태그 배경색 변경 */

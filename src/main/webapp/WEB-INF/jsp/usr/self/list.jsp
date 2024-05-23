@@ -270,10 +270,11 @@
 .img-box-1 {
 	border: 0.5px solid #EFE7E5;
 	width: 300px; /* 각 항목의 너비 정의 */
-	height: 330px;
+	height: 350px;
 	margin-top: 15px;
 	padding: 10px;
 	box-sizing: border-box; /* 너비에 패딩과 테두리를 포함 */
+		border-radius: 10px;
 }
 
 .small-img-outer-box {
@@ -328,6 +329,35 @@
 .time {
 	font-size: 10px;
 }
+
+.img-box-1 {
+  transition: transform 0.3s ease, box-shadow 0.3s ease; /* 애니메이션 효과를 부드럽게 만듭니다 */
+}
+
+.img-box-1:hover {
+  transform: scale(1.05); /* 이미지를 살짝 키웁니다 */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* 그림자 효과를 추가하여 포인트를 줍니다 */
+}
+
+/* 커스텀 스크롤바 스타일링 */
+::-webkit-scrollbar {
+  width: 10px; /* 스크롤바의 너비 */
+}
+
+::-webkit-scrollbar-track {
+  background: #f1f1f1; /* 스크롤바 트랙의 배경색 */
+}
+
+::-webkit-scrollbar-thumb {
+  background: white; /* 스크롤바 썸의 배경색 */
+  border-radius: 25px; /* 스크롤바 썸의 모서리를 둥글게 만듭니다 */
+
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #rgba(239, 231, 229, 0.3); /* 사용자가 스크롤바에 호버할 때의 배경색 */
+}
+
 </style>
 <div class="outer-box">
 	<div class="small-outer-box">

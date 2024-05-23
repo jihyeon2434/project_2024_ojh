@@ -14,7 +14,7 @@ import com.example.demo.service.ArticleService;
 import com.example.demo.service.BoardService;
 import com.example.demo.service.ConsultShopService;
 import com.example.demo.service.MemberService;
-import com.example.demo.service.OnlineConsultService;
+
 import com.example.demo.service.PaymentService;
 import com.example.demo.service.ReplyService;
 import com.example.demo.service.selfShopService;
@@ -48,8 +48,7 @@ public class UsrMemberController {
 	@Autowired
 	private ConsultShopService consultShopService;
 
-	@Autowired
-	private OnlineConsultService OnlineConsultService;
+	
 	@Autowired
 	private MemberService memberService;
 

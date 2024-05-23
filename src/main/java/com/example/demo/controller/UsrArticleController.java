@@ -107,7 +107,7 @@ public class UsrArticleController {
 	        return rq.historyBackOnView("접근 권한이 없습니다."); // 권한이 없을 경우 경고
 	    }
 
-	    List<Reply> replies = replyService.getForPrintReplies(memberId, "article", id);
+	    List<Reply> replies = replyService.getForPrintReplies(memberId, "Article", id);
 	    int repliesCount = replies.size();
 
 	    model.addAttribute("article", article);
