@@ -57,6 +57,9 @@ public class UsrMemberController {
 	@Autowired
 	private PaymentService paymentService;
 
+	
+
+	// 로그아웃 처리 메서드
 	@RequestMapping("/usr/member/doLogout")
 	@ResponseBody
 	public String doLogout(HttpServletRequest req) {
@@ -70,7 +73,8 @@ public class UsrMemberController {
 
 		return Ut.jsReplace("S-1", "로그아웃 되었습니다", "/");
 	}
-
+	
+	// 로그인 화면을 보여주는 메서드
 	@RequestMapping("/usr/member/login")
 	public String showLogin(HttpServletRequest req) {
 
@@ -83,6 +87,7 @@ public class UsrMemberController {
 		return "usr/member/login";
 	}
 
+	// 로그인 처리 메서드
 	@RequestMapping("/usr/member/doLogin")
 	@ResponseBody
 	public String doLogin(HttpServletRequest req, String loginId, String loginPw, String afterLoginUri) {
@@ -119,12 +124,14 @@ public class UsrMemberController {
 		return Ut.jsReplace("S-1", Ut.f("%s님 환영합니다", member.getNickname()), "/");
 	}
 
+	// 회원가입 화면을 보여주는 메서드
 	@RequestMapping("/usr/member/join")
 	public String showJoin(HttpServletRequest req) {
 
 		return "usr/member/join";
 	}
 
+	// 회원가입 처리 메서드
 	@RequestMapping("/usr/member/doJoin")
 	@ResponseBody
 	public String doJoin(HttpServletRequest req, String loginId, String loginPw, String loginPwCheck, String name,
@@ -178,12 +185,14 @@ public class UsrMemberController {
 		return Ut.jsReplace(joinRd.getResultCode(), joinRd.getMsg(), "../member/login");
 	}
 
+	// 마이페이지 화면을 보여주는 메서드
 	@RequestMapping("/usr/member/myPage")
 	public String showMyPage() {
 
 		return "usr/member/myPage";
 	}
 
+	// 마이페이지2 화면을 보여주는 메서드
 	@RequestMapping("/usr/member/myPage2")
 	public String showMyPage2(HttpServletRequest req, Model model) {
 		Rq rq = (Rq) req.getAttribute("rq");
@@ -194,6 +203,7 @@ public class UsrMemberController {
 		return "usr/member/myPage2";
 	}
 
+	// 마이 캘린더 화면을 보여주는 메서드
 	@RequestMapping("/usr/member/myCalendar")
 	public String showMyCalendar(HttpServletRequest req, Model model) {
 		Rq rq = (Rq) req.getAttribute("rq");
@@ -202,7 +212,8 @@ public class UsrMemberController {
 		model.addAttribute("month", currentDate.getMonthValue() - 1); // 월은 0부터 시작하므로 1을 빼줍니다.
 		return "usr/member/myCalendar";
 	}
-
+	
+	// 마이 예약 화면을 보여주는 메서드
 	@RequestMapping("/usr/member/myReservation")
 	public String showMyReservation(HttpServletRequest req, Model model, @RequestParam(defaultValue = "1") int boardId,
 			@RequestParam(defaultValue = "1") int page,
@@ -254,6 +265,7 @@ public class UsrMemberController {
 		return "usr/member/myReservation";
 	}
 
+	// 마이 스크랩 상점 화면을 보여주는 메서드
 	@RequestMapping("/usr/member/myScrapShops")
 	public String showMyScrapShops(HttpServletRequest req, Model model) {
 		Rq rq = (Rq) req.getAttribute("rq");
@@ -265,24 +277,28 @@ public class UsrMemberController {
 		return "usr/member/myScrapShops";
 	}
 
+	// 스크랩한 컨설팅 상점 목록을 가져오는 메서드
 	@RequestMapping("/usr/member/conShopList")
 	public @ResponseBody List<conShop> getConShopList(HttpServletRequest req) {
 		Rq rq = (Rq) req.getAttribute("rq");
 		return consultShopService.getscrapShopsList(rq.getLoginedMemberId());
 	}
 
+	// 스크랩한 셀프 상점 목록을 가져오는 메서드
 	@RequestMapping("/usr/member/selfShopList")
 	public @ResponseBody List<selfShop> getSelfShopList(HttpServletRequest req) {
 		Rq rq = (Rq) req.getAttribute("rq");
 		return selfShopService.getscrapShopsList(rq.getLoginedMemberId());
 	}
 
+	// 비밀번호 확인 화면을 보여주는 메서드
 	@RequestMapping("/usr/member/checkPw")
 	public String showCheckPw() {
 
 		return "usr/member/checkPw";
 	}
 
+	// 비밀번호 확인 처리 메서드
 	@RequestMapping("/usr/member/doCheckPw")
 	public String doCheckPw(String loginPw) {
 
@@ -297,6 +313,7 @@ public class UsrMemberController {
 		return "usr/member/modify";
 	}
 
+	// 회원 정보 수정 처리 메서드
 	@RequestMapping("/usr/member/doModify")
 	@ResponseBody
 	public String doModify(HttpServletRequest req, String loginPw, String name, String nickname, String cellphoneNum,
@@ -330,9 +347,9 @@ public class UsrMemberController {
 		return Ut.jsReplace(modifyRd.getResultCode(), modifyRd.getMsg(), "../member/myPage");
 	}
 
+	// 회원 탈퇴를 처리하는 메서드
 	@RequestMapping("/usr/member/doWithdraw")
 	@ResponseBody
-	// 회원 탈퇴를 처리하는 메서드
 	public String doWithdraw(HttpServletRequest req,
 			@RequestParam(defaultValue = "../member/login") String afterLogoutUri) {
 		Rq rq = (Rq) req.getAttribute("rq");
@@ -352,19 +369,8 @@ public class UsrMemberController {
 		return Ut.jsReplace("S-1", "탈퇴 처리되었습니다.", "/");
 	}
 
-	/*
-	 * @RequestMapping("/usr/member/findLoginId")
-	 * 
-	 * @ResponseBody public String findLoginId(String email) { String loginId =
-	 * memberService.getLoginIdByEmail(email);
-	 * 
-	 * if (loginId == null) { return Ut.jsHistoryBack("F-1",
-	 * "해당 이메일로 등록된 아이디가 없습니다."); }
-	 * 
-	 * return Ut.jsReplace("S-1", "회원님의 아이디는 " + loginId + " 입니다.",
-	 * "../member/login"); }
-	 */
-
+	
+	// 로그인 아이디 찾기 화면을 보여주는 메서드
 	@RequestMapping("/usr/member/findLoginId")
 	public String findLoginId() {
 
@@ -372,6 +378,7 @@ public class UsrMemberController {
 
 	}
 
+	// 로그인 아이디 찾기 처리 메서드
 	@RequestMapping("/usr/member/doFindLoginId")
 	@ResponseBody
 	public String findLoginId(String email) {
