@@ -20,7 +20,6 @@ import com.example.demo.service.ArticleService;
 import com.example.demo.service.BoardService;
 import com.example.demo.service.ConsultShopService;
 import com.example.demo.service.GenFileService;
-import com.example.demo.service.ReactionPointService;
 import com.example.demo.service.ReplyService;
 import com.example.demo.service.ReviewService;
 import com.example.demo.service.ScrapService;
@@ -51,8 +50,6 @@ public class UsrConsultingController {
 	@Autowired
 	private ReplyService replyService;
 
-	@Autowired
-	private ReactionPointService reactionPointService;
 
 	@Autowired
 	private ConsultShopService consultShopService;

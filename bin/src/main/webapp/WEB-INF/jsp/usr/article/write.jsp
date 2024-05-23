@@ -143,7 +143,6 @@
 
 <style>
 form {
-	font-family: 'Inter', sans-serif;
 	font-weight: 500;
 	font-size: 16px;
 	line-height: 22px;
@@ -151,7 +150,6 @@ form {
 
 /* 입력 필드 및 버튼에도 동일한 스타일 적용 */
 form input, form button {
-	font-family: 'Inter', sans-serif;
 	font-weight: 500;
 	font-size: 16px;
 	line-height: 22px;
@@ -232,7 +230,6 @@ form input, form button {
 
 .photo-guide-description {
 	margin-top: 63px;
-	font: 500 16px/22px Inter, sans-serif;
 }
 
 @media ( max-width : 991px) {
@@ -273,7 +270,6 @@ form input, form button {
 }
 
 .photo-guide-section-title {
-	font-family: Noto Sans KR, sans-serif;
 	line-height: 100%;
 }
 
@@ -298,7 +294,6 @@ form input, form button {
 }
 
 .photo-guide-section-subtitle {
-	font-family: Noto Sans KR, sans-serif;
 	line-height: 100%;
 	margin-left: 10px;
 }
@@ -310,7 +305,6 @@ form input, form button {
 }
 
 .photo-guide-section-text {
-	font-family: Noto Sans KR, sans-serif;
 	color: ffffff;
 	line-height: 14px;
 	margin-top: 22px;
@@ -324,7 +318,6 @@ form input, form button {
 }
 
 .photo-guide-example-title {
-	font-family: Noto Sans KR, sans-serif;
 	border-color: rgba(0, 0, 0, 0.25);
 	border-style: solid;
 	border-bottom-width: 1px;
@@ -358,7 +351,6 @@ form input, form button {
 }
 
 .photo-guide-bad-example-title {
-	font-family: Noto Sans KR, sans-serif;
 	border-color: rgba(0, 0, 0, 0.25);
 	border-style: solid;
 	border-bottom-width: 1px;

@@ -5,7 +5,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.example.demo.service.ReactionPointService;
 import com.example.demo.service.ReplyService;
 import com.example.demo.util.Ut;
 import com.example.demo.vo.Reply;
@@ -23,8 +22,7 @@ public class UsrReplyController {
 	@Autowired
 	private ReplyService replyService;
 
-	@Autowired
-	private ReactionPointService reactionPointService;
+
 
 	@RequestMapping("/usr/reply/doWrite")
 	@ResponseBody

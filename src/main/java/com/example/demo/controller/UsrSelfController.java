@@ -12,7 +12,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.example.demo.service.BoardService;
-import com.example.demo.service.ReactionPointService;
 import com.example.demo.service.ReplyService;
 import com.example.demo.service.ReviewService;
 import com.example.demo.service.ScrapService;
@@ -42,8 +41,7 @@ public class UsrSelfController {
 	@Autowired
 	private ReviewService reviewService;
 
-	@Autowired
-	private ReactionPointService reactionPointService;
+
 
 	@Autowired
 	private selfShopService selfShopService;

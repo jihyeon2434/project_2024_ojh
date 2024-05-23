@@ -168,6 +168,10 @@
 	/* 세로 중앙 정렬 */
 }
 
+.Rectangle35 > img{
+object-fit: cover;
+}
+
 /* .Rectangle35 img {
 	/* position: inline-block; */
 /* 	border:1px solid; */

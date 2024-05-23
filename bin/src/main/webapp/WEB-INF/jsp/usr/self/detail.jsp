@@ -176,6 +176,10 @@ style> /* CSS 스타일은 여기에 작성합니다 */ .hidden {
 	margin-right: 11px;
 }
 
+.Rectangle35 > img{
+object-fit: cover;
+}
+
 .Group101 {
 	width: 1000px;
 	height: 80px;
