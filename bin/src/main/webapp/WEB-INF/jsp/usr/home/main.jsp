@@ -9,50 +9,51 @@
 
 <style>
 .big-outer-box {
-	width: auto;
+	width: 100%;
 	height: 1500px;
 	display: flex;
 	align-items: center;
 	flex-direction: column;
-  justify-content: center;
+	justify-content: center;
 }
 
 .small-outer-box {
-	width: 1500px;
-	height: 1000px;
+	width: 80%;
+	height: 100%;
 	display: flex;
 	justify-content: space-around;
 	flex-direction: column;
-  margin-bottom: 250px;
+/* 	border: 3px solid red; */
 }
 
 .con-self-outer-box {
 	display: flex;
 	justify-content: space-around;
 	align-items: center;
-}
-
-.consulting-box {
-	width: 380px;
-  
+/* 	border: 3px solid; */
+	width: auto;
+	height: 100%;
 }
 
 .self-box {
 	width: 380px;
 	display: inline-block;
 }
-
+/* 
 .self-box>.grey-box>.theme-text-box {
 	position: relative;
-	top: 21px;
+
+} */
+.grey-box {
+    width: 380px;
+    color: black;
+    position: relative;
+    transition: transform 0.5s ease; /* 변화가 0.5초 동안 천천히 일어나도록 설정 */
+    cursor: pointer; /* 마우스 오버 시 커서 변경 */
 }
 
-.grey-box {
-	background-color: #A0AEC0;
-	opacity: 0.2;
-	width: 380px;
-	height: 130px;
-	color: black; /* 텍스트 색상을 검정색으로 설정합니다 */
+.grey-box:hover {
+    transform: scale(1.05); /* 마우스를 올렸을 때 크기를 5% 확대 */
 }
 
 .grey-box div {
@@ -65,6 +66,7 @@
 	justify-content: space-between;
 	padding-left: 10px;
 	padding-right: 10px;
+/* 	border: 3px solid green; */
 }
 
 .theme-small-box-1 {
@@ -85,10 +87,11 @@
 	font-weight: bold;
 }
 
-
 .news-outer-box {
 	display: flex;
 	justify-content: center;
+	height: 100%;
+/* 	border: 3px solid; */
 }
 
 .news-head-box {
@@ -98,188 +101,233 @@
 	margin-bottom: 20px;
 }
 
-.small-img-box{
-  width: 300px;
-  margin-left: 15px;
-  margin-right: 15px;
- display: flex;
-  flex-direction: column; /* 세로 정렬로 변경 */
-  
-  
+.small-img-box {
+	width: 100%;
+	height: 100%;
+	/* 	margin-left: 15px;
+	margin-right: 15px; */
+	display: flex;
+	flex-direction: column; /* 세로 정렬로 변경 */
+/* 	border: 3px solid yellow; */
 }
-
 
 .news-img-box {
 	text-align: center;
 	display: flex;
 	justify-content: space-around;
+	height: 80%;
+	width: 100%;
+/* 	border: 3px solid pink; */
+}
+
+.title-box {
+	height: 70px;
+/* 	border: 3px solid green; */
+}
+
+.title {
+	text-align: center; /* 텍스트 가운데 정렬 */
+	flex-grow: 1; /* 남은 공간을 차지하도록 설정 */
+	font-size: 15px;
+	padding-top: 10px;
+	padding-bottom: 10px;
+	margin-top: auto; /* 위쪽 여백을 자동으로 설정하여 하단으로 이동 */
+	margin-bottom: 10px; /* 하단 여백 추가 */
+}
+
+.img-outer-box {
+	width: 570px;
+	height: 400px;
+/* 	border: 3px solid blue; */
+	display: flex;
+	justify-content: center;
+}
+
+.small-img-box a {
 	height: 300px;
-  width: 900px;
 }
 
-.title-box{
-  height: 70px;
-}
-
-.title{
-  text-align: center; /* 텍스트 가운데 정렬 */
-  flex-grow: 1; /* 남은 공간을 차지하도록 설정 */
-  font-size: 15px;
-  padding-top: 10px;
-  padding-bottom: 10px;
-   margin-top: auto; /* 위쪽 여백을 자동으로 설정하여 하단으로 이동 */
-  margin-bottom: 10px; /* 하단 여백 추가 */
-  
-}
-
-
-.img-outer-box{
-  width: 270px;
-  height: 300px;
-}
-
-.small-img-box a{
-  height: 300px;
-}
-
-.vogue-outer-box{
-  display: flex;
+.vogue-outer-box {
+	display: flex;
 	justify-content: center;
 	align-items: center;
- 	width: 1500px;
-  height: 500px;
+	width: 2000px;
+	height: 500px;
+/* 	border: 3px solid blue; */
 }
 
 .img-outer-box img {
-    width: 270px;
-    height: 300px;
+	width: 370px;
+	height: 350px;
 }
 
- .consulting-box img,
-  .self-box img {
-    width: 380px;
-    height: 350px; /* Maintain aspect ratio */
-  }
-  
+.consulting-box img, .self-box img {
+	width: 380px;
+	height: 350px; /* Maintain aspect ratio */
+}
+
+/* 보그 기사 효과  */
+.news-outer-box {
+    display: flex;
+    justify-content: center;
+    height: 100%;
+ /*    border: 3px solid; */
+    opacity: 0;  
+    
+    transform: translateY(50px);
+    
+    transition: opacity 0.8s ease-out, transform 1.8s ease-out; /* 부드러운 효과를 위한 전환 설정 */
+    
+}
+
+.news-outer-box.before-visible {
+    opacity: 0;  // 초기 투명도 설정
+    transform: translateY(50px);  // 초기 위치 설정
+    transition: opacity 0.8s ease-out, transform 0.8s ease-out; // 부드러운 전환 설정
+}
+
+.news-outer-box.is-visible {
+    opacity: 1;   // 투명도를 1로 변경
+    transform: translateY(0); // 원래 위치로 이동
+}
+
+
 </style>
+
+
+
 <div class="big-outer-box">
-  <!-- 컨설팅/셀프 메인이미지 -->
-  <div class="small-outer-box">
-    <div class="con-self-outer-box">
-      <div class="consulting-box">
-      <a href="../consulting/list">
-          <!-- 첫 번째 이미지 -->
-          <img src="//velog.velcdn.com/images/jihyeon2434/post/932a6dd8-db76-44d4-8dae-71539f5e955f/image.jpg" width="380px" height="350px" >
-          <!-- 회색 네모 박스 -->
-          <div class="grey-box">
-            <div class="theme-big-box">
-              <div class="theme-small-box-1">
-                <div class="text-white text-left text-2xl font-bold font-serif">ONLINE</div>
-                <div class="text-white text-left text-2xl font-bold font-serif">CONSULTING</div>
-              </div>
-              <!-- 텍스트 -->
-              <div class="theme-small-box-2">
-                <div class="text-white text-right text-2xl font-bold mr-3">→</div>
-              </div>
+	<!-- 컨설팅/셀프 메인이미지 -->
+	<div class="small-outer-box">
+		<div class="con-self-outer-box">
+			<div class="consulting-box">
+				<a href="../consulting/list">
+					<div class="grey-box">
+						<img src="//velog.velcdn.com/images/jihyeon2434/post/932a6dd8-db76-44d4-8dae-71539f5e955f/image.jpg" width="380px"
+							height="350px">
+						<div class="theme-big-box">
+							<div class="theme-small-box-1">
+								<div class="text-white text-left text-2xl font-bold " style="color: black;">ONLINE</div>
+								<div class="text-white text-left text-2xl font-bold  " style="color: black;">CONSULTING</div>
+							</div>
+							<div class="theme-small-box-2">
+								<div class="text-white text-right text-2xl font-bold mr-3">→</div>
+							</div>
+						</div>
+						<div class="theme-text-box">
+							<div class="text-white text-left text-sm mt-2 mx-3" style="color: black;">단 시간에 당신의 이미지가 돋보이도록 도와주는</div>
+							<div class="text-white text-left text-sm mx-3" style="color: black;">간편 온라인 이미지 컨설팅 서비스</div>
+						</div>
+					</div>
+				</a>
 
-            </div>
-            <div class="theme-text-box">
-              <div class="text-white text-left text-sm mt-2">단 시간에 당신의 이미지가 돋보이도록 도와주는</div>
-              <div class="text-white text-left text-sm">간편 온라인 이미지 컨설팅 서비스</div>
-            </div>
+			</div>
 
-          </div>
-        </a>
-      </div>
+			<div class="self-box">
+				<a href="../self/list">
+					<div class="grey-box">
+						<!-- 첫 번째 이미지 -->
+						<img src="//chahong.com/web/product/big/202312/b53d9968c9e75b28da2c2052b3219019.jpg" >
+						<!-- 회색 네모 박스 -->
 
-      <div class="self-box">
+						<div class="theme-big-box">
+							<div class="theme-small-box-1">
+								<div class="text-white text-left text-2xl font-bold  " style="color: black;">SELF<br/><br/></div>
+							</div>
+							<!-- 텍스트 -->
+							<div class="theme-small-box-2">
+								<div class="text-white text-right text-2xl font-bold mr-3">→</div>
+							</div>
 
-        <a href="../self/list">
-          <!-- 첫 번째 이미지 -->
-          <img src="//chahong.com/web/product/big/202312/b53d9968c9e75b28da2c2052b3219019.jpg" width="380px" height="350px"  >
-          <!-- 회색 네모 박스 -->
-          <div class="grey-box">
-            <div class="theme-big-box">
-              <div class="theme-small-box-1">
-                <div class="text-white text-left text-2xl font-bold font-serif">SELF</div>
-              </div>
-              <!-- 텍스트 -->
-              <div class="theme-small-box-2">
-                <div class="text-white text-right text-2xl font-bold mr-3">→</div>
-              </div>
+						</div>
+						<div class="theme-text-box">
+							<div class="text-white text-left text-sm mt-2 mx-3" style="color: black;">고객 니즈 맞춤 헤어, 메이크업</div>
+							<div class="text-white text-left text-sm mx-3" style="color: black;">정보 제공 서비스</div>
+						</div>
+					</div>
+				</a>
+			</div>
+		</div>
 
-            </div>
-            <div class="theme-text-box">
-              <div class="text-white text-left text-sm mt-2">고객 니즈 맞춤 헤어, 메이크업</div>
-              <div class="text-white text-left text-sm">정보 제공 서비스</div>
-            </div>
-          </div>
-        </a>
-      </div>
-    </div>
+		<div class="news-outer-box">
+			<div class="news">
 
-    <div class="news-outer-box">
-      <div class="news">
+				<!-- 보그 최신뉴스 -->
+				<div class="vogue-outer-box">
+					<div>
+						<div class="news-head-box  ">LATEST IN TRENDS</div>
+						<div class=" news-img-box">
+							<div class="small-img-box">
+								<a href="${articles[0].link }">
+									<div class="img-outer-box">
+										<img src="${articles[0].imageUrl }" alt="">
+									</div>
+									<div class="title-box">
+										<div class="title">${articles[0].title }<br />${articles[0].date }</div>
+									</div>
 
-        <!-- 보그 최신뉴스 -->
-        <div class="vogue-outer-box">
-          <div>
-            <div class="news-head-box font-serif">LATEST IN TRENDS</div>
-            <div class=" news-img-box">
+								</a>
+							</div>
+							<div class="small-img-box">
+								<a href="${articles[1].link }">
+									<div class="img-outer-box">
+										<img src="${articles[1].imageUrl }" alt="">
+									</div>
+									<div class="title-box">
+										<div class="title">${articles[1].title }<br />${articles[1].date }</div>
+									</div>
+								</a>
+							</div>
+							<div class="small-img-box">
+								<a href="${articles[2].link }">
+									<div class="img-outer-box">
+										<img src="${articles[2].imageUrl }" alt="">
+									</div>
+									<div class="title-box">
+										<div class="title">${articles[2].title }<br />${articles[2].date }</div>
+									</div>
+								</a>
+							</div>
 
-              <div class="small-img-box">
-                <a href="${articles[0].link }">
-                  <div class="img-outer-box">
-                    <img src="${articles[0].imageUrl }" alt="" width="270px" height="300px">
-                  </div>
-                  <div class="title-box">
-                    <div class="title">
-                      ${articles[0].title }
-                    </div>
-                  </div>
-                  <div class="date">
-                    ${articles[0].date }
-                  </div>
-                </a>
-              </div>
-              <div class="small-img-box">
-                <a href="${articles[1].link }">
-                  <div class="img-outer-box">
-                    <img src="${articles[1].imageUrl }" alt="" width="270px" height="300px">
-                  </div>
-                  <div class="title-box">
-                    <div class="title">
-                      ${articles[1].title }
-                    </div>
-                  </div>
-                  <div class="date">
-                    ${articles[1].date }
-                  </div>
-                </a>
-              </div>
-              <div class="small-img-box">
-                <a href="${articles[2].link }">
-                  <div class="img-outer-box">
-                    <img src="${articles[2].imageUrl }" alt="" width="270px" height="300px">
-                  </div>
-                  <div class="title-box">
-                    <div class="title">
-                      ${articles[2].title }
-                    </div>
-                  </div>
-                  <div class="date">
-                    ${articles[2].date }
-                  </div>
-                </a>
-              </div>
+						</div>
+					</div>
 
-            </div>
-          </div>
+				</div>
+			</div>
+		</div>
 
-        </div>
-      </div>
-    </div>
-
-  </div>
+	</div>
 </div>
+
+
+
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+    const observer = new IntersectionObserver(entries => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('is-visible');
+            } else {
+                entry.target.classList.remove('is-visible');
+            }
+        });
+    }, { threshold: 0.1 });
+
+    // 감시 대상 등록
+    const targets = document.querySelectorAll('.news-outer-box');
+    targets.forEach(target => {
+        observer.observe(target);
+    });
+});
+
+// CSS 클래스를 통해 애니메이션을 제어
+document.addEventListener('DOMContentLoaded', () => {
+    const targets = document.querySelectorAll('.news-outer-box');
+    targets.forEach(target => {
+        target.classList.add('before-visible');
+    });
+});
+</script>
+
+
 <%@ include file="../common/foot.jspf"%>

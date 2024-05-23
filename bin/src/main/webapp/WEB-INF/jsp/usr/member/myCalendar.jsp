@@ -26,17 +26,16 @@
 	display: flex;
 	margin-top: 23px;
 	flex-direction: column;
-	font-size: 10px;
-	font-weight: 500;
+	font-size: 15px;
+	font-weight: 450;
 }
 
+
 .member-info {
-	font-family: Inter, sans-serif;
 	width: 150px;
 }
 
 .my-calendar {
-	font-family: Inter, sans-serif;
 	width: 150px;
 	margin-top: 44px;
 }
@@ -48,7 +47,6 @@
 }
 
 .online-reservation {
-	font-family: Inter, sans-serif;
 	width: 150px;
 	margin-top: 43px;
 }
@@ -94,7 +92,6 @@
 
 /* 달력 스타일링 */
 .calendar {
-	font-family: Arial, sans-serif;
 	border-collapse: collapse;
 	width: 1000px;
 }

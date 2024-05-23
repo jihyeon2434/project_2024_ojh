@@ -138,7 +138,7 @@ String shopId = request.getParameter("id");
 	<div class="small-outer-box">
 		<div class="title-box">
 			<div class="title">
-				<%=loginedMember.getNickname()%>님 <br />빠른 예약 도와드릴게요.
+				${loginedMember.getNickname()}님 <br />빠른 예약 도와드릴게요.
 			</div>
 			<div class="line"></div>
 		</div>
@@ -148,6 +148,8 @@ String shopId = request.getParameter("id");
 
 		<form id="dateForm" action="reservation3?shopId=<%=shopId%>" method="POST">
 			<input type="hidden" name="shopId" value="<%=shopId%>">
+			
+			
 			<!-- 업체 ID를 숨겨진 필드로 추가 -->
 			<div class="outer-calendar-box">
 				<div class="calendar-month">

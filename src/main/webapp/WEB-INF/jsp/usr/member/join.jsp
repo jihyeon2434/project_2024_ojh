@@ -68,31 +68,32 @@ th {
 }
 </style>
 
+
 <section class="big-outer-box mt-8 text-xl px-4 centered">
 	<div class="outer-box">
 		<div class="outer-container">
 			<div class="mx-auto">
-				<form action="../member/doJoin" method="POST">
+				<form id="joinForm" action="../member/doJoin" method="POST">
 					<table class="join-box">
 						<tbody>
 							<tr>
 								<th>아이디</th>
 								<td><input type="text" placeholder="" autocomplete="off"
-									class="input input-bordered input-sm w-full max-w-xs" name="loginId" /></td>
+									class="input input-bordered input-sm w-full max-w-xs" name="loginId" required /></td>
 							</tr>
 							<tr>
 								<th>비밀번호</th>
-								<td><input type="text" placeholder="" autocomplete="off"
-									class="input input-bordered input-sm w-full max-w-xs" name="loginPw" /></td>
+								<td><input type="password" placeholder="" autocomplete="off"
+									class="input input-bordered input-sm w-full max-w-xs" name="loginPw" required /></td>
 							</tr>
 							<tr>
 								<th>비밀번호 확인</th>
-								<td><input type="text" placeholder="" autocomplete="off"
-									class="input input-bordered input-sm w-full max-w-xs" name="loginPwCheck" /></td>
+								<td><input type="password" placeholder="" autocomplete="off"
+									class="input input-bordered input-sm w-full max-w-xs" name="loginPwCheck" required /></td>
 							</tr>
 							<tr>
 								<th>회원종류</th>
-								<td><select name="memberType" id="memberType" class="input input-bordered input-sm w-full max-w-xs">
+								<td><select name="memberType" id="memberType" class="input input-bordered input-sm w-full max-w-xs" required>
 										<option value="">선택하세요</option>
 										<option value="업체">업체</option>
 										<option value="고객">고객</option>
@@ -103,26 +104,25 @@ th {
 								<td><input type="text" placeholder="" autocomplete="off"
 									class="input input-bordered input-sm w-full max-w-xs" name="companyName" id="companyName" disabled /></td>
 							</tr>
-
 							<tr>
 								<th>이름</th>
 								<td><input type="text" placeholder="" autocomplete="off"
-									class="input input-bordered input-sm w-full max-w-xs" name="name" /></td>
+									class="input input-bordered input-sm w-full max-w-xs" name="name" required /></td>
 							</tr>
 							<tr>
 								<th>닉네임</th>
 								<td><input type="text" placeholder="" autocomplete="off"
-									class="input input-bordered input-sm w-full max-w-xs" name="nickname" /></td>
+									class="input input-bordered input-sm w-full max-w-xs" name="nickname" required /></td>
 							</tr>
 							<tr>
 								<th class="text-xs">전화번호</th>
 								<td><input type="text" placeholder="" autocomplete="off"
-									class="input input-bordered input-sm w-full max-w-xs" name="cellphoneNum" /></td>
+									class="input input-bordered input-sm w-full max-w-xs" name="cellphoneNum" required /></td>
 							</tr>
 							<tr>
 								<th class="text-xs">이메일</th>
-								<td><input type="text" placeholder="" autocomplete="off"
-									class="input input-bordered input-sm w-full max-w-xs" name="email" /></td>
+								<td><input type="email" placeholder="" autocomplete="off"
+									class="input input-bordered input-sm w-full max-w-xs" name="email" required /></td>
 							</tr>
 						</tbody>
 					</table>
@@ -136,21 +136,60 @@ th {
 </section>
 
 <script>
-
 document.addEventListener("DOMContentLoaded", function() {
     var memberTypeSelect = document.getElementById('memberType');
     var companyNameInput = document.getElementById('companyName');
 
     memberTypeSelect.addEventListener('change', function() {
-        // Check if the selected value is "업체"
         if (this.value === "업체") {
-            companyNameInput.disabled = false;  // Enable the input field
+            companyNameInput.disabled = false;
         } else {
-            companyNameInput.disabled = true;   // Disable the input field
-            companyNameInput.value = '';        // Optionally clear the value
+            companyNameInput.disabled = true;
+            companyNameInput.value = '';
+        }
+    });
+
+    var joinForm = document.getElementById('joinForm');
+    joinForm.addEventListener('submit', function(event) {
+        var email = joinForm.email.value;
+        var loginPw = joinForm.loginPw.value;
+        var loginPwCheck = joinForm.loginPwCheck.value;
+        var emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+        if (!emailPattern.test(email)) {
+            alert('이메일 형식이 올바르지 않습니다.');
+            event.preventDefault();
+            return;
+        }
+
+        if (loginPw.length < 8) {
+            alert('비밀번호는 최소 8자 이상이어야 합니다.');
+            event.preventDefault();
+            return;
+        }
+
+        if (!/[A-Z]/.test(loginPw)) {
+            alert('비밀번호에는 최소 하나의 대문자가 포함되어야 합니다.');
+            event.preventDefault();
+            return;
+        }
+
+        if (!/[a-z]/.test(loginPw)) {
+            alert('비밀번호에는 최소 하나의 소문자가 포함되어야 합니다.');
+            event.preventDefault();
+            return;
+        }
+
+        if (!/[0-9]/.test(loginPw)) {
+            alert('비밀번호에는 최소 하나의 숫자가 포함되어야 합니다.');
+            event.preventDefault();
+            return;
+        }
+
+        if (loginPw !== loginPwCheck) {
+            alert('비밀번호가 일치하지 않습니다.');
+            event.preventDefault();
         }
     });
 });
-</script>
-
 </script>

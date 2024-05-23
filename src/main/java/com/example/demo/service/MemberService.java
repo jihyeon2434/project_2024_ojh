@@ -17,7 +17,7 @@ public class MemberService {
 		this.memberRepository = memberRepository;
 	}
 	public ResultData<Integer> join(String loginId, String loginPw, String name, String nickname, String cellphoneNum, String email, String memberType, String companyName) {
-	    Member existsMember = getMemberByLoginId(loginId);
+		Member existsMember = getMemberByLoginId(loginId);
 
 		if (existsMember != null) {
 			return ResultData.from("F-7", Ut.f("이미 사용중인 아이디(%s)입니다", loginId));
@@ -29,14 +29,20 @@ public class MemberService {
 			return ResultData.from("F-8", Ut.f("이미 사용중인 이름(%s)과 이메일(%s)입니다", name, email));
 		}
 
-		  memberRepository.join(loginId, loginPw, name, nickname, cellphoneNum, email, memberType, companyName);
+		if (!Ut.isValidEmail(email)) {
+			return ResultData.from("F-9", "이메일 형식이 올바르지 않습니다.");
+		}
 
+		if (!Ut.isValidPassword(loginPw)) {
+			return ResultData.from("F-10", "비밀번호는 최소 8자 이상, 대문자, 소문자, 숫자를 포함해야 합니다.");
+		}
 
+		memberRepository.join(loginId, loginPw, name, nickname, cellphoneNum, email, memberType, companyName);
 		int id = memberRepository.getLastInsertId();
 
 		return ResultData.from("S-1", "회원가입이 완료되었습니다.", "id", id);
-
 	}
+
 
 	private Member getMemberByNameAndEmail(String name, String email) {
 		return memberRepository.getMemberByNameAndEmail(name, email);

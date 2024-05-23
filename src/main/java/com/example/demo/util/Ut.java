@@ -328,4 +328,25 @@ public class Ut {
 
 		return sb.toString();
 	}
+	
+	public static boolean isValidEmail(String email) {
+		String emailRegex = "^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}$";
+		return email.matches(emailRegex);
+	}
+	
+	public static boolean isValidPassword(String password) {
+		if (password.length() < 8) {
+			return false;
+		}
+		if (!password.matches(".*[A-Z].*")) {
+			return false;
+		}
+		if (!password.matches(".*[a-z].*")) {
+			return false;
+		}
+		if (!password.matches(".*[0-9].*")) {
+			return false;
+		}
+		return true;
+	}
 }

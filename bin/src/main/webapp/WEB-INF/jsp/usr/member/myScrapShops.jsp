@@ -5,19 +5,7 @@
 
 
 <style>
-/* .container {
-	background: linear-gradient(0deg, #fff 0%, #fff 100%), #fff;
-	display: flex;
-	flex-direction: column;
-	align-items: start;
-	padding: 45px 60px 80px;
-} */
 
-/* @media ( max-width : 991px) {
-	.container {
-		padding: 0 20px;
-	}
-} */
 .content-wrapper {
 	display: flex;
 	margin-left: 99px;
@@ -28,7 +16,6 @@
 
 .section-title {
 	color: #000;
-	font: 600 17px Inter, sans-serif;
 }
 
 @media ( max-width : 991px) {
@@ -52,7 +39,6 @@
 }
 
 .filter-option-1 {
-	font-family: Inter, sans-serif;
 	border-radius: 24px;
 	background-color: #d9d9d9;
 	justify-content: center;
@@ -60,7 +46,6 @@
 }
 
 .filter-option-2 {
-	font-family: Inter, sans-serif;
 	border-radius: 24px;
 	background-color: #f9f9f9;
 	white-space: nowrap;
@@ -165,19 +150,16 @@
 }
 
 .store-name {
-	font-family: Inter, sans-serif;
 	width: 500px;
 }
 
 .store-rating {
 	color: #888;
-	font-family: Inter, sans-serif;
 	margin-top: 29px;
 }
 
 .store-location {
 	color: #888;
-	font-family: Inter, sans-serif;
 	font-weight: 400;
 	margin-top: 29px;
 	width: 500px;
@@ -185,7 +167,6 @@
 
 .store-price {
 	color: #888;
-	font-family: Inter, sans-serif;
 	font-weight: 400;
 	margin-top: 31px;
 }
@@ -233,17 +214,17 @@
 	display: flex;
 	margin-top: 23px;
 	flex-direction: column;
-	font-size: 10px;
-	font-weight: 500;
+	font-size: 15px;
+	font-weight: 450;
 }
 
 .member-info {
-	font-family: Inter, sans-serif;
+
 	width: 100px;
 }
 
 .my-calendar {
-	font-family: Inter, sans-serif;
+
 	width: 150px;
 	margin-top: 44px;
 }
@@ -255,7 +236,6 @@
 }
 
 .online-reservation {
-	font-family: Inter, sans-serif;
 	width: 150px;
 	margin-top: 43px;
 }

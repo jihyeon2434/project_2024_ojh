@@ -88,7 +88,7 @@
 <section class="big-outer-box text-xl">
 	<div class="outer-box">
 		<div class="small-outer-box">
-			<div class="logo" style="font-size: 30px">LOGO</div>
+			<div class="logo" style="font-size: 30px">ItrendX</div>
 			<div class="outer-container">
 				<div class="small-outer-container">
 					<div class="login-container">
