@@ -166,6 +166,8 @@
 	height: 350px; /* Maintain aspect ratio */
 }
 
+
+
 /* 보그 기사 효과  */
 .news-outer-box {
     display: flex;
@@ -191,6 +193,11 @@
     transform: translateY(0); // 원래 위치로 이동
 }
 
+.theme-outer-box{
+
+border: 1px solid #A0AEC0;
+padding-bottom: 20px;
+}
 
 </style>
 
@@ -202,10 +209,11 @@
 		<div class="con-self-outer-box">
 			<div class="consulting-box">
 				<a href="../consulting/list">
-					<div class="grey-box">
+					<div class="grey-box image-container">
 						<img src="//velog.velcdn.com/images/jihyeon2434/post/932a6dd8-db76-44d4-8dae-71539f5e955f/image.jpg" width="380px"
 							height="350px">
-						<div class="theme-big-box">
+							<div class="theme-outer-box">
+							<div class="theme-big-box">
 							<div class="theme-small-box-1">
 								<div class="text-white text-left text-2xl font-bold " style="color: black;">ONLINE</div>
 								<div class="text-white text-left text-2xl font-bold  " style="color: black;">CONSULTING</div>
@@ -218,6 +226,8 @@
 							<div class="text-white text-left text-sm mt-2 mx-3" style="color: black;">단 시간에 당신의 이미지가 돋보이도록 도와주는</div>
 							<div class="text-white text-left text-sm mx-3" style="color: black;">간편 온라인 이미지 컨설팅 서비스</div>
 						</div>
+							</div>
+						
 					</div>
 				</a>
 
@@ -225,11 +235,11 @@
 
 			<div class="self-box">
 				<a href="../self/list">
-					<div class="grey-box">
+					<div class="grey-box image-container">
 						<!-- 첫 번째 이미지 -->
 						<img src="//chahong.com/web/product/big/202312/b53d9968c9e75b28da2c2052b3219019.jpg" >
 						<!-- 회색 네모 박스 -->
-
+<div class="theme-outer-box">
 						<div class="theme-big-box">
 							<div class="theme-small-box-1">
 								<div class="text-white text-left text-2xl font-bold  " style="color: black;">SELF<br/><br/></div>
@@ -243,6 +253,7 @@
 						<div class="theme-text-box">
 							<div class="text-white text-left text-sm mt-2 mx-3" style="color: black;">고객 니즈 맞춤 헤어, 메이크업</div>
 							<div class="text-white text-left text-sm mx-3" style="color: black;">정보 제공 서비스</div>
+						</div>
 						</div>
 					</div>
 				</a>

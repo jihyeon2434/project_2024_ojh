@@ -22,12 +22,12 @@ import com.example.demo.util.Ut;
 import com.example.demo.vo.Article;
 import com.example.demo.vo.Board;
 import com.example.demo.vo.Member;
-import com.example.demo.vo.OnlineConArticle;
 import com.example.demo.vo.Payment;
 import com.example.demo.vo.ResultData;
 import com.example.demo.vo.Rq;
 import com.example.demo.vo.conShop;
 import com.example.demo.vo.selfShop;
+import com.example.demo.vo.ResultData; // 필요한 패키지 임포트
 
 import jakarta.servlet.http.HttpServletRequest;
 
@@ -48,7 +48,6 @@ public class UsrMemberController {
 	@Autowired
 	private ConsultShopService consultShopService;
 
-	
 	@Autowired
 	private MemberService memberService;
 
@@ -128,8 +127,8 @@ public class UsrMemberController {
 
 	@RequestMapping("/usr/member/doJoin")
 	@ResponseBody
-	public String doJoin(HttpServletRequest req, String loginId, String loginPw, String loginPwCheck, String name, String nickname,
-			String cellphoneNum, String email, String memberType, String companyName) {
+	public String doJoin(HttpServletRequest req, String loginId, String loginPw, String loginPwCheck, String name,
+			String nickname, String cellphoneNum, String email, String memberType, String companyName) {
 		Rq rq = (Rq) req.getAttribute("rq");
 
 		if (rq.isLogined()) {
@@ -168,7 +167,8 @@ public class UsrMemberController {
 			return Ut.jsHistoryBack("F-8", "비밀번호는 최소 8자 이상, 대문자, 소문자, 숫자를 포함해야 합니다.");
 		}
 
-		ResultData<Integer> joinRd = memberService.join(loginId, loginPw, name, nickname, cellphoneNum, email, memberType, companyName);
+		ResultData<Integer> joinRd = memberService.join(loginId, loginPw, name, nickname, cellphoneNum, email,
+				memberType, companyName);
 
 		if (joinRd.isFail()) {
 			return Ut.jsHistoryBack(joinRd.getResultCode(), joinRd.getMsg());
@@ -351,5 +351,52 @@ public class UsrMemberController {
 		rq.logout(); // 회원 탈퇴 후 자동 로그아웃
 		return Ut.jsReplace("S-1", "탈퇴 처리되었습니다.", "/");
 	}
+
+	/*
+	 * @RequestMapping("/usr/member/findLoginId")
+	 * 
+	 * @ResponseBody public String findLoginId(String email) { String loginId =
+	 * memberService.getLoginIdByEmail(email);
+	 * 
+	 * if (loginId == null) { return Ut.jsHistoryBack("F-1",
+	 * "해당 이메일로 등록된 아이디가 없습니다."); }
+	 * 
+	 * return Ut.jsReplace("S-1", "회원님의 아이디는 " + loginId + " 입니다.",
+	 * "../member/login"); }
+	 */
+
+	@RequestMapping("/usr/member/findLoginId")
+	public String findLoginId() {
+
+		return "/usr/member/findLoginId";
+
+	}
+
+	@RequestMapping("/usr/member/doFindLoginId")
+	@ResponseBody
+	public String findLoginId(String email) {
+		// 입력된 이메일로 등록된 아이디를 찾아옵니다.
+		String loginId = memberService.getLoginIdByEmail(email);
+
+		if (loginId == null) {
+			return Ut.jsHistoryBack("F-1", "해당 이메일로 등록된 아이디가 없습니다.");
+		}
+
+		return Ut.jsReplace("S-1", "회원님의 아이디는 " + loginId + " 입니다.", "../member/login");
+	}
+
+	@RequestMapping("/usr/member/findLoginPw")
+	public String findLoginPw() {
+
+		return "/usr/member/findLoginPw";
+
+	}
+
+	@RequestMapping("/usr/member/doFindLoginPw")
+	    @ResponseBody
+	    public String findLoginPw(@RequestParam String email) {
+	        String resultMessage = memberService.sendResetPasswordEmail(email);
+	        return resultMessage;
+	    }
 
 }

@@ -112,5 +112,25 @@ public interface MemberRepository {
 	        WHERE id = #{memberId}
 	        """)
 	int updateDelStatus(int memberId, int delStatus);
+	
+	@Select("""
+	        SELECT loginPw
+	        FROM `member`
+	        WHERE email = #{email}
+	        """)
+	public String getPasswordByEmail(String email);
+
+	@Select("""
+	        SELECT loginId
+	        FROM `member`
+	        WHERE email = #{email}
+	        """)
+	public String getLoginIdByEmail(String email);
+
+	public void sendResetPasswordEmail(String email);
+	
+	 @Update("UPDATE member SET loginPw = #{newPassword} WHERE email = #{email}")
+	public void updatePasswordByEmail(String email, String newPassword);
+
 
 }

@@ -133,16 +133,17 @@
 
 			<div class="login-footer">
 				<div class="search-id">
-					<a class="searchid" href="#" style="margin-right: 30px;">아이디 찾기</a>
-				</div>
+    <a class="searchid" href="../member/findLoginId" style="margin-right: 30px;">아이디 찾기</a>
+</div>
 				<div class="search-pw">
 					<a class="searchpw" href="#" style="margin-right: 30px;">비밀번호 찾기</a>
 				</div>
 				<div class="do-join">
-					<a class="dojoin" href="#">회원가입</a>
+					<a class="dojoin" href="../member/join">회원가입</a>
 				</div>
 			</div>
 		</div>
 
 	</div>
 </section>
+

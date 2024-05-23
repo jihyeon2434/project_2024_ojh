@@ -15,6 +15,7 @@ public class MemberService {
 
 	public MemberService(MemberRepository memberRepository) {
 		this.memberRepository = memberRepository;
+		
 	}
 	public ResultData<Integer> join(String loginId, String loginPw, String name, String nickname, String cellphoneNum, String email, String memberType, String companyName) {
 		Member existsMember = getMemberByLoginId(loginId);
@@ -78,6 +79,33 @@ public class MemberService {
 	    }
 	    return ResultData.from("S-1", "회원 탈퇴에 성공했습니다.");
 	}
+	public String getLoginIdByEmail(String email) {
+		return memberRepository.getLoginIdByEmail(email);
+	}
+	public String sendResetPasswordEmail(String email) {
+		return memberRepository.getLoginIdByEmail(email);
+	}
+	
+	 public String resetPasswordByEmail(String email) {
+	        // 해당 이메일로 등록된 사용자가 있는지 확인
+	        String loginId = memberRepository.getLoginIdByEmail(email);
+	        if (loginId != null) {
+	            // 새로운 임시 비밀번호 생성
+	            String newPassword = generateRandomPassword();
+	            // 비밀번호 업데이트
+	            memberRepository.updatePasswordByEmail(email, newPassword);
+	            return newPassword;
+	        } else {
+	            // 해당 이메일로 등록된 계정이 없을 경우 null 반환
+	            return null;
+	        }
+	    }
+
+	    // 임시 비밀번호 생성 메서드
+	    private String generateRandomPassword() {
+	        // 임시 비밀번호 생성 로직 구현
+	        return "temporaryPassword123"; // 임시로 고정된 값 사용, 실제로는 랜덤으로 생성되어야 함
+	    }
 
 
 }

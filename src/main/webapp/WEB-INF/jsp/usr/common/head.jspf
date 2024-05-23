@@ -75,6 +75,6 @@ ul.flex {
             </c:if>
         </ul>
     </header>
-    <hr />
+    
 </body>
 </html>
