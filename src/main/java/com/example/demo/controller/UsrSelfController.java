@@ -54,7 +54,7 @@ public class UsrSelfController {
 	}
 
 	// 액션 메서드
-
+	  // 셀프 상점 목록 크롤링하여 메인 페이지로 이동
 	@RequestMapping("/usr/self/crawl")
 	public String crawlSelfShops(@RequestParam(required = false, defaultValue = "") String inputKey) {
 		List<selfShop> shopInfoList = selfShopService.crawlSelfShops(inputKey);
@@ -79,7 +79,7 @@ public class UsrSelfController {
 
 		return "usr/self/list";
 	}
-
+	 // 셀프 상점 상세 페이지 표시
 	@RequestMapping("/usr/self/detail")
 	public String showSelfDetail(HttpServletRequest req, Model model,
 			@RequestParam(required = false, defaultValue = "2") int themeId, int id,
@@ -102,7 +102,7 @@ public class UsrSelfController {
 				scrapService.isAlreadyAddGoodRp(rq.getLoginedMemberId(), themeId, id, categoryId));
 		return "usr/self/detail";
 	}
-
+    // 리뷰 작성 페이지 표시
 	@RequestMapping("/usr/self/reviewWrite")
 	public String showReviewWrite(HttpServletRequest req, Model model,
 			@RequestParam(required = false, defaultValue = "2") int themeId,
@@ -114,7 +114,7 @@ public class UsrSelfController {
 		model.addAttribute("shop", shop);
 		return "usr/self/reviewWrite";
 	}
-
+	  // 리뷰 작성 처리
 	@RequestMapping("/usr/self/doReviewWrite")
 	@ResponseBody
 	public String doReviewWrite(HttpServletRequest req, @RequestParam("title") String title,
@@ -136,7 +136,7 @@ public class UsrSelfController {
 
 		return Ut.jsReplace(writeReviewRd.getResultCode(), writeReviewRd.getMsg(), "../self/detail?id=" + id + "&categoryId=" + categoryId + "&themeId=" + themeId);
 	}
-
+	  // 옵션에 따른 셀프 상점 목록 가져오기
 	@GetMapping("/usr/self/showList")
 	public ResponseEntity<?> showSelfOptionList(@RequestParam int categoryId) {
 		System.out.println("categoryId: " + categoryId); // categoryId 값 확인을 위한 로그 추가
@@ -152,25 +152,25 @@ public class UsrSelfController {
 
 		return ResponseEntity.ok().body(shopInfoList);
 	}
-
+	// 별점이 높은 상점 가져오기
 	@GetMapping("/usr/self/getHighPointShops")
 	public ResponseEntity<?> getHighPointShops() {
 		List<selfShop> shopInfoList = selfShopService.getHighPointShops(); // 별점이 높은 가게 목록을 가져오는 서비스 메소드 호출
 		return ResponseEntity.ok().body(shopInfoList);
 	}
-
+    // 가장 저렴한 상점 가져오기
 	@GetMapping("/usr/self/getCheapestShops")
 	public ResponseEntity<?> getCheapestShops() {
 		List<selfShop> shopInfoList = selfShopService.getCheapestShops(); // 별점이 높은 가게 목록을 가져오는 서비스 메소드 호출
 		return ResponseEntity.ok().body(shopInfoList);
 	}
-
+	  // 지역별 상점 가져오기
 	@GetMapping("/usr/self/getShopsByArea")
 	public ResponseEntity<?> getShopsByArea(@RequestParam("area") String area) {
 		List<selfShop> shopInfoList = selfShopService.getShopsByArea(area); // 별점이 높은 가게 목록을 가져오는 서비스 메소드 호출
 		return ResponseEntity.ok().body(shopInfoList);
 	}
-
+	// 가격대별 상점 가져오기
 	@GetMapping("/usr/self/getShopsByPriceRange")
 	public ResponseEntity<?> getShopsByPriceRange(@RequestParam("priceRange") int priceRange) {
 		System.err.println(priceRange);
@@ -181,12 +181,13 @@ public class UsrSelfController {
 		return ResponseEntity.ok().body(shopInfoList);
 	}
 
+    // 옵션에 따른 상점 가져오기
 	@GetMapping("/usr/self/getShopsByOptions")
 	public ResponseEntity<?> getShopsByOptions(@RequestParam String recommend, @RequestParam int category) {
 		List<selfShop> shopInfoList = selfShopService.getShopsByOptions(recommend, category);
 		return ResponseEntity.ok().body(shopInfoList);
 	}
-
+	   // 사용자 정의 옵션에 따른 상점 가져오기
 	@GetMapping("/usr/self/getShopsByMyOptions")
 	public ResponseEntity<?> getShopsByMyOptions(@RequestParam("priceRange") int priceRange,
 			@RequestParam("area") String area) {

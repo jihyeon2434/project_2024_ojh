@@ -10,6 +10,7 @@ public interface ScrapRepository {
 
 
 
+    // 좋아요 추가 메서드
 	@Insert("""
 			INSERT INTO scrap
 			SET regDate = NOW(),
@@ -22,12 +23,8 @@ public interface ScrapRepository {
 			""")
 	public int addGoodReactionPoint(int loginedMemberId, int categoryId, int themeId, int shopId);
 
-	/*
-	 * @Insert(""" INSERT INTO scrap SET regDate = NOW(), updateDate = NOW(), relId
-	 * = #{relId}, memberId = #{memberId}, `point` = -1 """) public int
-	 * addBadReactionPoint(int memberId, String relTypeCode, int relId);
-	 */
-
+	
+	   // 좋아요 삭제 메서드
 	@Delete("""
 			DELETE FROM scrap
 			WHERE categoryId = #{categoryId}
@@ -38,7 +35,7 @@ public interface ScrapRepository {
 	public void deleteReactionPoint(int memberId, int categoryId, int themeId, int shopId);
 
 	
-	
+	 // 사용자의 즐겨찾기한 상품 점수 합계 조회: 특정 상점에 대한 사용자의 찜한 횟수를 계산
 	@Select("""
 	        SELECT IFNULL(SUM(S.point),0)
 	        FROM scrap AS S
@@ -50,7 +47,7 @@ public interface ScrapRepository {
 	public int getSumScrapCount(int loginedMemberId, int categoryId, int themeId, int shopId);
 
 
-	
+	 // 사용자의 즐겨찾기 점수 합계 조회: 특정 카테고리, 테마, 상점에 대해 사용자가 추가한 좋아요 점수의 합을 조회
 	@Select("""
 			SELECT IFNULL(SUM(S.point),0)
 			FROM scrap AS S

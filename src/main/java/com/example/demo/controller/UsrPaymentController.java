@@ -20,6 +20,7 @@ public class UsrPaymentController {
     private PaymentService paymentService;
 
     // 액션 메서드
+    // 결제 성공 시 처리하는 메서드
     @GetMapping("/payment/success")
     public String handlePaymentSuccess(HttpServletRequest request) {
         int loginedMemberId = rq.getLoginedMemberId();
@@ -27,14 +28,14 @@ public class UsrPaymentController {
 
         Payment payment = new Payment();
         payment.setMemberId(loginedMemberId);
-        payment.setAmount(Integer.parseInt(request.getParameter("amount")));
+        payment.setAmount(Integer.parseInt(request.getParameter("amount")));// 금액 설정
         payment.setShopName(shopName); // shopName 설정
-        payment.setPaymentDate(request.getParameter("paymentDate"));
-        payment.setPaymentStatus(request.getParameter("paymentStatus"));
+        payment.setPaymentDate(request.getParameter("paymentDate"));// 결제일 설정
+        payment.setPaymentStatus(request.getParameter("paymentStatus"));// 결제 상태 설정
 
-        paymentService.savePayment(payment);
+        paymentService.savePayment(payment);// 결제 정보 저장
 
-        return "redirect:/usr/member/myReservation";
+        return "redirect:/usr/member/myReservation";// 예약 페이지로 리다이렉트
     }
 
 }

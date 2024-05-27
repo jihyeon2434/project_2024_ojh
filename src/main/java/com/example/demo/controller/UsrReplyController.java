@@ -23,7 +23,7 @@ public class UsrReplyController {
 	private ReplyService replyService;
 
 
-
+	 // 댓글 작성 요청 처리
 	@RequestMapping("/usr/reply/doWrite")
 	@ResponseBody
 	public String doWrite(HttpServletRequest req, String relTypeCode, int relId, String body) {
@@ -47,7 +47,7 @@ public class UsrReplyController {
 		return Ut.jsReplace(writeReplyRd.getResultCode(), writeReplyRd.getMsg(), "../article/detail?id=" + relId);
 
 	}
-
+	// 댓글 삭제 요청 처리
 	@RequestMapping("/usr/reply/doDelete")
 	@ResponseBody
 	public String doDelete(HttpServletRequest req, int id, String replaceUri) {
@@ -76,6 +76,7 @@ public class UsrReplyController {
 		return Ut.jsReplace(loginedMemberCanDeleteRd.getResultCode(), loginedMemberCanDeleteRd.getMsg(), replaceUri);
 	}
 
+    // 댓글 수정 요청 처리
 	@RequestMapping("/usr/reply/doModify")
 	@ResponseBody
 	public String doModify(HttpServletRequest req, int id, String body) {

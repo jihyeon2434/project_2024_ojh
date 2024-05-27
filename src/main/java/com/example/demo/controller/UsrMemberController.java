@@ -192,17 +192,7 @@ public class UsrMemberController {
 		return "usr/member/myPage";
 	}
 
-	// 마이페이지2 화면을 보여주는 메서드
-	@RequestMapping("/usr/member/myPage2")
-	public String showMyPage2(HttpServletRequest req, Model model) {
-		Rq rq = (Rq) req.getAttribute("rq");
-		Integer memberId = rq.getLoginedMemberId();
-		List<conShop> conshops = consultShopService.getForPrintScrapShops(memberId);
-
-		model.addAttribute("conshops", conshops);
-		return "usr/member/myPage2";
-	}
-
+	
 	// 마이 캘린더 화면을 보여주는 메서드
 	@RequestMapping("/usr/member/myCalendar")
 	public String showMyCalendar(HttpServletRequest req, Model model) {

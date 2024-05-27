@@ -13,7 +13,7 @@ import com.example.demo.vo.selfShop;
 
 @Mapper
 public interface selfShopRepository {
-
+	 // 상점 정보를 데이터베이스에 삽입
 	@Insert("""
 			INSERT INTO service_selfshop SET
 			         categoryId = #{categoryId},
@@ -36,7 +36,7 @@ public interface selfShopRepository {
 			""")
 	public void insertShop(selfShop shopInfo);
 	
-
+	 // 모든 상점 리스트를 조회
 	@Select("""
 			SELECT *
 			FROM service_selfshop
@@ -45,7 +45,7 @@ public interface selfShopRepository {
 		
 	
 	
-	
+    // 특정 상점 ID를 이용하여 상점 상세 정보 조회
 	@Select("""
 			<script>
 			SELECT S.*, COALESCE(AVG(R.starPoint), 0) AS totalStarPoint
@@ -56,14 +56,14 @@ public interface selfShopRepository {
 			</script>
 			""")
 	public selfShop getShopById(int id);
-
+	// 상점명으로 상점 정보 조회
 	@Select("""
 			SELECT * FROM service_selfshop WHERE shopName = #{shopName}
 			""")
 	public selfShop getShopByName(String shopName);
 
 
-	
+	 // 특정 가격 범위 내의 상점 조회
 	@Select("""
 
 			SELECT S.*, M.menu, M.price
@@ -83,7 +83,7 @@ public interface selfShopRepository {
 			""")
 	public List<selfShop> getShopsByPriceRange(int priceRange);
 
-
+	 // 특정 지역의 상점 조회
 	@Select("""
 			 SELECT * FROM service_selfshop
 			 WHERE LEFT(roadName, 2) = #{area} -- roadName의 앞 두글자가 지역과 일치하는지 확인
@@ -91,7 +91,7 @@ public interface selfShopRepository {
 	public List<selfShop> getShopsByArea(String area);
 
 
-	
+	  // 가장 저렴한 상점 조회
 	@Select("""
 			SELECT *
 			FROM (
@@ -106,7 +106,8 @@ public interface selfShopRepository {
 	public List<selfShop> getCheapestShops();
 
 
-	
+
+    // 별점이 가장 높은 상점 조회
 	@Select("""
 			<script>
 			SELECT S.*, COALESCE(AVG(R.starPoint), 0) AS totalStarPoint
@@ -118,7 +119,7 @@ public interface selfShopRepository {
 			""")
 	public List<selfShop> getHighPointShops();
 
-
+	   // 특정 옵션에 맞는 상점 조회
 	@Select("""
 		    <script>
 		    SELECT * FROM service_selfshop
@@ -143,7 +144,7 @@ public interface selfShopRepository {
 	 */
 
 
-
+	// 가격 범위에 따른 상점을 조회하는 쿼리
 	@Select("""
 		    SELECT S.*, M.menu, M.price
 		    FROM service_selfshop AS S
@@ -158,7 +159,7 @@ public interface selfShopRepository {
 		        M.price ASC;
 		""")
 	public List<selfShop> getShopsBySituation1Over3M(int priceRange, String area);
-
+	  // 지역과 가격을 기준으로 상점을 필터링하는 쿼리
 	@Select("""
 		    SELECT S.*, M.menu, M.price
 		    FROM service_selfshop AS S
@@ -176,7 +177,7 @@ public interface selfShopRepository {
 
 
 
-
+	// 별점이 높은 상점을 조회하는 쿼리
 	@Select("""
 			SELECT S.*, COALESCE(AVG(R.starPoint), 0) AS totalStarPoint
 			FROM service_selfshop AS S
@@ -187,7 +188,7 @@ public interface selfShopRepository {
 			""")
 	public List<selfShop> findShopsByHighRating(int category);
 
-	
+	 // 가격이 낮은 상점을 조회하는 쿼리
 	@Select("""
 			SELECT *
 			FROM (
@@ -203,14 +204,14 @@ public interface selfShopRepository {
 	public List<selfShop> findShopsByLowPrice(int category);
 
 
-	
+	  // 상점 스크랩 여부를 확인하는 쿼리
 	@Select("""
 			SELECT ScrapCount
 			FROM service_selfshop AS S
 			WHERE id = #{shopId} AND categoryId = #{categoryId} AND 
 			""")
 	public int getDoScrap(int categoryId, int shopId);
-
+	 // 즐겨찾기 점수를 증가시키는 쿼리
 	  @Update("""
 				UPDATE service_selfshop
 				SET goodReactionPoint = goodReactionPoint + 1
@@ -220,7 +221,7 @@ public interface selfShopRepository {
 				""")
 	public int increaseGoodReactionPoint(int categoryId, int themeId, int shopId);
 
-
+	  // 상점의 즐겨찾기 점수를 조회하는 쿼리
 	  @Select("""
 				SELECT goodReactionPoint
 				FROM service_selfshop
@@ -231,7 +232,7 @@ public interface selfShopRepository {
 	public int getGoodRP(int categoryId, int themeId, int shopId);
 
 
-	  
+	// 즐겨찾기 점수를 감소시키는 쿼리
 	  @Update("""
 				UPDATE service_selfshop
 				SET goodReactionPoint = goodReactionPoint - 1
@@ -242,7 +243,7 @@ public interface selfShopRepository {
 	public int decreaseGoodReactionPoint(int categoryId, int themeId, int shopId);
 
 
-
+	// 사용자가 즐겨찾기한 상점 목록을 조회하는 쿼리
 		@Select("""
 			    <script>
 			    SELECT S.*, COALESCE(AVG(R.starPoint), 0) AS totalStarPoint

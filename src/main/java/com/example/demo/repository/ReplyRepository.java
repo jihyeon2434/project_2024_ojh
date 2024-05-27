@@ -12,7 +12,7 @@ import com.example.demo.vo.Reply;
 
 @Mapper
 public interface ReplyRepository {
-
+    // 특정 관계 코드와 관계 ID에 대한 댓글을 조회
 	@Select("""
 				SELECT R.*, M.nickname AS extra__writer
 				FROM reply AS R
@@ -23,7 +23,8 @@ public interface ReplyRepository {
 				ORDER BY R.id ASC;
 			""")
 	List<Reply> getForPrintReplies(int loginedMemberId, String relTypeCode, int relId);
-
+	
+	// 댓글 작성
 	@Insert("""
 				INSERT INTO reply
 				SET regDate = NOW(),
@@ -34,10 +35,12 @@ public interface ReplyRepository {
 				`body` = #{body}
 			""")
 	void writeReply(int loginedMemberId, String relTypeCode, int relId, String body);
-
+	
+	// 마지막으로 삽입된 댓글 ID 조회
 	@Select("SELECT LAST_INSERT_ID()")
 	public int getLastInsertId();
-
+	
+	// 댓글 조회
 	@Select("""
 				SELECT R.*
 				FROM reply AS R
@@ -45,12 +48,15 @@ public interface ReplyRepository {
 			""")
 	Reply getReply(int id);
 
+
+    // 댓글 삭제
 	@Delete("""
 				DELETE FROM reply
 				WHERE id = #{id}
 			""")
 	void deleteReply(int id);
 
+	 // 댓글 수정
 	@Update("""
 			UPDATE reply
 			SET `body` = #{body},

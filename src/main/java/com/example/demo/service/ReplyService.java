@@ -19,7 +19,7 @@ public class ReplyService {
 	public ReplyService(ReplyRepository replyRepository) {
 		this.replyRepository = replyRepository;
 	}
-
+	 // 특정 게시물의 댓글을 가져오는 메소드
 	public List<Reply> getForPrintReplies(int loginedMemberId, String relTypeCode, int relId) {
 		List<Reply> replies = replyRepository.getForPrintReplies(loginedMemberId, relTypeCode, relId);
 
@@ -29,7 +29,7 @@ public class ReplyService {
 
 		return replies;
 	}
-
+	   // 댓글 작성 메소드
 	public ResultData<Integer> writeReply(int loginedMemberId, String relTypeCode, int relId, String body) {
 		replyRepository.writeReply(loginedMemberId, relTypeCode, relId, body);
 
@@ -37,7 +37,7 @@ public class ReplyService {
 
 		return ResultData.from("S-1", Ut.f("%d번 댓글이 생성되었습니다", id), "id", id);
 	}
-
+	// 댓글 데이터 출력 제어
 	private void controlForPrintData(int loginedMemberId, Reply reply) {
 		if (reply == null) {
 			return;
@@ -48,7 +48,7 @@ public class ReplyService {
 		ResultData userCanDeleteRd = userCanDelete(loginedMemberId, reply);
 		reply.setUserCanDelete(userCanDeleteRd.isSuccess());
 	}
-
+	  // 댓글 삭제 권한 확인
 	public ResultData userCanDelete(int loginedMemberId, Reply reply) {
 
 		if (reply.getMemberId() != loginedMemberId) {
@@ -57,7 +57,7 @@ public class ReplyService {
 
 		return ResultData.from("S-1", Ut.f("%d번 댓글이 삭제 되었습니다", reply.getId()));
 	}
-
+	 // 댓글 수정 권한 확인
 	public ResultData userCanModify(int loginedMemberId, Reply reply) {
 
 		if (reply.getMemberId() != loginedMemberId) {
@@ -66,16 +66,16 @@ public class ReplyService {
 
 		return ResultData.from("S-1", Ut.f("%d번 댓글을 수정했습니다", reply.getId()));
 	}
-
+	 // 특정 댓글 조회
 	public Reply getReply(int id) {
 		return replyRepository.getReply(id);
 	}
-
+	 // 댓글 삭제
 	public ResultData deleteReply(int id) {
 		replyRepository.deleteReply(id);
 		return ResultData.from("S-1", Ut.f("%d번 댓글을 삭제했습니다", id));
 	}
-
+	// 댓글 수정
 	public void modifyReply(int id, String body) {
 		replyRepository.modifyReply(id, body);
 	}

@@ -13,14 +13,14 @@ import com.example.demo.vo.Payment;
 
 @Mapper
 public interface PaymentRepository {
-
+	 // 결제 정보 저장
     @Insert("""
             INSERT INTO payment (memberId, amount, shopName, paymentDate, paymentStatus)
             VALUES (#{memberId}, #{amount}, #{shopName}, Now(), 1)
             """)
     void save(Payment payment);
 
-    
+    // 특정 회원의 결제 목록 조회
     @Select("""
     		SELECT *
     		FROM payment
@@ -29,7 +29,7 @@ public interface PaymentRepository {
 	List<Payment> getPaymentsByMemberId(int memberId);
     
     
- // 권한을 검사하는 쿼리
+    // 특정 회원의 특정 상점에 대한 기사 작성 권한 확인
     @Select("""
         SELECT canWriteArticle
         FROM payment

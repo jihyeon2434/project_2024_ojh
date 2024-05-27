@@ -13,6 +13,7 @@ import com.example.demo.vo.conShop;
 @Mapper
 public interface ConsultShopRepository {
 
+	// 데이터베이스에 새로운 상담 가게를 다양한 속성과 함께 삽입
 	@Insert("""
 			INSERT INTO service_Conshop SET
 			         categoryId = #{categoryId},
@@ -36,6 +37,7 @@ public interface ConsultShopRepository {
 			""")
 	public void insertShop(conShop shopInfo);
 
+	// 상담 가게를 모두 검색하며, 리뷰를 조인하여 평균 별점을 계산
 	@Select("""
 			<script>
 			SELECT C.*, COALESCE(AVG(R.starPoint), 0) AS totalStarPoint
@@ -46,6 +48,7 @@ public interface ConsultShopRepository {
 			""")
 	public List<conShop> getShopsList();
 
+	// 카테고리에 따라 가게를 필터링하여 검색
 	@Select("""
 			    <script>
 			    SELECT * FROM service_Conshop
@@ -57,6 +60,7 @@ public interface ConsultShopRepository {
 			""")
 	List<conShop> getByOptionShopsList(@Param("categoryId") int categoryId);
 
+	// 특정 ID의 가게를 검색하며, 리뷰를 조인하여 평균 별점을 계산
 	@Select("""
 			<script>
 			SELECT C.*, COALESCE(AVG(R.starPoint), 0) AS totalStarPoint
@@ -73,6 +77,7 @@ public interface ConsultShopRepository {
 			""")
 	public conShop getShopByName(String shopName);
 
+	// 평균 별점을 기준으로 정렬하여 별점이 높은 가게를 검색
 	@Select("""
 			<script>
 			SELECT C.*, COALESCE(AVG(R.starPoint), 0) AS totalStarPoint
@@ -84,6 +89,7 @@ public interface ConsultShopRepository {
 			""")
 	public List<conShop> getHighPointShops();
 
+	// 가격이 저렴한 가게를 검색하기 위해 최소 가격과 평균 가격을 기준으로 정렬합니다.
 	@Select("""
 			SELECT *
 			FROM (
@@ -97,18 +103,21 @@ public interface ConsultShopRepository {
 						""")
 	public List<conShop> getCheapestShops();
 
+	// 주어진 상점 이름과 도로 이름을 가진 상점이 이미 존재하는지 확인합니다.
 	@Select("""
 			SELECT COUNT(*) > 0 FROM service_Conshop
 			WHERE shopName = #{shopName} AND roadName = #{roadName}
 			""")
 	public boolean existsByShopNameAndRoadName(@Param("shopName") String shopName, @Param("roadName") String roadName);
 
+	// 주어진 지역 코드와 일치하는 도로명을 가진 가게를 검색합니다.
 	@Select("""
 			 SELECT * FROM service_Conshop
 			 WHERE LEFT(roadName, 2) = #{area} -- roadName의 앞 두글자가 지역과 일치하는지 확인
 			""")
 	public List<conShop> getShopsByArea(String area);
 
+	// 특정 가격 범위 이하의 메뉴를 가진 가게를 검색합니다.
 	@Select("""
 
 			SELECT C.*, M.menu, M.price
@@ -128,6 +137,7 @@ public interface ConsultShopRepository {
 			""")
 	public List<conShop> getShopsByPriceRange(@Param("priceRange") int priceRange);
 
+	// 주어진 카테고리에 따라 별점이 높은 순으로 가게를 검색
 	@Select("""
 			SELECT C.*, COALESCE(AVG(R.starPoint), 0) AS totalStarPoint
 			FROM service_Conshop AS C
@@ -138,6 +148,7 @@ public interface ConsultShopRepository {
 			""")
 	List<conShop> findShopsByHighRating(@Param("category") int category);
 
+	// 주어진 카테고리에 따라 최저 가격과 평균 가격을 기준으로 정렬하여 가장 저렴한 가게를 검색
 	@Select("""
 			SELECT *
 			FROM (
@@ -152,51 +163,51 @@ public interface ConsultShopRepository {
 						""")
 	public List<conShop> findShopsByLowPrice(int category);
 
-	
-
+	// 특정 가격 범위 이하이면서 특정 지역에 위치하고 '면접' 또는 '스피치'가 포함된 가게 이름을 가진 가게를 검색
 	@Select("""
-		    SELECT C.*, M.menu, M.price
-		    FROM service_Conshop AS C
-		    INNER JOIN service_menu AS M
-		    ON C.themeId = M.themeId AND C.categoryId = M.categoryId AND C.shopName = M.shopName AND M.price > 0
-		    WHERE 
-		        M.price <= ${priceRange}
-		        AND LEFT(C.roadName, 2) = #{area} -- roadName의 앞 두글자가 지역과 일치하는지 확인
-		        AND (C.shopName LIKE '%면접%' OR C.shopName LIKE '%스피치%') -- 명시적으로 C 테이블에 속하는 shopName으로 수정
-		    GROUP BY C.shopName
-		    ORDER BY
-		        M.price = 0,
-		        M.price ASC;
-		""")
-		public List<conShop> getShopsBySituation2(@Param("priceRange") int priceRange, @Param("area") String area);
-
-	@Select("""
-		    SELECT C.*, M.menu, M.price
-		    FROM service_Conshop AS C
-		    INNER JOIN service_menu AS M
-		    ON C.themeId = M.themeId AND C.categoryId = M.categoryId AND C.shopName = M.shopName AND M.price > 0
-		    WHERE 
-		        M.price <= ${priceRange}
-		        AND LEFT(C.roadName, 2) = #{area} -- roadName의 앞 두글자가 지역과 일치하는지 확인
-		        AND C.shopName NOT LIKE '%면접%' 
-		        AND C.shopName NOT LIKE '%스피치%'
-		    GROUP BY C.shopName
-		    ORDER BY
-		        M.price = 0,
-		        M.price ASC;
-		""")
-		public List<conShop> getShopsBySituation1(@Param("priceRange") int priceRange, @Param("area") String area);
-
-		
-		@Select("""
 			    SELECT C.*, M.menu, M.price
 			    FROM service_Conshop AS C
 			    INNER JOIN service_menu AS M
 			    ON C.themeId = M.themeId AND C.categoryId = M.categoryId AND C.shopName = M.shopName AND M.price > 0
-			    WHERE 
+			    WHERE
+			        M.price <= ${priceRange}
+			        AND LEFT(C.roadName, 2) = #{area} -- roadName의 앞 두글자가 지역과 일치하는지 확인
+			        AND (C.shopName LIKE '%면접%' OR C.shopName LIKE '%스피치%') -- 명시적으로 C 테이블에 속하는 shopName으로 수정
+			    GROUP BY C.shopName
+			    ORDER BY
+			        M.price = 0,
+			        M.price ASC;
+			""")
+	public List<conShop> getShopsBySituation2(@Param("priceRange") int priceRange, @Param("area") String area);
+
+	// 특정 가격 범위 이하이면서 특정 지역에 위치하고 '면접' 또는 '스피치'가 포함되지 않은 가게 이름을 가진 가게를 검색합니다.
+	@Select("""
+			    SELECT C.*, M.menu, M.price
+			    FROM service_Conshop AS C
+			    INNER JOIN service_menu AS M
+			    ON C.themeId = M.themeId AND C.categoryId = M.categoryId AND C.shopName = M.shopName AND M.price > 0
+			    WHERE
+			        M.price <= ${priceRange}
+			        AND LEFT(C.roadName, 2) = #{area} -- roadName의 앞 두글자가 지역과 일치하는지 확인
+			        AND C.shopName NOT LIKE '%면접%'
+			        AND C.shopName NOT LIKE '%스피치%'
+			    GROUP BY C.shopName
+			    ORDER BY
+			        M.price = 0,
+			        M.price ASC;
+			""")
+	public List<conShop> getShopsBySituation1(@Param("priceRange") int priceRange, @Param("area") String area);
+
+	// 300만원 이상의 가격 범위에 있으면서 특정 지역에 위치하고 '면접' 또는 '스피치'가 포함되지 않은 가게 이름을 가진 가게를 검색합니다.
+	@Select("""
+			    SELECT C.*, M.menu, M.price
+			    FROM service_Conshop AS C
+			    INNER JOIN service_menu AS M
+			    ON C.themeId = M.themeId AND C.categoryId = M.categoryId AND C.shopName = M.shopName AND M.price > 0
+			    WHERE
 			        M.price >= ${priceRange}
 			        AND LEFT(C.roadName, 2) = #{area} -- roadName의 앞 두글자가 지역과 일치하는지 확인
-			        AND C.shopName NOT LIKE '%면접%' 
+			        AND C.shopName NOT LIKE '%면접%'
 			        AND C.shopName NOT LIKE '%스피치%'
 			    GROUP BY C.shopName
 			    ORDER BY
@@ -205,97 +216,75 @@ public interface ConsultShopRepository {
 			""")
 	public List<conShop> getShopsBySituation1Over3M(int priceRange, String area);
 
+	// 특정 가격 범위 이상이면서 특정 지역에 위치하고 '면접' 또는 '스피치'가 포함된 가게 이름을 가진 가게를 검색합니다.
 	@Select("""
-		    SELECT C.*, M.menu, M.price
-		    FROM service_Conshop AS C
-		    INNER JOIN service_menu AS M
-		    ON C.themeId = M.themeId AND C.categoryId = M.categoryId AND C.shopName = M.shopName AND M.price > 0
-		    WHERE 
-		        M.price >= ${priceRange}
-		        AND LEFT(C.roadName, 2) = #{area} -- roadName의 앞 두글자가 지역과 일치하는지 확인
-		        AND (C.shopName LIKE '%면접%' OR C.shopName LIKE '%스피치%') -- 명시적으로 C 테이블에 속하는 shopName으로 수정
-		    GROUP BY C.shopName
-		    ORDER BY
-		        M.price = 0,
-		        M.price ASC;
-		""")
-		public List<conShop> getShopsBySituation2Over3M(int priceRange, String area);
-		
-		
-		@Select("""
-				SELECT ScrapCount
-				FROM service_Conshop AS C
-				WHERE id = #{shopId} AND categoryId = #{categoryId} AND 
-				""")
+			    SELECT C.*, M.menu, M.price
+			    FROM service_Conshop AS C
+			    INNER JOIN service_menu AS M
+			    ON C.themeId = M.themeId AND C.categoryId = M.categoryId AND C.shopName = M.shopName AND M.price > 0
+			    WHERE
+			        M.price >= ${priceRange}
+			        AND LEFT(C.roadName, 2) = #{area} -- roadName의 앞 두글자가 지역과 일치하는지 확인
+			        AND (C.shopName LIKE '%면접%' OR C.shopName LIKE '%스피치%') -- 명시적으로 C 테이블에 속하는 shopName으로 수정
+			    GROUP BY C.shopName
+			    ORDER BY
+			        M.price = 0,
+			        M.price ASC;
+			""")
+	public List<conShop> getShopsBySituation2Over3M(int priceRange, String area);
+
+	// 주어진 가게, 카테고리, 회원 ID에 해당하는 스크랩 수를 반환합니다.
+	@Select("""
+			SELECT ScrapCount
+			FROM service_Conshop AS C
+			WHERE id = #{shopId} AND categoryId = #{categoryId} AND
+			""")
 	public int getDoScrap(int categoryId, int shopId, int memberId);
 
-		
-		  
-	    @Select("""
-				SELECT goodReactionPoint
-				FROM service_Conshop
-				WHERE id = #{shopId}
-				AND categoryId= #{categoryId}
-				AND themeId= #{themeId}
-				""")
-		public int getGoodRP(int categoryId, int themeId, int shopId);
+	// 주어진 가게, 카테고리, 테마 ID에 해당하는 좋아요 수를 반환합니다.
+	@Select("""
+			SELECT goodReactionPoint
+			FROM service_Conshop
+			WHERE id = #{shopId}
+			AND categoryId= #{categoryId}
+			AND themeId= #{themeId}
+			""")
+	public int getGoodRP(int categoryId, int themeId, int shopId);
 
-	    
-	    @Update("""
-				UPDATE service_Conshop
-				SET goodReactionPoint = goodReactionPoint + 1
-				WHERE id = #{shopId}
-				AND categoryId= #{categoryId}
-				AND themeId= #{themeId}
-				""")
-		public int increaseGoodReactionPoint(int categoryId, int themeId, int shopId);
+	// 주어진 가게, 카테고리, 테마 ID에 해당하는 가게의 좋아요 수를 1 증가시킵니다.
+	@Update("""
+			UPDATE service_Conshop
+			SET goodReactionPoint = goodReactionPoint + 1
+			WHERE id = #{shopId}
+			AND categoryId= #{categoryId}
+			AND themeId= #{themeId}
+			""")
+	public int increaseGoodReactionPoint(int categoryId, int themeId, int shopId);
 
-	    @Update("""
-				UPDATE service_Conshop
-				SET goodReactionPoint = goodReactionPoint - 1
-				WHERE id = #{shopId}
-				AND categoryId= #{categoryId}
-				AND themeId= #{themeId}
-				""")
-		public int decreaseGoodReactionPoint(int categoryId, int themeId, int shopId);
+	// 주어진 가게, 카테고리, 테마 ID에 해당하는 가게의 좋아요 수를 1 증가시킵니다.
+	@Update("""
+			UPDATE service_Conshop
+			SET goodReactionPoint = goodReactionPoint - 1
+			WHERE id = #{shopId}
+			AND categoryId= #{categoryId}
+			AND themeId= #{themeId}
+			""")
+	public int decreaseGoodReactionPoint(int categoryId, int themeId, int shopId);
 
-	    
-	    @Select("""
-	            SELECT C.id, C.shopName, C.roadName, C.photoUrl1, C.photoUrl2, C.photoUrl3, C.photoUrl4, C.photoUrl5, C.phoneNum, C.con_availableTime, C.operateTime, C.menu, C.themeId, C.regDate, C.updateDate, C.delDate, C.delStatus, COALESCE(AVG(R.starPoint), 0) AS totalStarPoint
-	            FROM service_Conshop AS C
-	            INNER JOIN scrap AS S
-	            ON S.shopId = C.id AND S.categoryId = C.categoryId
-	            WHERE S.memberId = #{memberId}
-	            GROUP BY C.id
-	            ORDER BY S.updateDate DESC
-	            """)
-	    public List<conShop> getForPrintScrapShops(int memberId);
+	// 로그인한 회원이 스크랩한 가게 목록을 반환합니다. 최신 업데이트 순으로 정렬됩니다.
+	@Select("""
+			SELECT C.id, C.shopName, C.roadName, C.photoUrl1, C.photoUrl2, C.photoUrl3, C.photoUrl4, C.photoUrl5, C.phoneNum, C.con_availableTime, C.operateTime, C.menu, C.themeId, C.regDate, C.updateDate, C.delDate, C.delStatus, COALESCE(AVG(R.starPoint), 0) AS totalStarPoint
+			FROM service_Conshop AS C
+			INNER JOIN scrap AS S
+			ON S.shopId = C.id AND S.categoryId = C.categoryId
+			WHERE S.memberId = #{memberId}
+			GROUP BY C.id
+			ORDER BY S.updateDate DESC
+			""")
+	public List<conShop> getForPrintScrapShops(int memberId);
 
-	    
-	    
-	    @Select("""
-				SELECT MAX(id) + 1
-				FROM conshop_onlineConArticle
-				""")
-		public int getCurrentArticleId();
-
-	    
-	    
-	    @Insert("""
-				INSERT INTO
-				conshop_onlineConArticle SET
-				regDate = NOW(),
-				updateDate = NOW(),
-				memberId = #{memberId},
-				title = #{title}, `body` = #{body}
-				""")
-		public void writeArticle(int loginedMemberId, String title, String body);
-
-	    
-		@Select("SELECT LAST_INSERT_ID()")
-		public int getLastInsertId();
-
-		@Select("""
+	// 로그인한 회원이 스크랩한 가게 목록을 별점이 높은 순으로 반환합니다.
+	@Select("""
 			    <script>
 			    SELECT C.*, COALESCE(AVG(R.starPoint), 0) AS totalStarPoint
 			    FROM service_Conshop AS C
@@ -307,8 +296,6 @@ public interface ConsultShopRepository {
 			    ORDER BY totalStarPoint DESC;
 			    </script>
 			""")
-			public List<conShop> getscrapShopsList(int loginedMemberId);
+	public List<conShop> getscrapShopsList(int loginedMemberId);
 
-
-	
 }
