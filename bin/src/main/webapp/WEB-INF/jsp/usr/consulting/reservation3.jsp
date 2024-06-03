@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-<c:set var="pageTitle" value="#{board.code } ARTICLE LIST"></c:set>
+<c:set var="pageTitle" value="#{board.code } RESERVATION INFO"></c:set>
 <%@ include file="../common/head.jspf"%>
 
 <%
@@ -115,7 +115,7 @@ String shopId = request.getParameter("id");
 	<div class="small-outer-box">
 		<div class="title-box">
 			<div class="title">
-				<%=loginedMember.getNickname()%>님<br />빠른 예약 도와드릴게요.
+				${loginedMember.getNickname()}님<br />빠른 예약 도와드릴게요.
 			</div>
 			<div class="line"></div>
 		</div>

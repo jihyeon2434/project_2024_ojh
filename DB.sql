@@ -1,6 +1,6 @@
-DROP DATABASE IF EXISTS `Spring_AM_01`;
-CREATE DATABASE `Spring_AM_01`;
-USE `Spring_AM_01`;
+DROP DATABASE IF EXISTS `ItrendX_2024_ojh`;
+CREATE DATABASE `ItrendX_2024_ojh`;
+USE `ItrendX_2024_ojh`;
 
 # article 테이블 생성
 CREATE TABLE article(

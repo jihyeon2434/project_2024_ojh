@@ -148,15 +148,17 @@ public class WebSelfCrawler2 {
 
 			// Get image URLs
 			List<String> imageUrls = new ArrayList<>();
-			try {
-			    List<WebElement> imageElements = driver.findElements(By.xpath("//div[@class='K0PDV _div']"));
-			    for (WebElement imgElement : imageElements) {
-			        String styleAttribute = imgElement.getAttribute("style");
-			        String url = styleAttribute.split("url\\(")[1].split("\\)")[0].replaceAll("'", "").replaceAll("\"", "");
-			        imageUrls.add(url);
-			    }
-			} catch (Exception ex) {
-			    ex.printStackTrace();
+			List<WebElement> imageElements = driver.findElements(By.xpath("//div[contains(@class, 'CB8aP')]//img"));
+			for (WebElement imgElement : imageElements) {
+				try {
+					String imageUrl = imgElement.getAttribute("src");
+					if (imageUrl != null && !imageUrl.isEmpty()) {
+						imageUrls.add(imageUrl);
+					}
+				} catch (Exception e) {
+					e.printStackTrace();
+					System.out.println("Error extracting image URL: " + e.getMessage());
+				}
 			}
 
 

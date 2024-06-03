@@ -70,24 +70,23 @@ public class WebConsultingCrawler3 {
 
 		List<conShop> shopInfoList = new ArrayList<>();
 
-		 for (WebElement element : elements) {
-	            // Get additional information before clicking on the element
-	            String additionalInfo = null;
-	            ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);", element);
-	            try {
-	                // Find the parent element containing the additional information
-	                WebElement parentElement = element.findElement(By.xpath(".."));
-	                // Find the child element with class "Pb4bU" using CSS selector
-	                WebElement infoElement = parentElement.findElement(By.cssSelector("span.Pb4bU"));
-	                // Get the text of the element
-	                additionalInfo = infoElement.getText();
-	            } catch (Exception ex) {
-	                ex.printStackTrace(); // 에러가 발생한 경우 콘솔에 출력하여 디버깅할 수 있습니다.
-	            }
+		for (WebElement element : elements) {
+			// Get additional information before clicking on the element
+			String additionalInfo = null;
+			((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);", element);
+			try {
+				// Find the parent element containing the additional information
+				WebElement parentElement = element.findElement(By.xpath(".."));
+				// Find the child element with class "Pb4bU" using CSS selector
+				WebElement infoElement = parentElement.findElement(By.cssSelector("span.Pb4bU"));
+				// Get the text of the element
+				additionalInfo = infoElement.getText();
+			} catch (Exception ex) {
+				ex.printStackTrace(); // 에러가 발생한 경우 콘솔에 출력하여 디버깅할 수 있습니다.
+			}
 
-	            element.click();
-	            String key = element.getText();
-
+			element.click();
+			String key = element.getText();
 
 			try {
 				Thread.sleep(1000);
@@ -137,24 +136,20 @@ public class WebConsultingCrawler3 {
 			} catch (Exception ex) {
 				menuInfo = null;
 			}
-			
-
-
-
-
-
 
 			// Get image URLs
 			List<String> imageUrls = new ArrayList<>();
-			try {
-			    List<WebElement> imageElements = driver.findElements(By.xpath("//div[@class='K0PDV _div']"));
-			    for (WebElement imgElement : imageElements) {
-			        String styleAttribute = imgElement.getAttribute("style");
-			        String url = styleAttribute.split("url\\(")[1].split("\\)")[0].replaceAll("'", "").replaceAll("\"", "");
-			        imageUrls.add(url);
-			    }
-			} catch (Exception ex) {
-			    ex.printStackTrace();
+			List<WebElement> imageElements = driver.findElements(By.xpath("//div[contains(@class, 'CB8aP')]//img"));
+			for (WebElement imgElement : imageElements) {
+				try {
+					String imageUrl = imgElement.getAttribute("src");
+					if (imageUrl != null && !imageUrl.isEmpty()) {
+						imageUrls.add(imageUrl);
+					}
+				} catch (Exception e) {
+					e.printStackTrace();
+					System.out.println("Error extracting image URL: " + e.getMessage());
+				}
 			}
 
 			// Create conShop object and add it to the list
@@ -170,8 +165,7 @@ public class WebConsultingCrawler3 {
 			shopInfo.setRegDate(null); // 이 부분은 웹 크롤링으로는 얻을 수 없는 정보인지 확인해야 합니다.
 			shopInfo.setUpdateDate(null); // 이 부분은 웹 크롤링으로는 얻을 수 없는 정보인지 확인해야 합니다.
 			shopInfo.setDelDate(null); // 이 부분은 웹 크롤링으로는 얻을 수 없는 정보인지 확인해야 합니다.
-			
-			
+
 			// 카테고리 번호 설정
 			int categoryId = getCategoryNumber(inputKey);
 			shopInfo.setCategoryId(categoryId);

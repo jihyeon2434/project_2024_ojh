@@ -6,11 +6,13 @@
 
 
 <style>
+/* 기본 컨테이너 스타일 */
 .outer-box {
 	display: flex;
 	margin-top: 30px;
 }
 
+/* 각각의 상자에 대한 스타일 */
 .small-outer-box {
 	padding-top: 20px;
 	margin-left: 20px;
@@ -216,10 +218,10 @@
 	background-color: rgba(239, 231, 229, 0.3); /* 불투명도 조정 */
 }
 
-
-.img > img{
+.img>img {
 	object-fit: cover;
 }
+
 .img-outer-box-2 {
 	width: 1000px;
 	border: 1px solid #EFE7E5;
@@ -229,8 +231,6 @@
 	margin-top: 15px;
 	padding: 10px;
 }
-
-
 
 .con-box, .self-box, .trend-box, .community-box {
 	margin-top: 20px;
@@ -362,17 +362,17 @@
 	background: #rgba(239, 231, 229, 0.3); /* 사용자가 스크롤바에 호버할 때의 배경색 */
 }
 
-.store{
-
-width: 300px;}
-
-.time{
-width: 300px;}
-
-.sm-img-outer-box{
-
+.store {
+	width: 300px;
 }
 
+.time {
+	width: 300px;
+}
+
+.sm-img-outer-box {
+	
+}
 </style>
 
 
@@ -401,14 +401,10 @@ width: 300px;}
 						<div class="area-option-box-3">
 							<div class="area-7 btn btn-outline btn-sm">부산</div>
 							<div class="area-8 btn btn-outline btn-sm">
-								광주
-								<br />
-								전라
+								광주 <br /> 전라
 							</div>
 							<div class="area-9 btn btn-outline btn-sm">
-								대구
-								<br />
-								경상
+								대구 <br /> 경상
 							</div>
 						</div>
 						<div class="area-option-box-4">
@@ -558,10 +554,10 @@ width: 300px;}
 													<img class="banner" style="width: 290px; height: 263px" src="${shop.photoUrl1}" />
 												</div>
 												<div class="content">
-							
-												<div class="store">${shop.shopName}</div>
-												<div class="time">${shop.roadName}</div>
-											</div>
+
+													<div class="store">${shop.shopName}</div>
+													<div class="time">${shop.roadName}</div>
+												</div>
 											</div>
 										</a>
 									</div>
@@ -569,9 +565,6 @@ width: 300px;}
 							</div>
 						</div>
 					</div>
-
-
-
 				</div>
 
 
@@ -589,21 +582,24 @@ width: 300px;}
 <!-- 통합 박스 스크립트  -->
 
 <script>
+	// 문서가 준비되면 요소와 이벤트를 처리할 준비가 됩니다.
 	$(document)
 			.ready(
 					function() {
-						var selectedRecommend = ""; // 선택된 recommend 옵션 초기화
-						var selectedCategory = ""; // 선택된 category 옵션 초기화
+						// 상점 필터링을 위한 선택된 옵션을 초기화합니다.
+						var selectedRecommend = ""; // 선택된 추천 옵션 (예: 높은 평점)
+						var selectedCategory = ""; // 선택된 카테고리 옵션 (예: 퍼스널 컬러)
 
-						// 이미지메이킹 또는 퍼스널컬러 버튼 클릭 시
+						// 카테고리 버튼(이미지메이킹 또는 퍼스널 컬러)에 대한 이벤트 리스너
 						$(".category-button")
 								.click(
 										function() {
+											// 버튼 텍스트를 기반으로 선택된 카테고리를 저장합니다.
 											selectedCategory = $(this).text()
 													.trim() === "이미지메이킹" ? 1
 													: 2; // 선택된 category 옵션을 저장
 
-											// 선택된 버튼에 활성화된 클래스를 추가합니다.
+											// 모든 카테고리 버튼에서 활성 클래스를 제거하고 클릭된 버튼에 추가합니다.
 											$(".category-button").removeClass(
 													"btn-active");
 											$(this).addClass("btn-active");
@@ -614,9 +610,10 @@ width: 300px;}
 													selectedCategory);
 										});
 
-						// 별점이 높은 또는 가장 저렴한 버튼 클릭 시
+						// 추천 버튼(높은 평점 또는 가장 저렴한) 클릭 시 이벤트
 						$(".recommend-1, .recommend-2").click(
 								function() {
+									// 어떤 버튼이 클릭되었는지에 따라 선택된 추천을 저장합니다.
 									selectedRecommend = $(this).hasClass(
 											"recommend-1") ? "별점이 높은"
 											: "가장 저렴한"; // 선택된 recommend 옵션을 저장
@@ -681,7 +678,7 @@ width: 300px;}
 												html += '</div>';
 												html += '</a>';
 												html += '</div>';
-
+												// 새로 생성된 HTML을 큰 외부 박스에 추가합니다.
 												$(".img-big-outer-box").append(
 														html);
 											});
