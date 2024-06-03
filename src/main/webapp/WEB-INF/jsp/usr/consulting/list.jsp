@@ -542,7 +542,7 @@
 					<div class="img-outer-box-2">
 						<div class="small-img-outer-box">
 							<div class="img-big-outer-box">
-								<%-- 페이지네이션을 위한 변수 설정 --%>
+								
 								<c:forEach var="shop" items="${shopInfoList }">
 
 

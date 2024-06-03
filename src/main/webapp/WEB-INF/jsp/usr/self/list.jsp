@@ -429,26 +429,6 @@ width: 300px;}
 					</div>
 				</div>
 			</div>
-
-
-			<!-- <div class="line"></div>
-			<div class="situation-big-outer-box">
-				<div class="situation-outer-box">
-
-					<div class="situation-box">
-						<div class="situation">상황</div>
-					</div>
-
-					<div class="situation-option-box">
-						<div class="situation-option-box-1">
-							<div class="situation-1 btn btn-outline btn-sm">일상</div>
-							<div class="situation-2 btn btn-outline btn-sm">면접</div>
-						</div>
-
-					</div>
-				</div>
-
-			</div> -->
 			
 
 		</div>
@@ -543,59 +523,29 @@ if (session.getAttribute("loginedMember") != null) {
 					<div class="img-outer-box-2">
 						<div class="small-img-outer-box">
 							<div class="img-big-outer-box">
-								<%-- 페이지네이션을 위한 변수 설정 --%>
-								<c:set var="pageSize" value="9" />
-								<c:set var="totalShops" value="${fn:length(shopInfoList)}" />
-								<c:set var="pagesCount" value="${totalShops / pageSize + (totalShops % pageSize > 0 ? 1 : 0)}" />
-								<c:set var="page" value="${param.page != null ? param.page : 1}" />
-								<c:set var="startIndex" value="${(page - 1) * pageSize}" />
-								<c:set var="endIndex" value="${startIndex + pageSize - 1}" />
+								
+								<c:forEach var="shop" items="${shopInfoList }">
 
-								<%-- 페이지에 표시될 가게 정보를 추출하여 표시 --%>
-								<c:forEach var="i" begin="${startIndex}" end="${endIndex}">
-									<c:if test="${i < fn:length(shopInfoList)}">
-										<!-- shopInfoList의 길이를 확인하여 유효한 인덱스인지 검사합니다 -->
-										<c:set var="shop" value="${shopInfoList[i]}" />
-										<div class="img-box-1">
-											<a href="detail?id=${shop.id}&categoryId=${shop.categoryId}&themeId=${shop.themeId}">
-												<div class="sm-img-outer-box">
-													<div class="img">
-														<img class="banner" style="width: 290px; height: 263px" src="${shop.photoUrl1}" />
-													</div>
+
+									<!-- shopInfoList의 길이를 확인하여 유효한 인덱스인지 검사합니다 -->
+									<div class="img-box-1">
+										<a href="detail?id=${shop.id}&categoryId=${shop.categoryId}&themeId=${shop.themeId}">
+											<div class="sm-img-outer-box">
+												<div class="img">
+													<img class="banner" style="width: 290px; height: 263px" src="${shop.photoUrl1}" />
+												</div>
+												<div class="content">
+
 													<div class="store">${shop.shopName}</div>
 													<div class="time">${shop.roadName}</div>
 												</div>
-											</a>
-										</div>
-									</c:if>
+											</div>
+										</a>
+									</div>
 								</c:forEach>
 							</div>
 
-							<%-- 페이지네이션 버튼 생성 --%>
-							<div class="pagination-container">
-								<div class="pagination flex justify-center mt-3">
-									<%-- 이전 페이지 버튼 --%>
-									<c:if test="${page > 1}">
-										<a class="btn btn-xs"
-											href="?boardId=${boardId}&searchKeywordTypeCode=${searchKeywordTypeCode}&searchKeyword=${searchKeyword}&page=${page - 1}">&lt;</a>
-									</c:if>
-
-									<%-- 페이지 버튼 --%>
-									<c:forEach var="i" begin="1" end="${pagesCount}">
-										<a class="btn btn-xs ${page == i ? 'btn-active' : ''}"
-											href="?boardId=${boardId}&searchKeywordTypeCode=${searchKeywordTypeCode}&searchKeyword=${searchKeyword}&page=${i}">${i}</a>
-									</c:forEach>
-
-									<%-- 다음 페이지 버튼 --%>
-									<c:if test="${page < pagesCount}">
-										<a class="btn btn-xs"
-											href="?boardId=${boardId}&searchKeywordTypeCode=${searchKeywordTypeCode}&searchKeyword=${searchKeyword}&page=${page+1}">&gt;</a>
-									</c:if>
-
-
-
-								</div>
-							</div>
+							
 						</div>
 					</div>
 
