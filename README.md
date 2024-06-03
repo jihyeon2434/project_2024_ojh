@@ -277,5 +277,9 @@ ITrendX 메인페이지 입니다. 상단 좌측 `컨설팅` 우측 `셀프` 테
 
 후기를 작성하면, 위와 같이 작성 리뷰가 리뷰 목록에 나타납니다. 
 
+---
+
+## ✒️ 개발 기술서
+https://docs.google.com/document/d/1JxA1M7nO5WoffhdVCcCNmbULy7IDezuo8V01bxH_8qI/edit
 
 
